@@ -14,7 +14,10 @@ function SpeakerIcon() {
   );
 }
 
+type Mode = "es-ua" | "ua-es";
+
 export function FlashCards({ words }: Props) {
+  const [mode, setMode] = useState<Mode>("es-ua");
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [results, setResults] = useState<Record<number, boolean>>({});
@@ -82,6 +85,7 @@ export function FlashCards({ words }: Props) {
     touchStartX.current = null;
   };
 
+  const switchMode = (m: Mode) => { setMode(m); setIndex(0); setFlipped(false); setResults({}); setSwipeHint(null); };
   const reset = () => { setIndex(0); setFlipped(false); setResults({}); setSwipeHint(null); };
 
   if (words.length === 0) {
@@ -109,8 +113,29 @@ export function FlashCards({ words }: Props) {
     );
   }
 
+  const frontText = mode === "es-ua" ? word.spanish : word.ukrainian;
+  const backPrimary = mode === "es-ua" ? word.ukrainian : word.spanish;
+  const backSecondary = mode === "es-ua" ? null : word.ukrainian;
+  const showPronunciationOnFront = mode === "es-ua";
+  const revealLabel = mode === "es-ua" ? "Показати переклад" : "Показати іспанське";
+
   return (
     <div className="space-y-4">
+      {/* Mode toggle */}
+      <div className="flex rounded-2xl bg-muted p-1 gap-1">
+        {([["es-ua", "🇪🇸 → 🇺🇦"], ["ua-es", "🇺🇦 → 🇪🇸"]] as [Mode, string][]).map(([m, label]) => (
+          <button
+            key={m}
+            onClick={() => switchMode(m)}
+            className={`flex-1 py-2 rounded-xl text-sm font-medium transition-all ${
+              mode === m ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
       {/* Progress */}
       <div className="flex items-center gap-3">
         <div className="flex-1 bg-muted rounded-full h-1.5 overflow-hidden">
@@ -138,11 +163,11 @@ export function FlashCards({ words }: Props) {
         >
           {/* Front */}
           <div className="card-flip-face rounded-3xl border bg-card flex flex-col items-center justify-center p-8 text-center" style={{ minHeight: 280 }}>
-            {word.part_of_speech && (
+            {word.part_of_speech && mode === "es-ua" && (
               <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-full mb-4">{word.part_of_speech}</span>
             )}
-            <span className="text-4xl font-bold tracking-tight leading-tight">{word.spanish}</span>
-            {word.pronunciation && (
+            <span className="text-4xl font-bold tracking-tight leading-tight">{frontText}</span>
+            {showPronunciationOnFront && word.pronunciation && (
               <span className="text-base text-muted-foreground mt-2 font-mono tracking-wide">{word.pronunciation}</span>
             )}
             <span className="text-xs text-muted-foreground mt-6 opacity-50">Натисни щоб відкрити</span>
@@ -150,11 +175,17 @@ export function FlashCards({ words }: Props) {
 
           {/* Back */}
           <div className="card-flip-back card-flip-face rounded-3xl border bg-card flex flex-col items-center justify-center p-8 text-center" style={{ minHeight: 280 }}>
-            <span className="text-xl font-semibold text-muted-foreground">{word.spanish}</span>
-            {word.pronunciation && (
+            <span className="text-xl font-semibold text-muted-foreground">{frontText}</span>
+            {mode === "es-ua" && word.pronunciation && (
               <span className="text-sm text-muted-foreground/60 font-mono mt-0.5">{word.pronunciation}</span>
             )}
-            <span className="text-3xl font-bold mt-3">{word.ukrainian}</span>
+            <span className="text-3xl font-bold mt-3">{backPrimary}</span>
+            {mode === "ua-es" && word.pronunciation && (
+              <span className="text-base text-muted-foreground font-mono mt-1.5">{word.pronunciation}</span>
+            )}
+            {backSecondary && (
+              <span className="text-sm text-muted-foreground mt-1">{backSecondary}</span>
+            )}
             {word.example_es && (
               <div className="mt-4 pt-4 border-t w-full space-y-1">
                 <p className="text-sm italic text-muted-foreground">{word.example_es}</p>
@@ -186,15 +217,17 @@ export function FlashCards({ words }: Props) {
 
       {!flipped && (
         <div className="flex items-center gap-2">
-          <button
-            onClick={(e) => { e.stopPropagation(); speak(); }}
-            className="min-h-[44px] px-4 flex items-center gap-2 rounded-2xl border bg-muted/50 text-sm text-muted-foreground hover:bg-muted active:scale-[0.98] transition-all"
-            style={{ opacity: speaking ? 0.6 : 1 }}
-          >
-            <SpeakerIcon />
-          </button>
+          {mode === "es-ua" && (
+            <button
+              onClick={(e) => { e.stopPropagation(); speak(); }}
+              className="min-h-[44px] px-4 flex items-center gap-2 rounded-2xl border bg-muted/50 text-sm text-muted-foreground hover:bg-muted active:scale-[0.98] transition-all"
+              style={{ opacity: speaking ? 0.6 : 1 }}
+            >
+              <SpeakerIcon />
+            </button>
+          )}
           <button onClick={handleCardClick} className="flex-1 min-h-[44px] rounded-2xl bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 active:scale-[0.98] transition-all">
-            Показати переклад
+            {revealLabel}
           </button>
         </div>
       )}
