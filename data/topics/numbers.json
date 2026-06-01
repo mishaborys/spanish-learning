@@ -1,0 +1,28 @@
+{
+  "title": "Числа 1–20",
+  "slug": "numbers",
+  "display_order": 1,
+  "grammar_text": "<h2>Числа в іспанській мові</h2><p>Числа від 1 до 15 — унікальні слова, їх треба просто запам'ятати. Числа від 16 до 19 утворюються за схемою <strong>diez + y + одиниця</strong> (наприклад, dieciséis = diez + y + seis). Число 20 — veinte.</p><h3>Важливо</h3><ul><li><strong>uno</strong> стає <strong>un</strong> перед іменниками чоловічого роду: <em>un libro</em> (одна книга)</li><li><strong>una</strong> — перед іменниками жіночого роду: <em>una mesa</em> (один стіл)</li></ul><h3>Приклади</h3><p><em>Tengo veinte años.</em> — Мені двадцять років.<br/><em>Hay tres gatos.</em> — Є три кішки.</p>",
+  "words": [
+    { "spanish": "uno", "ukrainian": "один", "example_es": "Tengo un hermano.", "example_uk": "У мене є один брат." },
+    { "spanish": "dos", "ukrainian": "два", "example_es": "Dos cafés, por favor.", "example_uk": "Дві кави, будь ласка." },
+    { "spanish": "tres", "ukrainian": "три", "example_es": "Hay tres gatos.", "example_uk": "Є три кішки." },
+    { "spanish": "cuatro", "ukrainian": "чотири", "example_es": "Son las cuatro.", "example_uk": "Четверта година." },
+    { "spanish": "cinco", "ukrainian": "п'ять", "example_es": "Cinco minutos.", "example_uk": "П'ять хвилин." },
+    { "spanish": "seis", "ukrainian": "шість", "example_es": "Seis personas.", "example_uk": "Шість людей." },
+    { "spanish": "siete", "ukrainian": "сім", "example_es": "Siete días.", "example_uk": "Сім днів." },
+    { "spanish": "ocho", "ukrainian": "вісім", "example_es": "Ocho horas.", "example_uk": "Вісім годин." },
+    { "spanish": "nueve", "ukrainian": "дев'ять", "example_es": "Nueve euros.", "example_uk": "Дев'ять євро." },
+    { "spanish": "diez", "ukrainian": "десять", "example_es": "Diez segundos.", "example_uk": "Десять секунд." },
+    { "spanish": "once", "ukrainian": "одинадцять", "example_es": "Son las once.", "example_uk": "Одинадцята година." },
+    { "spanish": "doce", "ukrainian": "дванадцять", "example_es": "Doce meses.", "example_uk": "Дванадцять місяців." },
+    { "spanish": "trece", "ukrainian": "тринадцять", "example_es": "Trece años.", "example_uk": "Тринадцять років." },
+    { "spanish": "catorce", "ukrainian": "чотирнадцять", "example_es": "Catorce días.", "example_uk": "Чотирнадцять днів." },
+    { "spanish": "quince", "ukrainian": "п'ятнадцять", "example_es": "Quince minutos.", "example_uk": "П'ятнадцять хвилин." },
+    { "spanish": "dieciséis", "ukrainian": "шістнадцять", "example_es": "Dieciséis horas.", "example_uk": "Шістнадцять годин." },
+    { "spanish": "diecisiete", "ukrainian": "сімнадцять", "example_es": "Diecisiete años.", "example_uk": "Сімнадцять років." },
+    { "spanish": "dieciocho", "ukrainian": "вісімнадцять", "example_es": "Dieciocho euros.", "example_uk": "Вісімнадцять євро." },
+    { "spanish": "diecinueve", "ukrainian": "дев'ятнадцять", "example_es": "Diecinueve personas.", "example_uk": "Дев'ятнадцять осіб." },
+    { "spanish": "veinte", "ukrainian": "двадцять", "example_es": "Tengo veinte años.", "example_uk": "Мені двадцять років." }
+  ]
+}
