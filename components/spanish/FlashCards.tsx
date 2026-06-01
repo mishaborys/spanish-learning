@@ -76,11 +76,11 @@ export function FlashCards({ words }: Props) {
     };
 
     const onMove = (e: TouchEvent) => {
-      if (!tracking || !flippedRef.current) return;
+      if (!tracking) return;
       const dx = e.touches[0].clientX - startX;
       const dy = Math.abs(e.touches[0].clientY - startY);
       if (Math.abs(dx) > 12 && Math.abs(dx) > dy * 0.6) {
-        e.preventDefault(); // block page scroll during horizontal swipe
+        e.preventDefault();
         setSwipeHint(dx > 0 ? "right" : "left");
       }
     };
@@ -88,7 +88,6 @@ export function FlashCards({ words }: Props) {
     const onEnd = (e: TouchEvent) => {
       if (!tracking) return;
       tracking = false;
-      if (!flippedRef.current) return;
       const dx = e.changedTouches[0].clientX - startX;
       const dy = Math.abs(e.changedTouches[0].clientY - startY);
       if (Math.abs(dx) > 50 && Math.abs(dx) > dy * 0.6) {
