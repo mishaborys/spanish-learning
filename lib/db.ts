@@ -26,6 +26,7 @@ export type Word = {
   topic_id: number;
   spanish: string;
   ukrainian: string;
+  pronunciation: string | null;
   example_es: string | null;
   example_uk: string | null;
   gender: string | null;

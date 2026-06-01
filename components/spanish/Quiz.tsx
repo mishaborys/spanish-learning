@@ -121,6 +121,11 @@ export function Quiz({ words }: Props) {
           Як перекласти?
         </p>
         <p className="text-4xl font-bold tracking-tight">{q.question}</p>
+        {current.pronunciation && (
+          <p className="text-sm text-muted-foreground font-mono mt-2">
+            {current.pronunciation}
+          </p>
+        )}
       </div>
 
       {/* Options */}

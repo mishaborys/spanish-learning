@@ -15,6 +15,7 @@ type TopicData = {
   words: {
     spanish: string;
     ukrainian: string;
+    pronunciation?: string;
     example_es?: string;
     example_uk?: string;
     gender?: string;
@@ -62,6 +63,7 @@ async function seedTopic(filePath: string) {
       await sql`
         UPDATE words SET
           ukrainian = ${word.ukrainian},
+          pronunciation = ${word.pronunciation ?? null},
           example_es = ${word.example_es ?? null},
           example_uk = ${word.example_uk ?? null},
           gender = ${word.gender ?? null},
@@ -70,11 +72,12 @@ async function seedTopic(filePath: string) {
       `;
     } else {
       await sql`
-        INSERT INTO words (topic_id, spanish, ukrainian, example_es, example_uk, gender, part_of_speech)
+        INSERT INTO words (topic_id, spanish, ukrainian, pronunciation, example_es, example_uk, gender, part_of_speech)
         VALUES (
           ${topicId},
           ${word.spanish},
           ${word.ukrainian},
+          ${word.pronunciation ?? null},
           ${word.example_es ?? null},
           ${word.example_uk ?? null},
           ${word.gender ?? null},

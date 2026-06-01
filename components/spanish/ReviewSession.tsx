@@ -125,10 +125,15 @@ export function ReviewSession({ words: initialWords }: Props) {
               </span>
             )}
             <span className="text-4xl font-bold tracking-tight">{word.spanish}</span>
-            {word.gender && (
-              <span className="text-sm text-muted-foreground mt-2">{word.gender}</span>
+            {word.pronunciation && (
+              <span className="text-base text-muted-foreground mt-2 font-mono tracking-wide">
+                {word.pronunciation}
+              </span>
             )}
-            <span className="text-xs text-muted-foreground mt-6 opacity-60">
+            {word.gender && (
+              <span className="text-sm text-muted-foreground mt-1">{word.gender}</span>
+            )}
+            <span className="text-xs text-muted-foreground mt-5 opacity-60">
               Натисни щоб відкрити
             </span>
           </div>
@@ -136,7 +141,12 @@ export function ReviewSession({ words: initialWords }: Props) {
           {/* Back */}
           <div className="card-flip-back card-flip-face rounded-3xl border bg-card flex flex-col items-center justify-center p-8 text-center" style={{ minHeight: 260 }}>
             <span className="text-2xl font-bold text-muted-foreground">{word.spanish}</span>
-            <span className="text-3xl font-bold mt-2">{word.ukrainian}</span>
+            {word.pronunciation && (
+              <span className="text-sm text-muted-foreground/70 font-mono mt-0.5">
+                {word.pronunciation}
+              </span>
+            )}
+            <span className="text-3xl font-bold mt-3">{word.ukrainian}</span>
             {word.example_es && (
               <div className="mt-5 pt-5 border-t w-full space-y-1">
                 <p className="text-sm italic text-muted-foreground">{word.example_es}</p>
