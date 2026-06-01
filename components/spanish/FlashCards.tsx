@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { Word } from "@/lib/db";
 
 type Props = { words: Word[] };
@@ -25,8 +25,10 @@ export function FlashCards({ words }: Props) {
   const [swipeHint, setSwipeHint] = useState<"left" | "right" | null>(null);
   const [showList, setShowList] = useState(false);
 
-  const touchStartX = useRef<number | null>(null);
-  const touchStartY = useRef<number | null>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  // Refs so native event listeners always see fresh values without stale closures
+  const flippedRef = useRef(flipped);
+  const handleAnswerRef = useRef<(known: boolean) => void>(() => {});
 
   const word = words[index];
   const knownCount = Object.values(results).filter(Boolean).length;
@@ -43,7 +45,7 @@ export function FlashCards({ words }: Props) {
     window.speechSynthesis.speak(u);
   }, [word, speaking]);
 
-  const handleAnswer = async (known: boolean) => {
+  const handleAnswer = useCallback(async (known: boolean) => {
     setResults((prev) => ({ ...prev, [word.id]: known }));
     await fetch("/api/progress", {
       method: "POST",
@@ -53,38 +55,60 @@ export function FlashCards({ words }: Props) {
     setFlipped(false);
     setSwipeHint(null);
     setTimeout(() => setIndex((i) => i + 1), 50);
-  };
+  }, [word]);
 
-  const handleCardClick = () => {
-    if (!flipped) setFlipped(true);
-  };
+  // Keep refs in sync on every render
+  flippedRef.current = flipped;
+  handleAnswerRef.current = handleAnswer;
 
-  const onTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-    touchStartY.current = e.touches[0].clientY;
-  };
+  // Native touch listeners (non-passive) to allow preventDefault and block scroll interference
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    let startX = 0;
+    let startY = 0;
+    let tracking = false;
 
-  const onTouchMove = (e: React.TouchEvent) => {
-    if (!flipped || touchStartX.current === null) return;
-    const dx = e.touches[0].clientX - touchStartX.current;
-    const dy = Math.abs(e.touches[0].clientY - (touchStartY.current ?? 0));
-    if (Math.abs(dx) > 20 && Math.abs(dx) > dy) {
-      setSwipeHint(dx > 0 ? "right" : "left");
-    }
-  };
+    const onStart = (e: TouchEvent) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      tracking = true;
+    };
 
-  const onTouchEnd = (e: React.TouchEvent) => {
-    if (!flipped || touchStartX.current === null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX.current;
-    const dy = Math.abs(e.changedTouches[0].clientY - (touchStartY.current ?? 0));
-    if (Math.abs(dx) > 60 && Math.abs(dx) > dy) {
-      handleAnswer(dx > 0);
-    } else {
-      setSwipeHint(null);
-    }
-    touchStartX.current = null;
-  };
+    const onMove = (e: TouchEvent) => {
+      if (!tracking || !flippedRef.current) return;
+      const dx = e.touches[0].clientX - startX;
+      const dy = Math.abs(e.touches[0].clientY - startY);
+      if (Math.abs(dx) > 12 && Math.abs(dx) > dy * 0.6) {
+        e.preventDefault(); // block page scroll during horizontal swipe
+        setSwipeHint(dx > 0 ? "right" : "left");
+      }
+    };
 
+    const onEnd = (e: TouchEvent) => {
+      if (!tracking) return;
+      tracking = false;
+      if (!flippedRef.current) return;
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = Math.abs(e.changedTouches[0].clientY - startY);
+      if (Math.abs(dx) > 50 && Math.abs(dx) > dy * 0.6) {
+        handleAnswerRef.current(dx > 0);
+      } else {
+        setSwipeHint(null);
+      }
+    };
+
+    el.addEventListener("touchstart", onStart, { passive: true });
+    el.addEventListener("touchmove", onMove, { passive: false }); // non-passive = can preventDefault
+    el.addEventListener("touchend", onEnd, { passive: true });
+    return () => {
+      el.removeEventListener("touchstart", onStart);
+      el.removeEventListener("touchmove", onMove);
+      el.removeEventListener("touchend", onEnd);
+    };
+  }, []); // runs once; fresh values come from refs
+
+  const handleCardClick = () => { if (!flipped) setFlipped(true); };
   const switchMode = (m: Mode) => { setMode(m); setIndex(0); setFlipped(false); setResults({}); setSwipeHint(null); };
   const reset = () => { setIndex(0); setFlipped(false); setResults({}); setSwipeHint(null); };
 
@@ -146,11 +170,9 @@ export function FlashCards({ words }: Props) {
 
       {/* Card */}
       <div
+        ref={cardRef}
         className="card-flip-container select-none"
         style={{ minHeight: 280 }}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
         onClick={handleCardClick}
       >
         <div
