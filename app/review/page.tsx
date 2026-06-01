@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import sql from "@/lib/db";
 import { WordWithProgress } from "@/lib/db";
 import { ReviewSession } from "@/components/spanish/ReviewSession";

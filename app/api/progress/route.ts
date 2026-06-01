@@ -4,9 +4,9 @@ import sql from "@/lib/db";
 export async function POST(req: NextRequest) {
   const { word_id, correct } = await req.json();
 
-  const existing = await sql`
+  const existing = (await sql`
     SELECT id, correct_count, incorrect_count FROM progress WHERE word_id = ${word_id}
-  `;
+  `) as { id: number; correct_count: number; incorrect_count: number }[];
 
   const now = new Date();
   const isCorrect = Boolean(correct);

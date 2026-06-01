@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import sql from "@/lib/db";
 import { Topic } from "@/lib/db";
 import Link from "next/link";

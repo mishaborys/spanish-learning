@@ -1,6 +1,14 @@
 import { neon } from "@neondatabase/serverless";
 
-const sql = neon(process.env.DATABASE_URL!);
+let _client: ReturnType<typeof neon> | undefined;
+
+function client() {
+  return (_client ??= neon(process.env.DATABASE_URL!));
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const sql = (strings: TemplateStringsArray, ...values: any[]) =>
+  client()(strings, ...values);
 
 export default sql;
 
