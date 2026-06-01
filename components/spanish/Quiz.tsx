@@ -44,15 +44,11 @@ export function Quiz({ words }: Props) {
     return (
       <div className="space-y-6 py-4">
         <div className="flex flex-col items-center space-y-3">
-          <div className="w-24 h-24 rounded-full border-4 border-primary flex items-center justify-center">
-            <span className="text-2xl font-bold">{percent}%</span>
+          <div className="w-20 h-20 rounded-full border-4 border-primary flex items-center justify-center">
+            <span className="text-xl font-bold">{percent}%</span>
           </div>
-          <p className="font-semibold text-lg">
-            {percent === 100 ? "Ідеально!" : percent >= 70 ? "Добре!" : "Продовжуй вчити!"}
-          </p>
-          <p className="text-sm text-muted-foreground">
-            {score} з {questions.length} правильних відповідей
-          </p>
+          <p className="font-semibold text-lg">{percent === 100 ? "Ідеально!" : percent >= 70 ? "Добре!" : "Продовжуй вчити!"}</p>
+          <p className="text-sm text-muted-foreground">{score} з {questions.length} правильних</p>
         </div>
 
         {wrongWords.length > 0 && (
@@ -81,6 +77,8 @@ export function Quiz({ words }: Props) {
 
   if (!q) return null;
 
+  const isCorrect = selected === q.correct;
+
   const handleSelect = async (option: string) => {
     if (selected !== null) return;
     setSelected(option);
@@ -95,45 +93,36 @@ export function Quiz({ words }: Props) {
   };
 
   const handleNext = () => {
+    if (selected === null) return;
     if (qIndex + 1 >= questions.length) setFinished(true);
     else { setQIndex((i) => i + 1); setSelected(null); }
   };
 
   return (
-    <div className="space-y-5">
-
+    <div className="flex flex-col gap-4">
       {/* Progress */}
       <div className="flex items-center gap-3">
         <div className="flex-1 bg-muted rounded-full h-1.5 overflow-hidden">
-          <div
-            className="h-full bg-primary rounded-full transition-all duration-300"
-            style={{ width: `${(qIndex / questions.length) * 100}%` }}
-          />
+          <div className="h-full bg-primary rounded-full transition-all duration-300" style={{ width: `${(qIndex / questions.length) * 100}%` }} />
         </div>
-        <span className="text-xs text-muted-foreground tabular-nums shrink-0">
-          {qIndex + 1} / {questions.length}
-        </span>
+        <span className="text-xs text-muted-foreground tabular-nums shrink-0">{qIndex + 1} / {questions.length}</span>
       </div>
 
       {/* Question */}
-      <div className="rounded-3xl border bg-card flex flex-col items-center justify-center p-8 text-center min-h-[140px]">
-        <p className="text-xs text-muted-foreground mb-3 uppercase tracking-wider">
-          Як перекласти?
-        </p>
+      <div className="rounded-3xl border bg-card flex flex-col items-center justify-center p-8 text-center" style={{ minHeight: 120 }}>
+        <p className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">Як перекласти?</p>
         <p className="text-4xl font-bold tracking-tight">{q.question}</p>
         {current.pronunciation && (
-          <p className="text-sm text-muted-foreground font-mono mt-2">
-            {current.pronunciation}
-          </p>
+          <p className="text-sm text-muted-foreground font-mono mt-2">{current.pronunciation}</p>
         )}
       </div>
 
       {/* Options */}
       <div className="grid grid-cols-2 gap-3">
         {q.options.map((opt) => {
-          const isCorrect = selected !== null && opt === q.correct;
-          const isWrong = selected === opt && opt !== q.correct;
-          const isDisabled = selected !== null && opt !== q.correct && opt !== selected;
+          const isThisCorrect = selected !== null && opt === q.correct;
+          const isThisWrong = selected === opt && opt !== q.correct;
+          const isDisabled = selected !== null && !isThisCorrect && opt !== selected;
 
           return (
             <button
@@ -142,15 +131,14 @@ export function Quiz({ words }: Props) {
               disabled={isDisabled}
               className={`
                 min-h-[64px] rounded-2xl border-2 px-3 py-3 text-sm font-medium
-                text-center leading-snug
-                active:scale-[0.97] transition-all
-                ${isCorrect
+                text-center leading-snug transition-all
+                ${isThisCorrect
                   ? "border-green-500 bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-400 dark:border-green-700"
-                  : isWrong
+                  : isThisWrong
                   ? "border-destructive/60 bg-destructive/8 text-destructive"
                   : isDisabled
                   ? "border-border bg-muted/30 text-muted-foreground opacity-40"
-                  : "border-border bg-card hover:bg-accent/40 hover:border-primary/40"
+                  : "border-border bg-card hover:bg-accent/40 hover:border-primary/30 active:scale-[0.97]"
                 }
               `}
             >
@@ -160,26 +148,32 @@ export function Quiz({ words }: Props) {
         })}
       </div>
 
-      {/* Next button */}
-      {selected !== null && (
-        <div className="space-y-3">
-          <div className={`rounded-2xl px-4 py-3 text-sm font-medium ${
-            selected === q.correct
-              ? "bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-400"
-              : "bg-destructive/8 text-destructive"
-          }`}>
-            {selected === q.correct
-              ? "Правильно!"
-              : `Правильна відповідь: ${q.correct}`}
-          </div>
-          <button
-            onClick={handleNext}
-            className="w-full min-h-[52px] rounded-2xl bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 active:scale-[0.98] transition-all"
-          >
-            {qIndex + 1 >= questions.length ? "Результат" : "Далі →"}
-          </button>
-        </div>
-      )}
+      {/* Feedback — always takes up space to prevent layout shift */}
+      <div className={`rounded-2xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
+        selected !== null
+          ? isCorrect
+            ? "bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-400"
+            : "bg-destructive/8 text-destructive"
+          : "opacity-0 pointer-events-none bg-muted"
+      }`}>
+        {selected !== null
+          ? isCorrect ? "Правильно!" : `Правильна відповідь: ${q.correct}`
+          : "‎" /* invisible placeholder to reserve height */
+        }
+      </div>
+
+      {/* Next button — always visible, disabled until answer selected */}
+      <button
+        onClick={handleNext}
+        disabled={selected === null}
+        className={`w-full min-h-[52px] rounded-2xl font-medium text-sm transition-all ${
+          selected !== null
+            ? "bg-primary text-primary-foreground hover:opacity-90 active:scale-[0.98]"
+            : "bg-muted text-muted-foreground cursor-not-allowed"
+        }`}
+      >
+        {qIndex + 1 >= questions.length ? "Результат" : "Далі →"}
+      </button>
     </div>
   );
 }
