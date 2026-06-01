@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -127,4 +128,26 @@
   html {
     @apply font-sans;
   }
+}
+
+/* 3D card flip */
+.card-flip-container {
+  perspective: 1200px;
+}
+.card-flip-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+.card-flip-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+.card-flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.card-flip-back {
+  transform: rotateY(180deg);
+  position: absolute;
+  inset: 0;
 }
