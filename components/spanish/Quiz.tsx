@@ -8,7 +8,7 @@ type Props = { words: WordWithStatus[] };
 
 const ARTICLE_RE = /^(el|la|los|las) (.+)$/;
 const ALL_ARTICLES = ["el", "la", "los", "las"];
-const ADVANCE_MS = 3000;
+const ADVANCE_MS = 2000;
 
 function shuffle<T>(arr: T[]): T[] {
   return [...arr].sort(() => Math.random() - 0.5);
