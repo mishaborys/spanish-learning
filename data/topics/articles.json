@@ -28,6 +28,26 @@
     { "spanish": "la pizza",      "pronunciation": "ла ПІса",          "ukrainian": "піца",                   "example_es": "La pizza está caliente.",             "example_uk": "Піца гаряча." },
     { "spanish": "la palabra",    "pronunciation": "ла паЛАбра",       "ukrainian": "слово",                  "example_es": "¿Cómo se dice esta palabra?",         "example_uk": "Як вимовляється це слово?" },
     { "spanish": "la mano",       "pronunciation": "ла МАно",          "ukrainian": "рука (виняток: la!)",    "example_es": "Dame la mano.",                       "example_uk": "Дай мені руку." },
-    { "spanish": "la mesa",       "pronunciation": "ла МЕса",          "ukrainian": "стіл",                   "example_es": "Pon el libro en la mesa.",            "example_uk": "Поклади книгу на стіл." }
+    { "spanish": "la mesa",       "pronunciation": "ла МЕса",          "ukrainian": "стіл",                   "example_es": "Pon el libro en la mesa.",            "example_uk": "Поклади книгу на стіл." },
+
+    { "spanish": "los libros",      "pronunciation": "лос ЛІброс",      "ukrainian": "книги",                  "example_es": "Los libros son interesantes.",        "example_uk": "Книги цікаві." },
+    { "spanish": "los cuadernos",   "pronunciation": "лос куаДЕРнос",   "ukrainian": "зошити",                 "example_es": "Necesito los cuadernos.",             "example_uk": "Мені потрібні зошити." },
+    { "spanish": "los bolígrafos",  "pronunciation": "лос боЛІграфос",  "ukrainian": "ручки",                  "example_es": "Los bolígrafos están en la mesa.",    "example_uk": "Ручки на столі." },
+    { "spanish": "los tacos",       "pronunciation": "лос ТАкос",       "ukrainian": "такоси",                 "example_es": "Los tacos están deliciosos.",         "example_uk": "Такоси смачні." },
+    { "spanish": "los viajes",      "pronunciation": "лос вЯхес",       "ukrainian": "подорожі",               "example_es": "Los viajes son interesantes.",        "example_uk": "Подорожі цікаві." },
+    { "spanish": "los parques",     "pronunciation": "лос ПАРкес",      "ukrainian": "парки",                  "example_es": "Los parques son bonitos.",            "example_uk": "Парки гарні." },
+    { "spanish": "los celulares",   "pronunciation": "лос селуЛАРес",   "ukrainian": "мобільні телефони",      "example_es": "Los celulares están apagados.",       "example_uk": "Телефони вимкнені." },
+    { "spanish": "los compañeros",  "pronunciation": "лос компаНЄрос",  "ukrainian": "однокласники",           "example_es": "Los compañeros son simpáticos.",      "example_uk": "Однокласники симпатичні." },
+    { "spanish": "los textos",      "pronunciation": "лос ТЕКстос",     "ukrainian": "тексти",                 "example_es": "Lee los textos.",                     "example_uk": "Прочитай тексти." },
+
+    { "spanish": "las clases",      "pronunciation": "лас КЛАсес",      "ukrainian": "класи, уроки",           "example_es": "Las clases empiezan a las nueve.",    "example_uk": "Уроки починаються о дев'ятій." },
+    { "spanish": "las compañeras",  "pronunciation": "лас компаНЄрас",  "ukrainian": "однокласниці",           "example_es": "Las compañeras estudian juntas.",     "example_uk": "Однокласниці вчаться разом." },
+    { "spanish": "las tareas",      "pronunciation": "лас таРЕас",      "ukrainian": "домашні завдання",       "example_es": "Las tareas son difíciles.",           "example_uk": "Домашні завдання важкі." },
+    { "spanish": "las preguntas",   "pronunciation": "лас преГУНтас",   "ukrainian": "запитання",              "example_es": "Las preguntas son importantes.",      "example_uk": "Запитання важливі." },
+    { "spanish": "las playas",      "pronunciation": "лас ПЛАйас",      "ukrainian": "пляжі",                  "example_es": "Las playas son bonitas.",             "example_uk": "Пляжі гарні." },
+    { "spanish": "las mesas",       "pronunciation": "лас МЕсас",       "ukrainian": "столи",                  "example_es": "Las mesas están limpias.",            "example_uk": "Столи чисті." },
+    { "spanish": "las flores",      "pronunciation": "лас флОРес",      "ukrainian": "квіти",                  "example_es": "Las flores son hermosas.",            "example_uk": "Квіти гарні." },
+    { "spanish": "las palabras",    "pronunciation": "лас паЛАбрас",    "ukrainian": "слова",                  "example_es": "Las palabras son difíciles.",         "example_uk": "Слова важкі." },
+    { "spanish": "las tazas",       "pronunciation": "лас ТАсас",       "ukrainian": "чашки",                  "example_es": "Las tazas están en la cocina.",       "example_uk": "Чашки на кухні." }
   ]
 }
