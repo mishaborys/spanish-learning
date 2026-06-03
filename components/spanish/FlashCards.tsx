@@ -66,10 +66,11 @@ export function FlashCards({ words }: Props) {
 
   const handleAnswer = useCallback(async (known: boolean) => {
     if (!word) return;
+    // force_known: true means flashcard "Знаю" → immediately sets status="known" in DB
     await fetch("/api/progress", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ word_id: word.id, correct: known }),
+      body: JSON.stringify({ word_id: word.id, correct: known, force_known: known }),
     });
     setFlipped(false);
     setDragX(0);
@@ -254,13 +255,15 @@ export function FlashCards({ words }: Props) {
         </div>
 
         <div className="card-flip-container" style={{ minHeight: 280 }}>
-          <div className={`card-flip-inner cursor-pointer ${flipped ? "is-flipped" : ""}`}
+          <div className="card-flip-inner cursor-pointer"
             style={{
               minHeight: 280,
-              transform: `translateX(${dragX}px) rotate(${rotation}deg)`,
+              // All transforms combined — inline style overrides CSS class,
+              // so rotateY for flip must live here, not in .is-flipped
+              transform: `translateX(${dragX}px) rotate(${rotation}deg) rotateY(${flipped ? 180 : 0}deg)`,
               transition: isDragging ? "none" : animatingOut
                 ? "transform 0.3s cubic-bezier(0.4,0,1,1)"
-                : "transform 0.3s cubic-bezier(0.34,1.56,0.64,1)",
+                : "transform 0.5s cubic-bezier(0.4,0,0.2,1)",
             }}>
             {/* Front */}
             <div className="card-flip-face rounded-3xl border bg-card flex flex-col items-center justify-center p-8 text-center" style={{ minHeight: 280 }}>

@@ -113,9 +113,9 @@ export function ReviewSession({ words: initialWords }: Props) {
       {/* Flip card */}
       <div className="card-flip-container" style={{ minHeight: 260 }}>
         <div
-          className={`card-flip-inner cursor-pointer ${flipped ? "is-flipped" : ""}`}
-          style={{ minHeight: 260 }}
-          onClick={() => !flipped && setFlipped(true)}
+          className="card-flip-inner cursor-pointer"
+          style={{ minHeight: 260, transform: `rotateY(${flipped ? 180 : 0}deg)` }}
+          onClick={() => setFlipped(f => !f)}
         >
           {/* Front */}
           <div className="card-flip-face rounded-3xl border bg-card flex flex-col items-center justify-center p-8 text-center" style={{ minHeight: 260 }}>

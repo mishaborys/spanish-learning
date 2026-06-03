@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import sql from "@/lib/db";
 
 export async function POST(req: NextRequest) {
-  const { word_id, correct } = await req.json();
+  const { word_id, correct, force_known = false } = await req.json();
 
   const existing = (await sql`
     SELECT id, correct_count, incorrect_count FROM progress WHERE word_id = ${word_id}
@@ -11,10 +11,18 @@ export async function POST(req: NextRequest) {
   const now = new Date();
   const isCorrect = Boolean(correct);
 
+  // force_known = true means flashcard "Знаю" click → immediately mark as known
+  const resolveStatus = (count: number) => {
+    if (force_known && isCorrect) return "known";
+    if (count >= 5) return "known";
+    if (count >= 2) return "learning";
+    return "new";
+  };
+
   if (existing.length === 0) {
     const correct_count = isCorrect ? 1 : 0;
     const incorrect_count = isCorrect ? 0 : 1;
-    const status = isCorrect ? "learning" : "new";
+    const status = resolveStatus(correct_count);
     const next_review = nextReviewDate(correct_count);
 
     await sql`
@@ -24,11 +32,8 @@ export async function POST(req: NextRequest) {
   } else {
     const row = existing[0];
     const correct_count = isCorrect ? row.correct_count + 1 : row.correct_count;
-    const incorrect_count = isCorrect
-      ? row.incorrect_count
-      : row.incorrect_count + 1;
-    const status =
-      correct_count >= 5 ? "known" : correct_count >= 2 ? "learning" : "new";
+    const incorrect_count = isCorrect ? row.incorrect_count : row.incorrect_count + 1;
+    const status = resolveStatus(correct_count);
     const next_review = nextReviewDate(correct_count);
 
     await sql`
