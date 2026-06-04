@@ -1,0 +1,81 @@
+{
+  "id": "lesson-05",
+  "title": "Урок 5 — En la recepción",
+  "due_date": "2026-06-09",
+  "audio": [
+    { "label": "Аудіо 04", "src": "/audio/au_plus_1_04.mp3" },
+    { "label": "Аудіо 05", "src": "/audio/au_plus_1_05.mp3" },
+    { "label": "Аудіо 06", "src": "/audio/au_plus_1_06.mp3" }
+  ],
+  "exercises": [
+    {
+      "id": "A",
+      "label": "A",
+      "instruction": "En la recepción de una escuela de español, tres estudiantes dan sus datos personales. Escucha y completa.",
+      "type": "fill-form",
+      "word_bank": ["Barbara", "brasileño", "675312908", "913490025", "Katia", "periodista", "19", "27", "estudiante"],
+      "people": [
+        {
+          "nombre": "Paulo",
+          "apellido": "De Souza",
+          "correo": "paulo102@gmail.com",
+          "fields": [
+            { "id": "p1-edad",         "label": "Edad:",          "answer": "27" },
+            { "id": "p1-nac",          "label": "Nacionalidad:",  "answer": "brasileño" },
+            { "id": "p1-prof",         "label": "Profesión:",     "answer": "estudiante" },
+            { "id": "p1-tel",          "label": "Teléfono:",      "answer": "913490025" }
+          ]
+        },
+        {
+          "nombre": null,
+          "apellido": "Vigny",
+          "correo": "999vigny@hotmail.fr",
+          "fields": [
+            { "id": "p2-nombre",       "label": "Nombre:",        "answer": "Katia" },
+            { "id": "p2-edad",         "label": "Edad:",          "answer": "19" },
+            { "id": "p2-nac",          "label": "Nacionalidad:",  "answer": "Francesa",   "given": true },
+            { "id": "p2-prof",         "label": "Profesión:",     "answer": "Camarera",   "given": true },
+            { "id": "p2-tel",          "label": "Teléfono:",      "answer": "675312908" }
+          ]
+        },
+        {
+          "nombre": null,
+          "apellido": "Meyerhofer",
+          "correo": "meyerhofer@gmail.com",
+          "edad": "24 años",
+          "fields": [
+            { "id": "p3-nombre",       "label": "Nombre:",        "answer": "Barbara" },
+            { "id": "p3-nac",          "label": "Nacionalidad:",  "answer": "Alemana",    "given": true },
+            { "id": "p3-prof",         "label": "Profesión:",     "answer": "periodista" },
+            { "id": "p3-tel",          "label": "Teléfono:",      "answer": "No tiene",   "given": true }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "label": "B",
+      "instruction": "Ahora vuelve a escuchar e indica para qué sirven estas preguntas.",
+      "type": "match-category",
+      "categories": [
+        { "id": 1, "text": "la nacionalidad / el lugar de origen" },
+        { "id": 2, "text": "el correo electrónico" },
+        { "id": 3, "text": "el nombre" },
+        { "id": 4, "text": "la profesión" },
+        { "id": 5, "text": "la edad" },
+        { "id": 6, "text": "el número de teléfono" }
+      ],
+      "questions": [
+        { "id": "q1", "text": "¿Cómo te llamas?",               "answer": 3 },
+        { "id": "q2", "text": "¿Cuál es tu nombre?",             "answer": 3 },
+        { "id": "q3", "text": "¿Cuántos años tienes?",           "answer": 5 },
+        { "id": "q4", "text": "¿A qué te dedicas?",              "answer": 4 },
+        { "id": "q5", "text": "¿En qué trabajas?",               "answer": 4 },
+        { "id": "q6", "text": "¿Tienes correo electrónico?",     "answer": 2 },
+        { "id": "q7", "text": "¿Tienes móvil?",                  "answer": 6 },
+        { "id": "q8", "text": "¿Cuál es tu número de teléfono?", "answer": 6 },
+        { "id": "q9", "text": "¿De dónde eres?",                 "answer": 1 }
+      ]
+    }
+  ]
+}
