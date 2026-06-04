@@ -8,6 +8,8 @@ type Props = { words: WordWithStatus[] };
 
 const ARTICLE_RE = /^(el|la|los|las) (.+)$/;
 const ALL_ARTICLES = ["el", "la", "los", "las"];
+const VERB_RE = /^.+(ar|er|ir)$/i;
+const PRONOUNS = ["yo", "tú", "él/ella"];
 const ADVANCE_MS = 2000;
 
 function shuffle<T>(arr: T[]): T[] {
@@ -16,22 +18,26 @@ function shuffle<T>(arr: T[]): T[] {
 
 type Question = {
   word: WordWithStatus;
-  question: string;
+  question: string;       // what to display in question card
   hint: string | null;
   correct: string;
   options: string[];
   isArticle: boolean;
+  isConjugation: boolean;
+  pronoun?: string;       // e.g. "yo", "tú", "él/ella"
 };
 
-function buildQuestion(word: WordWithStatus, allWords: WordWithStatus[], articleMode: boolean): Question {
-  if (articleMode) {
-    const match = word.spanish.match(ARTICLE_RE);
-    if (match) {
-      const [, correctArticle, noun] = match;
-      const hint = word.pronunciation?.replace(/^(ель|ла|лос|лас) /i, "") ?? null;
-      return { word, question: noun, hint, correct: correctArticle, options: shuffle(ALL_ARTICLES), isArticle: true };
-    }
-  }
+// Conjugate a regular -ar/-er/-ir verb for a given pronoun
+function conjugate(infinitive: string, pronoun: string): string {
+  const arEnd: Record<string, string> = { yo: "o", tú: "as", "él/ella": "a", ellos: "an" };
+  const erirEnd: Record<string, string> = { yo: "o", tú: "es", "él/ella": "e", ellos: "en" };
+  if (infinitive.endsWith("ar")) return infinitive.slice(0, -2) + (arEnd[pronoun] ?? "");
+  if (infinitive.endsWith("er") || infinitive.endsWith("ir"))
+    return infinitive.slice(0, -2) + (erirEnd[pronoun] ?? "");
+  return infinitive;
+}
+
+function buildTranslationQuestion(word: WordWithStatus, allWords: WordWithStatus[]): Question {
   const pool = shuffle(allWords.filter(w => w.id !== word.id));
   const distractors = pool.slice(0, 3).map(w => w.ukrainian);
   const fallback = ["———", "– – –", "· · ·", "× × ×"];
@@ -43,13 +49,54 @@ function buildQuestion(word: WordWithStatus, allWords: WordWithStatus[], article
     correct: word.ukrainian,
     options: shuffle([word.ukrainian, ...distractors]),
     isArticle: false,
+    isConjugation: false,
   };
+}
+
+function buildArticleQuestion(word: WordWithStatus): Question {
+  const match = word.spanish.match(ARTICLE_RE)!;
+  const [, correctArticle, noun] = match;
+  const hint = word.pronunciation?.replace(/^(ель|ла|лос|лас) /i, "") ?? null;
+  return {
+    word, question: noun, hint, correct: correctArticle,
+    options: shuffle(ALL_ARTICLES), isArticle: true, isConjugation: false,
+  };
+}
+
+function buildConjugationQuestion(word: WordWithStatus, pronoun: string): Question {
+  const correct = conjugate(word.spanish, pronoun);
+  // Options: all 4 forms of this verb (yo / tú / él/ella / ellos)
+  const allForms = [...PRONOUNS, "ellos"].map(p => conjugate(word.spanish, p));
+  const uniqueForms = [...new Set(allForms)];
+  // Ensure we have exactly 4 options with correct included
+  const options = shuffle(uniqueForms).slice(0, 4);
+  if (!options.includes(correct)) options[options.length - 1] = correct;
+  return {
+    word,
+    question: word.spanish,
+    hint: word.pronunciation ?? null,
+    correct,
+    options: shuffle(options),
+    isArticle: false,
+    isConjugation: true,
+    pronoun,
+  };
+}
+
+function buildQuestion(word: WordWithStatus, allWords: WordWithStatus[], articleMode: boolean): Question {
+  if (articleMode && ARTICLE_RE.test(word.spanish)) return buildArticleQuestion(word);
+  return buildTranslationQuestion(word, allWords);
 }
 
 export function Quiz({ words }: Props) {
   const articleMode = useMemo(() => {
     const n = words.filter(w => ARTICLE_RE.test(w.spanish)).length;
     return n > words.length * 0.5;
+  }, [words]);
+
+  const verbMode = useMemo(() => {
+    const n = words.filter(w => VERB_RE.test(w.spanish)).length;
+    return n > words.length * 0.7;
   }, [words]);
 
   const knownCount = words.filter(w => (w as WordWithStatus).status === "known").length;
@@ -75,7 +122,19 @@ export function Quiz({ words }: Props) {
   deckLenRef.current = deck.length;
 
   const word = deck[deckIdx];
-  const q = useMemo(() => word ? buildQuestion(word, words, articleMode) : null, [word, words, articleMode]);
+
+  // For verb topics, alternate: even = conjugation (cycling pronoun), odd = translation
+  const q = useMemo((): Question | null => {
+    if (!word) return null;
+    if (verbMode) {
+      if (deckIdx % 2 === 0) {
+        const pronoun = PRONOUNS[Math.floor(deckIdx / 2) % PRONOUNS.length];
+        return buildConjugationQuestion(word, pronoun);
+      }
+      return buildTranslationQuestion(word, words);
+    }
+    return buildQuestion(word, words, articleMode);
+  }, [word, words, articleMode, verbMode, deckIdx]);
 
   // Auto-advance after ADVANCE_MS when answer selected
   useEffect(() => {
@@ -199,13 +258,28 @@ export function Quiz({ words }: Props) {
       </div>
 
       {/* Question card — fixed height */}
-      <div className="rounded-3xl border bg-card flex flex-col items-center justify-center p-6 text-center"
+      <div className="rounded-3xl border bg-card flex flex-col items-center justify-center p-5 text-center"
         style={{ height: 120 }}>
-        <p className="text-xs text-muted-foreground mb-1.5 uppercase tracking-wider">
-          {q.isArticle ? "Який артикль?" : "Як перекласти?"}
-        </p>
-        <p className="text-4xl font-bold tracking-tight leading-none">{q.question}</p>
-        {q.hint && <p className="text-sm text-muted-foreground font-mono mt-2 leading-none">{q.hint}</p>}
+        {q.isConjugation ? (
+          <>
+            <p className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">Як відмінити?</p>
+            <div className="flex items-baseline gap-2.5 justify-center">
+              <span className="text-base font-semibold text-muted-foreground bg-muted px-2.5 py-1 rounded-lg leading-none">
+                {q.pronoun}
+              </span>
+              <span className="text-3xl font-bold tracking-tight leading-none uppercase">{q.question}</span>
+            </div>
+            {q.hint && <p className="text-xs text-muted-foreground font-mono mt-2">{q.hint}</p>}
+          </>
+        ) : (
+          <>
+            <p className="text-xs text-muted-foreground mb-1.5 uppercase tracking-wider">
+              {q.isArticle ? "Який артикль?" : "Як перекласти?"}
+            </p>
+            <p className="text-4xl font-bold tracking-tight leading-none">{q.question}</p>
+            {q.hint && <p className="text-sm text-muted-foreground font-mono mt-2 leading-none">{q.hint}</p>}
+          </>
+        )}
       </div>
 
       {/* Options — fixed 2×2 grid, each button fixed height */}
@@ -223,7 +297,7 @@ export function Quiz({ words }: Props) {
               style={{ height: 60 }}
               className={`
                 rounded-2xl border-2 px-3 font-medium text-center leading-tight
-                ${q.isArticle ? "text-2xl" : "text-sm"}
+                ${q.isArticle ? "text-2xl" : q.isConjugation ? "text-lg font-semibold" : "text-sm"}
                 transition-colors duration-150
                 ${thisCorrect ? "border-green-500 bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300 dark:border-green-700"
                   : thisWrong  ? "border-destructive/60 bg-destructive/8 text-destructive"
