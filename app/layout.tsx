@@ -10,6 +10,15 @@ const geist = Geist({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Іспанська",
   description: "Вчимо іспанську з нуля",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Іспанська",
+  },
+  icons: {
+    apple: "/icon-180.png",
+  },
 };
 
 export const viewport: Viewport = {
