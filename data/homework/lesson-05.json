@@ -42,9 +42,9 @@
           "nombre": null,
           "apellido": "Meyerhofer",
           "correo": "meyerhofer@gmail.com",
-          "edad": "24 años",
           "fields": [
             { "id": "p3-nombre",       "label": "Nombre:",        "answer": "Barbara" },
+            { "id": "p3-edad",         "label": "Edad:",          "answer": "24 años",    "given": true },
             { "id": "p3-nac",          "label": "Nacionalidad:",  "answer": "Alemana",    "given": true },
             { "id": "p3-prof",         "label": "Profesión:",     "answer": "periodista" },
             { "id": "p3-tel",          "label": "Teléfono:",      "answer": "No tiene",   "given": true }
