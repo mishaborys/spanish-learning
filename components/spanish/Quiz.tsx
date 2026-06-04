@@ -37,10 +37,31 @@ function conjugate(infinitive: string, pronoun: string): string {
   return infinitive;
 }
 
-function buildTranslationQuestion(word: WordWithStatus, allWords: WordWithStatus[]): Question {
+type Direction = "es-ua" | "ua-es";
+
+function buildTranslationQuestion(
+  word: WordWithStatus,
+  allWords: WordWithStatus[],
+  direction: Direction = "es-ua"
+): Question {
   const pool = shuffle(allWords.filter(w => w.id !== word.id));
-  const distractors = pool.slice(0, 3).map(w => w.ukrainian);
   const fallback = ["———", "– – –", "· · ·", "× × ×"];
+
+  if (direction === "ua-es") {
+    const distractors = pool.slice(0, 3).map(w => w.spanish);
+    while (distractors.length < 3) distractors.push(fallback[distractors.length]);
+    return {
+      word,
+      question: word.ukrainian,
+      hint: null,
+      correct: word.spanish,
+      options: shuffle([word.spanish, ...distractors]),
+      isArticle: false,
+      isConjugation: false,
+    };
+  }
+
+  const distractors = pool.slice(0, 3).map(w => w.ukrainian);
   while (distractors.length < 3) distractors.push(fallback[distractors.length]);
   return {
     word,
@@ -83,9 +104,14 @@ function buildConjugationQuestion(word: WordWithStatus, pronoun: string): Questi
   };
 }
 
-function buildQuestion(word: WordWithStatus, allWords: WordWithStatus[], articleMode: boolean): Question {
+function buildQuestion(
+  word: WordWithStatus,
+  allWords: WordWithStatus[],
+  articleMode: boolean,
+  direction: Direction
+): Question {
   if (articleMode && ARTICLE_RE.test(word.spanish)) return buildArticleQuestion(word);
-  return buildTranslationQuestion(word, allWords);
+  return buildTranslationQuestion(word, allWords, direction);
 }
 
 export function Quiz({ words }: Props) {
@@ -106,6 +132,10 @@ export function Quiz({ words }: Props) {
     [words]
   );
 
+  // Settings
+  const [direction, setDirection] = useState<Direction>("es-ua");
+  const [conjugationOn, setConjugationOn] = useState(true);
+
   const [deck, setDeck] = useState<WordWithStatus[]>(() =>
     shuffle(words.filter(w => (w as WordWithStatus).status !== "known"))
   );
@@ -123,18 +153,18 @@ export function Quiz({ words }: Props) {
 
   const word = deck[deckIdx];
 
-  // For verb topics, alternate: even = conjugation (cycling pronoun), odd = translation
   const q = useMemo((): Question | null => {
     if (!word) return null;
-    if (verbMode) {
+    if (verbMode && conjugationOn) {
+      // Alternate: even = conjugation (cycling pronoun), odd = translation
       if (deckIdx % 2 === 0) {
         const pronoun = PRONOUNS[Math.floor(deckIdx / 2) % PRONOUNS.length];
         return buildConjugationQuestion(word, pronoun);
       }
-      return buildTranslationQuestion(word, words);
+      return buildTranslationQuestion(word, words, direction);
     }
-    return buildQuestion(word, words, articleMode);
-  }, [word, words, articleMode, verbMode, deckIdx]);
+    return buildQuestion(word, words, articleMode, direction);
+  }, [word, words, articleMode, verbMode, conjugationOn, direction, deckIdx]);
 
   // Auto-advance after ADVANCE_MS when answer selected
   useEffect(() => {
@@ -169,7 +199,7 @@ export function Quiz({ words }: Props) {
     });
   };
 
-  const handleShuffle = () => {
+  const resetSession = () => {
     setDeck(makeDeck());
     setDeckIdx(0);
     setSelected(null);
@@ -177,6 +207,18 @@ export function Quiz({ words }: Props) {
     setScore(0);
     setDone(false);
     setWrongWords([]);
+  };
+
+  const handleShuffle = resetSession;
+
+  const handleDirectionChange = (d: Direction) => {
+    setDirection(d);
+    resetSession();
+  };
+
+  const handleConjugationToggle = () => {
+    setConjugationOn(v => !v);
+    resetSession();
   };
 
   const handleReset = async () => {
@@ -241,7 +283,37 @@ export function Quiz({ words }: Props) {
   return (
     <div className="flex flex-col gap-3">
 
-      {/* Header: progress bar + counter + shuffle */}
+      {/* Settings row */}
+      <div className="flex items-center gap-2">
+        {/* Direction toggle */}
+        <div className="flex rounded-xl bg-muted p-0.5 gap-0.5 flex-1">
+          {(["es-ua", "ua-es"] as Direction[]).map(d => (
+            <button key={d} onClick={() => handleDirectionChange(d)}
+              className={`flex-1 text-xs py-1.5 rounded-lg font-medium transition-all ${
+                direction === d ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+              }`}>
+              {d === "es-ua" ? "🇪🇸 → 🇺🇦" : "🇺🇦 → 🇪🇸"}
+            </button>
+          ))}
+        </div>
+        {/* Conjugation toggle — only for verb topics */}
+        {verbMode && (
+          <button onClick={handleConjugationToggle}
+            className={`shrink-0 text-xs px-2.5 py-1.5 rounded-xl border font-medium transition-all ${
+              conjugationOn
+                ? "bg-primary/10 border-primary/40 text-primary"
+                : "border-border text-muted-foreground"
+            }`}>
+            ∿ відмінювання
+          </button>
+        )}
+        <button onClick={handleShuffle} title="Перемішати"
+          className="shrink-0 text-base text-muted-foreground hover:text-foreground transition-colors leading-none">
+          🔀
+        </button>
+      </div>
+
+      {/* Progress bar */}
       <div className="flex items-center gap-3">
         <div className="flex-1 bg-muted rounded-full h-1.5 overflow-hidden">
           <div className="h-full bg-primary rounded-full transition-all duration-300"
@@ -251,10 +323,6 @@ export function Quiz({ words }: Props) {
           {deckIdx + 1}/{deck.length}
           {knownCount > 0 && <span className="text-primary"> · {knownCount} знаю</span>}
         </span>
-        <button onClick={handleShuffle} title="Перемішати"
-          className="shrink-0 text-base text-muted-foreground hover:text-foreground transition-colors leading-none">
-          🔀
-        </button>
       </div>
 
       {/* Question card — fixed height */}
