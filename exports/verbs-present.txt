@@ -1,0 +1,100 @@
+hablar	говорити
+trabajar	працювати
+estudiar	вчитися
+escuchar	слухати
+caminar	ходити, гуляти
+comprar	купувати
+cocinar	готувати їжу
+bailar	танцювати
+cantar	співати
+llamar	телефонувати, кликати
+viajar	подорожувати
+visitar	відвідувати
+ayudar	допомагати
+buscar	шукати
+cambiar	змінювати
+usar	використовувати
+necesitar	потребувати
+terminar	закінчувати
+preguntar	запитувати
+contestar	відповідати
+mirar	дивитися
+llevar	носити, брати
+tomar	брати, пити
+pagar	платити
+descansar	відпочивати
+practicar	практикувати
+preparar	готувати (щось)
+ganar	вигравати, заробляти
+esperar	чекати, сподіватися
+enseñar	навчати
+nadar	плавати
+lavar	мити
+limpiar	прибирати
+invitar	запрошувати
+amar	любити
+desear	бажати
+olvidar	забувати
+explicar	пояснювати
+tocar	грати (на інструменті)
+arreglar	ремонтувати
+celebrar	святкувати
+cortar	різати
+dibujar	малювати
+entrar	входити
+pasar	проводити (час)
+gritar	кричати
+mejorar	покращувати
+presentar	представляти
+desayunar	снідати
+cuidar	доглядати, піклуватися
+comer	їсти
+beber	пити
+leer	читати
+correr	бігати
+aprender	навчатися
+comprender	розуміти
+vender	продавати
+responder	відповідати
+creer	вірити, думати
+romper	ломати, рвати
+prometer	обіцяти
+temer	боятися
+depender	залежати
+deber	бути повинним
+meter	вкладати, вставляти
+coser	шити
+barrer	підмітати
+sorprender	дивувати
+ceder	поступатися
+cometer	здійснювати (помилку)
+toser	кашляти
+esconder	ховати
+ofender	ображати
+suspender	зупиняти, призупиняти
+tejer	в'язати
+escribir	писати
+vivir	жити
+abrir	відкривати
+recibir	отримувати
+subir	підніматися
+cubrir	покривати
+compartir	ділитися
+añadir	додавати
+permitir	дозволяти
+decidir	вирішувати
+discutir	обговорювати
+dividir	ділити
+existir	існувати
+unir	об'єднувати
+sufrir	страждати
+describir	описувати
+insistir	наполягати
+ocurrir	відбуватися
+asistir	відвідувати (заходи)
+omitir	пропускати
+interrumpir	переривати
+cumplir	виконувати
+sacudir	трясти, стрясати
+acudir	приходити, з'являтися
+transmitir	передавати

@@ -6,69 +6,79 @@ import { Word } from "@/lib/db";
 type WordWithStatus = Word & { status?: string };
 type Props = { words: WordWithStatus[] };
 
-const PRONOUNS = ["yo", "tú", "él", "ella"];
+const ALL_PRONOUNS = ["yo", "tú", "él/ella", "nosotros", "vosotros", "ellos/ellas"] as const;
+type Pronoun = typeof ALL_PRONOUNS[number];
+const DEFAULT_PRONOUNS: Pronoun[] = ["yo", "tú", "él/ella"];
 const ADVANCE_MS = 2000;
 
 function shuffle<T>(arr: T[]): T[] {
   return [...arr].sort(() => Math.random() - 0.5);
 }
 
-function conjugate(infinitive: string, pronoun: string): string {
-  const arEnd: Record<string, string> = { yo: "o", tú: "as", él: "a", ella: "a" };
-  const erirEnd: Record<string, string> = { yo: "o", tú: "es", él: "e", ella: "e" };
-  if (infinitive.endsWith("ar")) return infinitive.slice(0, -2) + (arEnd[pronoun] ?? "");
-  if (infinitive.endsWith("er") || infinitive.endsWith("ir"))
-    return infinitive.slice(0, -2) + (erirEnd[pronoun] ?? "");
+function conjugate(infinitive: string, pronoun: Pronoun): string {
+  const ar: Record<Pronoun, string> = {
+    yo: "o", tú: "as", "él/ella": "a", nosotros: "amos", vosotros: "áis", "ellos/ellas": "an",
+  };
+  const er: Record<Pronoun, string> = {
+    yo: "o", tú: "es", "él/ella": "e", nosotros: "emos", vosotros: "éis", "ellos/ellas": "en",
+  };
+  const ir: Record<Pronoun, string> = {
+    yo: "o", tú: "es", "él/ella": "e", nosotros: "imos", vosotros: "ís", "ellos/ellas": "en",
+  };
+  const stem = infinitive.slice(0, -2);
+  if (infinitive.endsWith("ar")) return stem + ar[pronoun];
+  if (infinitive.endsWith("er")) return stem + er[pronoun];
+  if (infinitive.endsWith("ir")) return stem + ir[pronoun];
   return infinitive;
 }
 
-// Strip diacritics for loose comparison (user types on EN keyboard)
+// Strip diacritics for EN-keyboard comparison
 function normalize(s: string) {
-  return s.trim().toLowerCase()
-    .normalize("NFD").replace(/[̀-ͯ]/g, "");
+  return s.trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 }
+
+// Display label for pronoun (show both forms for él/ella and ellos/ellas)
+const PRONOUN_LABELS: Record<Pronoun, string> = {
+  yo: "yo", tú: "tú", "él/ella": "él / ella",
+  nosotros: "nosotros", vosotros: "vosotros", "ellos/ellas": "ellos / ellas",
+};
 
 type Question = {
   word: WordWithStatus;
-  pronoun: string;
-  correct: string;         // e.g. "hablas"
-  sentence: string;        // e.g. "tú ___ español."
-  infinitiveHint: string;  // e.g. "(hablar)"
+  pronoun: Pronoun;
+  correct: string;
+  sentence: string;
+  infinitiveHint: string;
 };
 
-function buildQuestion(word: WordWithStatus, pronoun: string): Question {
+function buildQuestion(word: WordWithStatus, pronoun: Pronoun): Question {
   const correct = conjugate(word.spanish, pronoun);
-  const hint = `(${word.spanish})`;
+  const displayPronoun = PRONOUN_LABELS[pronoun];
 
-  let sentence = `${pronoun} ___.`;
-
+  // Try to extract sentence context from example_es
+  let sentence = `${displayPronoun} ___.`;
   if (word.example_es) {
-    // Strip leading pronoun from example
-    const withoutPronoun = word.example_es.replace(/^(Yo|Tú|Él|Ella)\s+/i, "").trim();
-    // Remove first word (conjugated form) and keep the rest
+    const withoutPronoun = word.example_es
+      .replace(/^(Yo|Tú|Él|Ella|Nosotros|Nosotras|Vosotros|Vosotras|Ellos|Ellas|Ustedes)\s+/i, "")
+      .trim();
     const parts = withoutPronoun.split(/\s+/);
     if (parts.length > 1) {
-      const context = parts.slice(1).join(" ");
-      sentence = `${pronoun} ___ ${context}`;
-    } else {
-      sentence = `${pronoun} ___.`;
+      sentence = `${displayPronoun} ___ ${parts.slice(1).join(" ")}`;
     }
   }
 
-  return { word, pronoun, correct, sentence, infinitiveHint: hint };
+  return { word, pronoun, correct, sentence, infinitiveHint: `(${word.spanish})` };
 }
 
 export function FillInBlank({ words }: Props) {
+  const [activePronouns, setActivePronouns] = useState<Pronoun[]>([...DEFAULT_PRONOUNS]);
   const knownCount = words.filter(w => w.status === "known").length;
 
   const makeDeck = useCallback(() =>
-    shuffle(words.filter(w => w.status !== "known")),
-    [words]
+    shuffle(words.filter(w => w.status !== "known")), [words]
   );
 
-  const [deck, setDeck] = useState<WordWithStatus[]>(() =>
-    shuffle(words.filter(w => w.status !== "known"))
-  );
+  const [deck, setDeck] = useState(() => shuffle(words.filter(w => w.status !== "known")));
   const [deckIdx, setDeckIdx] = useState(0);
   const [input, setInput] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -85,25 +95,22 @@ export function FillInBlank({ words }: Props) {
   deckLenRef.current = deck.length;
 
   const word = deck[deckIdx];
-  const q = useMemo((): Question | null => {
-    if (!word) return null;
-    const pronoun = PRONOUNS[deckIdx % PRONOUNS.length];
-    return buildQuestion(word, pronoun);
-  }, [word, deckIdx]);
 
-  // Auto-focus input on new question
+  const q = useMemo((): Question | null => {
+    if (!word || activePronouns.length === 0) return null;
+    const pronoun = activePronouns[deckIdx % activePronouns.length];
+    return buildQuestion(word, pronoun);
+  }, [word, deckIdx, activePronouns]);
+
   useEffect(() => {
     if (!submitted && inputRef.current) {
-      setTimeout(() => inputRef.current?.focus(), 100);
+      setTimeout(() => inputRef.current?.focus(), 80);
     }
   }, [deckIdx, submitted]);
 
-  // Auto-advance after answer shown
   useEffect(() => {
     if (!submitted) { setBarWidth(0); return; }
-    const raf = requestAnimationFrame(() =>
-      requestAnimationFrame(() => setBarWidth(100))
-    );
+    const raf = requestAnimationFrame(() => requestAnimationFrame(() => setBarWidth(100)));
     const timer = setTimeout(() => {
       setBarWidth(0);
       const next = deckIdxRef.current + 1;
@@ -112,6 +119,11 @@ export function FillInBlank({ words }: Props) {
     }, ADVANCE_MS);
     return () => { clearTimeout(timer); cancelAnimationFrame(raf); };
   }, [submitted]);
+
+  const resetSession = useCallback(() => {
+    setDeck(makeDeck()); setDeckIdx(0); setInput("");
+    setSubmitted(false); setScore(0); setDone(false); setWrongWords([]);
+  }, [makeDeck]);
 
   const handleSubmit = async () => {
     if (submitted || !q || !input.trim()) return;
@@ -131,9 +143,13 @@ export function FillInBlank({ words }: Props) {
     if (e.key === "Enter") handleSubmit();
   };
 
-  const handleShuffle = () => {
-    setDeck(makeDeck()); setDeckIdx(0); setInput("");
-    setSubmitted(false); setScore(0); setDone(false); setWrongWords([]);
+  const togglePronoun = (p: Pronoun) => {
+    setActivePronouns(prev => {
+      if (prev.includes(p) && prev.length === 1) return prev;
+      const next = prev.includes(p) ? prev.filter(x => x !== p) : [...prev, p];
+      resetSession();
+      return next;
+    });
   };
 
   const handleReset = async () => {
@@ -177,7 +193,7 @@ export function FillInBlank({ words }: Props) {
           </div>
         )}
         <div className="flex gap-3">
-          <button onClick={handleShuffle}
+          <button onClick={resetSession}
             className="flex-1 min-h-[48px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 active:scale-[0.98] transition-all">
             Ще раз
           </button>
@@ -195,6 +211,27 @@ export function FillInBlank({ words }: Props) {
   return (
     <div className="flex flex-col gap-3">
 
+      {/* Pronoun settings */}
+      <div className="space-y-2">
+        <p className="text-xs text-muted-foreground font-medium">Особи:</p>
+        <div className="flex flex-wrap gap-1.5">
+          {ALL_PRONOUNS.map(p => (
+            <button key={p} onClick={() => togglePronoun(p)}
+              className={`text-xs px-3 py-1.5 rounded-xl border font-medium transition-all ${
+                activePronouns.includes(p)
+                  ? "bg-primary/10 border-primary/50 text-primary"
+                  : "border-border text-muted-foreground hover:text-foreground"
+              }`}>
+              {p}
+            </button>
+          ))}
+          <button onClick={resetSession} title="Перемішати"
+            className="text-base text-muted-foreground hover:text-foreground transition-colors ml-auto leading-none">
+            🔀
+          </button>
+        </div>
+      </div>
+
       {/* Progress */}
       <div className="flex items-center gap-3">
         <div className="flex-1 bg-muted rounded-full h-1.5 overflow-hidden">
@@ -205,10 +242,6 @@ export function FillInBlank({ words }: Props) {
           {deckIdx + 1}/{deck.length}
           {knownCount > 0 && <span className="text-primary"> · {knownCount} знаю</span>}
         </span>
-        <button onClick={handleShuffle} title="Перемішати"
-          className="shrink-0 text-base text-muted-foreground hover:text-foreground transition-colors leading-none">
-          🔀
-        </button>
       </div>
 
       {/* Question card — fixed height */}
@@ -234,13 +267,11 @@ export function FillInBlank({ words }: Props) {
           ))}
         </p>
         <p className="text-sm text-muted-foreground mt-3">
-          <span className="font-mono">{q.infinitiveHint}</span>
-          {" — "}
-          {q.word.ukrainian}
+          <span className="font-mono">{q.infinitiveHint}</span>{" — "}{q.word.ukrainian}
         </p>
       </div>
 
-      {/* Input field — fixed height */}
+      {/* Input — fixed height */}
       <div style={{ height: 56 }}>
         <input
           ref={inputRef}
@@ -263,7 +294,7 @@ export function FillInBlank({ words }: Props) {
         />
       </div>
 
-      {/* Feedback — reserved space */}
+      {/* Feedback */}
       <div className={`rounded-2xl px-4 py-3 text-sm font-medium ${
         submitted
           ? isCorrect
@@ -273,31 +304,25 @@ export function FillInBlank({ words }: Props) {
       }`} style={{ minHeight: 44 }}>
         {submitted
           ? isCorrect
-            ? `Правильно! ${q.pronoun} ${q.correct}`
-            : `Правильно: ${q.pronoun} ${q.correct}`
+            ? `Правильно! ${PRONOUN_LABELS[q.pronoun]} ${q.correct}`
+            : `Правильно: ${PRONOUN_LABELS[q.pronoun]} ${q.correct}`
           : "‎"}
       </div>
 
-      {/* Submit button — hidden after answer */}
-      <button
-        onClick={handleSubmit}
-        disabled={submitted || !input.trim()}
+      {/* Submit */}
+      <button onClick={handleSubmit} disabled={submitted || !input.trim()}
         className={`w-full min-h-[52px] rounded-2xl font-medium text-sm transition-all ${
           !submitted && input.trim()
             ? "bg-primary text-primary-foreground hover:opacity-90 active:scale-[0.98]"
             : "bg-muted text-muted-foreground cursor-not-allowed"
-        }`}
-      >
+        }`}>
         Перевірити
       </button>
 
-      {/* Auto-advance bar */}
+      {/* Timer bar */}
       <div className="h-0.5 bg-muted rounded-full overflow-hidden">
         <div className="h-full bg-primary/60 rounded-full"
-          style={{
-            width: `${barWidth}%`,
-            transition: barWidth === 100 ? `width ${ADVANCE_MS}ms linear` : "none",
-          }} />
+          style={{ width: `${barWidth}%`, transition: barWidth === 100 ? `width ${ADVANCE_MS}ms linear` : "none" }} />
       </div>
 
       <button onClick={handleReset}

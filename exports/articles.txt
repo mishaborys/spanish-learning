@@ -1,0 +1,43 @@
+el libro	книга
+el cuaderno	зошит
+el bolígrafo	ручка
+el texto	текст
+el taco	тако
+el viaje	подорож
+el parque	парк
+el celular	мобільний телефон
+el idioma	мова
+el compañero	однокласник, друг
+el teléfono	телефон
+la taza	чашка
+la clase	клас, урок
+la compañera	однокласниця, подруга
+la profesora	вчителька
+la tarea	домашнє завдання
+la pregunta	запитання
+la playa	пляж
+la arepa	арепа (кукурудзяний хліб)
+la cámara	фотоапарат, камера
+la flor	квітка
+la pizza	піца
+la palabra	слово
+la mano	рука (виняток: la!)
+la mesa	стіл
+los libros	книги
+los cuadernos	зошити
+los bolígrafos	ручки
+los tacos	такоси
+los viajes	подорожі
+los parques	парки
+los celulares	мобільні телефони
+los compañeros	однокласники
+los textos	тексти
+las clases	класи, уроки
+las compañeras	однокласниці
+las tareas	домашні завдання
+las preguntas	запитання
+las playas	пляжі
+las mesas	столи
+las flores	квіти
+las palabras	слова
+las tazas	чашки
