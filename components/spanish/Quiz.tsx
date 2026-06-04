@@ -5,145 +5,110 @@ import { Word } from "@/lib/db";
 
 type WordWithStatus = Word & { status?: string };
 type Props = { words: WordWithStatus[] };
+type QuizMode = "translation" | "conjugation";
+type Direction = "es-ua" | "ua-es";
 
 const ARTICLE_RE = /^(el|la|los|las) (.+)$/;
 const ALL_ARTICLES = ["el", "la", "los", "las"];
 const VERB_RE = /^.+(ar|er|ir)$/i;
-const PRONOUNS = ["yo", "tú", "él/ella"];
 const ADVANCE_MS = 2000;
+
+const ALL_PRONOUNS = [
+  "yo", "tú", "él/ella", "nosotros", "vosotros", "ellos/ellas",
+] as const;
+type Pronoun = typeof ALL_PRONOUNS[number];
+const DEFAULT_PRONOUNS: Pronoun[] = ["yo", "tú", "él/ella"];
 
 function shuffle<T>(arr: T[]): T[] {
   return [...arr].sort(() => Math.random() - 0.5);
 }
 
-type Question = {
-  word: WordWithStatus;
-  question: string;       // what to display in question card
-  hint: string | null;
-  correct: string;
-  options: string[];
-  isArticle: boolean;
-  isConjugation: boolean;
-  pronoun?: string;       // e.g. "yo", "tú", "él/ella"
-};
-
-// Conjugate a regular -ar/-er/-ir verb for a given pronoun
-function conjugate(infinitive: string, pronoun: string): string {
-  const arEnd: Record<string, string> = { yo: "o", tú: "as", "él/ella": "a", ellos: "an" };
-  const erirEnd: Record<string, string> = { yo: "o", tú: "es", "él/ella": "e", ellos: "en" };
-  if (infinitive.endsWith("ar")) return infinitive.slice(0, -2) + (arEnd[pronoun] ?? "");
-  if (infinitive.endsWith("er") || infinitive.endsWith("ir"))
-    return infinitive.slice(0, -2) + (erirEnd[pronoun] ?? "");
+// Full present-tense conjugation for regular verbs
+function conjugate(infinitive: string, pronoun: Pronoun | string): string {
+  const ar: Record<string, string> = {
+    yo: "o", tú: "as", "él/ella": "a",
+    nosotros: "amos", vosotros: "áis", "ellos/ellas": "an",
+  };
+  const er: Record<string, string> = {
+    yo: "o", tú: "es", "él/ella": "e",
+    nosotros: "emos", vosotros: "éis", "ellos/ellas": "en",
+  };
+  const ir: Record<string, string> = {
+    yo: "o", tú: "es", "él/ella": "e",
+    nosotros: "imos", vosotros: "ís", "ellos/ellas": "en",
+  };
+  const stem = infinitive.slice(0, -2);
+  if (infinitive.endsWith("ar")) return stem + (ar[pronoun] ?? "");
+  if (infinitive.endsWith("er")) return stem + (er[pronoun] ?? "");
+  if (infinitive.endsWith("ir")) return stem + (ir[pronoun] ?? "");
   return infinitive;
 }
 
-type Direction = "es-ua" | "ua-es";
+type Question = {
+  word: WordWithStatus;
+  question: string;
+  hint: string | null;
+  correct: string;
+  options: string[];
+  type: "translate" | "article" | "conjugate";
+  pronoun?: string;
+};
 
-function buildTranslationQuestion(
-  word: WordWithStatus,
-  allWords: WordWithStatus[],
-  direction: Direction = "es-ua"
-): Question {
-  const pool = shuffle(allWords.filter(w => w.id !== word.id));
+function buildTranslateQ(word: WordWithStatus, allWords: WordWithStatus[], dir: Direction): Question {
   const fallback = ["———", "– – –", "· · ·", "× × ×"];
-
-  if (direction === "ua-es") {
-    const distractors = pool.slice(0, 3).map(w => w.spanish);
-    while (distractors.length < 3) distractors.push(fallback[distractors.length]);
-    return {
-      word,
-      question: word.ukrainian,
-      hint: null,
-      correct: word.spanish,
-      options: shuffle([word.spanish, ...distractors]),
-      isArticle: false,
-      isConjugation: false,
-    };
+  if (dir === "ua-es") {
+    const pool = shuffle(allWords.filter(w => w.id !== word.id)).slice(0, 3).map(w => w.spanish);
+    while (pool.length < 3) pool.push(fallback[pool.length]);
+    return { word, question: word.ukrainian, hint: null, correct: word.spanish, options: shuffle([word.spanish, ...pool]), type: "translate" };
   }
+  const pool = shuffle(allWords.filter(w => w.id !== word.id)).slice(0, 3).map(w => w.ukrainian);
+  while (pool.length < 3) pool.push(fallback[pool.length]);
+  return { word, question: word.spanish, hint: word.pronunciation ?? null, correct: word.ukrainian, options: shuffle([word.ukrainian, ...pool]), type: "translate" };
+}
 
-  const distractors = pool.slice(0, 3).map(w => w.ukrainian);
-  while (distractors.length < 3) distractors.push(fallback[distractors.length]);
+function buildArticleQ(word: WordWithStatus): Question {
+  const m = word.spanish.match(ARTICLE_RE)!;
   return {
-    word,
-    question: word.spanish,
-    hint: word.pronunciation ?? null,
-    correct: word.ukrainian,
-    options: shuffle([word.ukrainian, ...distractors]),
-    isArticle: false,
-    isConjugation: false,
+    word, question: m[2], hint: word.pronunciation?.replace(/^(ель|ла|лос|лас) /i, "") ?? null,
+    correct: m[1], options: shuffle([...ALL_ARTICLES]), type: "article",
   };
 }
 
-function buildArticleQuestion(word: WordWithStatus): Question {
-  const match = word.spanish.match(ARTICLE_RE)!;
-  const [, correctArticle, noun] = match;
-  const hint = word.pronunciation?.replace(/^(ель|ла|лос|лас) /i, "") ?? null;
-  return {
-    word, question: noun, hint, correct: correctArticle,
-    options: shuffle(ALL_ARTICLES), isArticle: true, isConjugation: false,
-  };
-}
-
-function buildConjugationQuestion(word: WordWithStatus, pronoun: string): Question {
+function buildConjugateQ(word: WordWithStatus, pronoun: Pronoun): Question {
   const correct = conjugate(word.spanish, pronoun);
-  // Options: all 4 forms of this verb (yo / tú / él/ella / ellos)
-  const allForms = [...PRONOUNS, "ellos"].map(p => conjugate(word.spanish, p));
-  const uniqueForms = [...new Set(allForms)];
-  // Ensure we have exactly 4 options with correct included
-  const options = shuffle(uniqueForms).slice(0, 4);
-  if (!options.includes(correct)) options[options.length - 1] = correct;
+  // Distractors: forms from all other pronouns (all 6 gives 6 forms, pick 3 ≠ correct)
+  const others = ALL_PRONOUNS
+    .filter(p => p !== pronoun)
+    .map(p => conjugate(word.spanish, p))
+    .filter(f => f !== correct);
+  const distractors = shuffle([...new Set(others)]).slice(0, 3);
+  while (distractors.length < 3) distractors.push(distractors[0] + "s"); // fallback (rare)
   return {
-    word,
-    question: word.spanish,
-    hint: word.pronunciation ?? null,
-    correct,
-    options: shuffle(options),
-    isArticle: false,
-    isConjugation: true,
-    pronoun,
+    word, question: word.spanish, hint: word.pronunciation ?? null,
+    correct, options: shuffle([correct, ...distractors]), type: "conjugate", pronoun,
   };
-}
-
-function buildQuestion(
-  word: WordWithStatus,
-  allWords: WordWithStatus[],
-  articleMode: boolean,
-  direction: Direction
-): Question {
-  if (articleMode && ARTICLE_RE.test(word.spanish)) return buildArticleQuestion(word);
-  return buildTranslationQuestion(word, allWords, direction);
 }
 
 export function Quiz({ words }: Props) {
-  const articleMode = useMemo(() => {
-    const n = words.filter(w => ARTICLE_RE.test(w.spanish)).length;
-    return n > words.length * 0.5;
-  }, [words]);
+  const isVerbTopic = useMemo(() => words.filter(w => VERB_RE.test(w.spanish)).length > words.length * 0.7, [words]);
+  const isArticleTopic = useMemo(() => words.filter(w => ARTICLE_RE.test(w.spanish)).length > words.length * 0.5, [words]);
 
-  const verbMode = useMemo(() => {
-    const n = words.filter(w => VERB_RE.test(w.spanish)).length;
-    return n > words.length * 0.7;
-  }, [words]);
-
-  const knownCount = words.filter(w => (w as WordWithStatus).status === "known").length;
-
-  const makeDeck = useCallback(() =>
-    shuffle(words.filter(w => (w as WordWithStatus).status !== "known")),
-    [words]
-  );
-
-  // Settings
+  // Mode
+  const [mode, setMode] = useState<QuizMode>("translation");
+  // Translation settings
   const [direction, setDirection] = useState<Direction>("es-ua");
-  const [conjugationOn, setConjugationOn] = useState(true);
+  // Conjugation settings
+  const [activePronouns, setActivePronouns] = useState<Pronoun[]>([...DEFAULT_PRONOUNS]);
 
-  const [deck, setDeck] = useState<WordWithStatus[]>(() =>
-    shuffle(words.filter(w => (w as WordWithStatus).status !== "known"))
-  );
+  const knownCount = words.filter(w => w.status === "known").length;
+  const makeDeck = useCallback(() => shuffle(words.filter(w => w.status !== "known")), [words]);
+
+  const [deck, setDeck] = useState(() => shuffle(words.filter(w => w.status !== "known")));
   const [deckIdx, setDeckIdx] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
-  const [wrongWords, setWrongWords] = useState<WordWithStatus[]>([]);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
+  const [wrongWords, setWrongWords] = useState<WordWithStatus[]>([]);
   const [barWidth, setBarWidth] = useState(0);
 
   const deckIdxRef = useRef(deckIdx);
@@ -155,36 +120,30 @@ export function Quiz({ words }: Props) {
 
   const q = useMemo((): Question | null => {
     if (!word) return null;
-    if (verbMode && conjugationOn) {
-      // Alternate: even = conjugation (cycling pronoun), odd = translation
-      if (deckIdx % 2 === 0) {
-        const pronoun = PRONOUNS[Math.floor(deckIdx / 2) % PRONOUNS.length];
-        return buildConjugationQuestion(word, pronoun);
-      }
-      return buildTranslationQuestion(word, words, direction);
+    if (mode === "conjugation" && activePronouns.length > 0) {
+      const pronoun = activePronouns[deckIdx % activePronouns.length];
+      return buildConjugateQ(word, pronoun);
     }
-    return buildQuestion(word, words, articleMode, direction);
-  }, [word, words, articleMode, verbMode, conjugationOn, direction, deckIdx]);
+    if (isArticleTopic && ARTICLE_RE.test(word.spanish)) return buildArticleQ(word);
+    return buildTranslateQ(word, words, direction);
+  }, [word, words, mode, direction, activePronouns, deckIdx, isArticleTopic]);
 
-  // Auto-advance after ADVANCE_MS when answer selected
   useEffect(() => {
     if (selected === null) { setBarWidth(0); return; }
-    // Double rAF so browser paints width:0 before transition starts
-    const raf = requestAnimationFrame(() =>
-      requestAnimationFrame(() => setBarWidth(100))
-    );
+    const raf = requestAnimationFrame(() => requestAnimationFrame(() => setBarWidth(100)));
     const timer = setTimeout(() => {
-      const next = deckIdxRef.current + 1;
       setBarWidth(0);
-      if (next >= deckLenRef.current) {
-        setDone(true);
-      } else {
-        setDeckIdx(next);
-        setSelected(null);
-      }
+      const next = deckIdxRef.current + 1;
+      if (next >= deckLenRef.current) setDone(true);
+      else { setDeckIdx(next); setSelected(null); }
     }, ADVANCE_MS);
     return () => { clearTimeout(timer); cancelAnimationFrame(raf); };
   }, [selected]);
+
+  const resetSession = useCallback(() => {
+    setDeck(makeDeck()); setDeckIdx(0); setSelected(null);
+    setBarWidth(0); setScore(0); setDone(false); setWrongWords([]);
+  }, [makeDeck]);
 
   const handleSelect = async (option: string) => {
     if (selected !== null || !q) return;
@@ -199,28 +158,6 @@ export function Quiz({ words }: Props) {
     });
   };
 
-  const resetSession = () => {
-    setDeck(makeDeck());
-    setDeckIdx(0);
-    setSelected(null);
-    setBarWidth(0);
-    setScore(0);
-    setDone(false);
-    setWrongWords([]);
-  };
-
-  const handleShuffle = resetSession;
-
-  const handleDirectionChange = (d: Direction) => {
-    setDirection(d);
-    resetSession();
-  };
-
-  const handleConjugationToggle = () => {
-    setConjugationOn(v => !v);
-    resetSession();
-  };
-
   const handleReset = async () => {
     if (!confirm("Скинути прогрес по цій темі?")) return;
     await fetch("/api/progress/reset", {
@@ -231,11 +168,20 @@ export function Quiz({ words }: Props) {
     window.location.reload();
   };
 
-  if (words.length < 2) {
-    return <p className="text-muted-foreground text-sm py-8 text-center">Потрібно мінімум 2 слова.</p>;
-  }
+  const togglePronoun = (p: Pronoun) => {
+    setActivePronouns(prev => {
+      if (prev.includes(p) && prev.length === 1) return prev; // keep at least 1
+      const next = prev.includes(p) ? prev.filter(x => x !== p) : [...prev, p];
+      return next;
+    });
+    resetSession();
+  };
 
-  // All words already known or session done
+  const switchMode = (m: QuizMode) => { setMode(m); resetSession(); };
+  const switchDirection = (d: Direction) => { setDirection(d); resetSession(); };
+
+  if (words.length < 2) return <p className="text-muted-foreground text-sm py-8 text-center">Потрібно мінімум 2 слова.</p>;
+
   if (done || deck.length === 0) {
     const total = Math.max(deck.length, 1);
     const pct = Math.round((score / total) * 100);
@@ -264,7 +210,7 @@ export function Quiz({ words }: Props) {
           </div>
         )}
         <div className="flex gap-3">
-          <button onClick={handleShuffle}
+          <button onClick={resetSession}
             className="flex-1 min-h-[48px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 active:scale-[0.98] transition-all">
             Ще раз
           </button>
@@ -283,35 +229,58 @@ export function Quiz({ words }: Props) {
   return (
     <div className="flex flex-col gap-3">
 
-      {/* Settings row */}
-      <div className="flex items-center gap-2">
-        {/* Direction toggle */}
-        <div className="flex rounded-xl bg-muted p-0.5 gap-0.5 flex-1">
-          {(["es-ua", "ua-es"] as Direction[]).map(d => (
-            <button key={d} onClick={() => handleDirectionChange(d)}
-              className={`flex-1 text-xs py-1.5 rounded-lg font-medium transition-all ${
-                direction === d ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+      {/* Mode selector — only for verb topics */}
+      {isVerbTopic && (
+        <div className="flex rounded-2xl bg-muted p-1 gap-1">
+          {([["translation", "📖 Переклад"], ["conjugation", "∿ Форми"]] as [QuizMode, string][]).map(([m, label]) => (
+            <button key={m} onClick={() => switchMode(m)}
+              className={`flex-1 py-2 rounded-xl text-sm font-medium transition-all ${
+                mode === m ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
               }`}>
-              {d === "es-ua" ? "🇪🇸 → 🇺🇦" : "🇺🇦 → 🇪🇸"}
+              {label}
             </button>
           ))}
         </div>
-        {/* Conjugation toggle — only for verb topics */}
-        {verbMode && (
-          <button onClick={handleConjugationToggle}
-            className={`shrink-0 text-xs px-2.5 py-1.5 rounded-xl border font-medium transition-all ${
-              conjugationOn
-                ? "bg-primary/10 border-primary/40 text-primary"
-                : "border-border text-muted-foreground"
-            }`}>
-            ∿ відмінювання
-          </button>
-        )}
-        <button onClick={handleShuffle} title="Перемішати"
-          className="shrink-0 text-base text-muted-foreground hover:text-foreground transition-colors leading-none">
-          🔀
-        </button>
-      </div>
+      )}
+
+      {/* Settings for translation mode */}
+      {mode === "translation" && (
+        <div className="flex items-center gap-2">
+          <div className="flex rounded-xl bg-muted p-0.5 gap-0.5 flex-1">
+            {(["es-ua", "ua-es"] as Direction[]).map(d => (
+              <button key={d} onClick={() => switchDirection(d)}
+                className={`flex-1 text-xs py-1.5 rounded-lg font-medium transition-all ${
+                  direction === d ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+                }`}>
+                {d === "es-ua" ? "🇪🇸 → 🇺🇦" : "🇺🇦 → 🇪🇸"}
+              </button>
+            ))}
+          </div>
+          <button onClick={resetSession} title="Перемішати"
+            className="shrink-0 text-base text-muted-foreground hover:text-foreground transition-colors">🔀</button>
+        </div>
+      )}
+
+      {/* Settings for conjugation mode */}
+      {mode === "conjugation" && (
+        <div className="space-y-2">
+          <p className="text-xs text-muted-foreground font-medium">Особи:</p>
+          <div className="flex flex-wrap gap-1.5">
+            {ALL_PRONOUNS.map(p => (
+              <button key={p} onClick={() => togglePronoun(p)}
+                className={`text-xs px-3 py-1.5 rounded-xl border font-medium transition-all ${
+                  activePronouns.includes(p)
+                    ? "bg-primary/10 border-primary/50 text-primary"
+                    : "border-border text-muted-foreground hover:text-foreground"
+                }`}>
+                {p}
+              </button>
+            ))}
+            <button onClick={resetSession} title="Перемішати"
+              className="text-base text-muted-foreground hover:text-foreground transition-colors ml-auto">🔀</button>
+          </div>
+        </div>
+      )}
 
       {/* Progress bar */}
       <div className="flex items-center gap-3">
@@ -325,10 +294,10 @@ export function Quiz({ words }: Props) {
         </span>
       </div>
 
-      {/* Question card — fixed height */}
+      {/* Question card */}
       <div className="rounded-3xl border bg-card flex flex-col items-center justify-center p-5 text-center"
         style={{ height: 120 }}>
-        {q.isConjugation ? (
+        {q.type === "conjugate" ? (
           <>
             <p className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">Як відмінити?</p>
             <div className="flex items-baseline gap-2.5 justify-center">
@@ -342,7 +311,7 @@ export function Quiz({ words }: Props) {
         ) : (
           <>
             <p className="text-xs text-muted-foreground mb-1.5 uppercase tracking-wider">
-              {q.isArticle ? "Який артикль?" : "Як перекласти?"}
+              {q.type === "article" ? "Який артикль?" : direction === "ua-es" ? "Як іспанською?" : "Як перекласти?"}
             </p>
             <p className="text-4xl font-bold tracking-tight leading-none">{q.question}</p>
             {q.hint && <p className="text-sm text-muted-foreground font-mono mt-2 leading-none">{q.hint}</p>}
@@ -350,65 +319,46 @@ export function Quiz({ words }: Props) {
         )}
       </div>
 
-      {/* Options — fixed 2×2 grid, each button fixed height */}
+      {/* Options */}
       <div className="grid grid-cols-2 gap-2.5">
         {q.options.map((opt) => {
           const thisCorrect = selected !== null && opt === q.correct;
           const thisWrong   = selected === opt && opt !== q.correct;
           const dimmed      = selected !== null && !thisCorrect && opt !== selected;
-
           return (
-            <button
-              key={opt}
-              onClick={() => handleSelect(opt)}
-              disabled={selected !== null}
+            <button key={opt} onClick={() => handleSelect(opt)} disabled={selected !== null}
               style={{ height: 60 }}
-              className={`
-                rounded-2xl border-2 px-3 font-medium text-center leading-tight
-                ${q.isArticle ? "text-2xl" : q.isConjugation ? "text-lg font-semibold" : "text-sm"}
-                transition-colors duration-150
+              className={`rounded-2xl border-2 px-3 font-medium text-center leading-tight transition-colors duration-150
+                ${q.type === "article" ? "text-2xl" : q.type === "conjugate" ? "text-lg" : "text-sm"}
                 ${thisCorrect ? "border-green-500 bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300 dark:border-green-700"
                   : thisWrong  ? "border-destructive/60 bg-destructive/8 text-destructive"
                   : dimmed     ? "border-border bg-muted/20 text-muted-foreground opacity-40"
                   : "border-border bg-card hover:bg-accent/40 active:scale-[0.97]"
-                }
-              `}
-            >
+                }`}>
               {opt}
             </button>
           );
         })}
       </div>
 
-      {/* Feedback — always takes space, visibility toggle only */}
-      <div
-        className={`rounded-2xl px-4 py-3 text-sm font-medium ${
-          selected !== null
-            ? isCorrect
-              ? "bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300"
-              : "bg-destructive/8 text-destructive"
-            : "invisible bg-muted"
-        }`}
-        style={{ minHeight: 44 }}
-      >
+      {/* Feedback */}
+      <div className={`rounded-2xl px-4 py-3 text-sm font-medium ${
+        selected !== null
+          ? isCorrect ? "bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300"
+                      : "bg-destructive/8 text-destructive"
+          : "invisible bg-muted"
+      }`} style={{ minHeight: 44 }}>
         {selected !== null
           ? isCorrect ? "Правильно!" : `Правильна відповідь: ${q.correct}`
-          : "‎"
-        }
+          : "‎"}
       </div>
 
-      {/* Auto-advance timer bar — always present */}
+      {/* Timer bar */}
       <div className="h-0.5 bg-muted rounded-full overflow-hidden">
-        <div
-          className="h-full bg-primary/60 rounded-full"
-          style={{
-            width: `${barWidth}%`,
-            transition: barWidth === 100 ? `width ${ADVANCE_MS}ms linear` : "none",
-          }}
-        />
+        <div className="h-full bg-primary/60 rounded-full"
+          style={{ width: `${barWidth}%`, transition: barWidth === 100 ? `width ${ADVANCE_MS}ms linear` : "none" }} />
       </div>
 
-      {/* Reset */}
       <button onClick={handleReset}
         className="text-xs text-muted-foreground hover:text-destructive transition-colors py-1 text-right self-end">
         Скинути прогрес
