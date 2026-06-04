@@ -12,6 +12,7 @@
       "id": "A",
       "label": "A",
       "instruction": "En la recepción de una escuela de español, tres estudiantes dan sus datos personales. Escucha y completa.",
+      "instruction_uk": "У рецепції школи іспанської мови троє студентів повідомляють свої особисті дані. Послухай та заповни.",
       "type": "fill-form",
       "word_bank": ["Barbara", "brasileño", "675312908", "913490025", "Katia", "periodista", "19", "27", "estudiante"],
       "people": [
@@ -56,6 +57,7 @@
       "id": "B",
       "label": "B",
       "instruction": "Ahora vuelve a escuchar e indica para qué sirven estas preguntas.",
+      "instruction_uk": "Тепер послухай ще раз та вкажи, для чого слугують ці запитання.",
       "type": "match-category",
       "categories": [
         { "id": 1, "text": "la nacionalidad / el lugar de origen" },

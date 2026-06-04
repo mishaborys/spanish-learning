@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -9,11 +9,11 @@ type AudioEntry = { label: string; src: string };
 
 type FormField  = { id: string; label: string; answer: string; given?: boolean };
 type PersonData = { nombre: string | null; apellido: string; correo: string; edad?: string; fields: FormField[] };
-type ExerciseA  = { id: "A"; label: string; instruction: string; type: "fill-form"; word_bank: string[]; people: PersonData[] };
+type ExerciseA  = { id: "A"; label: string; instruction: string; instruction_uk?: string; type: "fill-form"; word_bank: string[]; people: PersonData[] };
 
 type Category   = { id: number; text: string };
 type MatchQ     = { id: string; text: string; answer: number };
-type ExerciseB  = { id: "B"; label: string; instruction: string; type: "match-category"; categories: Category[]; questions: MatchQ[] };
+type ExerciseB  = { id: "B"; label: string; instruction: string; instruction_uk?: string; type: "match-category"; categories: Category[]; questions: MatchQ[] };
 
 type Homework = {
   id: string;
@@ -79,7 +79,6 @@ function ExerciseAComponent({ ex, storageKey }: { ex: ExerciseA; storageKey: str
   const [checked, setChecked] = useState(false);
 
   const usedWords = new Set(Object.values(answers));
-  const available = ex.word_bank.filter(w => !usedWords.has(w));
 
   const fill = (fieldId: string) => {
     if (!selected) return;
@@ -280,6 +279,43 @@ function ExerciseBComponent({ ex, storageKey }: { ex: ExerciseB; storageKey: str
   );
 }
 
+// ─── Exercise Wrapper (instruction + translation toggle) ─────────────────────
+
+function ExerciseWrapper({ ex, hwId }: { ex: ExerciseA | ExerciseB; hwId: string }) {
+  const [showTranslation, setShowTranslation] = useState(false);
+
+  return (
+    <div className="space-y-3">
+      <div className="flex items-start gap-3">
+        <span className="shrink-0 w-7 h-7 rounded-lg bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
+          {ex.label}
+        </span>
+        <div className="pt-0.5 space-y-1">
+          <p className="text-sm text-muted-foreground leading-relaxed">{ex.instruction}</p>
+          {ex.instruction_uk && (
+            <div>
+              {showTranslation && (
+                <p className="text-sm text-foreground leading-relaxed">{ex.instruction_uk}</p>
+              )}
+              <button
+                onClick={() => setShowTranslation(v => !v)}
+                className="text-xs text-primary/70 hover:text-primary transition-colors underline-offset-2 hover:underline">
+                {showTranslation ? "Сховати переклад" : "Показати переклад"}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+      {ex.type === "fill-form" && (
+        <ExerciseAComponent ex={ex as ExerciseA} storageKey={`hw-${hwId}-${ex.id}`} />
+      )}
+      {ex.type === "match-category" && (
+        <ExerciseBComponent ex={ex as ExerciseB} storageKey={`hw-${hwId}-${ex.id}`} />
+      )}
+    </div>
+  );
+}
+
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export function HomeworkClient({ hw }: { hw: Homework }) {
@@ -301,20 +337,7 @@ export function HomeworkClient({ hw }: { hw: Homework }) {
       <AudioPlayer entries={hw.audio} />
 
       {hw.exercises.map(ex => (
-        <div key={ex.id} className="space-y-3">
-          <div className="flex items-start gap-3">
-            <span className="shrink-0 w-7 h-7 rounded-lg bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
-              {ex.label}
-            </span>
-            <p className="text-sm text-muted-foreground leading-relaxed pt-0.5">{ex.instruction}</p>
-          </div>
-          {ex.type === "fill-form" && (
-            <ExerciseAComponent ex={ex as ExerciseA} storageKey={`hw-${hw.id}-${ex.id}`} />
-          )}
-          {ex.type === "match-category" && (
-            <ExerciseBComponent ex={ex as ExerciseB} storageKey={`hw-${hw.id}-${ex.id}`} />
-          )}
-        </div>
+        <ExerciseWrapper key={ex.id} ex={ex} hwId={hw.id} />
       ))}
     </div>
   );
