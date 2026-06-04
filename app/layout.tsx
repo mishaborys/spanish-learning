@@ -16,9 +16,6 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "Іспанська",
   },
-  icons: {
-    apple: "/icon-180.png",
-  },
 };
 
 export const viewport: Viewport = {
