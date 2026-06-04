@@ -1,28 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Word } from "@/lib/db";
 import { FlashCards } from "./FlashCards";
 import { Quiz } from "./Quiz";
+import { FillInBlank } from "./FillInBlank";
 
-type Tab = "grammar" | "cards" | "quiz";
+type Tab = "grammar" | "cards" | "quiz" | "fill";
 
-const TABS: { id: Tab; label: string; emoji: string }[] = [
+const BASE_TABS: { id: Tab; label: string; emoji: string }[] = [
   { id: "grammar", label: "Граматика", emoji: "📖" },
-  { id: "cards", label: "Картки", emoji: "🃏" },
-  { id: "quiz", label: "Тест", emoji: "✏️" },
+  { id: "cards",   label: "Картки",    emoji: "🃏" },
+  { id: "quiz",    label: "Тест",      emoji: "✏️" },
 ];
+
+const FILL_TAB: { id: Tab; label: string; emoji: string } =
+  { id: "fill", label: "Вписати", emoji: "⌨️" };
+
+const VERB_RE = /^.+(ar|er|ir)$/i;
 
 type Props = { grammarText: string; words: Word[] };
 
 export function TopicTabs({ grammarText, words }: Props) {
+  const isVerbTopic = useMemo(() => {
+    const n = words.filter(w => VERB_RE.test(w.spanish)).length;
+    return n > words.length * 0.7;
+  }, [words]);
+
+  const tabs = isVerbTopic ? [...BASE_TABS, FILL_TAB] : BASE_TABS;
+
   const [tab, setTab] = useState<Tab>("grammar");
 
   return (
     <div className="space-y-5">
       {/* Tab bar */}
       <div className="flex rounded-2xl bg-muted p-1 gap-1">
-        {TABS.map((t) => (
+        {tabs.map((t) => (
           <button
             key={t.id}
             onClick={() => setTab(t.id)}
@@ -65,7 +78,8 @@ export function TopicTabs({ grammarText, words }: Props) {
       )}
 
       {tab === "cards" && <FlashCards words={words} />}
-      {tab === "quiz" && <Quiz words={words} />}
+      {tab === "quiz"  && <Quiz words={words} />}
+      {tab === "fill"  && <FillInBlank words={words} />}
     </div>
   );
 }
