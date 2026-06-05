@@ -10,6 +10,7 @@ export type VocabWord = {
   sound_association: string;
   example_es: string;
   example_uk: string;
+  emoji?: string;
 };
 
 export type VocabGroup = {
