@@ -195,14 +195,14 @@ function FlashcardView({ group, onBack }: { group: VocabGroup; onBack: () => voi
             </div>
 
             {/* Back */}
-            <div className="card-flip-back card-flip-face rounded-3xl border bg-card flex flex-col items-center p-6 text-center" style={{ minHeight: 320 }}>
+            <div className="card-flip-back card-flip-face rounded-3xl border bg-card flex flex-col items-center p-6 text-center">
               <span className="text-lg font-semibold text-muted-foreground mt-2">{word.spanish}</span>
               <span className="text-sm text-muted-foreground/60 font-mono mt-0.5">{word.pronunciation}</span>
               {word.emoji && <span className="text-5xl mt-3">{word.emoji}</span>}
               <span className="text-3xl font-bold mt-2">{word.ukrainian}</span>
 
               {/* Sound association + example */}
-              <div className="mt-auto w-full pt-4 border-t space-y-2">
+              <div className="mt-4 w-full pt-4 border-t space-y-2">
                 <div className="flex items-start gap-2 text-left bg-amber-50 dark:bg-amber-950/30 rounded-2xl p-3">
                   <span className="shrink-0 mt-0.5 text-amber-500"><BulbIcon /></span>
                   <div className="space-y-0.5">

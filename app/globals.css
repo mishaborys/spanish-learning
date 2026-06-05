@@ -137,17 +137,16 @@
 .card-flip-inner {
   transform-style: preserve-3d;
   transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
+  display: grid;
 }
 .card-flip-inner.is-flipped {
   transform: rotateY(180deg);
 }
 .card-flip-face {
+  grid-area: 1 / 1;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
 .card-flip-back {
   transform: rotateY(180deg);
-  position: absolute;
-  inset: 0;
 }
