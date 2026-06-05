@@ -200,14 +200,19 @@ function FlashcardView({ group, onBack }: { group: VocabGroup; onBack: () => voi
               <span className="text-sm text-muted-foreground/60 font-mono mt-0.5">{word.pronunciation}</span>
               <span className="text-3xl font-bold mt-3">{word.ukrainian}</span>
 
-              {/* Sound association */}
-              <div className="mt-auto w-full pt-4 border-t">
+              {/* Sound association + example */}
+              <div className="mt-auto w-full pt-4 border-t space-y-2">
                 <div className="flex items-start gap-2 text-left bg-amber-50 dark:bg-amber-950/30 rounded-2xl p-3">
                   <span className="shrink-0 mt-0.5 text-amber-500"><BulbIcon /></span>
                   <div className="space-y-0.5">
                     <p className="text-[10px] font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">Звукова асоціація</p>
                     <p className="text-xs text-amber-800 dark:text-amber-200 leading-relaxed">{word.sound_association}</p>
                   </div>
+                </div>
+                <div className="text-left bg-sky-50 dark:bg-sky-950/30 rounded-2xl p-3">
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-1">Приклад</p>
+                  <p className="text-sm font-medium text-sky-900 dark:text-sky-100 italic">{word.example_es}</p>
+                  <p className="text-xs text-sky-700 dark:text-sky-300 mt-0.5">{word.example_uk}</p>
                 </div>
               </div>
             </div>

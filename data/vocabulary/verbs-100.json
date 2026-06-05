@@ -8,16 +8,16 @@
       "title": "Спілкування",
       "emoji": "💬",
       "words": [
-        { "spanish": "hablar",    "ukrainian": "говорити",       "pronunciation": "аБЛАР",      "sound_association": "«аблар» → Аблара не заткнеш — говорить без зупинки" },
-        { "spanish": "escuchar",  "ukrainian": "слухати",        "pronunciation": "ескуЧАР",    "sound_association": "«єскучар» → Є КУЧЕР, який вуха відкрив і слухає команди" },
-        { "spanish": "llamar",    "ukrainian": "телефонувати, кликати", "pronunciation": "льаМАР", "sound_association": "«льямар» → ЛЬОМУ кличеш — він не чує, телефонуй!" },
-        { "spanish": "gritar",    "ukrainian": "кричати",        "pronunciation": "гріТАР",     "sound_association": "«грітар» → ГРЕТА кричить з гори на весь світ" },
-        { "spanish": "explicar",  "ukrainian": "пояснювати",     "pronunciation": "ескліКАР",   "sound_association": "«експлікар» → ЕКСПЛІКАЦІЯ — вже саме слово пояснює себе" },
-        { "spanish": "preguntar", "ukrainian": "запитувати",     "pronunciation": "прегунТАР",  "sound_association": "«прегунтар» → ПРЕ-ГУН: гун питає — де здобич?" },
-        { "spanish": "contestar", "ukrainian": "відповідати",    "pronunciation": "контесТАР",  "sound_association": "«контестар» → КОНКУРС (contest): треба відповідати!" },
-        { "spanish": "responder", "ukrainian": "відповідати",    "pronunciation": "респонДЕР",  "sound_association": "«респондер» → РЕСПОНДЕНТ відповідає на всі питання" },
-        { "spanish": "presentar", "ukrainian": "представляти",   "pronunciation": "пресенТАР",  "sound_association": "«презентар» → ПРЕЗЕНТ сам себе представляє вголос" },
-        { "spanish": "describir", "ukrainian": "описувати",      "pronunciation": "дескріБІР",  "sound_association": "«дескрібір» → DESCRIBE — описати (майже те саме слово!)" }
+        { "spanish": "hablar",    "ukrainian": "говорити",              "pronunciation": "аБЛАР",      "sound_association": "«аблар» → Аблара не заткнеш — говорить без зупинки",             "example_es": "Hablo español un poco.", "example_uk": "Я трохи говорю іспанською." },
+        { "spanish": "escuchar",  "ukrainian": "слухати",               "pronunciation": "ескуЧАР",    "sound_association": "«єскучар» → Є КУЧЕР, який вуха відкрив і слухає команди",       "example_es": "Escucho música por las mañanas.", "example_uk": "Я слухаю музику вранці." },
+        { "spanish": "llamar",    "ukrainian": "телефонувати, кликати", "pronunciation": "льаМАР",     "sound_association": "«льямар» → ЛЬОМУ кличеш — він не чує, телефонуй!",              "example_es": "Voy a llamar a mi madre.", "example_uk": "Я подзвоню мамі." },
+        { "spanish": "gritar",    "ukrainian": "кричати",               "pronunciation": "гріТАР",     "sound_association": "«грітар» → ГРЕТА кричить з гори на весь світ",                  "example_es": "¡No grites, por favor!", "example_uk": "Не кричи, будь ласка!" },
+        { "spanish": "explicar",  "ukrainian": "пояснювати",            "pronunciation": "ескліКАР",   "sound_association": "«експлікар» → ЕКСПЛІКАЦІЯ — вже саме слово пояснює себе",       "example_es": "El profesor explica la lección.", "example_uk": "Вчитель пояснює урок." },
+        { "spanish": "preguntar", "ukrainian": "запитувати",            "pronunciation": "прегунТАР",  "sound_association": "«прегунтар» → ПРЕ-ГУН: гун питає — де здобич?",                "example_es": "¿Puedo preguntar algo?", "example_uk": "Можу я щось запитати?" },
+        { "spanish": "contestar", "ukrainian": "відповідати",           "pronunciation": "контесТАР",  "sound_association": "«контестар» → КОНКУРС (contest): треба відповідати!",           "example_es": "Ella no contesta el teléfono.", "example_uk": "Вона не відповідає на телефон." },
+        { "spanish": "responder", "ukrainian": "відповідати",           "pronunciation": "респонДЕР",  "sound_association": "«респондер» → РЕСПОНДЕНТ відповідає на всі питання",            "example_es": "Responde a mi mensaje.", "example_uk": "Відповідай на моє повідомлення." },
+        { "spanish": "presentar", "ukrainian": "представляти",          "pronunciation": "пресенТАР",  "sound_association": "«презентар» → ПРЕЗЕНТ сам себе представляє вголос",             "example_es": "Te presento a mi amigo.", "example_uk": "Дозволь представити мого друга." },
+        { "spanish": "describir", "ukrainian": "описувати",             "pronunciation": "дескріБІР",  "sound_association": "«дескрібір» → DESCRIBE — описати (майже те саме слово!)",       "example_es": "Describe tu ciudad favorita.", "example_uk": "Опиши своє улюблене місто." }
       ]
     },
     {
@@ -25,16 +25,16 @@
       "title": "Думки та навчання",
       "emoji": "📚",
       "words": [
-        { "spanish": "estudiar",   "ukrainian": "вчитися",        "pronunciation": "естуДЬАР",  "sound_association": "«естудьяр» → у СТУДІЇ навчають акторів" },
-        { "spanish": "aprender",   "ukrainian": "навчатися",      "pronunciation": "апренДЕР",  "sound_association": "«апрендер» → APPRENTICE — учень у майстра (майже те саме!)" },
-        { "spanish": "comprender", "ukrainian": "розуміти",       "pronunciation": "компренДЕР","sound_association": "«компрендер» → COMPREHEND — зрозуміти (майже англійське!)" },
-        { "spanish": "leer",       "ukrainian": "читати",         "pronunciation": "леЕР",      "sound_association": "«леер» → ЛЕКТОР читає — leer → lecture" },
-        { "spanish": "escribir",   "ukrainian": "писати",         "pronunciation": "ескріБІР",  "sound_association": "«ескрібір» → СКРИПАЛЬ пише нотки скрипучим пером" },
-        { "spanish": "creer",      "ukrainian": "вірити, думати", "pronunciation": "креЕР",     "sound_association": "«креер» → КРЕДО — те, у що ти свято віриш" },
-        { "spanish": "decidir",    "ukrainian": "вирішувати",     "pronunciation": "десіДІР",   "sound_association": "«десідір» → DECIDE — вирішити (майже те саме слово!)" },
-        { "spanish": "discutir",   "ukrainian": "обговорювати",   "pronunciation": "дискуТІР",  "sound_association": "«дискутір» → DISCUSS — обговорювати (майже те саме!)" },
-        { "spanish": "practicar",  "ukrainian": "практикувати",   "pronunciation": "практіКАР", "sound_association": "«практікар» → ПРАКТИКАНТ з картками тренується щодня" },
-        { "spanish": "enseñar",    "ukrainian": "навчати",        "pronunciation": "енсеНЬАР",  "sound_association": "«енсеньяр» → АНСАМБЛЬ навчає танцям (ансамбль → enseñar)" }
+        { "spanish": "estudiar",   "ukrainian": "вчитися",        "pronunciation": "естуДЬАР",   "sound_association": "«естудьяр» → у СТУДІЇ навчають акторів",                        "example_es": "Estudio español todos los días.", "example_uk": "Я вчу іспанську щодня." },
+        { "spanish": "aprender",   "ukrainian": "навчатися",      "pronunciation": "апренДЕР",   "sound_association": "«апрендер» → APPRENTICE — учень у майстра (майже те саме!)",   "example_es": "Quiero aprender a cocinar.", "example_uk": "Я хочу навчитися готувати." },
+        { "spanish": "comprender", "ukrainian": "розуміти",       "pronunciation": "компренДЕР", "sound_association": "«компрендер» → COMPREHEND — зрозуміти (майже англійське!)",    "example_es": "No comprendo esta frase.", "example_uk": "Я не розумію це речення." },
+        { "spanish": "leer",       "ukrainian": "читати",         "pronunciation": "леЕР",       "sound_association": "«леер» → ЛЕКТОР читає — leer → lecture",                       "example_es": "Me gusta leer libros.", "example_uk": "Мені подобається читати книги." },
+        { "spanish": "escribir",   "ukrainian": "писати",         "pronunciation": "ескріБІР",   "sound_association": "«ескрібір» → СКРИПАЛЬ пише нотки скрипучим пером",             "example_es": "Escribo en mi diario.", "example_uk": "Я пишу у своєму щоденнику." },
+        { "spanish": "creer",      "ukrainian": "вірити, думати", "pronunciation": "креЕР",      "sound_association": "«креер» → КРЕДО — те, у що ти свято віриш",                    "example_es": "No creo en eso.", "example_uk": "Я в це не вірю." },
+        { "spanish": "decidir",    "ukrainian": "вирішувати",     "pronunciation": "десіДІР",    "sound_association": "«десідір» → DECIDE — вирішити (майже те саме слово!)",          "example_es": "Tengo que decidir ahora.", "example_uk": "Мені треба вирішити зараз." },
+        { "spanish": "discutir",   "ukrainian": "обговорювати",   "pronunciation": "дискуТІР",   "sound_association": "«дискутір» → DISCUSS — обговорювати (майже те саме!)",          "example_es": "Vamos a discutir el tema.", "example_uk": "Давайте обговоримо тему." },
+        { "spanish": "practicar",  "ukrainian": "практикувати",   "pronunciation": "практіКАР",  "sound_association": "«практікар» → ПРАКТИКАНТ з картками тренується щодня",         "example_es": "Practico español cada día.", "example_uk": "Я практикую іспанську щодня." },
+        { "spanish": "enseñar",    "ukrainian": "навчати",        "pronunciation": "енсеНЬАР",   "sound_association": "«енсеньяр» → АНСАМБЛЬ навчає танцям (ансамбль → enseñar)",     "example_es": "Mi madre me enseña a cocinar.", "example_uk": "Мама навчає мене готувати." }
       ]
     },
     {
@@ -42,16 +42,16 @@
       "title": "Рух та переміщення",
       "emoji": "🚶",
       "words": [
-        { "spanish": "caminar",  "ukrainian": "ходити, гуляти",        "pronunciation": "каміНАР",  "sound_association": "«камінар» → КАМІНЬ іде сам — дивовижна ходьба!" },
-        { "spanish": "correr",   "ukrainian": "бігати",                "pronunciation": "корЕР",    "sound_association": "«корер» → КУР'ЄР біжить з терміновою посилкою" },
-        { "spanish": "nadar",    "ukrainian": "плавати",               "pronunciation": "наДАР",    "sound_association": "«надар» → НА ДАРІ (подарованому плоту) пливеш по річці" },
-        { "spanish": "entrar",   "ukrainian": "входити",               "pronunciation": "ентРАР",   "sound_association": "«антрар» → АНТРЕ — вхідна зала ресторану, куди входиш" },
-        { "spanish": "subir",    "ukrainian": "підніматися",           "pronunciation": "суБІР",    "sound_association": "«субір» → СУП КИПИТЬ і піднімається вгору" },
-        { "spanish": "viajar",   "ukrainian": "подорожувати",          "pronunciation": "бьяХАР",   "sound_association": "«бьяхар» → В'ЯЖЕШ вузлики на пам'ять під час кожної подорожі" },
-        { "spanish": "visitar",  "ukrainian": "відвідувати",           "pronunciation": "бісіТАР",  "sound_association": "«вісітар» → ВІЗИТКА — береш її, щоб відвідати когось" },
-        { "spanish": "acudir",   "ukrainian": "приходити, з'являтися", "pronunciation": "акуДІР",   "sound_association": "«акудір» → А КУ-ДИ-Р? Ти приходиш — і всі питають куди" },
-        { "spanish": "asistir",  "ukrainian": "відвідувати (заходи)",  "pronunciation": "асісТІР",  "sound_association": "«асістір» → ASSIST + відвідувати: асистент відвідує всі збори" },
-        { "spanish": "recibir",  "ukrainian": "отримувати",            "pronunciation": "ресіБІР",  "sound_association": "«ресібір» → РЕСИВЕР отримує сигнал з антени" }
+        { "spanish": "caminar",  "ukrainian": "ходити, гуляти",        "pronunciation": "каміНАР",  "sound_association": "«камінар» → КАМІНЬ іде сам — дивовижна ходьба!",              "example_es": "Me gusta caminar por el parque.", "example_uk": "Мені подобається гуляти в парку." },
+        { "spanish": "correr",   "ukrainian": "бігати",                "pronunciation": "корЕР",    "sound_association": "«корер» → КУР'ЄР біжить з терміновою посилкою",              "example_es": "Corro por las mañanas.", "example_uk": "Я бігаю вранці." },
+        { "spanish": "nadar",    "ukrainian": "плавати",               "pronunciation": "наДАР",    "sound_association": "«надар» → НА ДАРІ (подарованому плоту) пливеш по річці",     "example_es": "Ella nada muy bien.", "example_uk": "Вона дуже добре плаває." },
+        { "spanish": "entrar",   "ukrainian": "входити",               "pronunciation": "ентРАР",   "sound_association": "«антрар» → АНТРЕ — вхідна зала ресторану, куди входиш",      "example_es": "Entra, por favor.", "example_uk": "Заходь, будь ласка." },
+        { "spanish": "subir",    "ukrainian": "підніматися",           "pronunciation": "суБІР",    "sound_association": "«субір» → СУП КИПИТЬ і піднімається вгору",                  "example_es": "Subimos las escaleras.", "example_uk": "Ми підіймаємося сходами." },
+        { "spanish": "viajar",   "ukrainian": "подорожувати",          "pronunciation": "бьяХАР",   "sound_association": "«бьяхар» → В'ЯЖЕШ вузлики на пам'ять під час кожної подорожі","example_es": "Me encanta viajar.", "example_uk": "Мені дуже подобається подорожувати." },
+        { "spanish": "visitar",  "ukrainian": "відвідувати",           "pronunciation": "бісіТАР",  "sound_association": "«вісітар» → ВІЗИТКА — береш її, щоб відвідати когось",        "example_es": "Voy a visitar a mis abuelos.", "example_uk": "Я піду відвідати бабусю й дідуся." },
+        { "spanish": "acudir",   "ukrainian": "приходити, з'являтися", "pronunciation": "акуДІР",   "sound_association": "«акудір» → А КУ-ДИ-Р? Ти приходиш — і всі питають куди",     "example_es": "Acudo a clase cada día.", "example_uk": "Я приходжу на заняття щодня." },
+        { "spanish": "asistir",  "ukrainian": "відвідувати (заходи)",  "pronunciation": "асісТІР",  "sound_association": "«асістір» → ASSIST + відвідувати: асистент відвідує всі збори","example_es": "Asisto a una conferencia.", "example_uk": "Я відвідую конференцію." },
+        { "spanish": "recibir",  "ukrainian": "отримувати",            "pronunciation": "ресіБІР",  "sound_association": "«ресібір» → РЕСИВЕР отримує сигнал з антени",                 "example_es": "Recibo muchos mensajes.", "example_uk": "Я отримую багато повідомлень." }
       ]
     },
     {
@@ -59,16 +59,16 @@
       "title": "Почуття та емоції",
       "emoji": "❤️",
       "words": [
-        { "spanish": "amar",       "ukrainian": "любити",              "pronunciation": "аМАР",     "sound_association": "«амар» → АМОР — бог кохання (майже одне й те саме слово!)" },
-        { "spanish": "desear",     "ukrainian": "бажати",              "pronunciation": "десеАР",   "sound_association": "«десеар» → ДЕСЕРТ — ти завжди бажаєш солодкого" },
-        { "spanish": "temer",      "ukrainian": "боятися",             "pronunciation": "теМЕР",    "sound_association": "«темер» → ТЕМРЯВА — найстрашніша річ у дитинстві" },
-        { "spanish": "esperar",    "ukrainian": "чекати, сподіватися", "pronunciation": "еспеРАР",  "sound_association": "«есперар» → ЕСПЕРАНТО — мова надії й очікування кращого" },
-        { "spanish": "sufrir",     "ukrainian": "страждати",           "pronunciation": "суФРІР",   "sound_association": "«суфрір» → СУФЛЕ впало — страждаєш як кухар" },
-        { "spanish": "sorprender", "ukrainian": "дивувати",            "pronunciation": "сорпренДЕР","sound_association": "«сорпрендер» → СЮРПРИЗ! (surprise → sorprender)" },
-        { "spanish": "ofender",    "ukrainian": "ображати",            "pronunciation": "офенДЕР",  "sound_association": "«офендер» → OFFENDER ображає офіціанта щодня" },
-        { "spanish": "olvidar",    "ukrainian": "забувати",            "pronunciation": "ольбіДАР",  "sound_association": "«ольвідар» → ОЛЬГА ВІДАЛА — та й забула де поклала" },
-        { "spanish": "cuidar",     "ukrainian": "доглядати, піклуватися","pronunciation": "куіДАР", "sound_association": "«куїдар» → КУЮ ДАР — кую подарунок турботи для тебе" },
-        { "spanish": "mirar",      "ukrainian": "дивитися",            "pronunciation": "міРАР",    "sound_association": "«мірар» → МІРА дивиться в дзеркало і міряє себе" }
+        { "spanish": "amar",       "ukrainian": "любити",               "pronunciation": "аМАР",      "sound_association": "«амар» → АМОР — бог кохання (майже одне й те саме слово!)",  "example_es": "Te amo mucho.", "example_uk": "Я тебе дуже люблю." },
+        { "spanish": "desear",     "ukrainian": "бажати",               "pronunciation": "десеАР",    "sound_association": "«десеар» → ДЕСЕРТ — ти завжди бажаєш солодкого",            "example_es": "Deseo mucha suerte.", "example_uk": "Бажаю тобі удачі." },
+        { "spanish": "temer",      "ukrainian": "боятися",              "pronunciation": "теМЕР",     "sound_association": "«темер» → ТЕМРЯВА — найстрашніша річ у дитинстві",          "example_es": "Temo a los perros.", "example_uk": "Я боюся собак." },
+        { "spanish": "esperar",    "ukrainian": "чекати, сподіватися",  "pronunciation": "еспеРАР",   "sound_association": "«есперар» → ЕСПЕРАНТО — мова надії й очікування кращого",    "example_es": "Espero el autobús.", "example_uk": "Я чекаю на автобус." },
+        { "spanish": "sufrir",     "ukrainian": "страждати",            "pronunciation": "суФРІР",    "sound_association": "«суфрір» → СУФЛЕ впало — страждаєш як кухар",               "example_es": "No quiero sufrir más.", "example_uk": "Я не хочу більше страждати." },
+        { "spanish": "sorprender", "ukrainian": "дивувати",             "pronunciation": "сорпренДЕР","sound_association": "«сорпрендер» → СЮРПРИЗ! (surprise → sorprender)",            "example_es": "Me sorprendes siempre.", "example_uk": "Ти завжди мене дивуєш." },
+        { "spanish": "ofender",    "ukrainian": "ображати",             "pronunciation": "офенДЕР",   "sound_association": "«офендер» → OFFENDER ображає офіціанта щодня",               "example_es": "No quiero ofenderte.", "example_uk": "Я не хочу тебе образити." },
+        { "spanish": "olvidar",    "ukrainian": "забувати",             "pronunciation": "ольбіДАР",  "sound_association": "«ольвідар» → ОЛЬГА ВІДАЛА — та й забула де поклала",         "example_es": "Olvidé mi teléfono en casa.", "example_uk": "Я забув(ла) телефон вдома." },
+        { "spanish": "cuidar",     "ukrainian": "доглядати, піклуватися","pronunciation": "куіДАР",   "sound_association": "«куїдар» → КУЮ ДАР — кую подарунок турботи для тебе",       "example_es": "Cuido a mi gato.", "example_uk": "Я доглядаю за своїм котом." },
+        { "spanish": "mirar",      "ukrainian": "дивитися",             "pronunciation": "міРАР",     "sound_association": "«мірар» → МІРА дивиться в дзеркало і міряє себе",            "example_es": "¡Mira, qué bonito!", "example_uk": "Дивись, як гарно!" }
       ]
     },
     {
@@ -76,15 +76,15 @@
       "title": "Їжа та кухня",
       "emoji": "🍳",
       "words": [
-        { "spanish": "cocinar",   "ukrainian": "готувати їжу",  "pronunciation": "косіНАР",  "sound_association": "«косінар» → КОСИНАР готує кашу з косинусів (абсурд!)" },
-        { "spanish": "comer",     "ukrainian": "їсти",          "pronunciation": "коМЕР",    "sound_association": "«комер» → КОМЕРСАНТ їжі з'їв власний товар" },
-        { "spanish": "beber",     "ukrainian": "пити",          "pronunciation": "беБЕР",    "sound_association": "«бебер» → БОБЕР п'є воду прямо з хатинки" },
-        { "spanish": "desayunar", "ukrainian": "снідати",       "pronunciation": "десайуНАР","sound_association": "«десайунар» → ДЕ СА-ЮН-АТИ? — де з'їсти юшку? На сніданку!" },
-        { "spanish": "preparar",  "ukrainian": "готувати (щось)","pronunciation": "препаРАР", "sound_association": "«препарар» → ПРЕПАРАТ готують у лабораторії — ретельно!" },
-        { "spanish": "comprar",   "ukrainian": "купувати",      "pronunciation": "компРАР",  "sound_association": "«компрар» → КОМПРЕС: купуєш у аптеці для хворого" },
-        { "spanish": "pagar",     "ukrainian": "платити",       "pronunciation": "паГАР",    "sound_association": "«пагар» → ПАГАР — місце де платять, як базар тільки пагар" },
-        { "spanish": "tomar",     "ukrainian": "брати, пити",   "pronunciation": "тоМАР",    "sound_association": "«томар» → ТОМА все бере підряд — і їжу, і напої, і посуд" },
-        { "spanish": "buscar",    "ukrainian": "шукати",        "pronunciation": "бусКАР",   "sound_association": "«бускар» → АВТОБУС-КАР: шукаєш свій маршрут на карті" }
+        { "spanish": "cocinar",   "ukrainian": "готувати їжу",   "pronunciation": "косіНАР",   "sound_association": "«косінар» → КОСИНАР готує кашу з косинусів (абсурд!)",       "example_es": "Cocino arroz para cenar.", "example_uk": "Я готую рис на вечерю." },
+        { "spanish": "comer",     "ukrainian": "їсти",           "pronunciation": "коМЕР",     "sound_association": "«комер» → КОМЕРСАНТ їжі з'їв власний товар",                 "example_es": "Como fruta cada día.", "example_uk": "Я їм фрукти щодня." },
+        { "spanish": "beber",     "ukrainian": "пити",           "pronunciation": "беБЕР",     "sound_association": "«бебер» → БОБЕР п'є воду прямо з хатинки",                  "example_es": "Bebo agua con limón.", "example_uk": "Я п'ю воду з лимоном." },
+        { "spanish": "desayunar", "ukrainian": "снідати",        "pronunciation": "десайуНАР", "sound_association": "«десайунар» → ДЕ СА-ЮН-АТИ? — де з'їсти юшку? На сніданку!","example_es": "Desayuno a las ocho.", "example_uk": "Я снідаю о восьмій." },
+        { "spanish": "preparar",  "ukrainian": "готувати (щось)","pronunciation": "препаРАР",  "sound_association": "«препарар» → ПРЕПАРАТ готують у лабораторії — ретельно!",   "example_es": "Preparo el desayuno.", "example_uk": "Я готую сніданок." },
+        { "spanish": "comprar",   "ukrainian": "купувати",       "pronunciation": "компРАР",   "sound_association": "«компрар» → КОМПРЕС: купуєш у аптеці для хворого",           "example_es": "Voy a comprar pan.", "example_uk": "Я піду купити хліб." },
+        { "spanish": "pagar",     "ukrainian": "платити",        "pronunciation": "паГАР",     "sound_association": "«пагар» → ПАГАР — місце де платять, як базар тільки пагар",  "example_es": "Pago con tarjeta.", "example_uk": "Я плачу карткою." },
+        { "spanish": "tomar",     "ukrainian": "брати, пити",    "pronunciation": "тоМАР",     "sound_association": "«томар» → ТОМА все бере підряд — і їжу, і напої, і посуд",   "example_es": "Tomo un café, por favor.", "example_uk": "Я візьму каву, будь ласка." },
+        { "spanish": "buscar",    "ukrainian": "шукати",         "pronunciation": "бусКАР",    "sound_association": "«бускар» → АВТОБУС-КАР: шукаєш свій маршрут на карті",       "example_es": "Busco mis llaves.", "example_uk": "Я шукаю ключі." }
       ]
     },
     {
@@ -92,13 +92,13 @@
       "title": "Дім та прибирання",
       "emoji": "🏠",
       "words": [
-        { "spanish": "lavar",   "ukrainian": "мити",       "pronunciation": "лаБАР",   "sound_association": "«лавар» → ЛАВР миє руки після перемоги — лаври й вода" },
-        { "spanish": "limpiar", "ukrainian": "прибирати",  "pronunciation": "лімПЬАР", "sound_association": "«лімпьяр» → ОЛІМПІЯ — чисте місто, готується до ігор" },
-        { "spanish": "barrer",  "ukrainian": "підмітати",  "pronunciation": "барЕР",   "sound_association": "«барер» → БАРМЕН-БАРЕР підмітає за стійкою бару" },
-        { "spanish": "arreglar","ukrainian": "ремонтувати","pronunciation": "арреГЛАР","sound_association": "«аррегЛАР» → ARRANGE: полагодь, зроби арегла!" },
-        { "spanish": "coser",   "ukrainian": "шити",       "pronunciation": "коСЕР",   "sound_association": "«косер» → КОСТЯ шиє КОШЕЛИК — косер-кошер!" },
-        { "spanish": "tejer",   "ukrainian": "в'язати",    "pronunciation": "теХЕР",   "sound_association": "«техер» → ТЕ, ЩО ХЕРА — в'яжеш дивний светр без рукавів" },
-        { "spanish": "sacudir", "ukrainian": "трясти, стрясати","pronunciation": "сакуДІР","sound_association": "«сакудір» → САКУДИР: «са» — мішок, «кудир» — кидай! Трусиш мішок" }
+        { "spanish": "lavar",   "ukrainian": "мити",       "pronunciation": "лаБАР",    "sound_association": "«лавар» → ЛАВР миє руки після перемоги — лаври й вода",   "example_es": "Lavo los platos.", "example_uk": "Я мию посуд." },
+        { "spanish": "limpiar", "ukrainian": "прибирати",  "pronunciation": "лімПЬАР",  "sound_association": "«лімпьяр» → ОЛІМПІЯ — чисте місто, готується до ігор",    "example_es": "Limpio la casa los sábados.", "example_uk": "Я прибираю вдома по суботах." },
+        { "spanish": "barrer",  "ukrainian": "підмітати",  "pronunciation": "барЕР",    "sound_association": "«барер» → БАРМЕН-БАРЕР підмітає за стійкою бару",         "example_es": "Barro el suelo.", "example_uk": "Я підмітаю підлогу." },
+        { "spanish": "arreglar","ukrainian": "ремонтувати","pronunciation": "арреГЛАР", "sound_association": "«аррегЛАР» → ARRANGE: полагодь, зроби арегла!",           "example_es": "Arreglo mi bicicleta.", "example_uk": "Я ремонтую велосипед." },
+        { "spanish": "coser",   "ukrainian": "шити",       "pronunciation": "коСЕР",    "sound_association": "«косер» → КОСТЯ шиє КОШЕЛИК — косер-кошер!",             "example_es": "Mi abuela sabe coser bien.", "example_uk": "Моя бабуся вміє добре шити." },
+        { "spanish": "tejer",   "ukrainian": "в'язати",    "pronunciation": "теХЕР",    "sound_association": "«техер» → ТЕ, ЩО ХЕРА — в'яжеш дивний светр без рукавів","example_es": "Ella teje un jersey.", "example_uk": "Вона в'яже светр." },
+        { "spanish": "sacudir", "ukrainian": "трясти, стрясати","pronunciation": "сакуДІР","sound_association": "«сакудір» → САКУДИР: «са» — мішок, «кудир» — кидай! Трусиш мішок","example_es": "Sacudo la alfombra.", "example_uk": "Я трясу килимок." }
       ]
     },
     {
@@ -106,14 +106,14 @@
       "title": "Творчість та дозвілля",
       "emoji": "🎨",
       "words": [
-        { "spanish": "bailar",    "ukrainian": "танцювати",        "pronunciation": "байЛАР",  "sound_association": "«байлар» → БАЛЕРИНА БАЙЛА виходить на сцену" },
-        { "spanish": "cantar",    "ukrainian": "співати",          "pronunciation": "канТАР",  "sound_association": "«кантар» → КАНТАТА — це і є урочистий спів хором" },
-        { "spanish": "tocar",     "ukrainian": "грати (на інструменті)","pronunciation": "тоКАР","sound_association": "«токар» → ТОКАР грає музику на верстаті (абсурд!)" },
-        { "spanish": "dibujar",   "ukrainian": "малювати",         "pronunciation": "дібуХАР", "sound_association": "«дібухар» → ДИБУК малює страшні портрети вночі" },
-        { "spanish": "celebrar",  "ukrainian": "святкувати",       "pronunciation": "селеБРАР","sound_association": "«селебрар» → CELEBRITY святкує день народження!" },
-        { "spanish": "descansar", "ukrainian": "відпочивати",      "pronunciation": "дескансАР","sound_association": "«дескансар» → ДЕ КАНСАР — відпочиваєш десь на Канарах" },
-        { "spanish": "pasar",     "ukrainian": "проводити (час)",  "pronunciation": "паСАР",   "sound_association": "«пасар» → ПАСАЖ — час минає крізь довгий пасаж" },
-        { "spanish": "invitar",   "ukrainian": "запрошувати",      "pronunciation": "інбіТАР", "sound_association": "«інвітар» → ІНВІТАЦІЯ — запрошення (invite → invitar)" }
+        { "spanish": "bailar",    "ukrainian": "танцювати",             "pronunciation": "байЛАР",   "sound_association": "«байлар» → БАЛЕРИНА БАЙЛА виходить на сцену",             "example_es": "Bailamos toda la noche.", "example_uk": "Ми танцювали всю ніч." },
+        { "spanish": "cantar",    "ukrainian": "співати",               "pronunciation": "канТАР",   "sound_association": "«кантар» → КАНТАТА — це і є урочистий спів хором",         "example_es": "Canta muy bien.", "example_uk": "Він/вона дуже добре співає." },
+        { "spanish": "tocar",     "ukrainian": "грати (на інструменті)","pronunciation": "тоКАР",    "sound_association": "«токар» → ТОКАР грає музику на верстаті (абсурд!)",        "example_es": "Toco la guitarra.", "example_uk": "Я граю на гітарі." },
+        { "spanish": "dibujar",   "ukrainian": "малювати",              "pronunciation": "дібуХАР",  "sound_association": "«дібухар» → ДИБУК малює страшні портрети вночі",           "example_es": "El niño dibuja un árbol.", "example_uk": "Дитина малює дерево." },
+        { "spanish": "celebrar",  "ukrainian": "святкувати",            "pronunciation": "селеБРАР", "sound_association": "«селебрар» → CELEBRITY святкує день народження!",           "example_es": "Celebramos tu cumpleaños.", "example_uk": "Ми святкуємо твій день народження." },
+        { "spanish": "descansar", "ukrainian": "відпочивати",           "pronunciation": "дескансАР","sound_association": "«дескансар» → ДЕ КАНСАР — відпочиваєш десь на Канарах",   "example_es": "Necesito descansar.", "example_uk": "Мені треба відпочити." },
+        { "spanish": "pasar",     "ukrainian": "проводити (час)",       "pronunciation": "паСАР",    "sound_association": "«пасар» → ПАСАЖ — час минає крізь довгий пасаж",           "example_es": "Pasamos el día en la playa.", "example_uk": "Ми провели день на пляжі." },
+        { "spanish": "invitar",   "ukrainian": "запрошувати",           "pronunciation": "інбіТАР",  "sound_association": "«інвітар» → ІНВІТАЦІЯ — запрошення (invite → invitar)",    "example_es": "Te invito a cenar.", "example_uk": "Я запрошую тебе на вечерю." }
       ]
     },
     {
@@ -121,14 +121,14 @@
       "title": "Робота та гроші",
       "emoji": "💼",
       "words": [
-        { "spanish": "trabajar",  "ukrainian": "працювати",      "pronunciation": "трабаХАР", "sound_association": "«трабахар» → ТЯГНЕШ БАРАК — важка праця, що ж!" },
-        { "spanish": "cambiar",   "ukrainian": "змінювати",      "pronunciation": "камБЬАР",  "sound_association": "«камбьяр» → КАМІНЬ Б'Є об камінь — і все змінюється" },
-        { "spanish": "usar",      "ukrainian": "використовувати","pronunciation": "уСАР",     "sound_association": "«усар» → ГУСАР використовує шаблю в справі" },
-        { "spanish": "necesitar", "ukrainian": "потребувати",    "pronunciation": "несесіТАР","sound_association": "«несеситар» → НЕСЕ СИТА — потребує носити решето" },
-        { "spanish": "terminar",  "ukrainian": "закінчувати",    "pronunciation": "терміНАР", "sound_association": "«термінар» → ТЕРМІНАТОР все закінчує — беззаперечно" },
-        { "spanish": "ganar",     "ukrainian": "вигравати, заробляти","pronunciation": "гаНАР","sound_association": "«ганар» → ГАНЯЄШ і виграєш — ганяти = ganar!" },
-        { "spanish": "vender",    "ukrainian": "продавати",      "pronunciation": "бенДЕР",   "sound_association": "«вендер» → ОСТАП БЕНДЕР продавав усе підряд" },
-        { "spanish": "mejorar",   "ukrainian": "покращувати",    "pronunciation": "мехоРАР",  "sound_association": "«мехорар» → МЕХ-ХОР: хор покращує звук завдяки механіці" }
+        { "spanish": "trabajar",  "ukrainian": "працювати",       "pronunciation": "трабаХАР",  "sound_association": "«трабахар» → ТЯГНЕШ БАРАК — важка праця, що ж!",          "example_es": "Trabajo en una oficina.", "example_uk": "Я працюю в офісі." },
+        { "spanish": "cambiar",   "ukrainian": "змінювати",       "pronunciation": "камБЬАР",   "sound_association": "«камбьяр» → КАМІНЬ Б'Є об камінь — і все змінюється",     "example_es": "Quiero cambiar de trabajo.", "example_uk": "Я хочу змінити роботу." },
+        { "spanish": "usar",      "ukrainian": "використовувати", "pronunciation": "уСАР",      "sound_association": "«усар» → ГУСАР використовує шаблю в справі",              "example_es": "Uso el teléfono mucho.", "example_uk": "Я багато використовую телефон." },
+        { "spanish": "necesitar", "ukrainian": "потребувати",     "pronunciation": "несесіТАР", "sound_association": "«несеситар» → НЕСЕ СИТА — потребує носити решето",         "example_es": "Necesito ayuda.", "example_uk": "Мені потрібна допомога." },
+        { "spanish": "terminar",  "ukrainian": "закінчувати",     "pronunciation": "терміНАР",  "sound_association": "«термінар» → ТЕРМІНАТОР все закінчує — беззаперечно",      "example_es": "Termino el trabajo a las seis.", "example_uk": "Я закінчую роботу о шостій." },
+        { "spanish": "ganar",     "ukrainian": "вигравати, заробляти","pronunciation": "гаНАР", "sound_association": "«ганар» → ГАНЯЄШ і виграєш — ганяти = ganar!",            "example_es": "Gano suficiente dinero.", "example_uk": "Я заробляю достатньо грошей." },
+        { "spanish": "vender",    "ukrainian": "продавати",       "pronunciation": "бенДЕР",    "sound_association": "«вендер» → ОСТАП БЕНДЕР продавав усе підряд",              "example_es": "Venden frutas en el mercado.", "example_uk": "На ринку продають фрукти." },
+        { "spanish": "mejorar",   "ukrainian": "покращувати",     "pronunciation": "мехоРАР",   "sound_association": "«мехорар» → МЕХ-ХОР: хор покращує звук завдяки механіці", "example_es": "Quiero mejorar mi español.", "example_uk": "Я хочу покращити свою іспанську." }
       ]
     },
     {
@@ -136,15 +136,15 @@
       "title": "Дії з предметами",
       "emoji": "🔧",
       "words": [
-        { "spanish": "llevar",    "ukrainian": "носити, брати",  "pronunciation": "льеБАР",  "sound_association": "«льєвар» → ЛЬОВА ВАР носить — тягне смолу в бочці" },
-        { "spanish": "meter",     "ukrainian": "вкладати, вставляти","pronunciation": "меТЕР","sound_association": "«метер» → МЕТР вставляють у розетку — хтось помилився!" },
-        { "spanish": "romper",    "ukrainian": "ламати, рвати",  "pronunciation": "ромПЕР",  "sound_association": "«ромпер» → РОМПЕР — дитячий комбінезон, який порвали" },
-        { "spanish": "abrir",     "ukrainian": "відкривати",     "pronunciation": "аБРІР",   "sound_association": "«абрір» → АБРИКОС відкриває сезон (Abril = квітень!)" },
-        { "spanish": "cubrir",    "ukrainian": "покривати",      "pronunciation": "куБРІР",  "sound_association": "«кубрір» → КУПЕР покриває бочку мідною кришкою" },
-        { "spanish": "compartir", "ukrainian": "ділитися",       "pronunciation": "компарТІР","sound_association": "«компартір» → КОМПАНЬЙОН ділиться прибутком навпіл" },
-        { "spanish": "añadir",    "ukrainian": "додавати",       "pronunciation": "аньаДІР", "sound_association": "«аньядір» → АНЯ ДЕ ДИР — Аня додає цукор до тіста" },
-        { "spanish": "esconder",  "ukrainian": "ховати",         "pronunciation": "ескон ДЕР","sound_association": "«ескондер» → ЕСКОНДЕР ховається за конем у степу" },
-        { "spanish": "cortar",    "ukrainian": "різати",         "pronunciation": "корТАР",  "sound_association": "«кортар» → КОРТИК ріже хліб рівно по лінії" }
+        { "spanish": "llevar",    "ukrainian": "носити, брати",        "pronunciation": "льеБАР",   "sound_association": "«льєвар» → ЛЬОВА ВАР носить — тягне смолу в бочці",     "example_es": "Llevo una chaqueta azul.", "example_uk": "Я ношу синю куртку." },
+        { "spanish": "meter",     "ukrainian": "вкладати, вставляти",  "pronunciation": "меТЕР",    "sound_association": "«метер» → МЕТР вставляють у розетку — хтось помилився!", "example_es": "Meto la ropa en la maleta.", "example_uk": "Я вкладаю одяг у валізу." },
+        { "spanish": "romper",    "ukrainian": "ламати, рвати",        "pronunciation": "ромПЕР",   "sound_association": "«ромпер» → РОМПЕР — дитячий комбінезон, який порвали",  "example_es": "Rompí un vaso.", "example_uk": "Я розбив(ла) склянку." },
+        { "spanish": "abrir",     "ukrainian": "відкривати",           "pronunciation": "аБРІР",    "sound_association": "«абрір» → АБРИКОС відкриває сезон (Abril = квітень!)",   "example_es": "Abre la ventana, por favor.", "example_uk": "Відкрий вікно, будь ласка." },
+        { "spanish": "cubrir",    "ukrainian": "покривати",            "pronunciation": "куБРІР",   "sound_association": "«кубрір» → КУПЕР покриває бочку мідною кришкою",        "example_es": "Cubro la olla con la tapa.", "example_uk": "Я накриваю каструлю кришкою." },
+        { "spanish": "compartir", "ukrainian": "ділитися",             "pronunciation": "компарТІР", "sound_association": "«компартір» → КОМПАНЬЙОН ділиться прибутком навпіл",    "example_es": "Compartimos la pizza.", "example_uk": "Ми ділимося піцою." },
+        { "spanish": "añadir",    "ukrainian": "додавати",             "pronunciation": "аньаДІР",  "sound_association": "«аньядір» → АНЯ ДЕ ДИР — Аня додає цукор до тіста",   "example_es": "Añade sal a la sopa.", "example_uk": "Додай солі у суп." },
+        { "spanish": "esconder",  "ukrainian": "ховати",               "pronunciation": "ескон ДЕР","sound_association": "«ескондер» → ЕСКОНДЕР ховається за конем у степу",      "example_es": "El gato se esconde debajo de la cama.", "example_uk": "Кіт ховається під ліжком." },
+        { "spanish": "cortar",    "ukrainian": "різати",               "pronunciation": "корТАР",   "sound_association": "«кортар» → КОРТИК ріже хліб рівно по лінії",           "example_es": "Corto el pan.", "example_uk": "Я ріжу хліб." }
       ]
     },
     {
@@ -152,16 +152,16 @@
       "title": "Соціальні дії",
       "emoji": "🤝",
       "words": [
-        { "spanish": "ayudar",    "ukrainian": "допомагати",     "pronunciation": "айуДАР",   "sound_association": "«айудар» → АЙ, ЮДА — зрадник, але допоміг у потрібний час" },
-        { "spanish": "prometer",  "ukrainian": "обіцяти",        "pronunciation": "промеТЕР", "sound_association": "«прометер» → ПРОМЕТЕЙ пообіцяв людям вогонь і дотримався" },
-        { "spanish": "deber",     "ukrainian": "бути повинним",  "pronunciation": "деБЕР",    "sound_association": "«дебер» → ДЕБЕТ: ти ПОВИНЕН повернути — борг у дебеті" },
-        { "spanish": "ceder",     "ukrainian": "поступатися",    "pronunciation": "сеДЕР",    "sound_association": "«седер» → СИДІР поступився місцем у черзі бабусі" },
-        { "spanish": "cometer",   "ukrainian": "здійснювати (помилку)","pronunciation": "комеТЕР","sound_association": "«кометер» → КОМЕТА здійснила помилку й упала на Землю" },
-        { "spanish": "permitir",  "ukrainian": "дозволяти",      "pronunciation": "перміТІР", "sound_association": "«перміТІР» → PERMIT — дозвіл (майже те саме слово!)" },
-        { "spanish": "unir",      "ukrainian": "об'єднувати",    "pronunciation": "уНІР",     "sound_association": "«унір» → ЮНІОН (union) — профспілка об'єднує всіх" },
-        { "spanish": "cumplir",   "ukrainian": "виконувати",     "pronunciation": "кумплІР",  "sound_association": "«кумплір» → КУМ ПЛІТ — кум виконав обіцянку, наплів вінок!" },
-        { "spanish": "transmitir","ukrainian": "передавати",     "pronunciation": "трансміТІР","sound_association": "«трансмітір» → TRANSMITTER — передавач сигналу (майже те саме!)" },
-        { "spanish": "insistir",  "ukrainian": "наполягати",     "pronunciation": "інсісТІР", "sound_association": "«інсістір» → INSIST — наполягати (майже те саме слово!)" }
+        { "spanish": "ayudar",    "ukrainian": "допомагати",              "pronunciation": "айуДАР",    "sound_association": "«айудар» → АЙ, ЮДА — зрадник, але допоміг у потрібний час",  "example_es": "¿Me puedes ayudar?", "example_uk": "Ти можеш мені допомогти?" },
+        { "spanish": "prometer",  "ukrainian": "обіцяти",                 "pronunciation": "промеТЕР",  "sound_association": "«прометер» → ПРОМЕТЕЙ пообіцяв людям вогонь і дотримався",    "example_es": "Te prometo que vuelvo.", "example_uk": "Я обіцяю, що повернусь." },
+        { "spanish": "deber",     "ukrainian": "бути повинним",           "pronunciation": "деБЕР",     "sound_association": "«дебер» → ДЕБЕТ: ти ПОВИНЕН повернути — борг у дебеті",       "example_es": "Debes estudiar más.", "example_uk": "Ти повинен вчитися більше." },
+        { "spanish": "ceder",     "ukrainian": "поступатися",             "pronunciation": "сеДЕР",     "sound_association": "«седер» → СИДІР поступився місцем у черзі бабусі",            "example_es": "Cedo mi asiento a la abuela.", "example_uk": "Я поступаюся місцем бабусі." },
+        { "spanish": "cometer",   "ukrainian": "здійснювати (помилку)",   "pronunciation": "комеТЕР",   "sound_association": "«кометер» → КОМЕТА здійснила помилку й упала на Землю",        "example_es": "Cometí un error.", "example_uk": "Я зробив(ла) помилку." },
+        { "spanish": "permitir",  "ukrainian": "дозволяти",               "pronunciation": "перміТІР",  "sound_association": "«перміТІР» → PERMIT — дозвіл (майже те саме слово!)",          "example_es": "No me permiten entrar.", "example_uk": "Мені не дозволяють увійти." },
+        { "spanish": "unir",      "ukrainian": "об'єднувати",             "pronunciation": "уНІР",      "sound_association": "«унір» → ЮНІОН (union) — профспілка об'єднує всіх",            "example_es": "Unimos los equipos.", "example_uk": "Ми об'єднуємо команди." },
+        { "spanish": "cumplir",   "ukrainian": "виконувати",              "pronunciation": "кумплІР",   "sound_association": "«кумплір» → КУМ ПЛІТ — кум виконав обіцянку, наплів вінок!",  "example_es": "Cumplo mis promesas.", "example_uk": "Я виконую свої обіцянки." },
+        { "spanish": "transmitir","ukrainian": "передавати",              "pronunciation": "трансміТІР","sound_association": "«трансмітір» → TRANSMITTER — передавач сигналу (майже те саме!)","example_es": "Transmiten el partido en directo.", "example_uk": "Вони транслюють матч наживо." },
+        { "spanish": "insistir",  "ukrainian": "наполягати",              "pronunciation": "інсісТІР",  "sound_association": "«інсістір» → INSIST — наполягати (майже те саме слово!)",      "example_es": "Insiste en venir.", "example_uk": "Він наполягає на тому, щоб прийти." }
       ]
     },
     {
@@ -169,15 +169,15 @@
       "title": "Стани та процеси",
       "emoji": "⚙️",
       "words": [
-        { "spanish": "vivir",      "ukrainian": "жити",           "pronunciation": "біБІР",    "sound_association": "«вівір» → ВИДРА (вівер) живе і процвітає у воді" },
-        { "spanish": "existir",    "ukrainian": "існувати",       "pronunciation": "ексісТІР", "sound_association": "«ексістір» → EXIST — існувати (майже те саме слово!)" },
-        { "spanish": "depender",   "ukrainian": "залежати",       "pronunciation": "депенДЕР", "sound_association": "«депендер» → DEPEND — залежати (майже те саме слово!)" },
-        { "spanish": "toser",      "ukrainian": "кашляти",        "pronunciation": "тоСЕР",    "sound_association": "«тосер» → ТОСЯ кашляє щоранку — зовсім як стара Тося" },
-        { "spanish": "suspender",  "ukrainian": "зупиняти, призупиняти","pronunciation": "суспенДЕР","sound_association": "«суспендер» → СУСПЕНДЕРИ призупинили падіння штанів" },
-        { "spanish": "ocurrir",    "ukrainian": "відбуватися",    "pronunciation": "окурІР",   "sound_association": "«окурір» → О, КУР! — щось раптово відбулося на подвір'ї" },
-        { "spanish": "omitir",     "ukrainian": "пропускати",     "pronunciation": "оміТІР",   "sound_association": "«омітір» → OMIT — пропустити (майже те саме слово!)" },
-        { "spanish": "interrumpir","ukrainian": "переривати",     "pronunciation": "інтерумПІР","sound_association": "«інтерумпір» → INTERRUPT — перервати (майже те саме!)" },
-        { "spanish": "dividir",    "ukrainian": "ділити",         "pronunciation": "дібіДІР",  "sound_association": "«дівідір» → DIVIDER — перегородка, яка ділить кімнату" }
+        { "spanish": "vivir",      "ukrainian": "жити",           "pronunciation": "біБІР",     "sound_association": "«вівір» → ВИДРА (вівер) живе і процвітає у воді",         "example_es": "Vivo en Madrid.", "example_uk": "Я живу в Мадриді." },
+        { "spanish": "existir",    "ukrainian": "існувати",       "pronunciation": "ексісТІР",  "sound_association": "«ексістір» → EXIST — існувати (майже те саме слово!)",     "example_es": "¿Existen los fantasmas?", "example_uk": "Чи існують привиди?" },
+        { "spanish": "depender",   "ukrainian": "залежати",       "pronunciation": "депенДЕР",  "sound_association": "«депендер» → DEPEND — залежати (майже те саме слово!)",    "example_es": "Depende de ti.", "example_uk": "Це залежить від тебе." },
+        { "spanish": "toser",      "ukrainian": "кашляти",        "pronunciation": "тоСЕР",     "sound_association": "«тосер» → ТОСЯ кашляє щоранку — зовсім як стара Тося",    "example_es": "El enfermo tose mucho.", "example_uk": "Хворий багато кашляє." },
+        { "spanish": "suspender",  "ukrainian": "зупиняти, призупиняти","pronunciation": "суспенДЕР","sound_association": "«суспендер» → СУСПЕНДЕРИ призупинили падіння штанів","example_es": "Suspenden el vuelo por la lluvia.", "example_uk": "Рейс призупиняють через дощ." },
+        { "spanish": "ocurrir",    "ukrainian": "відбуватися",    "pronunciation": "окурІР",    "sound_association": "«окурір» → О, КУР! — щось раптово відбулося на подвір'ї", "example_es": "¿Qué ocurre aquí?", "example_uk": "Що тут відбувається?" },
+        { "spanish": "omitir",     "ukrainian": "пропускати",     "pronunciation": "оміТІР",    "sound_association": "«омітір» → OMIT — пропустити (майже те саме слово!)",      "example_es": "Omitió un paso importante.", "example_uk": "Він пропустив важливий крок." },
+        { "spanish": "interrumpir","ukrainian": "переривати",     "pronunciation": "інтерумПІР","sound_association": "«інтерумпір» → INTERRUPT — перервати (майже те саме!)",    "example_es": "No me interrumpas.", "example_uk": "Не перебивай мене." },
+        { "spanish": "dividir",    "ukrainian": "ділити",         "pronunciation": "дібіДІР",   "sound_association": "«дівідір» → DIVIDER — перегородка, яка ділить кімнату",   "example_es": "Divide el pastel en ocho partes.", "example_uk": "Розділи торт на вісім частин." }
       ]
     }
   ]

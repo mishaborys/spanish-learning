@@ -8,6 +8,8 @@ export type VocabWord = {
   ukrainian: string;
   pronunciation: string;
   sound_association: string;
+  example_es: string;
+  example_uk: string;
 };
 
 export type VocabGroup = {
