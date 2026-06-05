@@ -56,6 +56,15 @@ function HomeworkIcon() {
   );
 }
 
+function DictionaryIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+    </svg>
+  );
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="uk" suppressHydrationWarning>
@@ -101,6 +110,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 >
                   <HomeworkIcon />
                   <span className="text-[11px] font-medium">ДЗ</span>
+                </Link>
+                <Link
+                  href="/dictionary"
+                  className="flex-1 flex flex-col items-center justify-center gap-1 py-3 text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <DictionaryIcon />
+                  <span className="text-[11px] font-medium">Словник</span>
                 </Link>
               </div>
             </nav>
