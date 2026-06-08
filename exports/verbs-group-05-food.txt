@@ -1,0 +1,9 @@
+cocinar	готувати їжу
+comer	їсти
+beber	пити
+desayunar	снідати
+preparar	готувати (щось)
+comprar	купувати
+pagar	платити
+tomar	брати, пити
+buscar	шукати

@@ -1,0 +1,130 @@
+{
+  "id": "lesson-06",
+  "title": "Урок 6 — Profesiones",
+  "due_date": "2026-06-11",
+  "audio": [],
+  "exercises": [
+    {
+      "id": "ex3",
+      "label": "3",
+      "instruction": "Escribe dónde trabajan estas personas. Puede haber más de una opción posible.",
+      "instruction_uk": "Напиши де працюють ці люди. Обери найтиповіше місце роботи для кожної професії.",
+      "type": "match-category",
+      "categories": [
+        { "id": 1, "text": "en un hotel" },
+        { "id": 2, "text": "en una tienda" },
+        { "id": 3, "text": "en un restaurante" },
+        { "id": 4, "text": "en un hospital" },
+        { "id": 5, "text": "en un laboratorio" },
+        { "id": 6, "text": "en una escuela de idiomas" }
+      ],
+      "questions": [
+        { "id": "p1", "text": "un/a profesor/a",    "answer": 6 },
+        { "id": "p2", "text": "un/a enfermero/a",   "answer": 4 },
+        { "id": "p3", "text": "un/a camarero/a",    "answer": 3 },
+        { "id": "p4", "text": "un/a dependiente/a", "answer": 2 },
+        { "id": "p5", "text": "un/a científico/a",  "answer": 5 },
+        { "id": "p6", "text": "un/a recepcionista", "answer": 1 }
+      ]
+    },
+    {
+      "id": "ex4",
+      "label": "4",
+      "instruction": "¿Quién crees que puede decir las siguientes frases? Márcalo.",
+      "instruction_uk": "Хто може сказати ці фрази — він чи вона? Познач.",
+      "type": "match-category",
+      "image": "/homework/lesson_6_peoples.png",
+      "categories": [
+        { "id": 1, "text": "ÉL" },
+        { "id": 2, "text": "ELLA" }
+      ],
+      "questions": [
+        { "id": "f4a", "text": "Soy Julia.",               "answer": 2 },
+        { "id": "f4b", "text": "Tengo 42 años.",           "answer": 1 },
+        { "id": "f4c", "text": "Soy informática.",         "answer": 2 },
+        { "id": "f4d", "text": "Soy español.",             "answer": 1 },
+        { "id": "f4e", "text": "Me llamo Marcos.",         "answer": 1 },
+        { "id": "f4f", "text": "Soy española.",            "answer": 2 },
+        { "id": "f4g", "text": "Tengo 26 años.",           "answer": 2 },
+        { "id": "f4h", "text": "Soy profesor de francés.", "answer": 1 }
+      ]
+    },
+    {
+      "id": "ex7",
+      "label": "7",
+      "instruction": "Relaciona cada pregunta con la respuesta adecuada.",
+      "instruction_uk": "Зістав кожне запитання з правильною відповіддю.",
+      "type": "match-category",
+      "categories": [
+        { "id": 1, "text": "Soy profesora de italiano." },
+        { "id": 2, "text": "Sí, federica25@aula.it" },
+        { "id": 3, "text": "25." },
+        { "id": 4, "text": "No, soy italiana." },
+        { "id": 5, "text": "Federica." },
+        { "id": 6, "text": "En una escuela de idiomas." },
+        { "id": 7, "text": "Sí, es el 657890345" }
+      ],
+      "questions": [
+        { "id": "q7a", "text": "¿Cómo te llamas?",               "answer": 5 },
+        { "id": "q7b", "text": "¿Cuántos años tienes?",           "answer": 3 },
+        { "id": "q7c", "text": "¿En qué trabajas?",              "answer": 1 },
+        { "id": "q7d", "text": "¿Eres española?",                "answer": 4 },
+        { "id": "q7e", "text": "¿Tienes correo electrónico?",    "answer": 2 },
+        { "id": "q7f", "text": "¿Tienes móvil?",                 "answer": 7 },
+        { "id": "q7g", "text": "¿Dónde trabajas?",               "answer": 6 }
+      ]
+    },
+    {
+      "id": "ex9",
+      "label": "9",
+      "instruction": "Completa las preguntas con las palabras que faltan.",
+      "instruction_uk": "Добери слово зі словника і встав у запитання.",
+      "type": "fill-form",
+      "word_bank": ["A qué", "Cómo", "Cuántos", "De dónde", "Dónde", "Tienes", "Eres"],
+      "people": [
+        {
+          "nombre": null,
+          "apellido": "a – d",
+          "correo": "",
+          "fields": [
+            { "id": "q9a", "label": "¿___ te dedicas? → Soy estudiante.", "answer": "A qué" },
+            { "id": "q9b", "label": "¿___ te llamas? → Alberto.",         "answer": "Cómo" },
+            { "id": "q9c", "label": "¿___ años tienes? → 25.",            "answer": "Cuántos" },
+            { "id": "q9d", "label": "¿___ eres? → Soy holandés.",         "answer": "De dónde" }
+          ]
+        },
+        {
+          "nombre": null,
+          "apellido": "e – g",
+          "correo": "",
+          "fields": [
+            { "id": "q9e", "label": "¿___ trabajas? → Enfermero en un hospital.", "answer": "Dónde" },
+            { "id": "q9f", "label": "¿___ móvil? → Sí, es el 678907348.",         "answer": "Tienes" },
+            { "id": "q9g", "label": "¿___ mexicano? → No, soy español.",          "answer": "Eres" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex14",
+      "label": "14",
+      "instruction": "Escucha y marca los números que oyes.",
+      "instruction_uk": "🎧 Трек 34 є в Telegram у викладача. Послухай і познач яке число чуєш у кожній колонці — верхнє (1) чи нижнє (2). ⚠️ Правильні відповіді нижче — плейсхолдери, оновити після прослуховування.",
+      "type": "match-category",
+      "categories": [
+        { "id": 1, "text": "верхній рядок" },
+        { "id": 2, "text": "нижній рядок" }
+      ],
+      "questions": [
+        { "id": "n14a", "text": "a:  15  або  50",  "answer": 1 },
+        { "id": "n14b", "text": "b:  35  або  53",  "answer": 1 },
+        { "id": "n14c", "text": "c:  38  або  18",  "answer": 1 },
+        { "id": "n14d", "text": "d:  66  або  76",  "answer": 1 },
+        { "id": "n14e", "text": "e:  99  або  49",  "answer": 1 },
+        { "id": "n14f", "text": "f:  58  або  48",  "answer": 1 },
+        { "id": "n14g", "text": "g:  11  або  21",  "answer": 1 },
+        { "id": "n14h", "text": "h:  19  або  90",  "answer": 1 }
+      ]
+    }
+  ]
+}

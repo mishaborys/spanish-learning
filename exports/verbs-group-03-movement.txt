@@ -1,0 +1,10 @@
+caminar	ходити, гуляти
+correr	бігати
+nadar	плавати
+entrar	входити
+subir	підніматися
+viajar	подорожувати
+visitar	відвідувати
+acudir	приходити, з'являтися
+asistir	відвідувати (заходи)
+recibir	отримувати

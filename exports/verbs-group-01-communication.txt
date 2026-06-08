@@ -1,0 +1,10 @@
+hablar	говорити
+escuchar	слухати
+llamar	телефонувати, кликати
+gritar	кричати
+explicar	пояснювати
+preguntar	запитувати
+contestar	відповідати
+responder	відповідати
+presentar	представляти
+describir	описувати

@@ -1,0 +1,10 @@
+estudiar	вчитися
+aprender	навчатися
+comprender	розуміти
+leer	читати
+escribir	писати
+creer	вірити, думати
+decidir	вирішувати
+discutir	обговорювати
+practicar	практикувати
+enseñar	навчати

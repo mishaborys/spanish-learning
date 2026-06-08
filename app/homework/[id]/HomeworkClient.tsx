@@ -9,11 +9,11 @@ type AudioEntry = { label: string; src: string };
 
 type FormField  = { id: string; label: string; answer: string; given?: boolean };
 type PersonData = { nombre: string | null; apellido: string; correo: string; edad?: string; fields: FormField[] };
-type ExerciseA  = { id: "A"; label: string; instruction: string; instruction_uk?: string; type: "fill-form"; word_bank: string[]; people: PersonData[] };
+type ExerciseA  = { id: string; label: string; instruction: string; instruction_uk?: string; type: "fill-form"; word_bank: string[]; people: PersonData[] };
 
 type Category   = { id: number; text: string };
 type MatchQ     = { id: string; text: string; answer: number };
-type ExerciseB  = { id: "B"; label: string; instruction: string; instruction_uk?: string; type: "match-category"; categories: Category[]; questions: MatchQ[] };
+type ExerciseB  = { id: string; label: string; instruction: string; instruction_uk?: string; type: "match-category"; image?: string; categories: Category[]; questions: MatchQ[] };
 
 type Homework = {
   id: string;
@@ -213,6 +213,9 @@ function ExerciseBComponent({ ex, storageKey }: { ex: ExerciseB; storageKey: str
 
   return (
     <div className="space-y-4">
+      {ex.image && (
+        <img src={ex.image} alt="" className="w-full rounded-2xl object-cover" />
+      )}
       <div className="rounded-2xl border bg-muted/30 p-4 space-y-2">
         <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Para preguntar...</p>
         <div className="grid grid-cols-1 gap-1">

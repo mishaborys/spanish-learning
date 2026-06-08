@@ -1,0 +1,8 @@
+bailar	танцювати
+cantar	співати
+tocar	грати (на інструменті)
+dibujar	малювати
+celebrar	святкувати
+descansar	відпочивати
+pasar	проводити (час)
+invitar	запрошувати

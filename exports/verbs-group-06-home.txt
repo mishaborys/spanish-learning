@@ -1,0 +1,8 @@
+lavar	мити
+limpiar	прибирати
+barrer	підмітати
+arreglar	ремонтувати
+coser	шити
+tejer	в'язати
+sacudir	трясти, стрясати
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0N2RlMjZkMS05ZDYyLTQ3YjMtOTYyYS1iOGM3YzlkYjI0NDUiLCJpc3MiOiJuOG4iLCJhdWQiOiJwdWJsaWMtYXBpIiwianRpIjoiNTUzNDZhOWItNWJkOS00NzZiLWI0NGEtMTNjYjYwYjg5Y2ZjIiwiaWF0IjoxNzgwOTA2MTkyfQ.y8YwkV_Kb-75AmM77G-fwRLVXDHKtvQrli778l9D-24
