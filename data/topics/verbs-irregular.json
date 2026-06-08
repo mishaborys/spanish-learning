@@ -1,0 +1,208 @@
+{
+  "title": "Неправильні дієслова: ser, tener, llamarse",
+  "slug": "verbs-irregular",
+  "display_order": 5,
+  "grammar_text": "<h2>Неправильні дієслова теперішнього часу</h2><p>Ці дієслова не підпорядковуються стандартним правилам відмінювання — їхні форми треба запам'ятати окремо.</p><h3>Llamarse — називатися</h3><p>Зворотне дієслово. Вживається щоб сказати як тебе звати. Зворотна частка змінюється разом з особою: <strong>me, te, se, nos, os, se</strong>.</p><table><thead><tr><th>Особа</th><th>Однина</th><th>Особа</th><th>Множина</th></tr></thead><tbody><tr><td>yo</td><td><strong>me llamo</strong></td><td>nosotros</td><td><strong>nos llamamos</strong></td></tr><tr><td>tú</td><td><strong>te llamas</strong></td><td>vosotros</td><td><strong>os llamáis</strong></td></tr><tr><td>él/ella</td><td><strong>se llama</strong></td><td>ellos/ellas</td><td><strong>se llaman</strong></td></tr></tbody></table><p><em>¿Cómo te llamas? — Me llamo Ana.</em> (Як тебе звати? — Мене звати Ана.)</p><h3>Ser — бути</h3><p>Вживається для опису <strong>постійних характеристик</strong>: національність, професія, характер, походження.</p><table><thead><tr><th>Особа</th><th>Однина</th><th>Особа</th><th>Множина</th></tr></thead><tbody><tr><td>yo</td><td><strong>soy</strong></td><td>nosotros</td><td><strong>somos</strong></td></tr><tr><td>tú</td><td><strong>eres</strong></td><td>vosotros</td><td><strong>sois</strong></td></tr><tr><td>él/ella</td><td><strong>es</strong></td><td>ellos/ellas</td><td><strong>son</strong></td></tr></tbody></table><p><em>Soy ucraniana. Eres estudiante. Es médico.</em></p><h3>Tener — мати</h3><p>Вживається для позначення наявності чогось. Також для вказання віку: <strong>tengo 25 años</strong> (мені 25 років) — буквально «я маю 25 років».</p><table><thead><tr><th>Особа</th><th>Однина</th><th>Особа</th><th>Множина</th></tr></thead><tbody><tr><td>yo</td><td><strong>tengo</strong></td><td>nosotros</td><td><strong>tenemos</strong></td></tr><tr><td>tú</td><td><strong>tienes</strong></td><td>vosotros</td><td><strong>tenéis</strong></td></tr><tr><td>él/ella</td><td><strong>tiene</strong></td><td>ellos/ellas</td><td><strong>tienen</strong></td></tr></tbody></table><p><em>¿Cuántos años tienes? — Tengo 22 años.</em> (Скільки тобі років? — Мені 22 роки.)</p><h3>Dedicarse — займатися</h3><p>Зворотне дієслово. Вживається щоб описати рід занять або професію. Конструкція: <strong>¿A qué te dedicas?</strong> — Чим ти займаєшся?</p><table><thead><tr><th>Особа</th><th>Форма</th></tr></thead><tbody><tr><td>yo</td><td><strong>me dedico</strong></td></tr><tr><td>tú</td><td><strong>te dedicas</strong></td></tr><tr><td>él/ella</td><td><strong>se dedica</strong></td></tr></tbody></table><p><em>Me dedico a la enseñanza.</em> (Я займаюся викладанням.)</p>",
+  "words": [
+    {
+      "spanish": "llamarse",
+      "ukrainian": "називатися",
+      "pronunciation": "льаМАРсе",
+      "part_of_speech": "дієслово",
+      "example_es": "¿Cómo te llamas?",
+      "example_uk": "Як тебе звати?"
+    },
+    {
+      "spanish": "me llamo",
+      "ukrainian": "мене звати (я)",
+      "pronunciation": "ме ЛЬАмо",
+      "part_of_speech": "дієслово",
+      "example_es": "Me llamo María.",
+      "example_uk": "Мене звати Марія."
+    },
+    {
+      "spanish": "te llamas",
+      "ukrainian": "тебе звати (ти)",
+      "pronunciation": "те ЛЬАмас",
+      "part_of_speech": "дієслово",
+      "example_es": "¿Cómo te llamas?",
+      "example_uk": "Як тебе звати?"
+    },
+    {
+      "spanish": "se llama",
+      "ukrainian": "його/її звати",
+      "pronunciation": "се ЛЬАма",
+      "part_of_speech": "дієслово",
+      "example_es": "Se llama Carlos.",
+      "example_uk": "Його звати Карлос."
+    },
+    {
+      "spanish": "nos llamamos",
+      "ukrainian": "нас звати (ми)",
+      "pronunciation": "нос льаМАмос",
+      "part_of_speech": "дієслово",
+      "example_es": "Nos llamamos Juan y Ana.",
+      "example_uk": "Нас звати Хуан і Ана."
+    },
+    {
+      "spanish": "os llamáis",
+      "ukrainian": "вас звати (ви)",
+      "pronunciation": "ос льаМАЙс",
+      "part_of_speech": "дієслово",
+      "example_es": "¿Cómo os llamáis?",
+      "example_uk": "Як вас звати?"
+    },
+    {
+      "spanish": "se llaman",
+      "ukrainian": "їх звати (вони)",
+      "pronunciation": "се ЛЬАман",
+      "part_of_speech": "дієслово",
+      "example_es": "Se llaman Pedro y Luis.",
+      "example_uk": "Їх звати Педро і Луїс."
+    },
+    {
+      "spanish": "ser",
+      "ukrainian": "бути",
+      "pronunciation": "сЕР",
+      "part_of_speech": "дієслово",
+      "example_es": "Quiero ser médico.",
+      "example_uk": "Я хочу бути лікарем."
+    },
+    {
+      "spanish": "soy",
+      "ukrainian": "я є / я (ser)",
+      "pronunciation": "сОЙ",
+      "part_of_speech": "дієслово",
+      "example_es": "Soy estudiante.",
+      "example_uk": "Я студент."
+    },
+    {
+      "spanish": "eres",
+      "ukrainian": "ти є / ти (ser)",
+      "pronunciation": "ЕРес",
+      "part_of_speech": "дієслово",
+      "example_es": "Eres muy simpático.",
+      "example_uk": "Ти дуже симпатичний."
+    },
+    {
+      "spanish": "es",
+      "ukrainian": "він/вона є (ser)",
+      "pronunciation": "ЕС",
+      "part_of_speech": "дієслово",
+      "example_es": "Es médico.",
+      "example_uk": "Він лікар."
+    },
+    {
+      "spanish": "somos",
+      "ukrainian": "ми є / ми (ser)",
+      "pronunciation": "сОмос",
+      "part_of_speech": "дієслово",
+      "example_es": "Somos amigos.",
+      "example_uk": "Ми друзі."
+    },
+    {
+      "spanish": "sois",
+      "ukrainian": "ви є / ви (ser)",
+      "pronunciation": "сОЙс",
+      "part_of_speech": "дієслово",
+      "example_es": "Sois muy buenos.",
+      "example_uk": "Ви дуже добрі."
+    },
+    {
+      "spanish": "son",
+      "ukrainian": "вони є / вони (ser)",
+      "pronunciation": "сОН",
+      "part_of_speech": "дієслово",
+      "example_es": "Son estudiantes.",
+      "example_uk": "Вони студенти."
+    },
+    {
+      "spanish": "tener",
+      "ukrainian": "мати",
+      "pronunciation": "теНЕР",
+      "part_of_speech": "дієслово",
+      "example_es": "Quiero tener un perro.",
+      "example_uk": "Я хочу мати собаку."
+    },
+    {
+      "spanish": "tengo",
+      "ukrainian": "я маю",
+      "pronunciation": "тЕНго",
+      "part_of_speech": "дієслово",
+      "example_es": "Tengo 25 años.",
+      "example_uk": "Мені 25 років."
+    },
+    {
+      "spanish": "tienes",
+      "ukrainian": "ти маєш",
+      "pronunciation": "тьЕНес",
+      "part_of_speech": "дієслово",
+      "example_es": "¿Tienes móvil?",
+      "example_uk": "У тебе є телефон?"
+    },
+    {
+      "spanish": "tiene",
+      "ukrainian": "він/вона має",
+      "pronunciation": "тьЕНе",
+      "part_of_speech": "дієслово",
+      "example_es": "Tiene 30 años.",
+      "example_uk": "Йому 30 років."
+    },
+    {
+      "spanish": "tenemos",
+      "ukrainian": "ми маємо",
+      "pronunciation": "теНЕмос",
+      "part_of_speech": "дієслово",
+      "example_es": "Tenemos una casa.",
+      "example_uk": "У нас є будинок."
+    },
+    {
+      "spanish": "tenéis",
+      "ukrainian": "ви маєте",
+      "pronunciation": "теНЕЙс",
+      "part_of_speech": "дієслово",
+      "example_es": "¿Tenéis tiempo?",
+      "example_uk": "У вас є час?"
+    },
+    {
+      "spanish": "tienen",
+      "ukrainian": "вони мають",
+      "pronunciation": "тьЕНен",
+      "part_of_speech": "дієслово",
+      "example_es": "Tienen tres hijos.",
+      "example_uk": "У них троє дітей."
+    },
+    {
+      "spanish": "dedicarse",
+      "ukrainian": "займатися, присвячувати себе",
+      "pronunciation": "дедіКАРсе",
+      "part_of_speech": "дієслово",
+      "example_es": "¿A qué te dedicas?",
+      "example_uk": "Чим ти займаєшся?"
+    },
+    {
+      "spanish": "me dedico",
+      "ukrainian": "я займаюся",
+      "pronunciation": "ме деДІко",
+      "part_of_speech": "дієслово",
+      "example_es": "Me dedico a la medicina.",
+      "example_uk": "Я займаюся медициною."
+    },
+    {
+      "spanish": "te dedicas",
+      "ukrainian": "ти займаєшся",
+      "pronunciation": "те деДІкас",
+      "part_of_speech": "дієслово",
+      "example_es": "¿A qué te dedicas?",
+      "example_uk": "Чим ти займаєшся?"
+    },
+    {
+      "spanish": "se dedica",
+      "ukrainian": "він/вона займається",
+      "pronunciation": "се деДІка",
+      "part_of_speech": "дієслово",
+      "example_es": "Se dedica a la enseñanza.",
+      "example_uk": "Він/вона займається викладанням."
+    }
+  ]
+}
