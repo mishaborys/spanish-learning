@@ -1,0 +1,192 @@
+{
+  "id": "days-months",
+  "title": "Дні тижня та місяці",
+  "description": "Назви днів тижня і місяців іспанською",
+  "groups": [
+    {
+      "id": "days",
+      "title": "Дні тижня",
+      "emoji": "📅",
+      "words": [
+        {
+          "spanish": "lunes",
+          "ukrainian": "понеділок",
+          "pronunciation": "ЛУнес",
+          "emoji": "🌙",
+          "sound_association": "«лунес» → ЛУНА (місяць) — lunes = день Місяця, ось чому понеділок",
+          "example_es": "Hoy es lunes.",
+          "example_uk": "Сьогодні понеділок."
+        },
+        {
+          "spanish": "martes",
+          "ukrainian": "вівторок",
+          "pronunciation": "МАРтес",
+          "emoji": "⚔️",
+          "sound_association": "«мартес» → МАРС (бог війни) — martes = день Марса, войовничий вівторок",
+          "example_es": "El martes tengo clase.",
+          "example_uk": "У вівторок у мене урок."
+        },
+        {
+          "spanish": "miércoles",
+          "ukrainian": "середа",
+          "pronunciation": "МЬЕРколес",
+          "emoji": "🪄",
+          "sound_association": "«мьєрколес» → МЕРКУРІЙ мчить через середу — його день!",
+          "example_es": "Los miércoles voy al gimnasio.",
+          "example_uk": "По середах я ходжу в спортзал."
+        },
+        {
+          "spanish": "jueves",
+          "ukrainian": "четвер",
+          "pronunciation": "ХУЕвес",
+          "emoji": "⚡",
+          "sound_association": "«хуевес» → ХУАН з блискавкою — Юпітер (Зевс) кидає блискавки в четвер",
+          "example_es": "El jueves es mi día favorito.",
+          "example_uk": "Четвер — мій улюблений день."
+        },
+        {
+          "spanish": "viernes",
+          "ukrainian": "п'ятниця",
+          "pronunciation": "ВЬЕРнес",
+          "emoji": "❤️",
+          "sound_association": "«вьєрнес» → ВЕНЕРА — богиня кохання обожнює п'ятницю (Friday = Frigg/Venus!)",
+          "example_es": "¡Por fin es viernes!",
+          "example_uk": "Нарешті п'ятниця!"
+        },
+        {
+          "spanish": "sábado",
+          "ukrainian": "субота",
+          "pronunciation": "САбадо",
+          "emoji": "✡️",
+          "sound_association": "«сабадо» → ШАБАТ — єврейська субота, це буквально одне й те саме слово!",
+          "example_es": "Los sábados descanso.",
+          "example_uk": "По суботах я відпочиваю."
+        },
+        {
+          "spanish": "domingo",
+          "ukrainian": "неділя",
+          "pronunciation": "доМІНго",
+          "emoji": "☀️",
+          "sound_association": "«домінго» → DOMINUS (Господь) — неділя = день Господній, день відпочинку",
+          "example_es": "El domingo vamos al parque.",
+          "example_uk": "У неділю ми йдемо в парк."
+        }
+      ]
+    },
+    {
+      "id": "months",
+      "title": "Місяці",
+      "emoji": "🗓️",
+      "words": [
+        {
+          "spanish": "enero",
+          "ukrainian": "січень",
+          "pronunciation": "еНЕро",
+          "emoji": "❄️",
+          "sound_association": "«енеро» → ЄНОТ мерзне в ENERO — бачить лише сніг навколо",
+          "example_es": "Enero es el primer mes del año.",
+          "example_uk": "Січень — перший місяць року."
+        },
+        {
+          "spanish": "febrero",
+          "ukrainian": "лютий",
+          "pronunciation": "феБРЕро",
+          "emoji": "💕",
+          "sound_association": "«февреро» → FÉVRIER (франц.), ФЕВРАЛЬ (рос.) — всі ці слова брати!",
+          "example_es": "Mi cumpleaños es en febrero.",
+          "example_uk": "Мій день народження в лютому."
+        },
+        {
+          "spanish": "marzo",
+          "ukrainian": "березень",
+          "pronunciation": "МАРсо",
+          "emoji": "🌱",
+          "sound_association": "«марсо» → МАРС знову — він прилітає в березні сіяти перші паростки",
+          "example_es": "En marzo empieza la primavera.",
+          "example_uk": "У березні починається весна."
+        },
+        {
+          "spanish": "abril",
+          "ukrainian": "квітень",
+          "pronunciation": "аБРІЛЬ",
+          "emoji": "🌸",
+          "sound_association": "«абріль» → АБРИКОС цвіте в квітні — abril і абрикос схожі!",
+          "example_es": "Llueve mucho en abril.",
+          "example_uk": "У квітні багато дощу."
+        },
+        {
+          "spanish": "mayo",
+          "ukrainian": "травень",
+          "pronunciation": "МАЙо",
+          "emoji": "🌼",
+          "sound_association": "«майо» → МАЙ = травень — майже те саме слово що й по-українськи!",
+          "example_es": "En mayo hace buen tiempo.",
+          "example_uk": "У травні гарна погода."
+        },
+        {
+          "spanish": "junio",
+          "ukrainian": "червень",
+          "pronunciation": "ХУНЬо",
+          "emoji": "☀️",
+          "sound_association": "«хуньо» → ЮНІОР (junior) — молоде літо, перший місяць канікул",
+          "example_es": "Las vacaciones empiezan en junio.",
+          "example_uk": "Канікули починаються в червні."
+        },
+        {
+          "spanish": "julio",
+          "ukrainian": "липень",
+          "pronunciation": "ХУЛЬо",
+          "emoji": "🏖️",
+          "sound_association": "«хульо» → ЮЛІЙ Цезар — місяць названо на його честь (July = Julio!)",
+          "example_es": "En julio hace mucho calor.",
+          "example_uk": "У липні дуже спекотно."
+        },
+        {
+          "spanish": "agosto",
+          "ukrainian": "серпень",
+          "pronunciation": "аГОСто",
+          "emoji": "🌻",
+          "sound_association": "«агосто» → АВГУСТ Цезар — серпень теж названо на честь імператора (August!)",
+          "example_es": "Voy de vacaciones en agosto.",
+          "example_uk": "Я їду у відпустку в серпні."
+        },
+        {
+          "spanish": "septiembre",
+          "ukrainian": "вересень",
+          "pronunciation": "сепТЬЕМбре",
+          "emoji": "🍂",
+          "sound_association": "«септьємбре» → СЕПТ = 7 (sept, seven) — раніше був 7-м місяцем до реформи календаря",
+          "example_es": "Empiezo el curso en septiembre.",
+          "example_uk": "Я починаю курс у вересні."
+        },
+        {
+          "spanish": "octubre",
+          "ukrainian": "жовтень",
+          "pronunciation": "окТУБре",
+          "emoji": "🎃",
+          "sound_association": "«октубре» → ОКТО = 8 (octo, octopus!) — раніше був 8-м місяцем",
+          "example_es": "En octubre caen las hojas.",
+          "example_uk": "У жовтні опадає листя."
+        },
+        {
+          "spanish": "noviembre",
+          "ukrainian": "листопад",
+          "pronunciation": "ноВЬЕМбре",
+          "emoji": "🍁",
+          "sound_association": "«новьємбре» → НОВЕМ = 9 (novem, nine) — раніше 9-й місяць. November!",
+          "example_es": "Hace frío en noviembre.",
+          "example_uk": "У листопаді холодно."
+        },
+        {
+          "spanish": "diciembre",
+          "ukrainian": "грудень",
+          "pronunciation": "дисЬЕМбре",
+          "emoji": "🎄",
+          "sound_association": "«дисьємбре» → ДЕСЕМ = 10 (decem, decimal!) — раніше 10-й місяць. December!",
+          "example_es": "La Navidad es en diciembre.",
+          "example_uk": "Різдво в грудні."
+        }
+      ]
+    }
+  ]
+}
