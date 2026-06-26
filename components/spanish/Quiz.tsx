@@ -10,6 +10,7 @@ type Direction = "es-ua" | "ua-es";
 
 const ARTICLE_RE = /^(el|la|los|las) (.+)$/;
 const ALL_ARTICLES = ["el", "la", "los", "las"];
+const SINGULAR_ARTICLES = ["el", "la"];
 const VERB_RE = /^.+(ar|er|ir)$/i;
 const ADVANCE_MS = 2000;
 
@@ -66,11 +67,11 @@ function buildTranslateQ(word: WordWithStatus, allWords: WordWithStatus[], dir: 
   return { word, question: word.spanish, hint: word.pronunciation ?? null, correct: word.ukrainian, options: shuffle([word.ukrainian, ...pool]), type: "translate" };
 }
 
-function buildArticleQ(word: WordWithStatus): Question {
+function buildArticleQ(word: WordWithStatus, articleOptions: string[]): Question {
   const m = word.spanish.match(ARTICLE_RE)!;
   return {
     word, question: m[2], hint: word.pronunciation?.replace(/^(ель|ла|лос|лас) /i, "") ?? null,
-    correct: m[1], options: shuffle([...ALL_ARTICLES]), type: "article",
+    correct: m[1], options: shuffle([...articleOptions]), type: "article",
   };
 }
 
@@ -92,6 +93,7 @@ function buildConjugateQ(word: WordWithStatus, pronoun: Pronoun): Question {
 export function Quiz({ words }: Props) {
   const isVerbTopic = useMemo(() => words.filter(w => VERB_RE.test(w.spanish)).length > words.length * 0.7, [words]);
   const isArticleTopic = useMemo(() => words.filter(w => ARTICLE_RE.test(w.spanish)).length > words.length * 0.5, [words]);
+  const isSingularArticleTopic = useMemo(() => isArticleTopic && !words.some(w => /^(los|las) /.test(w.spanish)), [words, isArticleTopic]);
 
   // Mode
   const [mode, setMode] = useState<QuizMode>("translation");
@@ -124,9 +126,9 @@ export function Quiz({ words }: Props) {
       const pronoun = activePronouns[deckIdx % activePronouns.length];
       return buildConjugateQ(word, pronoun);
     }
-    if (isArticleTopic && ARTICLE_RE.test(word.spanish)) return buildArticleQ(word);
+    if (isArticleTopic && ARTICLE_RE.test(word.spanish)) return buildArticleQ(word, isSingularArticleTopic ? SINGULAR_ARTICLES : ALL_ARTICLES);
     return buildTranslateQ(word, words, direction);
-  }, [word, words, mode, direction, activePronouns, deckIdx, isArticleTopic]);
+  }, [word, words, mode, direction, activePronouns, deckIdx, isArticleTopic, isSingularArticleTopic]);
 
   useEffect(() => {
     if (selected === null) { setBarWidth(0); return; }
