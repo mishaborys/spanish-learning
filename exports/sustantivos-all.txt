@@ -1,0 +1,159 @@
+el chico	хлопець
+la chica	дівчина
+el hombre	чоловік
+la mujer	жінка
+el señor	пан
+la señora	пані
+el abuelo	дідусь
+la abuela	бабуся
+el padre	батько
+la madre	мати
+el primo	двоюрідний брат
+la prima	двоюрідна сестра
+el rey	король
+la reina	королева
+el príncipe	принц
+la princesa	принцеса
+el jefe	начальник
+la jefa	начальниця
+el profesor	вчитель
+la profesora	вчителька
+el director	директор
+la directora	директорка
+el conductor	водій
+la conductora	водійка
+el actor	актор
+la actriz	акторка
+el/la cantante	співак / співачка
+el doctor	лікар
+la doctora	лікарка
+el/la testigo	свідок
+el mar	море
+la montaña	гора
+el río	річка
+el cielo	небо
+la flor	квітка
+el toro	бик
+la vaca	корова
+la perra	собака (самиця)
+la leona	левиця
+el tigre	тигр
+la tigresa	тигриця
+el elefante	слон
+la cocina	кухня
+el baño	ванна кімната
+la puerta	двері
+la habitación	кімната
+la calle	вулиця
+el mercado	ринок
+el hospital	лікарня
+la tienda	магазин
+el aeropuerto	аеропорт
+el trabajo	робота
+el agua	вода (виняток: el!)
+la comida	їжа
+el pan	хліб
+la leche	молоко
+la fruta	фрукт
+la carne	м'ясо
+el vino	вино
+la cabeza	голова
+la cara	обличчя
+el brazo	рука (від плеча)
+la pierna	нога
+la nariz	ніс
+la boca	рот
+el café	кава; кафе
+el colegio	школа
+la televisión	телевізор
+la camisa	сорочка
+el baile	танець
+el mes	місяць (календарний)
+el ojo	oko
+el sillón	крісло
+la fotografía	фотографія
+el papel	папір
+el cargador	зарядний пристрій
+el plan	план
+el semáforo	світлофор
+el automóvil	автомобіль
+la música	музика
+la hora	година
+la semana	тиждень
+el año	рік
+la noche	ніч
+la vida	життя
+el mundo	світ
+el país	країна
+la familia	сім'я
+la cosa	річ, предмет
+el momento	момент
+la ropa	одяг
+el zapato	взуття
+el reloj	годинник
+la llave	ключ
+la bolsa	сумка
+el vestido	плаття
+la película	фільм
+el juego	гра
+el deporte	спорт
+el fútbol	футбол
+el amigo	друг, приятель
+la amiga	подруга
+el hermano	брат
+la hermana	сестра
+el curso	курс
+la lengua	мова; язик
+el perro	собака
+el gato	кіт
+el niño	хлопчик
+la niña	дівчинка
+la silla	стілець
+el sol	сонце
+la luna	місяць (небесне тіло)
+el árbol	дерево
+la computadora	комп'ютер
+la universidad	університет
+el león	лев
+la pelota	м'яч
+el libro	книга
+la mesa	стіл
+la casa	будинок, дім
+el bolígrafo	ручка
+el teléfono	телефон
+el dinero	гроші
+el tiempo	час; погода
+el caballo	кінь
+el color	колір
+el dolor	біль
+el corazón	серце
+el ratón	миша
+el coche	автомобіль, машина
+el nombre	ім'я
+la cama	ліжко
+la ventana	вікно
+la ciudad	місто
+la realidad	реальність
+la relación	відносини, стосунки
+la revolución	революція
+la versión	версія
+la decisión	рішення
+la información	інформація
+la tía	тітка
+el tío	дядько
+el planeta	планета (виняток: el!)
+el día	день (виняток: el!)
+el mapa	карта (виняток: el!)
+el idioma	мова (виняток: el!)
+la mano	рука (виняток: la!)
+la foto	фото (скор. fotografía)
+la moto	мотоцикл (скор. motocicleta)
+la bici	велосипед (скор. bicicleta)
+el problema	проблема (el, бо грецьке -ma)
+el dilema	дилема (el, бо грецьке -ma)
+el sistema	система (el, бо грецьке -ma)
+el poema	вірш, поема (el, бо грецьке -ma)
+el/la turista	турист / туристка
+el/la estudiante	студент / студентка
+el/la artista	художник / художниця
+el/la pariente	родич / родичка

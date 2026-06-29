@@ -1,0 +1,13 @@
+el agua	вода (виняток: el!)
+la comida	їжа
+el pan	хліб
+la leche	молоко
+la fruta	фрукт
+la carne	м'ясо
+el vino	вино
+la cabeza	голова
+la cara	обличчя
+el brazo	рука (від плеча)
+la pierna	нога
+la nariz	ніс
+la boca	рот

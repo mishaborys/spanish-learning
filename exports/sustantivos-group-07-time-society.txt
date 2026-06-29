@@ -1,0 +1,10 @@
+la hora	година
+la semana	тиждень
+el año	рік
+la noche	ніч
+la vida	життя
+el mundo	світ
+el país	країна
+la familia	сім'я
+la cosa	річ, предмет
+el momento	момент

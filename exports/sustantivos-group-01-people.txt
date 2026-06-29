@@ -1,0 +1,16 @@
+el chico	хлопець
+la chica	дівчина
+el hombre	чоловік
+la mujer	жінка
+el señor	пан
+la señora	пані
+el abuelo	дідусь
+la abuela	бабуся
+el padre	батько
+la madre	мати
+el primo	двоюрідний брат
+la prima	двоюрідна сестра
+el rey	король
+la reina	королева
+el príncipe	принц
+la princesa	принцеса

@@ -1,0 +1,15 @@
+el café	кава; кафе
+el colegio	школа
+la televisión	телевізор
+la camisa	сорочка
+el baile	танець
+el mes	місяць (календарний)
+el ojo	oko
+el sillón	крісло
+la fotografía	фотографія
+el papel	папір
+el cargador	зарядний пристрій
+el plan	план
+el semáforo	світлофор
+el automóvil	автомобіль
+la música	музика

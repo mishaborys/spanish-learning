@@ -1,0 +1,14 @@
+el jefe	начальник
+la jefa	начальниця
+el profesor	вчитель
+la profesora	вчителька
+el director	директор
+la directora	директорка
+el conductor	водій
+la conductora	водійка
+el actor	актор
+la actriz	акторка
+el/la cantante	співак / співачка
+el doctor	лікар
+la doctora	лікарка
+el/la testigo	свідок

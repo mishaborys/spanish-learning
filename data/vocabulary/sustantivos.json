@@ -1,0 +1,963 @@
+{
+  "id": "sustantivos",
+  "title": "Іменники — Sustantivos",
+  "description": "Іменники з артиклями el / la, згруповані за темами",
+  "groups": [
+    {
+      "id": "people",
+      "title": "Люди та сім'я",
+      "emoji": "👨‍👩‍👧‍👦",
+      "words": [
+        {
+          "spanish": "el chico",
+          "ukrainian": "хлопець",
+          "pronunciation": "ель ЧІко",
+          "emoji": "👦",
+          "sound_association": "«чіко» → ЧІКАГО — звідти той хлопець",
+          "example_es": "El chico estudia español.",
+          "example_uk": "Хлопець вивчає іспанську."
+        },
+        {
+          "spanish": "la chica",
+          "ukrainian": "дівчина",
+          "pronunciation": "ла ЧІка",
+          "emoji": "👧",
+          "sound_association": "«чіка» → ЧІКАнська дівчина",
+          "example_es": "La chica es muy simpática.",
+          "example_uk": "Дівчина дуже симпатична."
+        },
+        {
+          "spanish": "el hombre",
+          "ukrainian": "чоловік",
+          "pronunciation": "ель ОМбре",
+          "emoji": "👨",
+          "sound_association": "«омбре» → звучить як «ОМАР» — ось твій чоловік",
+          "example_es": "El hombre trabaja mucho.",
+          "example_uk": "Чоловік багато працює."
+        },
+        {
+          "spanish": "la mujer",
+          "ukrainian": "жінка",
+          "pronunciation": "ла муХЕР",
+          "emoji": "👩",
+          "sound_association": "«мухер» → mu-HER — по-англійськи HER = вона = жінка",
+          "example_es": "La mujer habla español.",
+          "example_uk": "Жінка говорить іспанською."
+        },
+        {
+          "spanish": "el señor",
+          "ukrainian": "пан",
+          "pronunciation": "ель сеНЬОР",
+          "emoji": "🎩",
+          "sound_association": "«сеньор» → СЕНЬЙОР — вже знаєш це слово!",
+          "example_es": "Buenos días, señor García.",
+          "example_uk": "Доброго ранку, пане Гарсія."
+        },
+        {
+          "spanish": "la señora",
+          "ukrainian": "пані",
+          "pronunciation": "ла сеНЬОра",
+          "emoji": "👒",
+          "sound_association": "«сеньора» → СЕНЬЙОРА — жіноча форма від сеньйор",
+          "example_es": "Buenos días, señora López.",
+          "example_uk": "Доброго ранку, пані Лопес."
+        },
+        {
+          "spanish": "el abuelo",
+          "ukrainian": "дідусь",
+          "pronunciation": "ель абуЕло",
+          "emoji": "👴",
+          "sound_association": "«абуело» → «А, буЕло!» — дідусь щось вигукує",
+          "example_es": "Mi abuelo tiene setenta años.",
+          "example_uk": "Моєму дідусеві сімдесят років."
+        },
+        {
+          "spanish": "la abuela",
+          "ukrainian": "бабуся",
+          "pronunciation": "ла абуЕла",
+          "emoji": "👵",
+          "sound_association": "«абуела» → «А, буЕЛА!» — бабуся відповідає дідусеві",
+          "example_es": "Mi abuela cocina muy bien.",
+          "example_uk": "Моя бабуся дуже добре готує."
+        },
+        {
+          "spanish": "el padre",
+          "ukrainian": "батько",
+          "pronunciation": "ель ПАдре",
+          "emoji": "👨‍👦",
+          "sound_association": "«падре» → ПАДРЕ = отець по-італійськи — батько",
+          "example_es": "Mi padre trabaja en una oficina.",
+          "example_uk": "Мій батько працює в офісі."
+        },
+        {
+          "spanish": "la madre",
+          "ukrainian": "мати",
+          "pronunciation": "ла МАдре",
+          "emoji": "👩‍👧",
+          "sound_association": "«мадре» → МАДРид — мати з Мадриду",
+          "example_es": "Mi madre cocina muy bien.",
+          "example_uk": "Моя мати дуже добре готує."
+        },
+        {
+          "spanish": "el primo",
+          "ukrainian": "двоюрідний брат",
+          "pronunciation": "ель ПРІмо",
+          "emoji": "👦🤝",
+          "sound_association": "«прімо» → ПЕРШИЙ (лат. primus) — перший родич після рідного брата",
+          "example_es": "Mi primo vive en Madrid.",
+          "example_uk": "Мій двоюрідний брат живе в Мадриді."
+        },
+        {
+          "spanish": "la prima",
+          "ukrainian": "двоюрідна сестра",
+          "pronunciation": "ла ПРІма",
+          "emoji": "👧🤝",
+          "sound_association": "«пріма» → ПРИМАДОННА — двоюрідна сестра-зірка",
+          "example_es": "Mi prima estudia medicina.",
+          "example_uk": "Моя двоюрідна сестра вивчає медицину."
+        },
+        {
+          "spanish": "el rey",
+          "ukrainian": "король",
+          "pronunciation": "ель рей",
+          "emoji": "👑",
+          "sound_association": "«рей» → РЕЙ Чарльз — КОРОЛЬ джазу",
+          "example_es": "El rey gobierna el país.",
+          "example_uk": "Король керує країною."
+        },
+        {
+          "spanish": "la reina",
+          "ukrainian": "королева",
+          "pronunciation": "ла РЕйна",
+          "emoji": "👸",
+          "sound_association": "«рейна» → РЕЙдова НА троні — королева",
+          "example_es": "La reina visita la ciudad.",
+          "example_uk": "Королева відвідує місто."
+        },
+        {
+          "spanish": "el príncipe",
+          "ukrainian": "принц",
+          "pronunciation": "ель ПРІнсіпе",
+          "emoji": "🤴",
+          "sound_association": "«прінсіпе» → ПРИНЦ — звучить майже однаково!",
+          "example_es": "El príncipe vive en el palacio.",
+          "example_uk": "Принц живе у палаці."
+        },
+        {
+          "spanish": "la princesa",
+          "ukrainian": "принцеса",
+          "pronunciation": "ла прінСЕса",
+          "emoji": "👸",
+          "sound_association": "«прінсеса» → ПРИНЦЕСА — те саме слово!",
+          "example_es": "La princesa es muy bella.",
+          "example_uk": "Принцеса дуже гарна."
+        }
+      ]
+    },
+    {
+      "id": "professions",
+      "title": "Професії",
+      "emoji": "💼",
+      "words": [
+        {
+          "spanish": "el jefe",
+          "ukrainian": "начальник",
+          "pronunciation": "ель ХЕфе",
+          "emoji": "👔",
+          "sound_association": "«хефе» → ШЕФ — начальник і є шефом!",
+          "example_es": "El jefe llega a las nueve.",
+          "example_uk": "Начальник приходить о дев'ятій."
+        },
+        {
+          "spanish": "la jefa",
+          "ukrainian": "начальниця",
+          "pronunciation": "ла ХЕфа",
+          "emoji": "👩‍💼",
+          "sound_association": "«хефа» → ШЕФиня — жіноча форма",
+          "example_es": "La jefa habla con el equipo.",
+          "example_uk": "Начальниця говорить з командою."
+        },
+        {
+          "spanish": "el profesor",
+          "ukrainian": "вчитель",
+          "pronunciation": "ель профеСОР",
+          "emoji": "👨‍🏫",
+          "sound_association": "«професор» → ПРОФЕСОР — те саме слово!",
+          "example_es": "El profesor explica la lección.",
+          "example_uk": "Вчитель пояснює урок."
+        },
+        {
+          "spanish": "la profesora",
+          "ukrainian": "вчителька",
+          "pronunciation": "ла профеСОра",
+          "emoji": "👩‍🏫",
+          "sound_association": "«професора» → ПРОФЕСОРка — жіноча форма",
+          "example_es": "La profesora habla español.",
+          "example_uk": "Вчителька говорить іспанською."
+        },
+        {
+          "spanish": "el director",
+          "ukrainian": "директор",
+          "pronunciation": "ель дірекТОР",
+          "emoji": "👨‍💼",
+          "sound_association": "«директор» → ДИРЕКТОР — те саме слово!",
+          "example_es": "El director llega a las ocho.",
+          "example_uk": "Директор приходить о восьмій."
+        },
+        {
+          "spanish": "la directora",
+          "ukrainian": "директорка",
+          "pronunciation": "ла дірекТОра",
+          "emoji": "👩‍💼",
+          "sound_association": "«директора» → ДИРЕКТОРка — жіноча форма",
+          "example_es": "La directora firma los documentos.",
+          "example_uk": "Директорка підписує документи."
+        },
+        {
+          "spanish": "el conductor",
+          "ukrainian": "водій",
+          "pronunciation": "ель кондукТОР",
+          "emoji": "🧑‍✈️",
+          "sound_association": "«кондуктор» → КОНДУКТОР — у трамваї він і водій, і кондуктор",
+          "example_es": "El conductor para el autobús.",
+          "example_uk": "Водій зупиняє автобус."
+        },
+        {
+          "spanish": "la conductora",
+          "ukrainian": "водійка",
+          "pronunciation": "ла кондукТОра",
+          "emoji": "👩‍✈️",
+          "sound_association": "«кондуктора» → КОНДУКТОРка — жіноча форма",
+          "example_es": "La conductora maneja bien.",
+          "example_uk": "Водійка добре водить."
+        },
+        {
+          "spanish": "el actor",
+          "ukrainian": "актор",
+          "pronunciation": "ель акТОР",
+          "emoji": "🎭",
+          "sound_association": "«актор» → АКТОР — те саме слово!",
+          "example_es": "El actor trabaja en Hollywood.",
+          "example_uk": "Актор працює в Голлівуді."
+        },
+        {
+          "spanish": "la actriz",
+          "ukrainian": "акторка",
+          "pronunciation": "ла акТРІс",
+          "emoji": "🎬",
+          "sound_association": "«актріс» → АКТОРКА — схоже на «актриса»",
+          "example_es": "La actriz gana el premio.",
+          "example_uk": "Акторка отримує нагороду."
+        },
+        {
+          "spanish": "el/la cantante",
+          "ukrainian": "співак / співачка",
+          "pronunciation": "ель/ла канТАНте",
+          "emoji": "🎤",
+          "sound_association": "«кантанте» → КАНТАТА — хто співає кантати, той і є кантанте",
+          "example_es": "El cantante canta muy bien.",
+          "example_uk": "Співак дуже добре співає."
+        },
+        {
+          "spanish": "el doctor",
+          "ukrainian": "лікар",
+          "pronunciation": "ель докТОР",
+          "emoji": "👨‍⚕️",
+          "sound_association": "«доктор» → ДОКТОР — те саме слово!",
+          "example_es": "El doctor examina al paciente.",
+          "example_uk": "Лікар оглядає пацієнта."
+        },
+        {
+          "spanish": "la doctora",
+          "ukrainian": "лікарка",
+          "pronunciation": "ла докТОра",
+          "emoji": "👩‍⚕️",
+          "sound_association": "«доктора» → ДОКТОРка — жіноча форма",
+          "example_es": "La doctora es muy amable.",
+          "example_uk": "Лікарка дуже доброзичлива."
+        },
+        {
+          "spanish": "el/la testigo",
+          "ukrainian": "свідок",
+          "pronunciation": "ель/ла тесТІго",
+          "emoji": "⚖️",
+          "sound_association": "«тестіго» → ТЕСТ + іГО — свідок складає тест і каже «go!»",
+          "example_es": "El testigo habla en el tribunal.",
+          "example_uk": "Свідок говорить у суді."
+        }
+      ]
+    },
+    {
+      "id": "nature-animals",
+      "title": "Природа та тварини",
+      "emoji": "🦁",
+      "words": [
+        {
+          "spanish": "el mar",
+          "pronunciation": "ель мар",
+          "ukrainian": "море",
+          "emoji": "🌊",
+          "sound_association": "«мар» → МАРина — жінка-морячка",
+          "example_es": "El mar está tranquilo.",
+          "example_uk": "Море спокійне."
+        },
+        {
+          "spanish": "la montaña",
+          "pronunciation": "ла монТАнья",
+          "ukrainian": "гора",
+          "emoji": "⛰️",
+          "sound_association": "«монтанья» → МОНТАж на горі — знімальний майданчик",
+          "example_es": "La montaña es muy alta.",
+          "example_uk": "Гора дуже висока."
+        },
+        {
+          "spanish": "el río",
+          "pronunciation": "ель РІо",
+          "ukrainian": "річка",
+          "emoji": "🏞️",
+          "sound_association": "«ріо» → РІО де Жанейро — місто біля річки",
+          "example_es": "El río es muy largo.",
+          "example_uk": "Річка дуже довга."
+        },
+        {
+          "spanish": "el cielo",
+          "pronunciation": "ель СЬЄло",
+          "ukrainian": "небо",
+          "emoji": "☁️",
+          "sound_association": "«сьєло» → ЦІЛИЙ день дивишся в небо",
+          "example_es": "El cielo está azul.",
+          "example_uk": "Небо блакитне."
+        },
+        {
+          "spanish": "la flor",
+          "pronunciation": "ла флор",
+          "ukrainian": "квітка",
+          "emoji": "🌸",
+          "sound_association": "«флор» → ФЛОРА — богиня квітів, флора = рослинний світ",
+          "example_es": "La flor es muy bonita.",
+          "example_uk": "Квітка дуже гарна."
+        },
+        {
+          "spanish": "el toro",
+          "ukrainian": "бик",
+          "pronunciation": "ель ТОро",
+          "emoji": "🐂",
+          "sound_association": "«торо» → ТОРеадор — б'ється з биком на арені",
+          "example_es": "El toro es muy grande.",
+          "example_uk": "Бик дуже великий."
+        },
+        {
+          "spanish": "la vaca",
+          "ukrainian": "корова",
+          "pronunciation": "ла ВАка",
+          "emoji": "🐄",
+          "sound_association": "«вака» → ВАКАнсія — корова шукає роботу",
+          "example_es": "La vaca da leche.",
+          "example_uk": "Корова дає молоко."
+        },
+        {
+          "spanish": "la perra",
+          "ukrainian": "собака (самиця)",
+          "pronunciation": "ла ПЕРа",
+          "emoji": "🐕",
+          "sound_association": "«пера» → ПЕРо — самиця пса з пір'ям на шиї",
+          "example_es": "La perra tiene tres cachorros.",
+          "example_uk": "Собака має трьох цуценят."
+        },
+        {
+          "spanish": "la leona",
+          "ukrainian": "левиця",
+          "pronunciation": "ла леОна",
+          "emoji": "🦁",
+          "sound_association": "«леона» → ЛЕОНА — левиця на ім'я Леона",
+          "example_es": "La leona cuida a sus crías.",
+          "example_uk": "Левиця піклується про своїх дитинчат."
+        },
+        {
+          "spanish": "el tigre",
+          "ukrainian": "тигр",
+          "pronunciation": "ель ТІгре",
+          "emoji": "🐯",
+          "sound_association": "«тігре» → ТИГР — майже однакове слово!",
+          "example_es": "El tigre corre muy rápido.",
+          "example_uk": "Тигр бігає дуже швидко."
+        },
+        {
+          "spanish": "la tigresa",
+          "ukrainian": "тигриця",
+          "pronunciation": "ла тіГРЕса",
+          "emoji": "🐯",
+          "sound_association": "«тіgreса» → тиГРЕСА — тигриця в шикарному dress",
+          "example_es": "La tigresa protege a sus cachorros.",
+          "example_uk": "Тигриця захищає своїх дитинчат."
+        },
+        {
+          "spanish": "el elefante",
+          "ukrainian": "слон",
+          "pronunciation": "ель елеФАНте",
+          "emoji": "🐘",
+          "sound_association": "«елефанте» → ELEPHANT — англійський слон прийшов в іспанський",
+          "example_es": "El elefante es el animal más grande.",
+          "example_uk": "Слон — найбільша тварина."
+        }
+      ]
+    },
+    {
+      "id": "home-city",
+      "title": "Дім та місто",
+      "emoji": "🏠",
+      "words": [
+        {
+          "spanish": "la cocina",
+          "pronunciation": "ла коСІна",
+          "ukrainian": "кухня",
+          "emoji": "🍳",
+          "sound_association": "«косіна» → КОСИна жінки на КУХНі",
+          "example_es": "La cocina está limpia.",
+          "example_uk": "Кухня чиста."
+        },
+        {
+          "spanish": "el baño",
+          "pronunciation": "ель БАньо",
+          "ukrainian": "ванна кімната",
+          "emoji": "🛁",
+          "sound_association": "«баньо» → БАНЯ — баня і ванна — одне й те саме!",
+          "example_es": "El baño está libre.",
+          "example_uk": "Ванна кімната вільна."
+        },
+        {
+          "spanish": "la puerta",
+          "pronunciation": "ла ПУЕрта",
+          "ukrainian": "двері",
+          "emoji": "🚪",
+          "sound_association": "«пуерта» → ПУЕРТО-РІКО — двері в тропіки",
+          "example_es": "Cierra la puerta.",
+          "example_uk": "Зачини двері."
+        },
+        {
+          "spanish": "la habitación",
+          "pronunciation": "ла абітасіОН",
+          "ukrainian": "кімната",
+          "emoji": "🛏️",
+          "sound_association": "«абітасьон» → HABITUS (лат.) — місце де живеш і звикаєш",
+          "example_es": "Mi habitación es grande.",
+          "example_uk": "Моя кімната велика."
+        },
+        {
+          "spanish": "la calle",
+          "pronunciation": "ла КАлье",
+          "ukrainian": "вулиця",
+          "emoji": "🛣️",
+          "sound_association": "«калье» → КАЛЕЙДОСКОП — вулиця як строкатий калейдоскоп",
+          "example_es": "La calle está llena de gente.",
+          "example_uk": "Вулиця повна людей."
+        },
+        {
+          "spanish": "el mercado",
+          "pronunciation": "ель мерКАдо",
+          "ukrainian": "ринок",
+          "emoji": "🛒",
+          "sound_association": "«меркадо» → МЕРКАНТИЛЬ — ринкова торгівля",
+          "example_es": "Voy al mercado.",
+          "example_uk": "Я йду на ринок."
+        },
+        {
+          "spanish": "el hospital",
+          "pronunciation": "ель оспіТАЛЬ",
+          "ukrainian": "лікарня",
+          "emoji": "🏥",
+          "sound_association": "«оспіталь» → ГОСПІТАЛЬ — те саме слово!",
+          "example_es": "El hospital está cerca.",
+          "example_uk": "Лікарня поруч."
+        },
+        {
+          "spanish": "la tienda",
+          "pronunciation": "ла ТЬЄнда",
+          "ukrainian": "магазин",
+          "emoji": "🏪",
+          "sound_association": "«тьєнда» → ТІНА в магазині — щодня за покупками",
+          "example_es": "La tienda está cerrada.",
+          "example_uk": "Магазин зачинений."
+        },
+        {
+          "spanish": "el aeropuerto",
+          "pronunciation": "ель аеропУЕрто",
+          "ukrainian": "аеропорт",
+          "emoji": "✈️",
+          "sound_association": "«аеропуерто» → АЕРОПОРТ — те саме слово!",
+          "example_es": "El aeropuerto está lejos.",
+          "example_uk": "Аеропорт далеко."
+        },
+        {
+          "spanish": "el trabajo",
+          "pronunciation": "ель траБАхо",
+          "ukrainian": "робота",
+          "emoji": "💻",
+          "sound_association": "«трабахо» → ТРАБЛ (trouble) — робота завжди з проблемами",
+          "example_es": "Tengo mucho trabajo.",
+          "example_uk": "У мене багато роботи."
+        }
+      ]
+    },
+    {
+      "id": "food-body",
+      "title": "Їжа та тіло",
+      "emoji": "🍽️",
+      "words": [
+        {
+          "spanish": "el agua",
+          "pronunciation": "ель АГуа",
+          "ukrainian": "вода (виняток: el!)",
+          "emoji": "💧",
+          "sound_association": "«агуа» → АКВА — aqua по-латині = вода. el (не la!) бо слово починається з наголошеної 'а'",
+          "example_es": "Quiero un vaso de agua.",
+          "example_uk": "Я хочу склянку води."
+        },
+        {
+          "spanish": "la comida",
+          "pronunciation": "ла коМІда",
+          "ukrainian": "їжа",
+          "emoji": "🍲",
+          "sound_association": "«коміда» → КОМедія — їжа це головна комедія дня",
+          "example_es": "La comida está deliciosa.",
+          "example_uk": "Їжа дуже смачна."
+        },
+        {
+          "spanish": "el pan",
+          "pronunciation": "ель пан",
+          "ukrainian": "хліб",
+          "emoji": "🍞",
+          "sound_association": "«пан» → ПАН — навіть пан не відмовиться від хліба",
+          "example_es": "El pan está caliente.",
+          "example_uk": "Хліб гарячий."
+        },
+        {
+          "spanish": "la leche",
+          "pronunciation": "ла ЛЕче",
+          "ukrainian": "молоко",
+          "emoji": "🥛",
+          "sound_association": "«лече» → ЛЕЧИТИ молоком — народний рецепт",
+          "example_es": "Me gusta la leche fría.",
+          "example_uk": "Я люблю холодне молоко."
+        },
+        {
+          "spanish": "la fruta",
+          "pronunciation": "ла ФРУта",
+          "ukrainian": "фрукт",
+          "emoji": "🍎",
+          "sound_association": "«фрута» → ФРУКТ — те саме слово!",
+          "example_es": "Como fruta todos los días.",
+          "example_uk": "Я їм фрукти щодня."
+        },
+        {
+          "spanish": "la carne",
+          "pronunciation": "ла КАРне",
+          "ukrainian": "м'ясо",
+          "emoji": "🥩",
+          "sound_association": "«карне» → КАРНЕвал — на карнавалі смажать м'ясо",
+          "example_es": "La carne está muy sabrosa.",
+          "example_uk": "М'ясо дуже смачне."
+        },
+        {
+          "spanish": "el vino",
+          "pronunciation": "ель ВІно",
+          "ukrainian": "вино",
+          "emoji": "🍷",
+          "sound_association": "«віно» → ВІНО — по-українськи теж «вино»!",
+          "example_es": "Un vaso de vino, por favor.",
+          "example_uk": "Бокал вина, будь ласка."
+        },
+        {
+          "spanish": "la cabeza",
+          "pronunciation": "ла каБЕса",
+          "ukrainian": "голова",
+          "emoji": "🗣️",
+          "sound_association": "«кабеса» → КАБінет — у кабінеті думають голОВОю",
+          "example_es": "Me duele la cabeza.",
+          "example_uk": "У мене болить голова."
+        },
+        {
+          "spanish": "la cara",
+          "pronunciation": "ла КАра",
+          "ukrainian": "обличчя",
+          "emoji": "😊",
+          "sound_association": "«кара» → КАРА — за поганий вираз обличчя",
+          "example_es": "Tiene una cara bonita.",
+          "example_uk": "Вона має гарне обличчя."
+        },
+        {
+          "spanish": "el brazo",
+          "pronunciation": "ель БРАсо",
+          "ukrainian": "рука (від плеча)",
+          "emoji": "💪",
+          "sound_association": "«брасо» → БРАТНІ обійми — братські РУКИ",
+          "example_es": "Me duele el brazo.",
+          "example_uk": "У мене болить рука."
+        },
+        {
+          "spanish": "la pierna",
+          "pronunciation": "ла ПЬЄрна",
+          "ukrainian": "нога",
+          "emoji": "🦵",
+          "sound_association": "«п'єрна» → П'ЄРНА — нога П'єра з балету",
+          "example_es": "Tengo las piernas cansadas.",
+          "example_uk": "У мене втомились ноги."
+        },
+        {
+          "spanish": "la nariz",
+          "pronunciation": "ла наРІС",
+          "ukrainian": "ніс",
+          "emoji": "👃",
+          "sound_association": "«нарис» → НАРИС — писати нарис і ніс ворушиться",
+          "example_es": "Tiene la nariz roja.",
+          "example_uk": "У нього червоний ніс."
+        },
+        {
+          "spanish": "la boca",
+          "pronunciation": "ла БОка",
+          "ukrainian": "рот",
+          "emoji": "👄",
+          "sound_association": "«бока» → БОКАЛ — п'єш бокал ротом",
+          "example_es": "Abre la boca.",
+          "example_uk": "Відкрий рот."
+        }
+      ]
+    },
+    {
+      "id": "everyday",
+      "title": "Повсякдення",
+      "emoji": "🌍",
+      "words": [
+        {
+          "spanish": "el café",
+          "ukrainian": "кава; кафе",
+          "pronunciation": "ель каФЕ",
+          "emoji": "☕",
+          "sound_association": "«кафе» → КАФЕ — те саме слово!",
+          "example_es": "Me gusta el café con leche.",
+          "example_uk": "Я люблю каву з молоком."
+        },
+        {
+          "spanish": "el colegio",
+          "ukrainian": "школа",
+          "pronunciation": "ель коЛЕхіо",
+          "emoji": "🏫",
+          "sound_association": "«колехіо» → КОЛЕГИ — в школі всі стають колегами",
+          "example_es": "Los niños van al colegio.",
+          "example_uk": "Діти йдуть до школи."
+        },
+        {
+          "spanish": "la televisión",
+          "ukrainian": "телевізор",
+          "pronunciation": "ла телевісіОН",
+          "emoji": "📺",
+          "sound_association": "«телевісіон» → ТЕЛЕВІЗОР — те саме слово!",
+          "example_es": "La televisión está en la sala.",
+          "example_uk": "Телевізор у вітальні."
+        },
+        {
+          "spanish": "la camisa",
+          "ukrainian": "сорочка",
+          "pronunciation": "ла каМІса",
+          "emoji": "👕",
+          "sound_association": "«каміса» → КАМізелька — сорочка під камізелькою",
+          "example_es": "La camisa es azul.",
+          "example_uk": "Сорочка синя."
+        },
+        {
+          "spanish": "el baile",
+          "ukrainian": "танець",
+          "pronunciation": "ель БАйле",
+          "emoji": "💃",
+          "sound_association": "«байле» → БАЙ-ЛЕ — кажеш «бай» і починаєш танцювати",
+          "example_es": "El baile flamenco es precioso.",
+          "example_uk": "Танець фламенко прекрасний."
+        },
+        {
+          "spanish": "el mes",
+          "ukrainian": "місяць (календарний)",
+          "pronunciation": "ель мес",
+          "emoji": "📅",
+          "sound_association": "«мес» → МЕСяць — перший склад слова «місяць»",
+          "example_es": "Enero es el primer mes del año.",
+          "example_uk": "Січень — перший місяць року."
+        },
+        {
+          "spanish": "el ojo",
+          "ukrainian": "oko",
+          "pronunciation": "ель Охо",
+          "emoji": "👁️",
+          "sound_association": "«охо» → ОХо, яке ОКО! — відразу видно зв'язок",
+          "example_es": "Tiene los ojos azules.",
+          "example_uk": "Вона має блакитні очі."
+        },
+        {
+          "spanish": "el sillón",
+          "ukrainian": "крісло",
+          "pronunciation": "ель сілЬОН",
+          "emoji": "🪑",
+          "sound_association": "«сільон» → СИЛЬ-ОН — крісло таке зручне, що ти на ньому «включений»",
+          "example_es": "El sillón es muy cómodo.",
+          "example_uk": "Крісло дуже зручне."
+        },
+        {
+          "spanish": "la fotografía",
+          "ukrainian": "фотографія",
+          "pronunciation": "ла фотограФІа",
+          "emoji": "📷",
+          "sound_association": "«фотографіа» → ФОТОГРАФІЯ — те саме слово!",
+          "example_es": "La fotografía es muy bonita.",
+          "example_uk": "Фотографія дуже гарна."
+        },
+        {
+          "spanish": "el papel",
+          "ukrainian": "папір",
+          "pronunciation": "ель паПЕЛЬ",
+          "emoji": "📄",
+          "sound_association": "«папель» → PAPER — англійське paper = папір",
+          "example_es": "Necesito un papel y un bolígrafo.",
+          "example_uk": "Мені потрібні папір і ручка."
+        },
+        {
+          "spanish": "el cargador",
+          "ukrainian": "зарядний пристрій",
+          "pronunciation": "ель каргаДОР",
+          "emoji": "🔌",
+          "sound_association": "«каргадор» → КАРГО + ДОР — возить заряд як карго",
+          "example_es": "¿Dónde está el cargador?",
+          "example_uk": "Де зарядний пристрій?"
+        },
+        {
+          "spanish": "el plan",
+          "ukrainian": "план",
+          "pronunciation": "ель план",
+          "emoji": "📋",
+          "sound_association": "«план» → ПЛАН — те саме слово!",
+          "example_es": "Tengo un plan para el fin de semana.",
+          "example_uk": "У мене є план на вихідні."
+        },
+        {
+          "spanish": "el semáforo",
+          "ukrainian": "світлофор",
+          "pronunciation": "ель сеМАфоро",
+          "emoji": "🚦",
+          "sound_association": "«семафоро» → СЕМАФОР — те саме слово!",
+          "example_es": "El semáforo está en rojo.",
+          "example_uk": "Світлофор червоний."
+        },
+        {
+          "spanish": "el automóvil",
+          "ukrainian": "автомобіль",
+          "pronunciation": "ель аутоМОвіль",
+          "emoji": "🚗",
+          "sound_association": "«аутомовіль» → АВТОМОБІЛЬ — те саме слово!",
+          "example_es": "El automóvil es muy rápido.",
+          "example_uk": "Автомобіль дуже швидкий."
+        },
+        {
+          "spanish": "la música",
+          "ukrainian": "музика",
+          "pronunciation": "ла МУсіка",
+          "emoji": "🎵",
+          "sound_association": "«мусіка» → МУЗИКА — те саме слово!",
+          "example_es": "Me gusta la música española.",
+          "example_uk": "Мені подобається іспанська музика."
+        }
+      ]
+    },
+    {
+      "id": "time-society",
+      "title": "Час та суспільство",
+      "emoji": "⏰",
+      "words": [
+        {
+          "spanish": "la hora",
+          "pronunciation": "ла ОРа",
+          "ukrainian": "година",
+          "emoji": "🕐",
+          "sound_association": "«ора» → ОРА! — хор кричить 'ОРА!' кожну годину",
+          "example_es": "¿Qué hora es?",
+          "example_uk": "Котра година?"
+        },
+        {
+          "spanish": "la semana",
+          "pronunciation": "ла сеМАна",
+          "ukrainian": "тиждень",
+          "emoji": "📅",
+          "sound_association": "«семана» → СЕМА НА сім — тиждень = 7 днів",
+          "example_es": "La semana tiene siete días.",
+          "example_uk": "У тижні сім днів."
+        },
+        {
+          "spanish": "el año",
+          "pronunciation": "ель АНьо",
+          "ukrainian": "рік",
+          "emoji": "📆",
+          "sound_association": "«аньо» → ANNO Domini — anno (лат.) = рік",
+          "example_es": "Tengo doce años.",
+          "example_uk": "Мені дванадцять років."
+        },
+        {
+          "spanish": "la noche",
+          "pronunciation": "ла НОче",
+          "ukrainian": "ніч",
+          "emoji": "🌙",
+          "sound_association": "«ноче» → НОЧі — ніч по-українськи!",
+          "example_es": "La noche está estrellada.",
+          "example_uk": "Ніч зоряна."
+        },
+        {
+          "spanish": "la vida",
+          "pronunciation": "ла ВІда",
+          "ukrainian": "життя",
+          "emoji": "🌱",
+          "sound_association": "«віда» → VITA (лат.) = ВІТАМІНИ для VIDA = LIFE",
+          "example_es": "La vida es bella.",
+          "example_uk": "Життя прекрасне."
+        },
+        {
+          "spanish": "el mundo",
+          "pronunciation": "ель МУНдо",
+          "ukrainian": "світ",
+          "emoji": "🌍",
+          "sound_association": "«мундо» → MUNDUS (лат.) = СВІТ — mundus = всесвіт",
+          "example_es": "El mundo es grande.",
+          "example_uk": "Світ великий."
+        },
+        {
+          "spanish": "el país",
+          "pronunciation": "ель паІС",
+          "ukrainian": "країна",
+          "emoji": "🗺️",
+          "sound_association": "«паіс» → ПАТРІотизм до своєї ПА-ІС-тини",
+          "example_es": "Mi país es muy bonito.",
+          "example_uk": "Моя країна дуже гарна."
+        },
+        {
+          "spanish": "la familia",
+          "pronunciation": "ла фаМІлья",
+          "ukrainian": "сім'я",
+          "emoji": "👨‍👩‍👧‍👦",
+          "sound_association": "«фамілья» → ФАМІЛІЯ — прізвище = символ сім'ї",
+          "example_es": "Mi familia es grande.",
+          "example_uk": "Моя сім'я велика."
+        },
+        {
+          "spanish": "la cosa",
+          "pronunciation": "ла КОса",
+          "ukrainian": "річ, предмет",
+          "emoji": "📦",
+          "sound_association": "«коса» → КОСА — звичайна річ у господарстві",
+          "example_es": "Tengo muchas cosas.",
+          "example_uk": "У мене багато речей."
+        },
+        {
+          "spanish": "el momento",
+          "pronunciation": "ель моМЕНто",
+          "ukrainian": "момент",
+          "emoji": "⚡",
+          "sound_association": "«момент» → МОМЕНТ — те саме слово!",
+          "example_es": "En este momento estoy ocupado.",
+          "example_uk": "Зараз я зайнятий."
+        }
+      ]
+    },
+    {
+      "id": "clothes-leisure",
+      "title": "Одяг та дозвілля",
+      "emoji": "🎮",
+      "words": [
+        {
+          "spanish": "la ropa",
+          "pronunciation": "ла РОпа",
+          "ukrainian": "одяг",
+          "emoji": "👗",
+          "sound_association": "«ропа» → eu-ROPE — в Європі завжди носять ropa",
+          "example_es": "La ropa está limpia.",
+          "example_uk": "Одяг чистий."
+        },
+        {
+          "spanish": "el zapato",
+          "pronunciation": "ель саПАто",
+          "ukrainian": "взуття",
+          "emoji": "👟",
+          "sound_association": "«сапато» → САПОГ — взуття для козака!",
+          "example_es": "Los zapatos son nuevos.",
+          "example_uk": "Взуття нове."
+        },
+        {
+          "spanish": "el reloj",
+          "pronunciation": "ель реЛОХ",
+          "ukrainian": "годинник",
+          "emoji": "⌚",
+          "sound_association": "«релох» → РЕЛЕ + ОЧ — годинник перемикає час",
+          "example_es": "El reloj marca las tres.",
+          "example_uk": "Годинник показує три."
+        },
+        {
+          "spanish": "la llave",
+          "pronunciation": "ла ЛЬАве",
+          "ukrainian": "ключ",
+          "emoji": "🔑",
+          "sound_association": "«льяве» → ЛЯВÉ — ключова нота в музиці",
+          "example_es": "¿Dónde está la llave?",
+          "example_uk": "Де ключ?"
+        },
+        {
+          "spanish": "la bolsa",
+          "pronunciation": "ла БОЛьса",
+          "ukrainian": "сумка",
+          "emoji": "👜",
+          "sound_association": "«больса» → БІЛЬША — велика більша сумка",
+          "example_es": "La bolsa es de cuero.",
+          "example_uk": "Сумка шкіряна."
+        },
+        {
+          "spanish": "el vestido",
+          "pronunciation": "ель весТІдо",
+          "ukrainian": "плаття",
+          "emoji": "👘",
+          "sound_association": "«вестідо» → ВЕСТИМЕНТУМ (лат.) = вбрання = плаття",
+          "example_es": "El vestido es rojo.",
+          "example_uk": "Плаття червоне."
+        },
+        {
+          "spanish": "la película",
+          "pronunciation": "ла пеЛІкула",
+          "ukrainian": "фільм",
+          "emoji": "🎬",
+          "sound_association": "«пелікула» → ПЛІВКА — фільм знімали на плівку (pelicula = плівка)",
+          "example_es": "La película es muy buena.",
+          "example_uk": "Фільм дуже хороший."
+        },
+        {
+          "spanish": "el juego",
+          "pronunciation": "ель ХУЕго",
+          "ukrainian": "гра",
+          "emoji": "🎮",
+          "sound_association": "«хуего» → ХУЛІГАНСЬКА ГРА — весела і дика",
+          "example_es": "El juego es divertido.",
+          "example_uk": "Гра цікава."
+        },
+        {
+          "spanish": "el deporte",
+          "pronunciation": "ель деПОРте",
+          "ukrainian": "спорт",
+          "emoji": "⚽",
+          "sound_association": "«депорте» → SPORT по-іспанськи = deporte — просто запам'ятай!",
+          "example_es": "El deporte es bueno para la salud.",
+          "example_uk": "Спорт корисний для здоров'я."
+        },
+        {
+          "spanish": "el fútbol",
+          "pronunciation": "ель ФУТболь",
+          "ukrainian": "футбол",
+          "emoji": "⚽",
+          "sound_association": "«футболь» → ФУТБОЛ — те саме слово!",
+          "example_es": "El fútbol es el deporte más popular.",
+          "example_uk": "Футбол — найпопулярніший спорт."
+        }
+      ]
+    }
+  ]
+}

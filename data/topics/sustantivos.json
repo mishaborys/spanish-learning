@@ -4,64 +4,1004 @@
   "display_order": 6,
   "grammar_text": "<h2>Що таке іменник?</h2><p>Іменник (<em>sustantivo</em>) — це слово, що позначає людину, тварину, предмет або поняття. В іспанській мові кожен іменник має <strong>рід</strong> — чоловічий (<em>masculino</em>) або жіночий (<em>femenino</em>). Рід визначає, який артикль стоїть перед словом: <strong>el</strong> (чоловічий) або <strong>la</strong> (жіночий).</p><h2>Визначення роду за закінченням</h2><h3>Чоловічий рід (masculino) — el</h3><table><thead><tr><th>Закінчення</th><th>Приклади</th><th>Переклад</th></tr></thead><tbody><tr><td><strong>-o</strong></td><td>el diner<strong>o</strong>, el tiemp<strong>o</strong>, el caball<strong>o</strong></td><td>гроші, час, кінь</td></tr><tr><td><strong>-r</strong></td><td>el col<strong>or</strong>, el dol<strong>or</strong></td><td>колір, біль</td></tr><tr><td><strong>-ón</strong></td><td>el coraz<strong>ón</strong>, el rat<strong>ón</strong></td><td>серце, миша</td></tr><tr><td><strong>-e</strong></td><td>el coch<strong>e</strong>, el nombr<strong>e</strong></td><td>автомобіль, ім'я</td></tr></tbody></table><h3>Жіночий рід (femenino) — la</h3><table><thead><tr><th>Закінчення</th><th>Приклади</th><th>Переклад</th></tr></thead><tbody><tr><td><strong>-a</strong></td><td>la cas<strong>a</strong>, la cam<strong>a</strong>, la ventan<strong>a</strong></td><td>будинок, ліжко, вікно</td></tr><tr><td><strong>-dad</strong></td><td>la ciu<strong>dad</strong>, la reali<strong>dad</strong></td><td>місто, реальність</td></tr><tr><td><strong>-ción</strong></td><td>la rela<strong>ción</strong>, la revolu<strong>ción</strong></td><td>відносини, революція</td></tr><tr><td><strong>-sión</strong></td><td>la ver<strong>sión</strong>, la deci<strong>sión</strong></td><td>версія, рішення</td></tr></tbody></table><h2>⚠️ Винятки — треба запам'ятати!</h2><h3>Слова на -a, але чоловічого роду (el)</h3><p>Деякі слова закінчуються на <strong>-a</strong>, але мають чоловічий рід. Зазвичай це слова <strong>грецького походження</strong>.</p><table><thead><tr><th>Слово</th><th>Переклад</th></tr></thead><tbody><tr><td><strong>el planeta</strong></td><td>планета</td></tr><tr><td><strong>el día</strong></td><td>день</td></tr><tr><td><strong>el mapa</strong></td><td>карта</td></tr><tr><td><strong>el idioma</strong></td><td>мова</td></tr></tbody></table><h3>Слова на -o, але жіночого роду (la)</h3><p>Це зазвичай <strong>скорочення</strong> від довших слів жіночого роду.</p><table><thead><tr><th>Скорочення</th><th>Повна форма</th><th>Переклад</th></tr></thead><tbody><tr><td><strong>la foto</strong></td><td>la fotografía</td><td>фото</td></tr><tr><td><strong>la moto</strong></td><td>la motocicleta</td><td>мотоцикл</td></tr><tr><td><strong>la bici</strong></td><td>la bicicleta</td><td>велосипед</td></tr><tr><td><strong>la mano</strong></td><td>—</td><td>рука (виняток!)</td></tr></tbody></table><h3>Слова грецького походження на -ma</h3><p>Слова, що закінчуються на <strong>-ma</strong> і прийшли з грецької, завжди <strong>чоловічого</strong> роду — навіть якщо закінчуються на -a!</p><table><thead><tr><th>Слово</th><th>Переклад</th></tr></thead><tbody><tr><td>el proble<strong>ma</strong></td><td>проблема</td></tr><tr><td>el dile<strong>ma</strong></td><td>дилема</td></tr><tr><td>el siste<strong>ma</strong></td><td>система</td></tr><tr><td>el poe<strong>ma</strong></td><td>вірш, поема</td></tr></tbody></table><h2>Однаковий рід для чоловіків і жінок</h2><p>Деякі іменники мають <strong>однакову форму</strong> для чоловічого і жіночого роду. Рід визначається лише за допомогою артикля: <strong>el</strong> або <strong>la</strong>.</p><table><thead><tr><th>Чоловічий (el)</th><th>Жіночий (la)</th><th>Переклад</th></tr></thead><tbody><tr><td>el turista</td><td>la turista</td><td>турист / туристка</td></tr><tr><td>el estudiante</td><td>la estudiante</td><td>студент / студентка</td></tr><tr><td>el artista</td><td>la artista</td><td>художник / художниця</td></tr><tr><td>el pariente</td><td>la pariente</td><td>родич / родичка</td></tr></tbody></table>",
   "words": [
-    { "spanish": "el amigo",        "pronunciation": "ель аМІго",         "ukrainian": "друг, приятель",         "example_es": "Mi amigo se llama Carlos.",             "example_uk": "Мого друга звати Карлос.",             "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "la amiga",        "pronunciation": "ла аМІга",          "ukrainian": "подруга",                "example_es": "Mi amiga es muy simpática.",            "example_uk": "Моя подруга дуже симпатична.",          "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "el hermano",      "pronunciation": "ель ерМАно",        "ukrainian": "брат",                   "example_es": "Tengo un hermano mayor.",               "example_uk": "У мене є старший брат.",                "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "la hermana",      "pronunciation": "ла ерМАна",         "ukrainian": "сестра",                 "example_es": "Mi hermana estudia español.",           "example_uk": "Моя сестра вивчає іспанську.",          "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "el curso",        "pronunciation": "ель КУРсо",         "ukrainian": "курс",                   "example_es": "El curso de español es interesante.",  "example_uk": "Курс іспанської цікавий.",              "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "la lengua",       "pronunciation": "ла ЛЕНгуа",         "ukrainian": "мова; язик",             "example_es": "La lengua española tiene mucha música.","example_uk": "Іспанська мова дуже музична.",          "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "el perro",        "pronunciation": "ель ПЕРо",          "ukrainian": "собака",                 "example_es": "El perro ladra.",                       "example_uk": "Собака гавкає.",                        "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el gato",         "pronunciation": "ель ГАто",          "ukrainian": "кіт",                    "example_es": "El gato duerme en la silla.",           "example_uk": "Кіт спить на стільці.",                 "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el niño",         "pronunciation": "ель НІньо",         "ukrainian": "хлопчик",                "example_es": "El niño juega en el parque.",           "example_uk": "Хлопчик грає в парку.",                 "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "la niña",         "pronunciation": "ла НІнья",          "ukrainian": "дівчинка",               "example_es": "La niña lee un libro.",                 "example_uk": "Дівчинка читає книгу.",                 "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "la silla",        "pronunciation": "ла СІлья",          "ukrainian": "стілець",                "example_es": "La silla está en la cocina.",           "example_uk": "Стілець стоїть на кухні.",              "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "el sol",          "pronunciation": "ель соль",          "ukrainian": "сонце",                  "example_es": "El sol brilla hoy.",                    "example_uk": "Сьогодні сонце світить.",               "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "la luna",         "pronunciation": "ла ЛУна",           "ukrainian": "місяць (небесне тіло)",  "example_es": "La luna está llena esta noche.",        "example_uk": "Сьогодні вночі повний місяць.",         "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "el árbol",        "pronunciation": "ель АРболь",        "ukrainian": "дерево",                 "example_es": "El árbol es muy alto.",                 "example_uk": "Дерево дуже високе.",                   "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "la computadora",  "pronunciation": "ла компутаДОра",    "ukrainian": "комп'ютер",              "example_es": "Uso la computadora para estudiar.",     "example_uk": "Я використовую комп'ютер для навчання.", "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "la universidad",  "pronunciation": "ла університАД",    "ukrainian": "університет",            "example_es": "Estudio en la universidad.",            "example_uk": "Я навчаюся в університеті.",            "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "el león",         "pronunciation": "ель леОН",          "ukrainian": "лев",                    "example_es": "El león es el rey de la selva.",        "example_uk": "Лев — цар джунглів.",                   "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "la pelota",       "pronunciation": "ла пеЛОта",         "ukrainian": "м'яч",                   "example_es": "El niño juega con la pelota.",          "example_uk": "Хлопчик грає з м'ячем.",                "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "el libro",        "pronunciation": "ель ЛІбро",         "ukrainian": "книга",                  "example_es": "El libro es interesante.",              "example_uk": "Книга цікава.",                         "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "la mesa",         "pronunciation": "ла МЕса",           "ukrainian": "стіл",                   "example_es": "El libro está en la mesa.",             "example_uk": "Книга лежить на столі.",                "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "la casa",         "pronunciation": "ла КАса",           "ukrainian": "будинок, дім",           "example_es": "Vivo en una casa grande.",               "example_uk": "Я живу у великому будинку.",            "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "el bolígrafo",    "pronunciation": "ель боЛІграфо",     "ukrainian": "ручка",                  "example_es": "Escribe con el bolígrafo.",             "example_uk": "Пиши ручкою.",                          "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el teléfono",     "pronunciation": "ель теЛЕфоно",      "ukrainian": "телефон",                "example_es": "Mi teléfono es nuevo.",                 "example_uk": "Мій телефон новий.",                    "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el dinero",       "pronunciation": "ель діНЕро",        "ukrainian": "гроші",                  "example_es": "No tengo dinero.",                      "example_uk": "У мене немає грошей.",                  "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el tiempo",       "pronunciation": "ель ТЕМпо",         "ukrainian": "час; погода",            "example_es": "¿Qué tiempo hace hoy?",                 "example_uk": "Яка сьогодні погода?",                  "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el caballo",      "pronunciation": "ель каБАлло",       "ukrainian": "кінь",                   "example_es": "El caballo es rápido.",                 "example_uk": "Кінь швидкий.",                         "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el color",        "pronunciation": "ель коЛОР",         "ukrainian": "колір",                  "example_es": "¿Cuál es tu color favorito?",           "example_uk": "Який твій улюблений колір?",            "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el dolor",        "pronunciation": "ель доЛОР",         "ukrainian": "біль",                   "example_es": "Tengo dolor de cabeza.",                "example_uk": "У мене болить голова.",                 "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el corazón",      "pronunciation": "ель коразОН",       "ukrainian": "серце",                  "example_es": "El corazón late rápido.",               "example_uk": "Серце б'ється швидко.",                 "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el ratón",        "pronunciation": "ель раТОН",         "ukrainian": "миша",                   "example_es": "El ratón es muy pequeño.",              "example_uk": "Миша дуже маленька.",                   "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el coche",        "pronunciation": "ель КОче",          "ukrainian": "автомобіль, машина",     "example_es": "Mi padre tiene un coche nuevo.",        "example_uk": "У мого батька нова машина.",            "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el nombre",       "pronunciation": "ель НОМбре",        "ukrainian": "ім'я",                   "example_es": "¿Cómo es tu nombre?",                  "example_uk": "Яке твоє ім'я?",                       "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "la cama",         "pronunciation": "ла КАма",           "ukrainian": "ліжко",                  "example_es": "Me gusta dormir en mi cama.",           "example_uk": "Я люблю спати у своєму ліжку.",         "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "la ventana",      "pronunciation": "ла венТАна",        "ukrainian": "вікно",                  "example_es": "Abre la ventana, por favor.",           "example_uk": "Відкрий вікно, будь ласка.",            "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "la ciudad",       "pronunciation": "ла сіуДАД",         "ukrainian": "місто",                  "example_es": "Madrid es una ciudad grande.",          "example_uk": "Мадрид — велике місто.",                "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "la realidad",     "pronunciation": "ла реалідАД",       "ukrainian": "реальність",             "example_es": "La realidad es diferente.",             "example_uk": "Реальність інша.",                      "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "la relación",     "pronunciation": "ла релясіОН",       "ukrainian": "відносини, стосунки",    "example_es": "Tenemos una buena relación.",           "example_uk": "У нас хороші стосунки.",                "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "la revolución",   "pronunciation": "ла революсіОН",     "ukrainian": "революція",              "example_es": "La revolución cambió el país.",         "example_uk": "Революція змінила країну.",             "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "la versión",      "pronunciation": "ла верСІон",        "ukrainian": "версія",                 "example_es": "¿Qué versión tienes?",                  "example_uk": "Яка у тебе версія?",                   "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "la decisión",     "pronunciation": "ла десісіОН",       "ukrainian": "рішення",                "example_es": "Es una decisión difícil.",              "example_uk": "Це важке рішення.",                    "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "la información",  "pronunciation": "ла інформасіОН",    "ukrainian": "інформація",             "example_es": "Necesito información sobre eso.",       "example_uk": "Мені потрібна інформація про це.",      "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "la tía",          "pronunciation": "ла ТІа",            "ukrainian": "тітка",                  "example_es": "Mi tía vive en Barcelona.",             "example_uk": "Моя тітка живе в Барселоні.",           "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "el tío",          "pronunciation": "ель ТІо",           "ukrainian": "дядько",                 "example_es": "Mi tío es médico.",                     "example_uk": "Мій дядько — лікар.",                   "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el planeta",      "pronunciation": "ель пляНЕта",       "ukrainian": "планета (виняток: el!)", "example_es": "La Tierra es un planeta.",              "example_uk": "Земля — це планета.",                   "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el día",          "pronunciation": "ель ДІа",           "ukrainian": "день (виняток: el!)",    "example_es": "Hoy es un buen día.",                   "example_uk": "Сьогодні гарний день.",                 "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el mapa",         "pronunciation": "ель МАпа",          "ukrainian": "карта (виняток: el!)",   "example_es": "Mira el mapa.",                         "example_uk": "Подивись на карту.",                    "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el idioma",       "pronunciation": "ель ідіОма",        "ukrainian": "мова (виняток: el!)",    "example_es": "El español es un idioma hermoso.",      "example_uk": "Іспанська — красива мова.",             "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "la mano",         "pronunciation": "ла МАно",           "ukrainian": "рука (виняток: la!)",    "example_es": "Dame la mano.",                         "example_uk": "Дай мені руку.",                        "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "la foto",         "pronunciation": "ла ФОто",           "ukrainian": "фото (скор. fotografía)","example_es": "Esta foto es muy bonita.",              "example_uk": "Це фото дуже гарне.",                   "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "la moto",         "pronunciation": "ла МОто",           "ukrainian": "мотоцикл (скор. motocicleta)", "example_es": "Voy al trabajo en moto.",          "example_uk": "Я їжджу на роботу на мотоциклі.",      "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "la bici",         "pronunciation": "ла БІсі",           "ukrainian": "велосипед (скор. bicicleta)", "example_es": "Me gusta montar en bici.",         "example_uk": "Я люблю їздити на велосипеді.",         "gender": "f", "part_of_speech": "іменник" },
-    { "spanish": "el problema",     "pronunciation": "ель проБЛЕма",      "ukrainian": "проблема (el, бо грецьке -ma)", "example_es": "Tengo un problema.",             "example_uk": "У мене є проблема.",                    "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el dilema",       "pronunciation": "ель діЛЕма",        "ukrainian": "дилема (el, бо грецьке -ma)",  "example_es": "Es un dilema difícil.",          "example_uk": "Це важка дилема.",                      "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el sistema",      "pronunciation": "ель сіСТЕма",       "ukrainian": "система (el, бо грецьке -ma)", "example_es": "El sistema funciona bien.",       "example_uk": "Система працює добре.",                 "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el poema",        "pronunciation": "ель поЕма",         "ukrainian": "вірш, поема (el, бо грецьке -ma)", "example_es": "Escribe un poema.",          "example_uk": "Напиши вірш.",                          "gender": "m", "part_of_speech": "іменник" },
-    { "spanish": "el/la turista",   "pronunciation": "ель/ла туРІста",    "ukrainian": "турист / туристка",      "example_es": "Los turistas visitan Madrid.",          "example_uk": "Туристи відвідують Мадрид.",            "gender": null, "part_of_speech": "іменник" },
-    { "spanish": "el/la estudiante","pronunciation": "ель/ла естудіАНте", "ukrainian": "студент / студентка",    "example_es": "La estudiante estudia mucho.",          "example_uk": "Студентка багато навчається.",          "gender": null, "part_of_speech": "іменник" },
-    { "spanish": "el/la artista",   "pronunciation": "ель/ла арТІста",    "ukrainian": "художник / художниця",   "example_es": "El artista pinta un cuadro.",           "example_uk": "Художник малює картину.",               "gender": null, "part_of_speech": "іменник" },
-    { "spanish": "el/la pariente",  "pronunciation": "ель/ла паРЄнте",    "ukrainian": "родич / родичка",        "example_es": "Tengo muchos parientes.",               "example_uk": "У мене багато родичів.",                "gender": null, "part_of_speech": "іменник" }
+    {
+      "spanish": "el amigo",
+      "pronunciation": "ель аМІго",
+      "ukrainian": "друг, приятель",
+      "example_es": "Mi amigo se llama Carlos.",
+      "example_uk": "Мого друга звати Карлос.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la amiga",
+      "pronunciation": "ла аМІга",
+      "ukrainian": "подруга",
+      "example_es": "Mi amiga es muy simpática.",
+      "example_uk": "Моя подруга дуже симпатична.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el hermano",
+      "pronunciation": "ель ерМАно",
+      "ukrainian": "брат",
+      "example_es": "Tengo un hermano mayor.",
+      "example_uk": "У мене є старший брат.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la hermana",
+      "pronunciation": "ла ерМАна",
+      "ukrainian": "сестра",
+      "example_es": "Mi hermana estudia español.",
+      "example_uk": "Моя сестра вивчає іспанську.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el curso",
+      "pronunciation": "ель КУРсо",
+      "ukrainian": "курс",
+      "example_es": "El curso de español es interesante.",
+      "example_uk": "Курс іспанської цікавий.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la lengua",
+      "pronunciation": "ла ЛЕНгуа",
+      "ukrainian": "мова; язик",
+      "example_es": "La lengua española tiene mucha música.",
+      "example_uk": "Іспанська мова дуже музична.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el perro",
+      "pronunciation": "ель ПЕРо",
+      "ukrainian": "собака",
+      "example_es": "El perro ladra.",
+      "example_uk": "Собака гавкає.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el gato",
+      "pronunciation": "ель ГАто",
+      "ukrainian": "кіт",
+      "example_es": "El gato duerme en la silla.",
+      "example_uk": "Кіт спить на стільці.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el niño",
+      "pronunciation": "ель НІньо",
+      "ukrainian": "хлопчик",
+      "example_es": "El niño juega en el parque.",
+      "example_uk": "Хлопчик грає в парку.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la niña",
+      "pronunciation": "ла НІнья",
+      "ukrainian": "дівчинка",
+      "example_es": "La niña lee un libro.",
+      "example_uk": "Дівчинка читає книгу.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la silla",
+      "pronunciation": "ла СІлья",
+      "ukrainian": "стілець",
+      "example_es": "La silla está en la cocina.",
+      "example_uk": "Стілець стоїть на кухні.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el sol",
+      "pronunciation": "ель соль",
+      "ukrainian": "сонце",
+      "example_es": "El sol brilla hoy.",
+      "example_uk": "Сьогодні сонце світить.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la luna",
+      "pronunciation": "ла ЛУна",
+      "ukrainian": "місяць (небесне тіло)",
+      "example_es": "La luna está llena esta noche.",
+      "example_uk": "Сьогодні вночі повний місяць.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el árbol",
+      "pronunciation": "ель АРболь",
+      "ukrainian": "дерево",
+      "example_es": "El árbol es muy alto.",
+      "example_uk": "Дерево дуже високе.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la computadora",
+      "pronunciation": "ла компутаДОра",
+      "ukrainian": "комп'ютер",
+      "example_es": "Uso la computadora para estudiar.",
+      "example_uk": "Я використовую комп'ютер для навчання.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la universidad",
+      "pronunciation": "ла університАД",
+      "ukrainian": "університет",
+      "example_es": "Estudio en la universidad.",
+      "example_uk": "Я навчаюся в університеті.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el león",
+      "pronunciation": "ель леОН",
+      "ukrainian": "лев",
+      "example_es": "El león es el rey de la selva.",
+      "example_uk": "Лев — цар джунглів.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la pelota",
+      "pronunciation": "ла пеЛОта",
+      "ukrainian": "м'яч",
+      "example_es": "El niño juega con la pelota.",
+      "example_uk": "Хлопчик грає з м'ячем.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el libro",
+      "pronunciation": "ель ЛІбро",
+      "ukrainian": "книга",
+      "example_es": "El libro es interesante.",
+      "example_uk": "Книга цікава.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la mesa",
+      "pronunciation": "ла МЕса",
+      "ukrainian": "стіл",
+      "example_es": "El libro está en la mesa.",
+      "example_uk": "Книга лежить на столі.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la casa",
+      "pronunciation": "ла КАса",
+      "ukrainian": "будинок, дім",
+      "example_es": "Vivo en una casa grande.",
+      "example_uk": "Я живу у великому будинку.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el bolígrafo",
+      "pronunciation": "ель боЛІграфо",
+      "ukrainian": "ручка",
+      "example_es": "Escribe con el bolígrafo.",
+      "example_uk": "Пиши ручкою.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el teléfono",
+      "pronunciation": "ель теЛЕфоно",
+      "ukrainian": "телефон",
+      "example_es": "Mi teléfono es nuevo.",
+      "example_uk": "Мій телефон новий.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el dinero",
+      "pronunciation": "ель діНЕро",
+      "ukrainian": "гроші",
+      "example_es": "No tengo dinero.",
+      "example_uk": "У мене немає грошей.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el tiempo",
+      "pronunciation": "ель ТЕМпо",
+      "ukrainian": "час; погода",
+      "example_es": "¿Qué tiempo hace hoy?",
+      "example_uk": "Яка сьогодні погода?",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el caballo",
+      "pronunciation": "ель каБАлло",
+      "ukrainian": "кінь",
+      "example_es": "El caballo es rápido.",
+      "example_uk": "Кінь швидкий.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el color",
+      "pronunciation": "ель коЛОР",
+      "ukrainian": "колір",
+      "example_es": "¿Cuál es tu color favorito?",
+      "example_uk": "Який твій улюблений колір?",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el dolor",
+      "pronunciation": "ель доЛОР",
+      "ukrainian": "біль",
+      "example_es": "Tengo dolor de cabeza.",
+      "example_uk": "У мене болить голова.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el corazón",
+      "pronunciation": "ель коразОН",
+      "ukrainian": "серце",
+      "example_es": "El corazón late rápido.",
+      "example_uk": "Серце б'ється швидко.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el ratón",
+      "pronunciation": "ель раТОН",
+      "ukrainian": "миша",
+      "example_es": "El ratón es muy pequeño.",
+      "example_uk": "Миша дуже маленька.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el coche",
+      "pronunciation": "ель КОче",
+      "ukrainian": "автомобіль, машина",
+      "example_es": "Mi padre tiene un coche nuevo.",
+      "example_uk": "У мого батька нова машина.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el nombre",
+      "pronunciation": "ель НОМбре",
+      "ukrainian": "ім'я",
+      "example_es": "¿Cómo es tu nombre?",
+      "example_uk": "Яке твоє ім'я?",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la cama",
+      "pronunciation": "ла КАма",
+      "ukrainian": "ліжко",
+      "example_es": "Me gusta dormir en mi cama.",
+      "example_uk": "Я люблю спати у своєму ліжку.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la ventana",
+      "pronunciation": "ла венТАна",
+      "ukrainian": "вікно",
+      "example_es": "Abre la ventana, por favor.",
+      "example_uk": "Відкрий вікно, будь ласка.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la ciudad",
+      "pronunciation": "ла сіуДАД",
+      "ukrainian": "місто",
+      "example_es": "Madrid es una ciudad grande.",
+      "example_uk": "Мадрид — велике місто.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la realidad",
+      "pronunciation": "ла реалідАД",
+      "ukrainian": "реальність",
+      "example_es": "La realidad es diferente.",
+      "example_uk": "Реальність інша.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la relación",
+      "pronunciation": "ла релясіОН",
+      "ukrainian": "відносини, стосунки",
+      "example_es": "Tenemos una buena relación.",
+      "example_uk": "У нас хороші стосунки.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la revolución",
+      "pronunciation": "ла революсіОН",
+      "ukrainian": "революція",
+      "example_es": "La revolución cambió el país.",
+      "example_uk": "Революція змінила країну.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la versión",
+      "pronunciation": "ла верСІон",
+      "ukrainian": "версія",
+      "example_es": "¿Qué versión tienes?",
+      "example_uk": "Яка у тебе версія?",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la decisión",
+      "pronunciation": "ла десісіОН",
+      "ukrainian": "рішення",
+      "example_es": "Es una decisión difícil.",
+      "example_uk": "Це важке рішення.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la información",
+      "pronunciation": "ла інформасіОН",
+      "ukrainian": "інформація",
+      "example_es": "Necesito información sobre eso.",
+      "example_uk": "Мені потрібна інформація про це.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la tía",
+      "pronunciation": "ла ТІа",
+      "ukrainian": "тітка",
+      "example_es": "Mi tía vive en Barcelona.",
+      "example_uk": "Моя тітка живе в Барселоні.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el tío",
+      "pronunciation": "ель ТІо",
+      "ukrainian": "дядько",
+      "example_es": "Mi tío es médico.",
+      "example_uk": "Мій дядько — лікар.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el planeta",
+      "pronunciation": "ель пляНЕта",
+      "ukrainian": "планета (виняток: el!)",
+      "example_es": "La Tierra es un planeta.",
+      "example_uk": "Земля — це планета.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el día",
+      "pronunciation": "ель ДІа",
+      "ukrainian": "день (виняток: el!)",
+      "example_es": "Hoy es un buen día.",
+      "example_uk": "Сьогодні гарний день.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el mapa",
+      "pronunciation": "ель МАпа",
+      "ukrainian": "карта (виняток: el!)",
+      "example_es": "Mira el mapa.",
+      "example_uk": "Подивись на карту.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el idioma",
+      "pronunciation": "ель ідіОма",
+      "ukrainian": "мова (виняток: el!)",
+      "example_es": "El español es un idioma hermoso.",
+      "example_uk": "Іспанська — красива мова.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la mano",
+      "pronunciation": "ла МАно",
+      "ukrainian": "рука (виняток: la!)",
+      "example_es": "Dame la mano.",
+      "example_uk": "Дай мені руку.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la foto",
+      "pronunciation": "ла ФОто",
+      "ukrainian": "фото (скор. fotografía)",
+      "example_es": "Esta foto es muy bonita.",
+      "example_uk": "Це фото дуже гарне.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la moto",
+      "pronunciation": "ла МОто",
+      "ukrainian": "мотоцикл (скор. motocicleta)",
+      "example_es": "Voy al trabajo en moto.",
+      "example_uk": "Я їжджу на роботу на мотоциклі.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la bici",
+      "pronunciation": "ла БІсі",
+      "ukrainian": "велосипед (скор. bicicleta)",
+      "example_es": "Me gusta montar en bici.",
+      "example_uk": "Я люблю їздити на велосипеді.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el problema",
+      "pronunciation": "ель проБЛЕма",
+      "ukrainian": "проблема (el, бо грецьке -ma)",
+      "example_es": "Tengo un problema.",
+      "example_uk": "У мене є проблема.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el dilema",
+      "pronunciation": "ель діЛЕма",
+      "ukrainian": "дилема (el, бо грецьке -ma)",
+      "example_es": "Es un dilema difícil.",
+      "example_uk": "Це важка дилема.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el sistema",
+      "pronunciation": "ель сіСТЕма",
+      "ukrainian": "система (el, бо грецьке -ma)",
+      "example_es": "El sistema funciona bien.",
+      "example_uk": "Система працює добре.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el poema",
+      "pronunciation": "ель поЕма",
+      "ukrainian": "вірш, поема (el, бо грецьке -ma)",
+      "example_es": "Escribe un poema.",
+      "example_uk": "Напиши вірш.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el/la turista",
+      "pronunciation": "ель/ла туРІста",
+      "ukrainian": "турист / туристка",
+      "example_es": "Los turistas visitan Madrid.",
+      "example_uk": "Туристи відвідують Мадрид.",
+      "gender": null,
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el/la estudiante",
+      "pronunciation": "ель/ла естудіАНте",
+      "ukrainian": "студент / студентка",
+      "example_es": "La estudiante estudia mucho.",
+      "example_uk": "Студентка багато навчається.",
+      "gender": null,
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el/la artista",
+      "pronunciation": "ель/ла арТІста",
+      "ukrainian": "художник / художниця",
+      "example_es": "El artista pinta un cuadro.",
+      "example_uk": "Художник малює картину.",
+      "gender": null,
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el/la pariente",
+      "pronunciation": "ель/ла паРЄнте",
+      "ukrainian": "родич / родичка",
+      "example_es": "Tengo muchos parientes.",
+      "example_uk": "У мене багато родичів.",
+      "gender": null,
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el chico",
+      "pronunciation": "ель ЧІко",
+      "ukrainian": "хлопець",
+      "example_es": "El chico estudia español.",
+      "example_uk": "Хлопець вивчає іспанську.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la chica",
+      "pronunciation": "ла ЧІка",
+      "ukrainian": "дівчина",
+      "example_es": "La chica es muy simpática.",
+      "example_uk": "Дівчина дуже симпатична.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el hombre",
+      "pronunciation": "ель ОМбре",
+      "ukrainian": "чоловік",
+      "example_es": "El hombre trabaja mucho.",
+      "example_uk": "Чоловік багато працює.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la mujer",
+      "pronunciation": "ла муХЕР",
+      "ukrainian": "жінка",
+      "example_es": "La mujer habla español.",
+      "example_uk": "Жінка говорить іспанською.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el abuelo",
+      "pronunciation": "ель абуЕло",
+      "ukrainian": "дідусь",
+      "example_es": "Mi abuelo tiene setenta años.",
+      "example_uk": "Моєму дідусеві сімдесят років.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la abuela",
+      "pronunciation": "ла абуЕла",
+      "ukrainian": "бабуся",
+      "example_es": "Mi abuela cocina muy bien.",
+      "example_uk": "Моя бабуся дуже добре готує.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el jefe",
+      "pronunciation": "ель ХЕфе",
+      "ukrainian": "начальник",
+      "example_es": "El jefe llega a las nueve.",
+      "example_uk": "Начальник приходить о дев'ятій.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la jefa",
+      "pronunciation": "ла ХЕфа",
+      "ukrainian": "начальниця",
+      "example_es": "La jefa habla con el equipo.",
+      "example_uk": "Начальниця говорить з командою.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el conductor",
+      "pronunciation": "ель кондукТОР",
+      "ukrainian": "водій",
+      "example_es": "El conductor para el autobús.",
+      "example_uk": "Водій зупиняє автобус.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la conductora",
+      "pronunciation": "ла кондукТОра",
+      "ukrainian": "водійка",
+      "example_es": "La conductora maneja bien.",
+      "example_uk": "Водійка добре водить.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el profesor",
+      "pronunciation": "ель профеСОР",
+      "ukrainian": "вчитель",
+      "example_es": "El profesor explica la lección.",
+      "example_uk": "Вчитель пояснює урок.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la profesora",
+      "pronunciation": "ла профеСОра",
+      "ukrainian": "вчителька",
+      "example_es": "La profesora habla español.",
+      "example_uk": "Вчителька говорить іспанською.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el señor",
+      "pronunciation": "ель сеНЬОР",
+      "ukrainian": "пан",
+      "example_es": "Buenos días, señor García.",
+      "example_uk": "Доброго ранку, пане Гарсія.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la señora",
+      "pronunciation": "ла сеНЬОра",
+      "ukrainian": "пані",
+      "example_es": "Buenos días, señora López.",
+      "example_uk": "Доброго ранку, пані Лопес.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el padre",
+      "pronunciation": "ель ПАдре",
+      "ukrainian": "батько",
+      "example_es": "Mi padre trabaja en una oficina.",
+      "example_uk": "Мій батько працює в офісі.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la madre",
+      "pronunciation": "ла МАдре",
+      "ukrainian": "мати",
+      "example_es": "Mi madre cocina muy bien.",
+      "example_uk": "Моя мати дуже добре готує.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el primo",
+      "pronunciation": "ель ПРІмо",
+      "ukrainian": "двоюрідний брат",
+      "example_es": "Mi primo vive en Madrid.",
+      "example_uk": "Мій двоюрідний брат живе в Мадриді.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la prima",
+      "pronunciation": "ла ПРІма",
+      "ukrainian": "двоюрідна сестра",
+      "example_es": "Mi prima estudia medicina.",
+      "example_uk": "Моя двоюрідна сестра вивчає медицину.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el príncipe",
+      "pronunciation": "ель ПРІнсіпе",
+      "ukrainian": "принц",
+      "example_es": "El príncipe vive en el palacio.",
+      "example_uk": "Принц живе у палаці.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la princesa",
+      "pronunciation": "ла прінСЕса",
+      "ukrainian": "принцеса",
+      "example_es": "La princesa es muy bella.",
+      "example_uk": "Принцеса дуже гарна.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el rey",
+      "pronunciation": "ель рей",
+      "ukrainian": "король",
+      "example_es": "El rey gobierna el país.",
+      "example_uk": "Король керує країною.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la reina",
+      "pronunciation": "ла РЕйна",
+      "ukrainian": "королева",
+      "example_es": "La reina visita la ciudad.",
+      "example_uk": "Королева відвідує місто.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el director",
+      "pronunciation": "ель дірекТОР",
+      "ukrainian": "директор",
+      "example_es": "El director llega a las ocho.",
+      "example_uk": "Директор приходить о восьмій.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la directora",
+      "pronunciation": "ла дірекТОра",
+      "ukrainian": "директорка",
+      "example_es": "La directora firma los documentos.",
+      "example_uk": "Директорка підписує документи.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el actor",
+      "pronunciation": "ель акТОР",
+      "ukrainian": "актор",
+      "example_es": "El actor trabaja en Hollywood.",
+      "example_uk": "Актор працює в Голлівуді.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la actriz",
+      "pronunciation": "ла акТРІс",
+      "ukrainian": "акторка",
+      "example_es": "La actriz gana el premio.",
+      "example_uk": "Акторка отримує нагороду.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el/la cantante",
+      "pronunciation": "ель/ла канТАНте",
+      "ukrainian": "співак / співачка",
+      "example_es": "El cantante canta muy bien.",
+      "example_uk": "Співак дуже добре співає.",
+      "gender": null,
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el/la testigo",
+      "pronunciation": "ель/ла тесТІго",
+      "ukrainian": "свідок",
+      "example_es": "El testigo habla en el tribunal.",
+      "example_uk": "Свідок говорить у суді.",
+      "gender": null,
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el doctor",
+      "pronunciation": "ель докТОР",
+      "ukrainian": "лікар",
+      "example_es": "El doctor examina al paciente.",
+      "example_uk": "Лікар оглядає пацієнта.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la doctora",
+      "pronunciation": "ла докТОра",
+      "ukrainian": "лікарка",
+      "example_es": "La doctora es muy amable.",
+      "example_uk": "Лікарка дуже доброзичлива.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la perra",
+      "pronunciation": "ла ПЕРа",
+      "ukrainian": "собака (самиця)",
+      "example_es": "La perra tiene tres cachorros.",
+      "example_uk": "Собака має трьох цуценят.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el toro",
+      "pronunciation": "ель ТОро",
+      "ukrainian": "бик",
+      "example_es": "El toro es muy grande.",
+      "example_uk": "Бик дуже великий.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la vaca",
+      "pronunciation": "ла ВАка",
+      "ukrainian": "корова",
+      "example_es": "La vaca da leche.",
+      "example_uk": "Корова дає молоко.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la leona",
+      "pronunciation": "ла леОна",
+      "ukrainian": "левиця",
+      "example_es": "La leona cuida a sus crías.",
+      "example_uk": "Левиця піклується про своїх дитинчат.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el tigre",
+      "pronunciation": "ель ТІгре",
+      "ukrainian": "тигр",
+      "example_es": "El tigre corre muy rápido.",
+      "example_uk": "Тигр бігає дуже швидко.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la tigresa",
+      "pronunciation": "ла тіГРЕса",
+      "ukrainian": "тигриця",
+      "example_es": "La tigresa protege a sus cachorros.",
+      "example_uk": "Тигриця захищає своїх дитинчат.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el elefante",
+      "pronunciation": "ель елеФАНте",
+      "ukrainian": "слон",
+      "example_es": "El elefante es el animal más grande.",
+      "example_uk": "Слон — найбільша тварина.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la camisa",
+      "pronunciation": "ла каМІса",
+      "ukrainian": "сорочка",
+      "example_es": "La camisa es azul.",
+      "example_uk": "Сорочка синя.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el baile",
+      "pronunciation": "ель БАйле",
+      "ukrainian": "танець",
+      "example_es": "El baile flamenco es precioso.",
+      "example_uk": "Танець фламенко прекрасний.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la televisión",
+      "pronunciation": "ла телевісіОН",
+      "ukrainian": "телевізор",
+      "example_es": "La televisión está en la sala.",
+      "example_uk": "Телевізор у вітальні.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el café",
+      "pronunciation": "ель каФЕ",
+      "ukrainian": "кава; кафе",
+      "example_es": "Me gusta el café con leche.",
+      "example_uk": "Я люблю каву з молоком.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el colegio",
+      "pronunciation": "ель коЛЕхіо",
+      "ukrainian": "школа",
+      "example_es": "Los niños van al colegio.",
+      "example_uk": "Діти йдуть до школи.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el mes",
+      "pronunciation": "ель мес",
+      "ukrainian": "місяць (календарний)",
+      "example_es": "Enero es el primer mes del año.",
+      "example_uk": "Січень — перший місяць року.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el ojo",
+      "pronunciation": "ель Охо",
+      "ukrainian": "око",
+      "example_es": "Tiene los ojos azules.",
+      "example_uk": "Вона має блакитні очі.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el sillón",
+      "pronunciation": "ель сілЬОН",
+      "ukrainian": "крісло",
+      "example_es": "El sillón es muy cómodo.",
+      "example_uk": "Крісло дуже зручне.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la fotografía",
+      "pronunciation": "ла фотограФІа",
+      "ukrainian": "фотографія",
+      "example_es": "La fotografía es muy bonita.",
+      "example_uk": "Фотографія дуже гарна.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el papel",
+      "pronunciation": "ель паПЕЛЬ",
+      "ukrainian": "папір",
+      "example_es": "Necesito un papel y un bolígrafo.",
+      "example_uk": "Мені потрібні папір і ручка.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el cargador",
+      "pronunciation": "ель каргаДОР",
+      "ukrainian": "зарядний пристрій",
+      "example_es": "¿Dónde está el cargador?",
+      "example_uk": "Де зарядний пристрій?",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el plan",
+      "pronunciation": "ель план",
+      "ukrainian": "план",
+      "example_es": "Tengo un plan para el fin de semana.",
+      "example_uk": "У мене є план на вихідні.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el semáforo",
+      "pronunciation": "ель сеМАфоро",
+      "ukrainian": "світлофор",
+      "example_es": "El semáforo está en rojo.",
+      "example_uk": "Світлофор червоний.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "el automóvil",
+      "pronunciation": "ель аутоМОвіль",
+      "ukrainian": "автомобіль",
+      "example_es": "El automóvil es muy rápido.",
+      "example_uk": "Автомобіль дуже швидкий.",
+      "gender": "m",
+      "part_of_speech": "іменник"
+    },
+    {
+      "spanish": "la música",
+      "pronunciation": "ла МУсіка",
+      "ukrainian": "музика",
+      "example_es": "Me gusta la música española.",
+      "example_uk": "Мені подобається іспанська музика.",
+      "gender": "f",
+      "part_of_speech": "іменник"
+    }
   ]
 }

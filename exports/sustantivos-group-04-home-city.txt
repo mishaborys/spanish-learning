@@ -1,0 +1,10 @@
+la cocina	кухня
+el baño	ванна кімната
+la puerta	двері
+la habitación	кімната
+la calle	вулиця
+el mercado	ринок
+el hospital	лікарня
+la tienda	магазин
+el aeropuerto	аеропорт
+el trabajo	робота

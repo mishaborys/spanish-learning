@@ -1,0 +1,10 @@
+la ropa	одяг
+el zapato	взуття
+el reloj	годинник
+la llave	ключ
+la bolsa	сумка
+el vestido	плаття
+la película	фільм
+el juego	гра
+el deporte	спорт
+el fútbol	футбол

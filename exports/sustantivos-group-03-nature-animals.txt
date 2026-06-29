@@ -1,0 +1,12 @@
+el mar	море
+la montaña	гора
+el río	річка
+el cielo	небо
+la flor	квітка
+el toro	бик
+la vaca	корова
+la perra	собака (самиця)
+la leona	левиця
+el tigre	тигр
+la tigresa	тигриця
+el elefante	слон
