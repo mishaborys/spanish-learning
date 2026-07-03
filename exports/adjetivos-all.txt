@@ -1,0 +1,36 @@
+grande	великий
+pequeño	маленький
+alto	високий
+bajo	низький
+largo	довгий
+corto	короткий
+nuevo	новий
+viejo	старий
+joven	молодий
+mayor	старший
+rico	багатий
+pobre	бідний
+caro	дорогий
+barato	дешевий
+rápido	швидкий
+lento	повільний
+alegre	веселий
+triste	сумний
+bonito	гарний
+feo	некрасивий
+interesante	цікавий
+aburrido	нудний
+fácil	легкий
+difícil	важкий / складний
+inteligente	розумний
+tonto	дурний
+trabajador	працьовитий
+vago	ледачий
+delgado / flaco	худий
+gordo	товстий
+limpio	чистий
+sucio	брудний
+frío	холодний
+caliente	гарячий
+bueno	хороший
+malo	поганий

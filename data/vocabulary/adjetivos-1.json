@@ -1,0 +1,201 @@
+{
+  "id": "adjetivos-1",
+  "title": "Прикметники — Adjetivos (1–10)",
+  "description": "Протилежні прикметники: розмір, вік, якість, почуття",
+  "groups": [
+    {
+      "id": "adj1-size-age",
+      "title": "Розмір і вік",
+      "emoji": "📏",
+      "words": [
+        {
+          "spanish": "grande",
+          "ukrainian": "великий",
+          "pronunciation": "ҐРАНде",
+          "emoji": "🐘",
+          "sound_association": "«ҐРАНД» — grand piano великий",
+          "example_es": "El elefante es muy grande.",
+          "example_uk": "Слон дуже великий."
+        },
+        {
+          "spanish": "pequeño",
+          "ukrainian": "маленький",
+          "pronunciation": "пеКЕНьо",
+          "emoji": "🐭",
+          "sound_association": "«пеКЕНьо» — ПЕКельно маленький",
+          "example_es": "El ratón es pequeño.",
+          "example_uk": "Миша маленька."
+        },
+        {
+          "spanish": "alto",
+          "ukrainian": "високий",
+          "pronunciation": "АЛЬто",
+          "emoji": "🏔️",
+          "sound_association": "«АЛЬто» — ALT-клавіша вгорі клавіатури",
+          "example_es": "Mi hermano es muy alto.",
+          "example_uk": "Мій брат дуже високий."
+        },
+        {
+          "spanish": "bajo",
+          "ukrainian": "низький",
+          "pronunciation": "БАхо",
+          "emoji": "🏊",
+          "sound_association": "«БАхо» — БАС (низький звук)",
+          "example_es": "La mesa es baja.",
+          "example_uk": "Стіл низький."
+        },
+        {
+          "spanish": "largo",
+          "ukrainian": "довгий",
+          "pronunciation": "ЛАРґо",
+          "emoji": "🐍",
+          "sound_association": "«ЛАРГО» — музичний темп Largo, довга пауза",
+          "example_es": "La serpiente es muy larga.",
+          "example_uk": "Змія дуже довга."
+        },
+        {
+          "spanish": "corto",
+          "ukrainian": "короткий",
+          "pronunciation": "КОРто",
+          "emoji": "✂️",
+          "sound_association": "«КОРто» — КОРТо, маленький корт",
+          "example_es": "El camino es corto.",
+          "example_uk": "Дорога коротка."
+        },
+        {
+          "spanish": "nuevo",
+          "ukrainian": "новий",
+          "pronunciation": "НУЕво",
+          "emoji": "🆕",
+          "sound_association": "«НУЕво» — NEW (новий по-англійськи)",
+          "example_es": "Tengo un coche nuevo.",
+          "example_uk": "У мене нова машина."
+        },
+        {
+          "spanish": "viejo",
+          "ukrainian": "старий",
+          "pronunciation": "В'Єхо",
+          "emoji": "🏚️",
+          "sound_association": "«В'Єхо» — В'ЄЖА старого замку",
+          "example_es": "Este edificio es muy viejo.",
+          "example_uk": "Ця будівля дуже стара."
+        },
+        {
+          "spanish": "joven",
+          "ukrainian": "молодий",
+          "pronunciation": "ХОвен",
+          "emoji": "🧒",
+          "sound_association": "«ХОвен» — ХОВАЄТЬСЯ, ще малий",
+          "example_es": "Mi profesor es joven.",
+          "example_uk": "Мій вчитель молодий."
+        },
+        {
+          "spanish": "mayor",
+          "ukrainian": "старший / старий",
+          "pronunciation": "маЙОР",
+          "emoji": "👴",
+          "sound_association": "«маЙОР» — МАЙОР вищого рангу, старший за званням",
+          "example_es": "Mi abuelo es mayor.",
+          "example_uk": "Мій дідусь старший."
+        }
+      ]
+    },
+    {
+      "id": "adj1-quality-feeling",
+      "title": "Якість і почуття",
+      "emoji": "💛",
+      "words": [
+        {
+          "spanish": "rico",
+          "ukrainian": "багатий",
+          "pronunciation": "РІко",
+          "emoji": "💰",
+          "sound_association": "«РІко» — РІКО де Жанейро, багаті пляжі",
+          "example_es": "El empresario es muy rico.",
+          "example_uk": "Підприємець дуже багатий."
+        },
+        {
+          "spanish": "pobre",
+          "ukrainian": "бідний",
+          "pronunciation": "ПОбре",
+          "emoji": "😔",
+          "sound_association": "«ПОбре» — ПОБРяний, нічого немає",
+          "example_es": "El estudiante es pobre.",
+          "example_uk": "Студент бідний."
+        },
+        {
+          "spanish": "caro",
+          "ukrainian": "дорогий",
+          "pronunciation": "КАро",
+          "emoji": "💎",
+          "sound_association": "«КАро» — CAR (дорога машина)",
+          "example_es": "Este restaurante es muy caro.",
+          "example_uk": "Цей ресторан дуже дорогий."
+        },
+        {
+          "spanish": "barato",
+          "ukrainian": "дешевий",
+          "pronunciation": "баРАто",
+          "emoji": "🏷️",
+          "sound_association": "«баРАто» — БАРАТО (bargain, вигідна покупка)",
+          "example_es": "La ropa es barata.",
+          "example_uk": "Одяг дешевий."
+        },
+        {
+          "spanish": "rápido",
+          "ukrainian": "швидкий",
+          "pronunciation": "РАпідо",
+          "emoji": "🏎️",
+          "sound_association": "«РАпідо» — RAPID, швидко",
+          "example_es": "El tren es muy rápido.",
+          "example_uk": "Потяг дуже швидкий."
+        },
+        {
+          "spanish": "lento",
+          "ukrainian": "повільний",
+          "pronunciation": "ЛЕНто",
+          "emoji": "🐢",
+          "sound_association": "«ЛЕНто» — ЛЕНТО (музичний темп, повільно)",
+          "example_es": "La tortuga es lenta.",
+          "example_uk": "Черепаха повільна."
+        },
+        {
+          "spanish": "alegre",
+          "ukrainian": "веселий",
+          "pronunciation": "аЛЕґре",
+          "emoji": "😄",
+          "sound_association": "«аЛЕґре» — АЛЕГРО, весела швидка музика",
+          "example_es": "Los niños están alegres.",
+          "example_uk": "Діти веселі."
+        },
+        {
+          "spanish": "triste",
+          "ukrainian": "сумний",
+          "pronunciation": "ТРІСте",
+          "emoji": "😢",
+          "sound_association": "«ТРІСте» — ТРИСТИЙ (triste = сум)",
+          "example_es": "Estoy triste hoy.",
+          "example_uk": "Сьогодні мені сумно."
+        },
+        {
+          "spanish": "bonito",
+          "ukrainian": "гарний",
+          "pronunciation": "боНІто",
+          "emoji": "🌸",
+          "sound_association": "«боНІто» — BON (добре, гарне по-французьки)",
+          "example_es": "Qué bonito día hace hoy.",
+          "example_uk": "Який гарний сьогодні день."
+        },
+        {
+          "spanish": "feo",
+          "ukrainian": "некрасивий",
+          "pronunciation": "ФЕо",
+          "emoji": "🙈",
+          "sound_association": "«ФЕо» — ФЕ (фе, некрасиво!)",
+          "example_es": "Ese edificio es muy feo.",
+          "example_uk": "Та будівля дуже некрасива."
+        }
+      ]
+    }
+  ]
+}

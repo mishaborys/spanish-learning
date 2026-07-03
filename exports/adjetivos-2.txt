@@ -1,0 +1,16 @@
+interesante	цікавий
+aburrido	нудний
+fácil	легкий
+difícil	важкий / складний
+inteligente	розумний
+tonto	дурний
+trabajador	працьовитий
+vago	ледачий
+delgado / flaco	худий
+gordo	товстий
+limpio	чистий
+sucio	брудний
+frío	холодний
+caliente	гарячий
+bueno	хороший
+malo	поганий

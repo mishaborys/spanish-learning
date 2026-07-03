@@ -1,0 +1,69 @@
+{
+  "id": "lesson-07",
+  "title": "Урок 7 — ¿Cómo eres?",
+  "due_date": "2026-07-07",
+  "audio": [],
+  "exercises": [
+    {
+      "id": "A",
+      "label": "A",
+      "instruction": "Lee los textos y completa los perfiles con los adjetivos del recuadro.",
+      "instruction_uk": "Прочитай тексти та заповни профілі прикметниками зі словника.",
+      "type": "fill-form",
+      "word_bank": ["alegre", "inteligente", "trabajadora", "triste", "gordo", "vago", "aburrido", "rico", "bonito", "rápido", "fácil", "joven"],
+      "people": [
+        {
+          "nombre": "María",
+          "apellido": "Sánchez",
+          "correo": "maria.sanchez@gmail.com",
+          "fields": [
+            { "id": "m-1", "label": "Siempre sonríe. Es muy...",          "answer": "alegre" },
+            { "id": "m-2", "label": "Saca muy buenas notas. Es...",       "answer": "inteligente" },
+            { "id": "m-3", "label": "Mide 1,78 m. Es...",                 "answer": "alta",         "given": true },
+            { "id": "m-4", "label": "Hace deporte todos los días. Es...", "answer": "delgada",      "given": true },
+            { "id": "m-5", "label": "Trabaja 10 horas al día. Es...",     "answer": "trabajadora" }
+          ]
+        },
+        {
+          "nombre": "Carlos",
+          "apellido": "Ruiz",
+          "correo": "c.ruiz@hotmail.com",
+          "fields": [
+            { "id": "c-1", "label": "Nunca sonríe. Está...",                            "answer": "triste" },
+            { "id": "c-2", "label": "Mide 1,62 m. Es...",                               "answer": "bajo",    "given": true },
+            { "id": "c-3", "label": "Come mucho y no hace deporte. Es...",              "answer": "gordo" },
+            { "id": "c-4", "label": "Prefiere dormir que trabajar. Es...",              "answer": "vago" },
+            { "id": "c-5", "label": "Sus clases no interesan a nadie. Es muy...",      "answer": "aburrido" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "label": "B",
+      "instruction": "¿Cuál es el contrario? Relaciona cada adjetivo con su antónimo.",
+      "instruction_uk": "Знайди антонім — протилежне слово. Постав номер правильного антоніма.",
+      "type": "match-category",
+      "categories": [
+        { "id": 1, "text": "grande" },
+        { "id": 2, "text": "alto" },
+        { "id": 3, "text": "nuevo" },
+        { "id": 4, "text": "alegre" },
+        { "id": 5, "text": "rico" },
+        { "id": 6, "text": "rápido" },
+        { "id": 7, "text": "limpio" },
+        { "id": 8, "text": "bueno" }
+      ],
+      "questions": [
+        { "id": "b1", "text": "pequeño",  "answer": 1 },
+        { "id": "b2", "text": "bajo",     "answer": 2 },
+        { "id": "b3", "text": "viejo",    "answer": 3 },
+        { "id": "b4", "text": "triste",   "answer": 4 },
+        { "id": "b5", "text": "pobre",    "answer": 5 },
+        { "id": "b6", "text": "lento",    "answer": 6 },
+        { "id": "b7", "text": "sucio",    "answer": 7 },
+        { "id": "b8", "text": "malo",     "answer": 8 }
+      ]
+    }
+  ]
+}
