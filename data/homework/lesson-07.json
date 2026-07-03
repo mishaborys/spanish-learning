@@ -7,33 +7,37 @@
     {
       "id": "A",
       "label": "A",
-      "instruction": "Lee los textos y completa los perfiles con los adjetivos del recuadro.",
-      "instruction_uk": "Прочитай тексти та заповни профілі прикметниками зі словника.",
+      "instruction": "¿Cómo eres tú? ¿Cómo es tu mejor amigo/a? Elige los adjetivos del recuadro y completa las frases.",
+      "instruction_uk": "Опиши себе і свого найкращого друга/подругу. Вибирай прикметники зі словника та підстав у речення.",
       "type": "fill-form",
-      "word_bank": ["alegre", "inteligente", "trabajadora", "triste", "gordo", "vago", "aburrido", "rico", "bonito", "rápido", "fácil", "joven"],
+      "free_choice": true,
+      "word_bank": [
+        "alegre", "triste", "alto", "bajo", "delgado", "gordo", "inteligente", "tonto",
+        "trabajador", "vago", "rico", "pobre", "simpático", "antipático", "serio", "gracioso",
+        "joven", "mayor", "bonito", "feo", "rápido", "lento", "bueno", "malo",
+        "interesante", "aburrido", "limpio", "sucio", "nuevo", "viejo"
+      ],
       "people": [
         {
-          "nombre": "María",
-          "apellido": "Sánchez",
-          "correo": "maria.sanchez@gmail.com",
+          "nombre": "🙋 Yo",
+          "apellido": "",
+          "correo": null,
           "fields": [
-            { "id": "m-1", "label": "Siempre sonríe. Es muy...",          "answer": "alegre" },
-            { "id": "m-2", "label": "Saca muy buenas notas. Es...",       "answer": "inteligente" },
-            { "id": "m-3", "label": "Mide 1,78 m. Es...",                 "answer": "alta",         "given": true },
-            { "id": "m-4", "label": "Hace deporte todos los días. Es...", "answer": "delgada",      "given": true },
-            { "id": "m-5", "label": "Trabaja 10 horas al día. Es...",     "answer": "trabajadora" }
+            { "id": "yo-1", "label": "Yo soy...",         "answer": "" },
+            { "id": "yo-2", "label": "También soy...",    "answer": "" },
+            { "id": "yo-3", "label": "Y además soy...",   "answer": "" },
+            { "id": "yo-4", "label": "No soy...",         "answer": "" }
           ]
         },
         {
-          "nombre": "Carlos",
-          "apellido": "Ruiz",
-          "correo": "c.ruiz@hotmail.com",
+          "nombre": "👥 Mi mejor amigo/a",
+          "apellido": "",
+          "correo": null,
           "fields": [
-            { "id": "c-1", "label": "Nunca sonríe. Está...",                            "answer": "triste" },
-            { "id": "c-2", "label": "Mide 1,62 m. Es...",                               "answer": "bajo",    "given": true },
-            { "id": "c-3", "label": "Come mucho y no hace deporte. Es...",              "answer": "gordo" },
-            { "id": "c-4", "label": "Prefiere dormir que trabajar. Es...",              "answer": "vago" },
-            { "id": "c-5", "label": "Sus clases no interesan a nadie. Es muy...",      "answer": "aburrido" }
+            { "id": "fr-1", "label": "Mi mejor amigo/a es...", "answer": "" },
+            { "id": "fr-2", "label": "También es...",          "answer": "" },
+            { "id": "fr-3", "label": "Y además es...",         "answer": "" },
+            { "id": "fr-4", "label": "No es...",               "answer": "" }
           ]
         }
       ]

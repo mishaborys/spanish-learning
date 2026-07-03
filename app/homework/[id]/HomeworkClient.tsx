@@ -8,8 +8,8 @@ import Link from "next/link";
 type AudioEntry = { label: string; src: string };
 
 type FormField  = { id: string; label: string; answer: string; given?: boolean };
-type PersonData = { nombre: string | null; apellido: string; correo: string; edad?: string; fields: FormField[] };
-type ExerciseA  = { id: string; label: string; instruction: string; instruction_uk?: string; type: "fill-form"; word_bank: string[]; people: PersonData[] };
+type PersonData = { nombre: string | null; apellido: string; correo: string | null; edad?: string; fields: FormField[] };
+type ExerciseA  = { id: string; label: string; instruction: string; instruction_uk?: string; type: "fill-form"; word_bank: string[]; people: PersonData[]; free_choice?: boolean };
 
 type Category   = { id: number; text: string };
 type MatchQ     = { id: string; text: string; answer: number };
@@ -78,7 +78,8 @@ function ExerciseAComponent({ ex, storageKey }: { ex: ExerciseA; storageKey: str
   const [selected, setSelected] = useState<string | null>(null);
   const [checked, setChecked] = useState(false);
 
-  const usedWords = new Set(Object.values(answers));
+  const free = !!ex.free_choice;
+  const usedWords = free ? new Set<string>() : new Set(Object.values(answers));
 
   const fill = (fieldId: string) => {
     if (!selected) return;
@@ -131,28 +132,28 @@ function ExerciseAComponent({ ex, storageKey }: { ex: ExerciseA; storageKey: str
 
       {ex.people.map((person, pi) => (
         <div key={pi} className="rounded-2xl border bg-card overflow-hidden">
-          <div className="bg-muted/50 px-4 py-2 flex items-center gap-2">
+          <div className="bg-muted/50 px-4 py-3 flex items-center gap-2">
             <span className="text-sm font-semibold">
-              {person.nombre ?? "___"} {person.apellido}
+              {person.nombre ?? "___"}{person.apellido ? ` ${person.apellido}` : ""}
             </span>
             {person.correo && (
               <span className="text-xs text-muted-foreground ml-auto">{person.correo}</span>
             )}
           </div>
-          <div className="p-3 grid grid-cols-2 gap-2">
+          <div className="p-3 space-y-2">
             {person.fields.map(field => {
               const val = field.given ? field.answer : (answers[field.id] ?? "");
-              const isCorrect = checked && val === field.answer;
-              const isWrong   = checked && val && val !== field.answer;
+              const isCorrect = !free && checked && val === field.answer;
+              const isWrong   = !free && checked && val && val !== field.answer;
               return (
-                <div key={field.id} className="space-y-0.5">
-                  <p className="text-[10px] font-medium text-muted-foreground">{field.label}</p>
+                <div key={field.id} className={free ? "flex items-center gap-2" : "space-y-0.5"}>
+                  <p className={`text-sm ${free ? "text-foreground min-w-0 flex-1" : "text-[10px] font-medium text-muted-foreground"}`}>{field.label}</p>
                   {field.given ? (
                     <div className="rounded-lg bg-muted/40 px-3 py-1.5 text-sm">{val}</div>
                   ) : (
                     <button
                       onClick={() => val ? clear(field.id) : fill(field.id)}
-                      className={`w-full rounded-lg px-3 py-1.5 text-sm text-left border-2 transition-all min-h-[36px] ${
+                      className={`${free ? "shrink-0 min-w-[110px]" : "w-full"} rounded-lg px-3 py-1.5 text-sm text-left border-2 transition-all min-h-[36px] ${
                         isCorrect ? "border-green-500 bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300" :
                         isWrong   ? "border-destructive bg-destructive/8 text-destructive" :
                         val       ? "border-primary/40 bg-primary/5 font-medium" :
@@ -160,7 +161,7 @@ function ExerciseAComponent({ ex, storageKey }: { ex: ExerciseA; storageKey: str
                                     "border-dashed border-border text-muted-foreground/40"
                       }`}>
                       {val || (selected ? "← вставити" : "___")}
-                      {val && !field.given && !checked && (
+                      {val && !field.given && (
                         <span className="float-right text-muted-foreground/50 text-xs">✕</span>
                       )}
                     </button>
@@ -173,19 +174,41 @@ function ExerciseAComponent({ ex, storageKey }: { ex: ExerciseA; storageKey: str
       ))}
 
       <div className="flex gap-3">
-        <button onClick={() => setChecked(true)} disabled={!allFilled || checked}
-          className={`flex-1 min-h-[48px] rounded-2xl text-sm font-medium transition-all ${
-            allFilled && !checked
-              ? "bg-primary text-primary-foreground hover:opacity-90"
-              : "bg-muted text-muted-foreground cursor-not-allowed"
-          }`}>
-          {checked ? "Перевірено ✓" : "Перевірити"}
-        </button>
-        {checked && (
-          <button onClick={() => { setAnswers({}); setChecked(false); localStorage.removeItem(storageKey); }}
-            className="px-4 min-h-[48px] rounded-2xl border text-sm text-muted-foreground hover:text-foreground transition-all">
-            Скинути
-          </button>
+        {free ? (
+          <>
+            <button onClick={() => { setChecked(true); localStorage.setItem(storageKey, JSON.stringify(answers)); }}
+              disabled={!allFilled || checked}
+              className={`flex-1 min-h-[48px] rounded-2xl text-sm font-medium transition-all ${
+                allFilled && !checked
+                  ? "bg-primary text-primary-foreground hover:opacity-90"
+                  : "bg-muted text-muted-foreground cursor-not-allowed"
+              }`}>
+              {checked ? "Збережено ✓" : "Зберегти"}
+            </button>
+            {checked && (
+              <button onClick={() => { setAnswers({}); setChecked(false); localStorage.removeItem(storageKey); }}
+                className="px-4 min-h-[48px] rounded-2xl border text-sm text-muted-foreground hover:text-foreground transition-all">
+                Скинути
+              </button>
+            )}
+          </>
+        ) : (
+          <>
+            <button onClick={() => setChecked(true)} disabled={!allFilled || checked}
+              className={`flex-1 min-h-[48px] rounded-2xl text-sm font-medium transition-all ${
+                allFilled && !checked
+                  ? "bg-primary text-primary-foreground hover:opacity-90"
+                  : "bg-muted text-muted-foreground cursor-not-allowed"
+              }`}>
+              {checked ? "Перевірено ✓" : "Перевірити"}
+            </button>
+            {checked && (
+              <button onClick={() => { setAnswers({}); setChecked(false); localStorage.removeItem(storageKey); }}
+                className="px-4 min-h-[48px] rounded-2xl border text-sm text-muted-foreground hover:text-foreground transition-all">
+                Скинути
+              </button>
+            )}
+          </>
         )}
       </div>
     </div>
