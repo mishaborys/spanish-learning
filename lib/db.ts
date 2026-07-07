@@ -18,6 +18,7 @@ export type Topic = {
   slug: string;
   grammar_text: string;
   display_order: number;
+  fill_words: string[] | null;
   created_at: string;
 };
 

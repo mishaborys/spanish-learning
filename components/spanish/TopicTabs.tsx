@@ -19,9 +19,9 @@ const FILL_TAB: { id: Tab; label: string; emoji: string } =
 
 const VERB_RE = /^.+(ar|er|ir)$/i;
 
-type Props = { grammarText: string; words: Word[] };
+type Props = { grammarText: string; words: Word[]; fillWords?: string[] };
 
-export function TopicTabs({ grammarText, words }: Props) {
+export function TopicTabs({ grammarText, words, fillWords }: Props) {
   const isVerbTopic = useMemo(() => {
     const n = words.filter(w => VERB_RE.test(w.spanish)).length;
     return n > words.length * 0.7;
@@ -79,7 +79,7 @@ export function TopicTabs({ grammarText, words }: Props) {
 
       {tab === "cards" && <FlashCards words={words} />}
       {tab === "quiz"  && <Quiz words={words} />}
-      {tab === "fill"  && <FillInBlank words={words} />}
+      {tab === "fill"  && <FillInBlank words={fillWords ? words.filter(w => fillWords.includes(w.spanish)) : words} />}
     </div>
   );
 }

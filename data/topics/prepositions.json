@@ -1,0 +1,143 @@
+{
+  "title": "Прийменники та сполучники",
+  "slug": "prepositions",
+  "display_order": 7,
+  "grammar_text": "<h2>Прийменники та сполучники</h2><p>Ці маленькі слова з'єднують решту слів у речення. Вони не відмінюються — просто запам'ятовуємо та використовуємо.</p><h3>Y — і, та</h3><p>Сполучник, який об'єднує два слова або дві частини речення.</p><table><tr><th>Іспанська</th><th>Українська</th></tr><tr><td>yo <strong>y</strong> tú</td><td>я <strong>і</strong> ти</td></tr><tr><td>café <strong>y</strong> leche</td><td>кава <strong>і</strong> молоко</td></tr></table><h3>DE — з, від, про (приналежність і походження)</h3><p><strong>DE</strong> — найуживаніший прийменник іспанської. Три головні значення:</p><ul><li><strong>Приналежність</strong> (чиє?): la casa <em>de</em> mi amigo — будинок мого друга</li><li><strong>Походження</strong> (звідки?): Samsung es <em>de</em> Corea — Samsung з Кореї</li><li><strong>Тема / склад</strong> (про що? з чого?): la clase <em>de</em> español — урок іспанської</li></ul><table><tr><th>Іспанська</th><th>Українська</th></tr><tr><td>la casa <strong>de</strong> mi amigo</td><td>будинок мого друга</td></tr><tr><td>la clase <strong>de</strong> español</td><td>урок іспанської</td></tr><tr><td>el cumpleaños <strong>de</strong> mi madre</td><td>день народження моєї мами</td></tr><tr><td>Samsung es <strong>de</strong> Corea</td><td>Samsung з Кореї</td></tr><tr><td>la paella es <strong>de</strong> Valencia</td><td>пайелья з Валенсії</td></tr><tr><td>la parte <strong>del</strong> proyecto</td><td>частина проекту</td></tr><tr><td>el día <strong>de</strong> la playa</td><td>день на пляжі</td></tr></table><p>⚠️ <strong>de + el = del</strong> (скорочення обов'язкове): parte <em>del</em> proyecto, después <em>del</em> trabajo.</p><h3>A — до, в, на (напрямок і час)</h3><p><strong>A</strong> вказує на напрямок або адресата дії — «до кого / чого».</p><table><tr><th>Іспанська</th><th>Українська</th></tr><tr><td>Voy <strong>a</strong> la tienda</td><td>Іду до магазину</td></tr><tr><td>Llamo <strong>a</strong> mi amigo</td><td>Дзвоню другу (адресат)</td></tr><tr><td><strong>a</strong> las tres</td><td>о третій годині</td></tr></table><h3>CON vs SIN — з / без</h3><p>Пара прийменників-антонімів. Вказує що є або чого немає у складі.</p><table><tr><th>Іспанська</th><th>Українська</th></tr><tr><td>un café <strong>con</strong> leche</td><td>кава <strong>з</strong> молоком</td></tr><tr><td>la sopa <strong>con</strong> carne</td><td>суп <strong>з</strong> м'ясом</td></tr><tr><td>una Coca Cola <strong>sin</strong> azúcar</td><td>Кока-Кола <strong>без</strong> цукру</td></tr><tr><td>un café <strong>sin</strong> leche</td><td>кава <strong>без</strong> молока</td></tr></table><h3>ANTES vs DESPUÉS — до / після</h3><p>Пара часових прийменників-антонімів. Часто вживаються з <strong>de</strong>.</p><table><tr><th>Іспанська</th><th>Українська</th></tr><tr><td><strong>antes</strong></td><td><strong>до</strong>, раніше</td></tr><tr><td><strong>después</strong></td><td><strong>після</strong>, пізніше</td></tr><tr><td><strong>antes de</strong> la clase</td><td><strong>до</strong> уроку</td></tr><tr><td><strong>después de</strong> la clase</td><td><strong>після</strong> уроку</td></tr><tr><td><strong>después del</strong> trabajo</td><td><strong>після</strong> роботи</td></tr><tr><td>antes y después</td><td>до і після</td></tr></table><h3>MEJOR vs PEOR — краще / гірше</h3><p>Порівняльні форми прикметників <em>bueno</em> і <em>malo</em>. Не потрібно додавати «más».</p><table><tr><th>Іспанська</th><th>Українська</th></tr><tr><td><strong>mejor</strong></td><td><strong>краще / кращий</strong></td></tr><tr><td><strong>peor</strong></td><td><strong>гірше / гірший</strong></td></tr><tr><td>mi <strong>mejor</strong> amigo</td><td>мій найкращий друг</td></tr><tr><td>Es <strong>peor</strong> que ayer</td><td>Це гірше ніж учора</td></tr></table><h3>MAYOR — старший / більший</h3><p>Порівняльна форма <em>grande</em>. У контексті людей означає «старший за віком».</p><table><tr><th>Іспанська</th><th>Українська</th></tr><tr><td>mi <strong>mayor</strong> enemigo</td><td>мій найбільший ворог</td></tr><tr><td>mi <strong>mayor</strong> rival</td><td>мій найбільший суперник</td></tr><tr><td>mi hermano <strong>mayor</strong></td><td>мій старший брат</td></tr></table>",
+  "words": [
+    {
+      "spanish": "y",
+      "pronunciation": "і",
+      "ukrainian": "і, та",
+      "example_es": "Yo y tú somos amigos.",
+      "example_uk": "Я і ти — друзі.",
+      "gender": null,
+      "part_of_speech": "сполучник"
+    },
+    {
+      "spanish": "de",
+      "pronunciation": "де",
+      "ukrainian": "з, від, про (приналежність / походження)",
+      "example_es": "La clase de español es interesante.",
+      "example_uk": "Урок іспанської цікавий.",
+      "gender": null,
+      "part_of_speech": "прийменник"
+    },
+    {
+      "spanish": "del (de + el)",
+      "pronunciation": "дель",
+      "ukrainian": "з, від (скорочення de + el)",
+      "example_es": "La parte del proyecto es fácil.",
+      "example_uk": "Частина проекту легка.",
+      "gender": null,
+      "part_of_speech": "прийменник"
+    },
+    {
+      "spanish": "a",
+      "pronunciation": "а",
+      "ukrainian": "до, в, на (напрямок або адресат)",
+      "example_es": "Voy a la tienda.",
+      "example_uk": "Іду до магазину.",
+      "gender": null,
+      "part_of_speech": "прийменник"
+    },
+    {
+      "spanish": "con",
+      "pronunciation": "кон",
+      "ukrainian": "з (разом, у складі)",
+      "example_es": "Un café con leche, por favor.",
+      "example_uk": "Каву з молоком, будь ласка.",
+      "gender": null,
+      "part_of_speech": "прийменник"
+    },
+    {
+      "spanish": "sin",
+      "pronunciation": "сін",
+      "ukrainian": "без",
+      "example_es": "Una Coca Cola sin azúcar.",
+      "example_uk": "Кока-Кола без цукру.",
+      "gender": null,
+      "part_of_speech": "прийменник"
+    },
+    {
+      "spanish": "antes",
+      "pronunciation": "АНтес",
+      "ukrainian": "до, раніше, перед",
+      "example_es": "Antes de la clase tomo un café.",
+      "example_uk": "До уроку я п'ю каву.",
+      "gender": null,
+      "part_of_speech": "прислівник / прийменник"
+    },
+    {
+      "spanish": "después",
+      "pronunciation": "деспуЕС",
+      "ukrainian": "після, потім",
+      "example_es": "Después del trabajo voy a casa.",
+      "example_uk": "Після роботи іду додому.",
+      "gender": null,
+      "part_of_speech": "прислівник / прийменник"
+    },
+    {
+      "spanish": "antes de la clase",
+      "pronunciation": "АНтес де ла КЛАсе",
+      "ukrainian": "до уроку",
+      "example_es": "¿Qué haces antes de la clase?",
+      "example_uk": "Що ти робиш до уроку?",
+      "gender": null,
+      "part_of_speech": "вираз"
+    },
+    {
+      "spanish": "después de la clase",
+      "pronunciation": "деспуЕС де ла КЛАсе",
+      "ukrainian": "після уроку",
+      "example_es": "Después de la clase voy al gimnasio.",
+      "example_uk": "Після уроку іду в спортзал.",
+      "gender": null,
+      "part_of_speech": "вираз"
+    },
+    {
+      "spanish": "mejor",
+      "pronunciation": "меХОР",
+      "ukrainian": "краще, кращий (≠ peor)",
+      "example_es": "Eres mi mejor amigo.",
+      "example_uk": "Ти мій найкращий друг.",
+      "gender": null,
+      "part_of_speech": "прикметник / прислівник"
+    },
+    {
+      "spanish": "peor",
+      "pronunciation": "пеОР",
+      "ukrainian": "гірше, гірший (≠ mejor)",
+      "example_es": "Hoy me siento peor que ayer.",
+      "example_uk": "Сьогодні почуваюся гірше ніж учора.",
+      "gender": null,
+      "part_of_speech": "прикметник / прислівник"
+    },
+    {
+      "spanish": "mayor",
+      "pronunciation": "маЙОР",
+      "ukrainian": "старший / більший (про людей — старший за віком)",
+      "example_es": "Mi hermano mayor es trabajador.",
+      "example_uk": "Мій старший брат працьовитий.",
+      "gender": null,
+      "part_of_speech": "прикметник"
+    },
+    {
+      "spanish": "mi mayor enemigo",
+      "pronunciation": "мі маЙОР енеМІго",
+      "ukrainian": "мій найбільший ворог",
+      "example_es": "El tiempo libre es mi mayor enemigo.",
+      "example_uk": "Вільний час — мій найбільший ворог.",
+      "gender": null,
+      "part_of_speech": "вираз"
+    },
+    {
+      "spanish": "la persona que menos me gusta",
+      "pronunciation": "ла перСОна ке МЕнос ме ҐУста",
+      "ukrainian": "людина, яка мені найменше подобається",
+      "example_es": "Él es la persona que menos me gusta.",
+      "example_uk": "Він — людина, яка мені найменше подобається.",
+      "gender": null,
+      "part_of_speech": "вираз"
+    }
+  ]
+}

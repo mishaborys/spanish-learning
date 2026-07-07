@@ -12,6 +12,7 @@ type TopicData = {
   slug: string;
   display_order: number;
   grammar_text: string;
+  fill_words?: string[];
   words: {
     spanish: string;
     ukrainian: string;
@@ -41,14 +42,15 @@ async function seedTopic(filePath: string) {
       UPDATE topics SET
         title = ${data.title},
         grammar_text = ${data.grammar_text},
-        display_order = ${data.display_order}
+        display_order = ${data.display_order},
+        fill_words = ${data.fill_words ?? null}
       WHERE id = ${topicId}
     `;
     console.log(`  Updated topic id=${topicId}`);
   } else {
     const result = await sql`
-      INSERT INTO topics (title, slug, grammar_text, display_order)
-      VALUES (${data.title}, ${data.slug}, ${data.grammar_text}, ${data.display_order})
+      INSERT INTO topics (title, slug, grammar_text, display_order, fill_words)
+      VALUES (${data.title}, ${data.slug}, ${data.grammar_text}, ${data.display_order}, ${data.fill_words ?? null})
       RETURNING id
     `;
     topicId = result[0].id as number;
