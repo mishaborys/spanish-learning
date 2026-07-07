@@ -4,6 +4,33 @@
   "description": "Найчастіше вживані дієслова, згруповані за темами",
   "groups": [
     {
+      "id": "top20",
+      "title": "Топ 20 — наступний урок",
+      "emoji": "🎯",
+      "words": [
+        { "spanish": "hablar",    "ukrainian": "говорити",       "pronunciation": "аБЛАР",     "emoji": "🗣️", "sound_association": "«аблар» → Аблара не заткнеш — говорить без зупинки",           "example_es": "Yo hablo español.", "example_uk": "Я говорю іспанською." },
+        { "spanish": "escuchar",  "ukrainian": "слухати",        "pronunciation": "ескуЧАР",   "emoji": "👂",  "sound_association": "«єскучар» → Є КУЧЕР, який вуха відкрив і слухає команди",     "example_es": "Escucho música.", "example_uk": "Я слухаю музику." },
+        { "spanish": "estudiar",  "ukrainian": "вчитися",        "pronunciation": "естуДЬАР",  "emoji": "📚",  "sound_association": "«естудьяр» → у СТУДІЇ навчають акторів",                      "example_es": "Estudio español.", "example_uk": "Я вчу іспанську." },
+        { "spanish": "preguntar", "ukrainian": "запитувати",     "pronunciation": "прегунТАР", "emoji": "❓",  "sound_association": "«прегунтар» → ПРЕ-ГУН: гун питає — де здобич?",              "example_es": "¿Puedo preguntar?", "example_uk": "Можна запитати?" },
+        { "spanish": "responder", "ukrainian": "відповідати",    "pronunciation": "респонДЕР", "emoji": "📩",  "sound_association": "«респондер» → РЕСПОНДЕНТ відповідає на всі питання",          "example_es": "Responde al mensaje.", "example_uk": "Відповідай на повідомлення." },
+        { "spanish": "bailar",    "ukrainian": "танцювати",      "pronunciation": "байЛАР",    "emoji": "💃",  "sound_association": "«байлар» → БАЛЕРИНА БАЙЛА виходить на сцену",               "example_es": "Bailamos toda la noche.", "example_uk": "Ми танцювали всю ніч." },
+        { "spanish": "cantar",    "ukrainian": "співати",        "pronunciation": "канТАР",    "emoji": "🎤",  "sound_association": "«кантар» → КАНТАТА — це і є урочистий спів хором",           "example_es": "Ella canta muy bien.", "example_uk": "Вона дуже добре співає." },
+        { "spanish": "caminar",   "ukrainian": "ходити, гуляти", "pronunciation": "каміНАР",   "emoji": "🚶",  "sound_association": "«камінар» → КАМІНЬ іде сам — дивовижна ходьба!",             "example_es": "Camino al trabajo.", "example_uk": "Я йду на роботу пішки." },
+        { "spanish": "comprar",   "ukrainian": "купувати",       "pronunciation": "компРАР",   "emoji": "🛒",  "sound_association": "«компрар» → КОМПРЕС: купуєш у аптеці для хворого",           "example_es": "Compro pan.", "example_uk": "Я купую хліб." },
+        { "spanish": "buscar",    "ukrainian": "шукати",         "pronunciation": "бусКАР",    "emoji": "🔍",  "sound_association": "«бускар» → АВТОБУС-КАР: шукаєш свій маршрут на карті",       "example_es": "Busco mis llaves.", "example_uk": "Я шукаю ключі." },
+        { "spanish": "cocinar",   "ukrainian": "готувати їжу",   "pronunciation": "косіНАР",   "emoji": "🍳",  "sound_association": "«косінар» → КОСИНАР готує кашу з косинусів (абсурд!)",       "example_es": "Cocino arroz.", "example_uk": "Я готую рис." },
+        { "spanish": "tomar",     "ukrainian": "брати, пити",    "pronunciation": "тоМАР",     "emoji": "☕",  "sound_association": "«томар» → ТОМА все бере підряд — і їжу, і напої, і посуд",   "example_es": "Tomo un café.", "example_uk": "Я беру каву." },
+        { "spanish": "comer",     "ukrainian": "їсти",           "pronunciation": "коМЕР",     "emoji": "🍽️", "sound_association": "«комер» → КОМЕРСАНТ їжі з'їв власний товар",                 "example_es": "Como fruta.", "example_uk": "Я їм фрукти." },
+        { "spanish": "leer",      "ukrainian": "читати",         "pronunciation": "леЕР",      "emoji": "📖",  "sound_association": "«леер» → ЛЕКТОР читає — leer → lecture",                     "example_es": "Leo libros.", "example_uk": "Я читаю книги." },
+        { "spanish": "aprender",  "ukrainian": "навчатися",      "pronunciation": "апренДЕР",  "emoji": "🧠",  "sound_association": "«апрендер» → APPRENTICE — учень у майстра (майже те саме!)", "example_es": "Aprendo rápido.", "example_uk": "Я навчаюся швидко." },
+        { "spanish": "creer",     "ukrainian": "вірити, думати", "pronunciation": "креЕР",     "emoji": "🙏",  "sound_association": "«креер» → КРЕДО — те, у що ти свято віриш",                  "example_es": "Creo en ti.", "example_uk": "Я вірю в тебе." },
+        { "spanish": "vender",    "ukrainian": "продавати",      "pronunciation": "бенДЕР",    "emoji": "🏷️", "sound_association": "«вендер» → ОСТАП БЕНДЕР продавав усе підряд",                "example_es": "Venden frutas.", "example_uk": "Вони продають фрукти." },
+        { "spanish": "escribir",  "ukrainian": "писати",         "pronunciation": "ескріБІР",  "emoji": "✏️", "sound_association": "«ескрібір» → СКРИПАЛЬ пише нотки скрипучим пером",           "example_es": "Escribo un email.", "example_uk": "Я пишу email." },
+        { "spanish": "abrir",     "ukrainian": "відкривати",     "pronunciation": "аБРІР",     "emoji": "🔓",  "sound_association": "«абрір» → АБРИКОС відкриває сезон (Abril = квітень!)",       "example_es": "Abre la ventana.", "example_uk": "Відкрий вікно." },
+        { "spanish": "vivir",     "ukrainian": "жити",           "pronunciation": "біБІР",     "emoji": "🌱",  "sound_association": "«вівір» → ВИДРА (вівер) живе і процвітає у воді",           "example_es": "Vivo en Kyiv.", "example_uk": "Я живу в Києві." }
+      ]
+    },
+    {
       "id": "communication",
       "title": "Спілкування",
       "emoji": "💬",
