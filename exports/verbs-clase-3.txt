@@ -1,0 +1,27 @@
+llamar	телефонувати, кликати
+beber	пити
+desayunar	снідати
+cenar	вечеряти
+descansar	відпочивати
+practicar	практикувати
+correr	бігати
+trabajar	працювати
+subir	підніматися
+mirar	дивитися
+viajar	подорожувати
+usar	використовувати
+funcionar	працювати (про пристрій)
+necesitar	потребувати
+limpiar	прибирати
+comprender	розуміти
+hornear	пекти
+esperar	чекати, сподіватися
+describir	описувати
+nadar	плавати
+montar	їздити (на велосипеді)
+pasear	прогулюватися
+dedicar	присвячувати
+dejar	залишати; дозволяти
+pasar	проводити (час)
+visitar	відвідувати
+quedar	зустрічатися; залишатися
