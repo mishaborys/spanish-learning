@@ -373,7 +373,7 @@ function ExerciseCComponent({ ex, storageKey }: { ex: ExerciseC; storageKey: str
 
 // ─── Exercise Wrapper (instruction + translation toggle) ─────────────────────
 
-function ExerciseWrapper({ ex, hwId }: { ex: ExerciseA | ExerciseB; hwId: string }) {
+function ExerciseWrapper({ ex, hwId }: { ex: ExerciseA | ExerciseB | ExerciseC; hwId: string }) {
   const [showTranslation, setShowTranslation] = useState(false);
 
   return (
