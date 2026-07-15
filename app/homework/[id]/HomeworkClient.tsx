@@ -15,12 +15,15 @@ type Category   = { id: number; text: string };
 type MatchQ     = { id: string; text: string; answer: number };
 type ExerciseB  = { id: string; label: string; instruction: string; instruction_uk?: string; type: "match-category"; image?: string; categories: Category[]; questions: MatchQ[] };
 
+type TextField  = { id: string; label: string };
+type ExerciseC  = { id: string; label: string; instruction: string; instruction_uk?: string; type: "fill-text"; fields: TextField[] };
+
 type Homework = {
   id: string;
   title: string;
   due_date: string;
   audio: AudioEntry[];
-  exercises: (ExerciseA | ExerciseB)[];
+  exercises: (ExerciseA | ExerciseB | ExerciseC)[];
 };
 
 // ─── Audio Player ────────────────────────────────────────────────────────────
@@ -305,6 +308,69 @@ function ExerciseBComponent({ ex, storageKey }: { ex: ExerciseB; storageKey: str
   );
 }
 
+// ─── Exercise C: Fill Text ────────────────────────────────────────────────────
+
+function ExerciseCComponent({ ex, storageKey }: { ex: ExerciseC; storageKey: string }) {
+  const initAnswers = (): Record<string, string> => {
+    try { return JSON.parse(localStorage.getItem(storageKey) ?? "{}"); } catch { return {}; }
+  };
+
+  const [answers, setAnswers] = useState<Record<string, string>>(initAnswers);
+  const [saved, setSaved] = useState(false);
+
+  const update = (id: string, value: string) => {
+    const next = { ...answers, [id]: value };
+    setAnswers(next);
+    setSaved(false);
+    localStorage.setItem(storageKey, JSON.stringify(next));
+  };
+
+  const handleSave = () => {
+    localStorage.setItem(storageKey, JSON.stringify(answers));
+    setSaved(true);
+  };
+
+  const handleReset = () => {
+    setAnswers({});
+    setSaved(false);
+    localStorage.removeItem(storageKey);
+  };
+
+  const allFilled = ex.fields.every(f => !!answers[f.id]?.trim());
+
+  return (
+    <div className="space-y-3">
+      {ex.fields.map(f => (
+        <div key={f.id} className="space-y-1.5">
+          <p className="text-sm font-medium">{f.label}</p>
+          <textarea
+            value={answers[f.id] ?? ""}
+            onChange={e => update(f.id, e.target.value)}
+            rows={3}
+            className="w-full rounded-xl border-2 border-border focus:border-primary px-3 py-2 text-sm bg-background outline-none resize-none transition-colors"
+          />
+        </div>
+      ))}
+      <div className="flex gap-3">
+        <button onClick={handleSave} disabled={!allFilled || saved}
+          className={`flex-1 min-h-[48px] rounded-2xl text-sm font-medium transition-all ${
+            allFilled && !saved
+              ? "bg-primary text-primary-foreground hover:opacity-90"
+              : "bg-muted text-muted-foreground cursor-not-allowed"
+          }`}>
+          {saved ? "Збережено ✓" : "Зберегти"}
+        </button>
+        {saved && (
+          <button onClick={handleReset}
+            className="px-4 min-h-[48px] rounded-2xl border text-sm text-muted-foreground hover:text-foreground transition-all">
+            Скинути
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ─── Exercise Wrapper (instruction + translation toggle) ─────────────────────
 
 function ExerciseWrapper({ ex, hwId }: { ex: ExerciseA | ExerciseB; hwId: string }) {
@@ -337,6 +403,9 @@ function ExerciseWrapper({ ex, hwId }: { ex: ExerciseA | ExerciseB; hwId: string
       )}
       {ex.type === "match-category" && (
         <ExerciseBComponent ex={ex as ExerciseB} storageKey={`hw-${hwId}-${ex.id}`} />
+      )}
+      {ex.type === "fill-text" && (
+        <ExerciseCComponent ex={ex as ExerciseC} storageKey={`hw-${hwId}-${ex.id}`} />
       )}
     </div>
   );

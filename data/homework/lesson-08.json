@@ -1,0 +1,95 @@
+{
+  "id": "lesson-08",
+  "title": "Урок 8 — Verbos regulares",
+  "due_date": "2026-07-21",
+  "audio": [],
+  "exercises": [
+    {
+      "id": "A",
+      "label": "4",
+      "instruction": "Completa las siguientes frases usando la forma correcta del verbo en cada caso.",
+      "instruction_uk": "Вибери з банку правильну відмінену форму дієслова і встав у речення.",
+      "type": "fill-form",
+      "free_choice": false,
+      "word_bank": ["comen", "trabaja", "sube", "mira", "cocinas", "venden", "abren", "viajas", "compro", "uso", "funciona", "necesitamos"],
+      "people": [
+        {
+          "nombre": "Вправа 4",
+          "apellido": "",
+          "correo": null,
+          "fields": [
+            { "id": "4a",  "label": "a. Los conejos ___ verduras, como zanahorias.  (comer)",          "answer": "comen" },
+            { "id": "4b",  "label": "b. Mi tío ___ en una empresa de ingeniería.  (trabajar)",         "answer": "trabaja" },
+            { "id": "4c1", "label": "c. Cuando Juan ___ por la escalera...  (subir)",                  "answer": "sube" },
+            { "id": "4c2", "label": "c. ...___ a través de la ventana.  (mirar)",                      "answer": "mira" },
+            { "id": "4d",  "label": "d. ¿___ comida italiana o comida francesa?  (cocinar, tú)",       "answer": "cocinas" },
+            { "id": "4e",  "label": "e. En esa pescadería ___ pescado y marisco.  (vender, ellos)",    "answer": "venden" },
+            { "id": "4f",  "label": "f. Los supermercados no ___ los domingos.  (abrir)",              "answer": "abren" },
+            { "id": "4g",  "label": "g. Marina, ¿tú ___ a muchos países?  (viajar)",                  "answer": "viajas" },
+            { "id": "4h1", "label": "h. Yo nunca ___ en línea la ropa...  (comprar)",                  "answer": "compro" },
+            { "id": "4h2", "label": "h. ...que ___ habitualmente.  (usar, yo)",                        "answer": "uso" },
+            { "id": "4i1", "label": "i. Esta cafetera no ___ muy bien.  (funcionar)",                  "answer": "funciona" },
+            { "id": "4i2", "label": "i. ___ una cafetera nueva.  (necesitar, nosotros)",               "answer": "necesitamos" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "label": "5",
+      "instruction": "Relaciona el nombre o el pronombre con la forma verbal adecuada para completar las frases.",
+      "instruction_uk": "З'єднай підмет з правильною дієслівною формою. Постав правильний номер.",
+      "type": "match-category",
+      "categories": [
+        { "id": 1, "text": "limpio mi habitación todos los jueves." },
+        { "id": 2, "text": "no comprende las explicaciones." },
+        { "id": 3, "text": "caminan por el tejado todas las noches." },
+        { "id": 4, "text": "estudiáis alemán en vuestra escuela." },
+        { "id": 5, "text": "aprendes matemáticas muy deprisa." },
+        { "id": 6, "text": "viven en un país muy bonito." }
+      ],
+      "questions": [
+        { "id": "5a", "text": "Antonio y tú",  "answer": 4 },
+        { "id": "5b", "text": "Los australianos", "answer": 6 },
+        { "id": "5c", "text": "Yo",             "answer": 1 },
+        { "id": "5d", "text": "Los gatos",      "answer": 3 },
+        { "id": "5e", "text": "El estudiante",  "answer": 2 },
+        { "id": "5f", "text": "Tú",             "answer": 5 }
+      ]
+    },
+    {
+      "id": "C",
+      "label": "7",
+      "instruction": "Presenta a las siguientes personas escribiendo frases sobre ellas. Usa los cinco verbos: vivir, hablar, aprender, trabajar, cocinar.",
+      "instruction_uk": "Напиши по кілька речень про кожну людину (5 дієслів: vivir, hablar, aprender, trabajar, cocinar). Дивись на підказки.",
+      "type": "fill-text",
+      "fields": [
+        { "id": "7-manuel",    "label": "Manuel  🇦🇷  •  español y francés  •  historia  •  profesor  •  asado" },
+        { "id": "7-veronica",  "label": "Verónica  🇵🇪  •  español / italiano / alemán  •  traducción  •  escritora  •  ceviche" },
+        { "id": "7-anastasio", "label": "Anastasio  🇺🇾  •  español y portugués  •  matemáticas  •  contable  •  pescado" },
+        { "id": "7-eloygema",  "label": "Eloy y Gema  🇪🇨  •  español  •  programación  •  informáticos  •  pasta" }
+      ]
+    },
+    {
+      "id": "D",
+      "label": "8",
+      "instruction": "¡Hablamos! Responde a estas preguntas con frases completas.",
+      "instruction_uk": "Дай повну відповідь на кожне запитання — цілим реченням про себе.",
+      "type": "fill-text",
+      "fields": [
+        { "id": "8-1",  "label": "¿Cantas en la ducha?" },
+        { "id": "8-2",  "label": "¿Comes frutas todos los días?" },
+        { "id": "8-3",  "label": "¿Nadas en la piscina durante el verano?" },
+        { "id": "8-4",  "label": "¿Qué desayunas normalmente?" },
+        { "id": "8-5",  "label": "¿Estudias los fines de semana?" },
+        { "id": "8-6",  "label": "¿Vives cerca de tu escuela / trabajo?" },
+        { "id": "8-7",  "label": "¿Escribes muchos correos electrónicos?" },
+        { "id": "8-8",  "label": "¿Dónde viajas en vacaciones?" },
+        { "id": "8-9",  "label": "¿Bailas en las fiestas?" },
+        { "id": "8-10", "label": "¿Bebes té por las mañanas?" },
+        { "id": "8-11", "label": "¿Corres en el parque?" },
+        { "id": "8-12", "label": "¿Aprendes italiano?" }
+      ]
+    }
+  ]
+}
