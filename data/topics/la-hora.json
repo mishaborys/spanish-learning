@@ -1,0 +1,184 @@
+{
+  "title": "La hora — Котра година?",
+  "slug": "la-hora",
+  "display_order": 8,
+  "grammar_text": "<h2>La hora — Котра година?</h2><h3>Як запитати про час</h3><table><tr><th>Питання</th><th>Переклад</th></tr><tr><td><strong>¿Qué hora es?</strong></td><td>Котра година?</td></tr><tr><td><strong>¿Tienes hora?</strong></td><td>Знаєш котра година? (дослівно: маєш час?)</td></tr><tr><td><strong>¿A qué hora...?</strong></td><td>О котрій годині...?</td></tr></table><h3>Як відповідати — Es / Son</h3><p>Для <strong>1:00</strong> — <strong>Es la una</strong> (однина, бо одна година).<br>Для всіх інших — <strong>Son las dos / tres / cuatro...</strong> (множина).</p><table><tr><th>Час</th><th>Іспанською</th><th>Переклад</th></tr><tr><td>1:00</td><td><strong>Es la una.</strong></td><td>Перша година.</td></tr><tr><td>2:00</td><td><strong>Son las dos.</strong></td><td>Друга година.</td></tr><tr><td>3:00</td><td><strong>Son las tres.</strong></td><td>Третя година.</td></tr><tr><td>12:00</td><td><strong>Es mediodía.</strong></td><td>Полудень.</td></tr><tr><td>0:00</td><td><strong>Es medianoche.</strong></td><td>Північ.</td></tr></table><h3>Хвилини</h3><p>До 30 хвилин додаємо <strong>y</strong> (і). Після 30 — беремо наступну годину і говоримо <strong>menos</strong> (без).</p><table><tr><th>Конструкція</th><th>Приклад</th><th>Переклад</th></tr><tr><td><strong>en punto</strong></td><td>Son las tres en punto.</td><td>Третя рівно.</td></tr><tr><td><strong>y cinco</strong></td><td>Son las tres y cinco.</td><td>П'ять хвилин на четверту.</td></tr><tr><td><strong>y diez</strong></td><td>Son las tres y diez.</td><td>Десять на четверту.</td></tr><tr><td><strong>y cuarto</strong> (+15 хв)</td><td>Son las tres y cuarto.</td><td>Третя п'ятнадцять.</td></tr><tr><td><strong>y veinte</strong></td><td>Son las tres y veinte.</td><td>Двадцять на четверту.</td></tr><tr><td><strong>y media</strong> (+30 хв)</td><td>Son las tres y media.</td><td>Пів на четверту.</td></tr><tr><td><strong>menos veinte</strong> (−20 хв)</td><td>Son las cuatro menos veinte.</td><td>Без двадцяти четверта.</td></tr><tr><td><strong>menos cuarto</strong> (−15 хв)</td><td>Son las cuatro menos cuarto.</td><td>Без чверті четверта.</td></tr><tr><td><strong>menos diez</strong> (−10 хв)</td><td>Son las cuatro menos diez.</td><td>Без десяти четверта.</td></tr><tr><td><strong>menos cinco</strong> (−5 хв)</td><td>Son las cuatro menos cinco.</td><td>Без п'яти четверта.</td></tr></table><h3>Частини доби</h3><p>Щоб уточнити — вранці чи ввечері — додаємо після часу:</p><table><tr><th>Вираз</th><th>Коли</th><th>Приклад</th></tr><tr><td><strong>de la mañana</strong></td><td>6:00 – 12:00</td><td>Son las diez de la mañana. (10:00)</td></tr><tr><td><strong>de la tarde</strong></td><td>12:00 – 20:00</td><td>Son las cinco de la tarde. (17:00)</td></tr><tr><td><strong>de la noche</strong></td><td>20:00 – 6:00</td><td>Son las once de la noche. (23:00)</td></tr></table><h3>Плани: «О котрій годині?»</h3><p>Щоб сказати «о котрій», використовуємо <strong>a la una</strong> (для 1:00) або <strong>a las dos / tres...</strong> (для інших).</p><table><tr><th>Іспанською</th><th>Переклад</th></tr><tr><td>Tengo clase <strong>a las nueve</strong>.</td><td>У мене урок о дев'ятій.</td></tr><tr><td>Comemos <strong>a las dos y media</strong>.</td><td>Ми обідаємо о пів на третю.</td></tr><tr><td>La película empieza <strong>a las ocho</strong>.</td><td>Фільм починається о восьмій.</td></tr><tr><td>Quedamos <strong>a las siete de la tarde</strong>.</td><td>Зустрічаємось о сьомій вечора.</td></tr><tr><td>Me levanto <strong>a las siete y cuarto</strong>.</td><td>Я встаю о чверть на восьму.</td></tr><tr><td>El tren sale <strong>a medianoche</strong>.</td><td>Потяг відходить опівночі.</td></tr></table>",
+  "words": [
+    {
+      "spanish": "¿Qué hora es?",
+      "pronunciation": "ке ОРА ес",
+      "ukrainian": "Котра година?",
+      "part_of_speech": "питання",
+      "example_es": "Perdona, ¿qué hora es?",
+      "example_uk": "Вибач, котра зараз година?"
+    },
+    {
+      "spanish": "¿A qué hora?",
+      "pronunciation": "а ке ОРА",
+      "ukrainian": "О котрій годині?",
+      "part_of_speech": "питання",
+      "example_es": "¿A qué hora empieza la clase?",
+      "example_uk": "О котрій починається урок?"
+    },
+    {
+      "spanish": "la hora",
+      "pronunciation": "ла ОРА",
+      "ukrainian": "година; час",
+      "part_of_speech": "іменник",
+      "gender": "f",
+      "example_es": "¿Tienes hora?",
+      "example_uk": "Знаєш котра година?"
+    },
+    {
+      "spanish": "el minuto",
+      "pronunciation": "ель міНУто",
+      "ukrainian": "хвилина",
+      "part_of_speech": "іменник",
+      "gender": "m",
+      "example_es": "Espera cinco minutos, por favor.",
+      "example_uk": "Почекай п'ять хвилин, будь ласка."
+    },
+    {
+      "spanish": "el segundo",
+      "pronunciation": "ель сеГУНдо",
+      "ukrainian": "секунда",
+      "part_of_speech": "іменник",
+      "gender": "m",
+      "example_es": "Espera un segundo.",
+      "example_uk": "Зачекай секунду."
+    },
+    {
+      "spanish": "es la una",
+      "pronunciation": "ес ла УНА",
+      "ukrainian": "перша година",
+      "part_of_speech": "вираз",
+      "example_es": "Es la una de la tarde.",
+      "example_uk": "Перша година дня."
+    },
+    {
+      "spanish": "son las...",
+      "pronunciation": "сон лас",
+      "ukrainian": "...година (для 2–12)",
+      "part_of_speech": "вираз",
+      "example_es": "Son las tres.",
+      "example_uk": "Третя година."
+    },
+    {
+      "spanish": "el mediodía",
+      "pronunciation": "ель медіоДІА",
+      "ukrainian": "полудень",
+      "part_of_speech": "іменник",
+      "gender": "m",
+      "example_es": "Comemos al mediodía.",
+      "example_uk": "Ми обідаємо в полудень."
+    },
+    {
+      "spanish": "la medianoche",
+      "pronunciation": "ла медіаНОЧЕ",
+      "ukrainian": "північ",
+      "part_of_speech": "іменник",
+      "gender": "f",
+      "example_es": "La fiesta termina a medianoche.",
+      "example_uk": "Вечірка закінчується опівночі."
+    },
+    {
+      "spanish": "en punto",
+      "pronunciation": "ен ПУНто",
+      "ukrainian": "рівно; точно",
+      "part_of_speech": "вираз",
+      "example_es": "El tren sale a las ocho en punto.",
+      "example_uk": "Потяг відходить рівно о восьмій."
+    },
+    {
+      "spanish": "y cuarto",
+      "pronunciation": "і КУАРто",
+      "ukrainian": "і п'ятнадцять; чверть",
+      "part_of_speech": "вираз",
+      "example_es": "Son las cinco y cuarto.",
+      "example_uk": "П'ятнадцять хвилин на шосту."
+    },
+    {
+      "spanish": "y media",
+      "pronunciation": "і МЕДіа",
+      "ukrainian": "і тридцять; пів",
+      "part_of_speech": "вираз",
+      "example_es": "Salgo a las siete y media.",
+      "example_uk": "Виходжу о пів на восьму."
+    },
+    {
+      "spanish": "menos cuarto",
+      "pronunciation": "МЕнос КУАРто",
+      "ukrainian": "без чверті",
+      "part_of_speech": "вираз",
+      "example_es": "Son las nueve menos cuarto.",
+      "example_uk": "Без чверті дев'ята."
+    },
+    {
+      "spanish": "de la mañana",
+      "pronunciation": "де ла маНЬАНА",
+      "ukrainian": "вранці; ранку (6–12)",
+      "part_of_speech": "вираз",
+      "example_es": "Me levanto a las siete de la mañana.",
+      "example_uk": "Я встаю о сьомій ранку."
+    },
+    {
+      "spanish": "de la tarde",
+      "pronunciation": "де ла ТАРде",
+      "ukrainian": "вдень; по обіді (12–20)",
+      "part_of_speech": "вираз",
+      "example_es": "La reunión es a las cuatro de la tarde.",
+      "example_uk": "Нарада о четвертій дня."
+    },
+    {
+      "spanish": "de la noche",
+      "pronunciation": "де ла НОЧе",
+      "ukrainian": "ввечері; вночі (20–6)",
+      "part_of_speech": "вираз",
+      "example_es": "Llego a casa a las once de la noche.",
+      "example_uk": "Приходжу додому об одинадцятій вечора."
+    },
+    {
+      "spanish": "la mañana",
+      "pronunciation": "ла маНЬАНА",
+      "ukrainian": "ранок",
+      "part_of_speech": "іменник",
+      "gender": "f",
+      "example_es": "Por la mañana bebo café.",
+      "example_uk": "Вранці я п'ю каву."
+    },
+    {
+      "spanish": "la tarde",
+      "pronunciation": "ла ТАРде",
+      "ukrainian": "день (після обіду); вечір",
+      "part_of_speech": "іменник",
+      "gender": "f",
+      "example_es": "Por la tarde estudio español.",
+      "example_uk": "Вдень я вчу іспанську."
+    },
+    {
+      "spanish": "la noche",
+      "pronunciation": "ла НОЧе",
+      "ukrainian": "ніч; вечір",
+      "part_of_speech": "іменник",
+      "gender": "f",
+      "example_es": "Por la noche veo series.",
+      "example_uk": "Ввечері я дивлюся серіали."
+    },
+    {
+      "spanish": "a la una",
+      "pronunciation": "а ла УНА",
+      "ukrainian": "о першій годині",
+      "part_of_speech": "вираз",
+      "example_es": "Comemos a la una.",
+      "example_uk": "Ми обідаємо о першій."
+    },
+    {
+      "spanish": "a las...",
+      "pronunciation": "а лас",
+      "ukrainian": "о... годині (від 2:00)",
+      "part_of_speech": "вираз",
+      "example_es": "La clase empieza a las nueve.",
+      "example_uk": "Урок починається о дев'ятій."
+    }
+  ]
+}

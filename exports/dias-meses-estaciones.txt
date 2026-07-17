@@ -1,0 +1,29 @@
+lunes	понеділок
+martes	вівторок
+miércoles	середа
+jueves	четвер
+viernes	п'ятниця
+sábado	субота
+domingo	неділя
+anteayer	позавчора
+ayer	вчора
+hoy	сьогодні
+mañana	завтра
+pasado mañana	післязавтра
+el fin de semana	вихідні
+el invierno	зима
+la primavera	весна
+el verano	літо
+el otoño	осінь
+enero	січень
+febrero	лютий
+marzo	березень
+abril	квітень
+mayo	травень
+junio	червень
+julio	липень
+agosto	серпень
+septiembre	вересень
+octubre	жовтень
+noviembre	листопад
+diciembre	грудень
