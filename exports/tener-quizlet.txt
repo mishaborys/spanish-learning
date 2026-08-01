@@ -1,0 +1,19 @@
+limpiar	прибирати
+esperar	чекати, сподіватися
+necesitar	потребувати
+enseñar	навчати
+lavar	мити
+caminar	ходити, гуляти
+viajar	подорожувати
+olvidar	забувати
+visitar	відвідувати
+el hambre	голод
+la sed	спрага
+el calor	спека, жара
+el frío	холод
+la suerte	удача, талан
+el miedo	страх
+la prisa	поспіх
+la razón	причина, рація
+el sueño	сон, сонливість
+las ganas	бажання, охота

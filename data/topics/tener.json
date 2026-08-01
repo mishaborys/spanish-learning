@@ -1,0 +1,144 @@
+{
+  "title": "Tener — відмінювання та вирази",
+  "slug": "tener",
+  "display_order": 9,
+  "grammar_text": "<h2>Tener — мати</h2><p>Одне з найважливіших неправильних дієслів іспанської мови. Вживається для позначення наявності чогось (Tengo un perro — У мене є собака), а також для вказання віку (Tengo 25 años — Мені 25 років).</p><table><thead><tr><th>Особа</th><th>Однина</th><th>Особа</th><th>Множина</th></tr></thead><tbody><tr><td>yo</td><td><strong>tengo</strong></td><td>nosotros</td><td><strong>tenemos</strong></td></tr><tr><td>tú</td><td><strong>tienes</strong></td><td>vosotros</td><td><strong>tenéis</strong></td></tr><tr><td>él/ella/usted</td><td><strong>tiene</strong></td><td>ellos/ellas/ustedes</td><td><strong>tienen</strong></td></tr></tbody></table><p><em>¿Cuántos años tienes? — Tengo 22 años.</em> (Скільки тобі років? — Мені 22 роки.)</p><h3>Вирази з Tener</h3><p>У багатьох сталих виразах українською кажемо «бути» + прикметник, а іспанською — «мати» (tener) + іменник, причому іменник вживається <strong>без артикля</strong>. Ступінь підсилюється словом <strong>mucho/mucha</strong> (дуже), а не «muy»: <em>tengo mucha hambre</em>, а не <em>tengo muy hambre</em>.</p><table><thead><tr><th>Вираз</th><th>Переклад</th></tr></thead><tbody><tr><td><strong>tener hambre</strong></td><td>бути голодним</td></tr><tr><td><strong>tener sed</strong></td><td>хотіти пити</td></tr><tr><td><strong>tener calor</strong></td><td>відчувати спеку</td></tr><tr><td><strong>tener frío</strong></td><td>мерзнути</td></tr><tr><td><strong>tener suerte</strong></td><td>мати удачу</td></tr><tr><td><strong>tener miedo</strong></td><td>боятися</td></tr><tr><td><strong>tener prisa</strong></td><td>поспішати</td></tr><tr><td><strong>tener razón</strong></td><td>мати рацію</td></tr><tr><td><strong>tener sueño</strong></td><td>хотіти спати</td></tr><tr><td><strong>tener ganas de</strong></td><td>мати бажання (щось робити)</td></tr></tbody></table><p><em>Tengo mucho miedo de las arañas. Tienes razón, vamos a casa — tengo sueño.</em> (Я дуже боюся павуків. Ти маєш рацію, ходімо додому — мені хочеться спати.)</p>",
+  "words": [
+    {
+      "spanish": "tener",
+      "ukrainian": "мати",
+      "pronunciation": "теНЕР",
+      "part_of_speech": "дієслово",
+      "example_es": "Quiero tener un perro.",
+      "example_uk": "Я хочу мати собаку."
+    },
+    {
+      "spanish": "tengo",
+      "ukrainian": "я маю",
+      "pronunciation": "тЕНго",
+      "part_of_speech": "дієслово",
+      "example_es": "Tengo 25 años.",
+      "example_uk": "Мені 25 років."
+    },
+    {
+      "spanish": "tienes",
+      "ukrainian": "ти маєш",
+      "pronunciation": "тьЕНес",
+      "part_of_speech": "дієслово",
+      "example_es": "¿Tienes móvil?",
+      "example_uk": "У тебе є телефон?"
+    },
+    {
+      "spanish": "tiene",
+      "ukrainian": "він/вона має",
+      "pronunciation": "тьЕНе",
+      "part_of_speech": "дієслово",
+      "example_es": "Tiene 30 años.",
+      "example_uk": "Йому 30 років."
+    },
+    {
+      "spanish": "tenemos",
+      "ukrainian": "ми маємо",
+      "pronunciation": "теНЕмос",
+      "part_of_speech": "дієслово",
+      "example_es": "Tenemos una casa.",
+      "example_uk": "У нас є будинок."
+    },
+    {
+      "spanish": "tenéis",
+      "ukrainian": "ви маєте",
+      "pronunciation": "теНЕЙс",
+      "part_of_speech": "дієслово",
+      "example_es": "¿Tenéis tiempo?",
+      "example_uk": "У вас є час?"
+    },
+    {
+      "spanish": "tienen",
+      "ukrainian": "вони мають",
+      "pronunciation": "тьЕНен",
+      "part_of_speech": "дієслово",
+      "example_es": "Tienen tres hijos.",
+      "example_uk": "У них троє дітей."
+    },
+    {
+      "spanish": "tener hambre",
+      "ukrainian": "бути голодним",
+      "pronunciation": "теНЕР Амбре",
+      "part_of_speech": "стійкий вираз",
+      "example_es": "Tengo mucha hambre.",
+      "example_uk": "Я дуже голодний."
+    },
+    {
+      "spanish": "tener sed",
+      "ukrainian": "хотіти пити",
+      "pronunciation": "теНЕР сЕД",
+      "part_of_speech": "стійкий вираз",
+      "example_es": "¿Tienes sed?",
+      "example_uk": "Ти хочеш пити?"
+    },
+    {
+      "spanish": "tener calor",
+      "ukrainian": "відчувати спеку",
+      "pronunciation": "теНЕР каЛОР",
+      "part_of_speech": "стійкий вираз",
+      "example_es": "Tengo mucho calor.",
+      "example_uk": "Мені дуже жарко."
+    },
+    {
+      "spanish": "tener frío",
+      "ukrainian": "мерзнути",
+      "pronunciation": "теНЕР фРІо",
+      "part_of_speech": "стійкий вираз",
+      "example_es": "Tiene frío.",
+      "example_uk": "Йому/їй холодно."
+    },
+    {
+      "spanish": "tener suerte",
+      "ukrainian": "мати удачу",
+      "pronunciation": "теНЕР сУЕРте",
+      "part_of_speech": "стійкий вираз",
+      "example_es": "Tienes mucha suerte.",
+      "example_uk": "Тобі дуже щастить."
+    },
+    {
+      "spanish": "tener miedo",
+      "ukrainian": "боятися",
+      "pronunciation": "теНЕР мьЕдо",
+      "part_of_speech": "стійкий вираз",
+      "example_es": "Tengo miedo de los perros.",
+      "example_uk": "Я боюся собак."
+    },
+    {
+      "spanish": "tener prisa",
+      "ukrainian": "поспішати",
+      "pronunciation": "теНЕР пРІса",
+      "part_of_speech": "стійкий вираз",
+      "example_es": "Tengo mucha prisa.",
+      "example_uk": "Я дуже поспішаю."
+    },
+    {
+      "spanish": "tener razón",
+      "ukrainian": "мати рацію",
+      "pronunciation": "теНЕР раСОН",
+      "part_of_speech": "стійкий вираз",
+      "example_es": "Siempre tienes razón.",
+      "example_uk": "Ти завжди маєш рацію."
+    },
+    {
+      "spanish": "tener sueño",
+      "ukrainian": "хотіти спати",
+      "pronunciation": "теНЕР сУЕНьйо",
+      "part_of_speech": "стійкий вираз",
+      "example_es": "Tengo sueño.",
+      "example_uk": "Мені хочеться спати."
+    },
+    {
+      "spanish": "tener ganas de",
+      "ukrainian": "мати бажання (щось зробити)",
+      "pronunciation": "теНЕР гАнас де",
+      "part_of_speech": "стійкий вираз",
+      "example_es": "Tengo ganas de viajar.",
+      "example_uk": "У мене є бажання подорожувати."
+    }
+  ]
+}
