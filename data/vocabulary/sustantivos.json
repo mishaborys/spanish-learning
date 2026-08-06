@@ -958,6 +958,103 @@
           "example_uk": "Футбол — найпопулярніший спорт."
         }
       ]
+    },
+    {
+      "id": "tener-nouns",
+      "title": "Іменники з Tener",
+      "emoji": "🤲",
+      "words": [
+        {
+          "spanish": "el hambre",
+          "pronunciation": "ель Амбре",
+          "ukrainian": "голод",
+          "emoji": "🍔",
+          "sound_association": "«амбре» → АМБРОЗІЯ, їжа богів — от чому такий голод",
+          "example_es": "Tengo mucha hambre.",
+          "example_uk": "Я дуже голодний."
+        },
+        {
+          "spanish": "la sed",
+          "pronunciation": "ла сЕД",
+          "ukrainian": "спрага",
+          "emoji": "🥤",
+          "sound_association": "«сед» → СОДА (газована вода) — от що хочеться випити",
+          "example_es": "¿Tienes sed?",
+          "example_uk": "Ти хочеш пити?"
+        },
+        {
+          "spanish": "el calor",
+          "pronunciation": "ель каЛОР",
+          "ukrainian": "спека, жара",
+          "emoji": "🥵",
+          "sound_association": "«калор» → КАЛОРІЇ — тепло й енергія",
+          "example_es": "Tengo mucho calor.",
+          "example_uk": "Мені дуже жарко."
+        },
+        {
+          "spanish": "el frío",
+          "pronunciation": "ель фРІо",
+          "ukrainian": "холод",
+          "emoji": "🥶",
+          "sound_association": "«фріо» → FREEZE-о — заморожений від холоду",
+          "example_es": "Tiene frío.",
+          "example_uk": "Йому/їй холодно."
+        },
+        {
+          "spanish": "la suerte",
+          "pronunciation": "ла сУЕРте",
+          "ukrainian": "удача, талан",
+          "emoji": "🍀",
+          "sound_association": "«суерте» → SWEET — солодка удача",
+          "example_es": "Tienes mucha suerte.",
+          "example_uk": "Тобі дуже щастить."
+        },
+        {
+          "spanish": "el miedo",
+          "pronunciation": "ель мьЕдо",
+          "ukrainian": "страх",
+          "emoji": "😱",
+          "sound_association": "«мьедо» → МЕДУЗА Горгона — від неї всім страшно",
+          "example_es": "Tengo miedo de los perros.",
+          "example_uk": "Я боюся собак."
+        },
+        {
+          "spanish": "la prisa",
+          "pronunciation": "ла пРІса",
+          "ukrainian": "поспіх",
+          "emoji": "🏃",
+          "sound_association": "«пріса» → PRIZE — біжиш за призом, тому поспішаєш",
+          "example_es": "Tengo mucha prisa.",
+          "example_uk": "Я дуже поспішаю."
+        },
+        {
+          "spanish": "la razón",
+          "pronunciation": "ла раСОН",
+          "ukrainian": "причина, рація",
+          "emoji": "✅",
+          "sound_association": "«расон» → REASON (англ. причина) — той самий корінь!",
+          "example_es": "Siempre tienes razón.",
+          "example_uk": "Ти завжди маєш рацію."
+        },
+        {
+          "spanish": "el sueño",
+          "pronunciation": "ель сУЕНьйо",
+          "ukrainian": "сон, сонливість",
+          "emoji": "😴",
+          "sound_association": "«суеньйо» → звучить як «сон» + «нью» — новий сон насувається",
+          "example_es": "Tengo sueño.",
+          "example_uk": "Мені хочеться спати."
+        },
+        {
+          "spanish": "las ganas",
+          "pronunciation": "лас гАнас",
+          "ukrainian": "бажання, охота",
+          "emoji": "🤩",
+          "sound_association": "«ганас» → ГАНА (країна) — маю бажання туди поїхати",
+          "example_es": "Tengo ganas de viajar.",
+          "example_uk": "У мене є бажання подорожувати."
+        }
+      ]
     }
   ]
 }
