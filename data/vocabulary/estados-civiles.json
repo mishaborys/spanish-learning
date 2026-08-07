@@ -1,0 +1,59 @@
+{
+  "id": "estados-civiles",
+  "title": "Цивільний стан — Estado civil",
+  "description": "Сімейний стан людини",
+  "groups": [
+    {
+      "id": "estado-civil",
+      "title": "Цивільний стан",
+      "emoji": "💍",
+      "words": [
+        {
+          "spanish": "soltero/a",
+          "pronunciation": "сольТЕро/а",
+          "ukrainian": "неодружений / неодружена",
+          "emoji": "🙋",
+          "sound_association": "«сольтеро» → СОЛО — сам, ще не одружений",
+          "example_es": "Soy soltero.",
+          "example_uk": "Я неодружений."
+        },
+        {
+          "spanish": "novio/a",
+          "pronunciation": "нОвьо/а",
+          "ukrainian": "хлопець/дівчина (у стосунках), наречений/наречена",
+          "emoji": "💑",
+          "sound_association": "«новьо» → НОВИЙ — новий партнер у твоєму житті",
+          "example_es": "Ella es mi novia.",
+          "example_uk": "Вона моя дівчина."
+        },
+        {
+          "spanish": "casado/a",
+          "pronunciation": "касАдо/а",
+          "ukrainian": "одружений / заміжня",
+          "emoji": "💍",
+          "sound_association": "«касадо» → КАСА (дім) — побудували спільний дім, одружились",
+          "example_es": "Estoy casado.",
+          "example_uk": "Я одружений."
+        },
+        {
+          "spanish": "divorciado/a",
+          "pronunciation": "діворсьЯдо/а",
+          "ukrainian": "розлучений / розлучена",
+          "emoji": "💔",
+          "sound_association": "«діворсьядо» → DIVORCE (англ. розлучення) — той самий корінь",
+          "example_es": "Mi tío está divorciado.",
+          "example_uk": "Мій дядько розлучений."
+        },
+        {
+          "spanish": "viudo/a",
+          "pronunciation": "вьЮдо/а",
+          "ukrainian": "вдівець / вдова",
+          "emoji": "🖤",
+          "sound_association": "«вьюдо» → звучить як укр. «вдів» — вдівець",
+          "example_es": "Mi abuela es viuda.",
+          "example_uk": "Моя бабуся вдова."
+        }
+      ]
+    }
+  ]
+}

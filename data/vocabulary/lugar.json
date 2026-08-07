@@ -1,0 +1,165 @@
+{
+  "id": "lugar",
+  "title": "Прийменники та прислівники місця",
+  "description": "Де знаходяться предмети — відстань і позиція",
+  "groups": [
+    {
+      "id": "distancia",
+      "title": "Відстань",
+      "emoji": "📏",
+      "words": [
+        {
+          "spanish": "aquí / acá",
+          "pronunciation": "акІ / акА",
+          "ukrainian": "тут",
+          "emoji": "📍",
+          "sound_association": "«акі» → A-KEY (ключ у руці) — він тут, поруч",
+          "example_es": "Estoy aquí.",
+          "example_uk": "Я тут."
+        },
+        {
+          "spanish": "ahí",
+          "pronunciation": "аІ",
+          "ukrainian": "там (поруч, за руку)",
+          "emoji": "👉",
+          "sound_association": "«аі» → коротке «ай!» — показуєш пальцем туди, де боляче",
+          "example_es": "El libro está ahí.",
+          "example_uk": "Книга он там."
+        },
+        {
+          "spanish": "allí / allá",
+          "pronunciation": "альЇ / альЯ",
+          "ukrainian": "там (далеко)",
+          "emoji": "🏔️",
+          "sound_association": "«альї» → далека гора АЛЬпи — там, далеко",
+          "example_es": "Mi casa está allí.",
+          "example_uk": "Мій дім он там, далеко."
+        },
+        {
+          "spanish": "cerca",
+          "pronunciation": "сЕРка",
+          "ukrainian": "близько, поруч",
+          "emoji": "🔍",
+          "sound_association": "«серка» → СЕРце близько — б'ється поруч",
+          "example_es": "El parque está cerca.",
+          "example_uk": "Парк близько."
+        },
+        {
+          "spanish": "lejos",
+          "pronunciation": "лЕхос",
+          "ukrainian": "далеко",
+          "emoji": "🔭",
+          "sound_association": "«лехос» → ЛЕГкий літак летить далеко",
+          "example_es": "La playa está lejos.",
+          "example_uk": "Пляж далеко."
+        }
+      ]
+    },
+    {
+      "id": "posicion",
+      "title": "Позиція",
+      "emoji": "🧭",
+      "words": [
+        {
+          "spanish": "encima de / sobre / en",
+          "pronunciation": "енсІма де / сОбре / ен",
+          "ukrainian": "на, зверху",
+          "emoji": "⬆️",
+          "sound_association": "«енсіма» → на сім полицях, зверху",
+          "example_es": "El gato está encima de la mesa.",
+          "example_uk": "Кіт на столі (зверху)."
+        },
+        {
+          "spanish": "debajo de / bajo",
+          "pronunciation": "дебАхо де / бАхо",
+          "ukrainian": "під, знизу",
+          "emoji": "⬇️",
+          "sound_association": "«дебахо» → де БАХ! — щось впало вниз, під стіл",
+          "example_es": "El gato está debajo de la mesa.",
+          "example_uk": "Кіт під столом."
+        },
+        {
+          "spanish": "dentro de / en",
+          "pronunciation": "дЕнтро де / ен",
+          "ukrainian": "всередині",
+          "emoji": "📦",
+          "sound_association": "«дентро» → ДЕНТальний (зуб) всередині рота",
+          "example_es": "El gato está dentro de la caja.",
+          "example_uk": "Кіт всередині коробки."
+        },
+        {
+          "spanish": "fuera de",
+          "pronunciation": "фУЕра де",
+          "ukrainian": "зовні, поза",
+          "emoji": "📤",
+          "sound_association": "«фуера» → ФАЄР — вогонь викидають назовні",
+          "example_es": "El gato está fuera de la caja.",
+          "example_uk": "Кіт зовні коробки."
+        },
+        {
+          "spanish": "delante de / enfrente de",
+          "pronunciation": "делАнте де / енфрЕнте де",
+          "ukrainian": "перед, навпроти",
+          "emoji": "⏩",
+          "sound_association": "«деланте» → ДЕ ланцюг ПЕРЕД тобою",
+          "example_es": "El gato está delante de la mesa.",
+          "example_uk": "Кіт перед столом."
+        },
+        {
+          "spanish": "detrás de",
+          "pronunciation": "детрАс де",
+          "ukrainian": "позаду, за",
+          "emoji": "⏪",
+          "sound_association": "«детрас» → де траса (дорога) позаду",
+          "example_es": "El gato está detrás de la mesa.",
+          "example_uk": "Кіт позаду столу."
+        },
+        {
+          "spanish": "a la derecha de",
+          "pronunciation": "а ла дерЕча де",
+          "ukrainian": "праворуч від",
+          "emoji": "➡️",
+          "sound_association": "«дереча» → ДИРЕКТОР завжди сидить праворуч",
+          "example_es": "El gato está a la derecha de la caja.",
+          "example_uk": "Кіт праворуч від коробки."
+        },
+        {
+          "spanish": "a la izquierda de",
+          "pronunciation": "а ла іскьЕрда де",
+          "ukrainian": "ліворуч від",
+          "emoji": "⬅️",
+          "sound_association": "«іск'єрда» → нагадує «айсберг» — зліва пливе айсберг",
+          "example_es": "El gato está a la izquierda de la caja.",
+          "example_uk": "Кіт ліворуч від коробки."
+        },
+        {
+          "spanish": "entre / en medio de",
+          "pronunciation": "Ентре / ен мЕдіо де",
+          "ukrainian": "між, посередині",
+          "emoji": "↔️",
+          "sound_association": "«ентре» → ENTRE (вхід) між двома дверима",
+          "example_es": "El gato está entre las cajas.",
+          "example_uk": "Кіт між коробками."
+        },
+        {
+          "spanish": "junto a / al lado de",
+          "pronunciation": "хУнто а / аль лАдо де",
+          "ukrainian": "поруч з, біля",
+          "emoji": "🤝",
+          "sound_association": "«хунто» → ЮНІТ — разом, поруч",
+          "example_es": "El gato está junto a la mesa.",
+          "example_uk": "Кіт поруч зі столом."
+        },
+        {
+          "spanish": "alrededor de",
+          "pronunciation": "альредедОр де",
+          "ukrainian": "навколо",
+          "emoji": "🔄",
+          "sound_association": "«альредедор» → все навколо крутиться, як РАДАР",
+          "example_es": "Los niños están alrededor de la mesa.",
+          "example_uk": "Діти навколо столу."
+        }
+      ]
+    }
+  ]
+}

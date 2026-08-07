@@ -1,0 +1,144 @@
+{
+  "title": "Estar — відмінювання та вживання",
+  "slug": "estar",
+  "display_order": 10,
+  "grammar_text": "<h2>Estar — бути (стан, місце)</h2><p>Друге основне дієслово «бути» в іспанській мові поряд з <strong>ser</strong>. На відміну від ser (постійні характеристики), <strong>estar</strong> вживається для тимчасових станів, самопочуття та місцезнаходження.</p><table><thead><tr><th>Особа</th><th>Однина</th><th>Особа</th><th>Множина</th></tr></thead><tbody><tr><td>yo</td><td><strong>estoy</strong></td><td>nosotros</td><td><strong>estamos</strong></td></tr><tr><td>tú</td><td><strong>estás</strong></td><td>vosotros</td><td><strong>estáis</strong></td></tr><tr><td>él/ella/usted</td><td><strong>está</strong></td><td>ellos/ellas/ustedes</td><td><strong>están</strong></td></tr></tbody></table><h3>Коли вживати Estar</h3><table><thead><tr><th>Вживання</th><th>Приклад</th><th>Переклад</th></tr></thead><tbody><tr><td><strong>Місцезнаходження</strong></td><td>Estoy en casa.</td><td>Я вдома.</td></tr><tr><td><strong>Тимчасовий стан / самопочуття</strong></td><td>Estoy cansado.</td><td>Я втомлений.</td></tr><tr><td><strong>Триваюча дія (estar + gerundio)</strong></td><td>Estoy comiendo.</td><td>Я (зараз) їм.</td></tr><tr><td><strong>Цивільний стан</strong></td><td>Está casado.</td><td>Він одружений.</td></tr></tbody></table><h3>Ser чи Estar?</h3><p><strong>Ser</strong> — постійне, хто ти є: <em>Soy profesora.</em> <strong>Estar</strong> — тимчасове або місце, де ти чи як почуваєшся: <em>Estoy en el trabajo, estoy cansada.</em></p><h3>Прикметники стану (з Estar)</h3><p>Ці прикметники описують стан, який може змінюватись, тому вживаються з <strong>estar</strong>, а не ser.</p><table><thead><tr><th>Прикметник</th><th>Переклад</th></tr></thead><tbody><tr><td>cansado</td><td>втомлений</td></tr><tr><td>enfermo</td><td>хворий</td></tr><tr><td>feliz</td><td>щасливий</td></tr><tr><td>triste</td><td>сумний</td></tr><tr><td>ocupado</td><td>зайнятий</td></tr><tr><td>aburrido</td><td>знуджений</td></tr><tr><td>nervioso</td><td>нервовий</td></tr><tr><td>enfadado</td><td>злий, розсерджений</td></tr><tr><td>contento</td><td>задоволений</td></tr><tr><td>preocupado</td><td>стурбований</td></tr></tbody></table><p><em>¿Cómo estás? — Estoy un poco preocupado, pero contento.</em> (Як ти? — Я трохи стурбований, але задоволений.)</p>",
+  "words": [
+    {
+      "spanish": "estar",
+      "ukrainian": "бути (стан, місце)",
+      "pronunciation": "есТАР",
+      "part_of_speech": "дієслово",
+      "example_es": "Quiero estar tranquilo.",
+      "example_uk": "Я хочу бути спокійним."
+    },
+    {
+      "spanish": "estoy",
+      "ukrainian": "я є, я перебуваю",
+      "pronunciation": "есТОЙ",
+      "part_of_speech": "дієслово",
+      "example_es": "Estoy en casa.",
+      "example_uk": "Я вдома."
+    },
+    {
+      "spanish": "estás",
+      "ukrainian": "ти є, ти перебуваєш",
+      "pronunciation": "есТАС",
+      "part_of_speech": "дієслово",
+      "example_es": "¿Cómo estás?",
+      "example_uk": "Як ти почуваєшся?"
+    },
+    {
+      "spanish": "está",
+      "ukrainian": "він/вона є, перебуває",
+      "pronunciation": "есТА",
+      "part_of_speech": "дієслово",
+      "example_es": "Está muy ocupado.",
+      "example_uk": "Він дуже зайнятий."
+    },
+    {
+      "spanish": "estamos",
+      "ukrainian": "ми є, ми перебуваємо",
+      "pronunciation": "есТАмос",
+      "part_of_speech": "дієслово",
+      "example_es": "Estamos en el parque.",
+      "example_uk": "Ми в парку."
+    },
+    {
+      "spanish": "estáis",
+      "ukrainian": "ви є, ви перебуваєте",
+      "pronunciation": "есТАЙс",
+      "part_of_speech": "дієслово",
+      "example_es": "¿Dónde estáis?",
+      "example_uk": "Де ви?"
+    },
+    {
+      "spanish": "están",
+      "ukrainian": "вони є, вони перебувають",
+      "pronunciation": "есТАН",
+      "part_of_speech": "дієслово",
+      "example_es": "Están en la escuela.",
+      "example_uk": "Вони в школі."
+    },
+    {
+      "spanish": "cansado",
+      "ukrainian": "втомлений",
+      "pronunciation": "кансАдо",
+      "part_of_speech": "прикметник",
+      "example_es": "Estoy muy cansado.",
+      "example_uk": "Я дуже втомлений."
+    },
+    {
+      "spanish": "enfermo",
+      "ukrainian": "хворий",
+      "pronunciation": "енфЕРмо",
+      "part_of_speech": "прикметник",
+      "example_es": "Mi hermano está enfermo.",
+      "example_uk": "Мій брат хворий."
+    },
+    {
+      "spanish": "feliz",
+      "ukrainian": "щасливий",
+      "pronunciation": "феЛІС",
+      "part_of_speech": "прикметник",
+      "example_es": "Estoy muy feliz hoy.",
+      "example_uk": "Я дуже щасливий сьогодні."
+    },
+    {
+      "spanish": "triste",
+      "ukrainian": "сумний",
+      "pronunciation": "трІсте",
+      "part_of_speech": "прикметник",
+      "example_es": "¿Por qué estás triste?",
+      "example_uk": "Чому ти сумний?"
+    },
+    {
+      "spanish": "ocupado",
+      "ukrainian": "зайнятий",
+      "pronunciation": "окупАдо",
+      "part_of_speech": "прикметник",
+      "example_es": "Está ocupado ahora.",
+      "example_uk": "Він зараз зайнятий."
+    },
+    {
+      "spanish": "aburrido",
+      "ukrainian": "знуджений",
+      "pronunciation": "абуРІдо",
+      "part_of_speech": "прикметник",
+      "example_es": "Estoy aburrido.",
+      "example_uk": "Мені нудно."
+    },
+    {
+      "spanish": "nervioso",
+      "ukrainian": "нервовий",
+      "pronunciation": "нервьОсо",
+      "part_of_speech": "прикметник",
+      "example_es": "Estoy nervioso antes del examen.",
+      "example_uk": "Я нервую перед іспитом."
+    },
+    {
+      "spanish": "enfadado",
+      "ukrainian": "злий, розсерджений",
+      "pronunciation": "енфадАдо",
+      "part_of_speech": "прикметник",
+      "example_es": "Está enfadado conmigo.",
+      "example_uk": "Він злий на мене."
+    },
+    {
+      "spanish": "contento",
+      "ukrainian": "задоволений",
+      "pronunciation": "контЕнто",
+      "part_of_speech": "прикметник",
+      "example_es": "Estoy muy contento con el resultado.",
+      "example_uk": "Я дуже задоволений результатом."
+    },
+    {
+      "spanish": "preocupado",
+      "ukrainian": "стурбований",
+      "pronunciation": "преокупАдо",
+      "part_of_speech": "прикметник",
+      "example_es": "Estoy preocupado por ti.",
+      "example_uk": "Я хвилююся за тебе."
+    }
+  ]
+}
