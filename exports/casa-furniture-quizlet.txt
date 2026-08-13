@@ -1,0 +1,15 @@
+la cama	ліжко
+el sofá	диван
+el sillón	крісло
+la televisión	телевізор
+la estantería	книжкова полиця, стелаж
+la cómoda	комод
+el armario	шафа
+la mesa	стіл
+la silla	стілець
+la lámpara	лампа
+la ducha	душ
+el lavabo	умивальник, раковина
+la bañera	ванна (для купання)
+el microondas	мікрохвильовка
+la lavadora	пральна машина

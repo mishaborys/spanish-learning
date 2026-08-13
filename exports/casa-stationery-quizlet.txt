@@ -1,0 +1,13 @@
+el cuaderno	зошит
+el periódico	газета
+la agenda	щоденник, планер
+el móvil	мобільний телефон
+el ordenador	комп'ютер
+la llave	ключ
+el lápiz	олівець
+el bolígrafo	ручка
+el diccionario	словник
+la hoja de papel	аркуш паперу
+el borrador	гумка (ластик)
+el mapa	карта
+el bolso	сумка

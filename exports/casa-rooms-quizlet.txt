@@ -1,0 +1,24 @@
+la casa	будинок
+el dormitorio	спальня
+el balcón	балкон
+el baño	ванна кімната
+el pasillo	коридор
+el comedor	їдальня
+la cocina	кухня
+el salón	вітальня
+el jardín	сад
+el garaje	гараж
+el piso	квартира
+el estudio	кабінет, робоча кімната
+la piscina	басейн
+el sótano	підвал
+el ático	горище, мансарда
+la escalera	сходи
+la puerta	двері
+el puerto	порт (морський)
+la ventana	вікно
+el techo	стеля, дах
+la pared	стіна
+las cortinas	штори
+el suelo	підлога
+el ascensor	ліфт
