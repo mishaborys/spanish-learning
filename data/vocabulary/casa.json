@@ -1,0 +1,503 @@
+{
+  "id": "casa",
+  "title": "Дім — La casa",
+  "description": "Кімнати, меблі, техніка та речі вдома",
+  "groups": [
+    {
+      "id": "rooms",
+      "title": "Кімнати та частини будинку",
+      "emoji": "🏠",
+      "words": [
+        {
+          "spanish": "la casa",
+          "pronunciation": "ла КАса",
+          "ukrainian": "будинок",
+          "emoji": "🏠",
+          "sound_association": "«каса» → каса в магазині — твій дім, повний покупок",
+          "example_es": "Mi casa es grande.",
+          "example_uk": "Мій дім великий."
+        },
+        {
+          "spanish": "el dormitorio",
+          "pronunciation": "ель дормітОріо",
+          "ukrainian": "спальня",
+          "emoji": "🛏️",
+          "sound_association": "«дорміторіо» → dormir (спати) — кімната для сну",
+          "example_es": "Mi dormitorio está arriba.",
+          "example_uk": "Моя спальня нагорі."
+        },
+        {
+          "spanish": "el balcón",
+          "pronunciation": "ель балкОн",
+          "ukrainian": "балкон",
+          "emoji": "🪟",
+          "sound_association": "«балкон» → те саме слово, що й українською",
+          "example_es": "Salgo al balcón por la mañana.",
+          "example_uk": "Я виходжу на балкон вранці."
+        },
+        {
+          "spanish": "el baño / el cuarto de baño",
+          "pronunciation": "ель бАньйо",
+          "ukrainian": "ванна кімната",
+          "emoji": "🛁",
+          "sound_association": "«баньйо» → БАНЯ — там миються",
+          "example_es": "El baño está al lado del dormitorio.",
+          "example_uk": "Ванна кімната поруч зі спальнею."
+        },
+        {
+          "spanish": "el pasillo",
+          "pronunciation": "ель пасІльйо",
+          "ukrainian": "коридор",
+          "emoji": "🚪",
+          "sound_association": "«пасільйо» → ПАСаж, прохід через коридор",
+          "example_es": "El pasillo conecta las habitaciones.",
+          "example_uk": "Коридор з'єднує кімнати."
+        },
+        {
+          "spanish": "el comedor",
+          "pronunciation": "ель комедОр",
+          "ukrainian": "їдальня",
+          "emoji": "🍽️",
+          "sound_association": "«комедор» → comer (їсти) + місце — їдальня",
+          "example_es": "Comemos en el comedor.",
+          "example_uk": "Ми їмо в їдальні."
+        },
+        {
+          "spanish": "la cocina",
+          "pronunciation": "ла косІна",
+          "ukrainian": "кухня",
+          "emoji": "🍳",
+          "sound_association": "«косіна» → готуємо на кухні, звідси й cocinar",
+          "example_es": "Mamá cocina en la cocina.",
+          "example_uk": "Мама готує на кухні."
+        },
+        {
+          "spanish": "el salón / la sala (de estar)",
+          "pronunciation": "ель салОн",
+          "ukrainian": "вітальня",
+          "emoji": "🛋️",
+          "sound_association": "«салон» → салон — місце для прийому гостей",
+          "example_es": "Vemos la tele en el salón.",
+          "example_uk": "Ми дивимось телевізор у вітальні."
+        },
+        {
+          "spanish": "el jardín",
+          "pronunciation": "ель хардІн",
+          "ukrainian": "сад",
+          "emoji": "🌳",
+          "sound_association": "«хардін» → англ. GARDEN — той самий корінь",
+          "example_es": "Las flores están en el jardín.",
+          "example_uk": "Квіти в саду."
+        },
+        {
+          "spanish": "el garaje / la cochera",
+          "pronunciation": "ель гарАхе",
+          "ukrainian": "гараж",
+          "emoji": "🚗",
+          "sound_association": "«гарахе» → GARAGE — впізнаване слово",
+          "example_es": "El coche está en el garaje.",
+          "example_uk": "Машина в гаражі."
+        },
+        {
+          "spanish": "el piso (Ісп.) / el apartamento",
+          "pronunciation": "ель пІсо",
+          "ukrainian": "квартира",
+          "emoji": "🏢",
+          "sound_association": "у Мексиці «piso» означає підлогу, а в Іспанії — квартиру!",
+          "example_es": "Vivo en un piso pequeño.",
+          "example_uk": "Я живу в маленькій квартирі."
+        },
+        {
+          "spanish": "el estudio",
+          "pronunciation": "ель есТУдьо",
+          "ukrainian": "кабінет, робоча кімната",
+          "emoji": "💻",
+          "sound_association": "«естудьо» → СТУДІЯ — місце для роботи й навчання",
+          "example_es": "Trabajo en mi estudio.",
+          "example_uk": "Я працюю у своєму кабінеті."
+        },
+        {
+          "spanish": "la piscina",
+          "pronunciation": "ла пісІна",
+          "ukrainian": "басейн",
+          "emoji": "🏊",
+          "sound_association": "«пісіна» → ПІСок біля басейну",
+          "example_es": "Los niños nadan en la piscina.",
+          "example_uk": "Діти плавають у басейні."
+        },
+        {
+          "spanish": "el sótano",
+          "pronunciation": "ель сОтано",
+          "ukrainian": "підвал",
+          "emoji": "🕳️",
+          "sound_association": "«сотано» → СОТня темних сходів вниз, у підвал",
+          "example_es": "Guardamos las cajas en el sótano.",
+          "example_uk": "Ми зберігаємо коробки в підвалі."
+        },
+        {
+          "spanish": "el ático",
+          "pronunciation": "ель Атіко",
+          "ukrainian": "горище, мансарда",
+          "emoji": "🏚️",
+          "sound_association": "«атіко» → АТИК (архіт. термін) — верхня частина будівлі",
+          "example_es": "El ático está lleno de recuerdos.",
+          "example_uk": "Горище повне спогадів."
+        },
+        {
+          "spanish": "la escalera",
+          "pronunciation": "ла ескалЕра",
+          "ukrainian": "сходи",
+          "emoji": "🪜",
+          "sound_association": "«ескалера» → ЕСКАЛАТОР — рухомі сходи",
+          "example_es": "Subo la escalera cada día.",
+          "example_uk": "Я підіймаюсь сходами щодня."
+        },
+        {
+          "spanish": "la puerta",
+          "pronunciation": "ла пУЕрта",
+          "ukrainian": "двері",
+          "emoji": "🚪",
+          "sound_association": "«пуерта» → не плутай з el puerto (порт)!",
+          "example_es": "Cierra la puerta, por favor.",
+          "example_uk": "Зачини двері, будь ласка."
+        },
+        {
+          "spanish": "el puerto",
+          "pronunciation": "ель пуЕрто",
+          "ukrainian": "порт (морський)",
+          "emoji": "⚓",
+          "sound_association": "«пуерто» → як місто Порто — гавань для кораблів, не двері!",
+          "example_es": "El barco llega al puerto.",
+          "example_uk": "Корабель прибуває в порт."
+        },
+        {
+          "spanish": "la ventana",
+          "pronunciation": "ла вентАна",
+          "ukrainian": "вікно",
+          "emoji": "🪟",
+          "sound_association": "«вентана» → ВЕНТиляція через вікно",
+          "example_es": "Abro la ventana para ventilar.",
+          "example_uk": "Я відчиняю вікно, щоб провітрити."
+        },
+        {
+          "spanish": "el techo",
+          "pronunciation": "ель тЕчо",
+          "ukrainian": "стеля, дах",
+          "emoji": "🏠",
+          "sound_association": "«течо» → ТЕЧе дощ крізь дах",
+          "example_es": "El techo es muy alto.",
+          "example_uk": "Стеля дуже висока."
+        },
+        {
+          "spanish": "la pared",
+          "pronunciation": "ла парЕд",
+          "ukrainian": "стіна",
+          "emoji": "🧱",
+          "sound_association": "«паред» → ПАРАД картин на стіні",
+          "example_es": "El cuadro está en la pared.",
+          "example_uk": "Картина висить на стіні."
+        },
+        {
+          "spanish": "las cortinas",
+          "pronunciation": "лас кортІнас",
+          "ukrainian": "штори",
+          "emoji": "🪟",
+          "sound_association": "«кортінас» → театральні «кортини» — завіси",
+          "example_es": "Las cortinas son azules.",
+          "example_uk": "Штори сині."
+        },
+        {
+          "spanish": "el suelo (Ісп.) / el piso (Мекс.)",
+          "pronunciation": "ель сУЕло",
+          "ukrainian": "підлога",
+          "emoji": "🧹",
+          "sound_association": "«суело» → suelo = земля, ґрунт — те, на чому стоїш",
+          "example_es": "El gato duerme en el suelo.",
+          "example_uk": "Кіт спить на підлозі."
+        },
+        {
+          "spanish": "el ascensor (Ісп.) / el elevador (Мекс.)",
+          "pronunciation": "ель асенсОр",
+          "ukrainian": "ліфт",
+          "emoji": "🛗",
+          "sound_association": "«асенсор» → ASCEND (підійматися англ.) — той самий корінь",
+          "example_es": "Subimos en el ascensor.",
+          "example_uk": "Ми піднімаємось на ліфті."
+        }
+      ]
+    },
+    {
+      "id": "furniture",
+      "title": "Меблі",
+      "emoji": "🛋️",
+      "words": [
+        {
+          "spanish": "la cama",
+          "pronunciation": "ла КАма",
+          "ukrainian": "ліжко",
+          "emoji": "🛏️",
+          "sound_association": "«кама» → звучить коротко й просто, як саме слово «ліжко»",
+          "example_es": "Duermo en mi cama.",
+          "example_uk": "Я сплю у своєму ліжку."
+        },
+        {
+          "spanish": "el sofá",
+          "pronunciation": "ель софА",
+          "ukrainian": "диван",
+          "emoji": "🛋️",
+          "sound_association": "«софа» → те саме слово українською!",
+          "example_es": "Nos sentamos en el sofá.",
+          "example_uk": "Ми сідаємо на диван."
+        },
+        {
+          "spanish": "el sillón",
+          "pronunciation": "ель сільйОн",
+          "ukrainian": "крісло",
+          "emoji": "🪑",
+          "sound_association": "«сильйон» → «збільшений» silla (стілець) — крісло",
+          "example_es": "Mi abuelo lee en el sillón.",
+          "example_uk": "Мій дідусь читає в кріслі."
+        },
+        {
+          "spanish": "la televisión",
+          "pronunciation": "ла телевісьйОн",
+          "ukrainian": "телевізор",
+          "emoji": "📺",
+          "sound_association": "«телевісьйон» → те саме слово, що й «телевізія»",
+          "example_es": "Vemos la televisión juntos.",
+          "example_uk": "Ми разом дивимось телевізор."
+        },
+        {
+          "spanish": "la estantería",
+          "pronunciation": "ла естантерІа",
+          "ukrainian": "книжкова полиця, стелаж",
+          "emoji": "📚",
+          "sound_association": "«естантеріа» → станок (стенд) для книжок",
+          "example_es": "Los libros están en la estantería.",
+          "example_uk": "Книги на полиці."
+        },
+        {
+          "spanish": "la cómoda",
+          "pronunciation": "ла кОмода",
+          "ukrainian": "комод",
+          "emoji": "🗄️",
+          "sound_association": "«комода» → те саме слово, що й українською",
+          "example_es": "La ropa está en la cómoda.",
+          "example_uk": "Одяг у комоді."
+        },
+        {
+          "spanish": "el armario",
+          "pronunciation": "ель армАріо",
+          "ukrainian": "шафа",
+          "emoji": "🚪",
+          "sound_association": "«армаріо» → ціла «армія» одягу зберігається в шафі",
+          "example_es": "Cuelgo la ropa en el armario.",
+          "example_uk": "Я вішаю одяг у шафу."
+        },
+        {
+          "spanish": "la mesa",
+          "pronunciation": "ла мЕса",
+          "ukrainian": "стіл",
+          "emoji": "🪑",
+          "sound_association": "«меса» → меса, служба за столом-вівтарем",
+          "example_es": "La comida está en la mesa.",
+          "example_uk": "Їжа на столі."
+        },
+        {
+          "spanish": "la silla",
+          "pronunciation": "ла сІлья",
+          "ukrainian": "стілець",
+          "emoji": "🪑",
+          "sound_association": "«сілья» → «СІЛА» на стілець",
+          "example_es": "Me siento en la silla.",
+          "example_uk": "Я сідаю на стілець."
+        },
+        {
+          "spanish": "la lámpara",
+          "pronunciation": "ла лАмпара",
+          "ukrainian": "лампа",
+          "emoji": "💡",
+          "sound_association": "«лампара» → те саме слово, що й «лампа»",
+          "example_es": "Enciendo la lámpara por la noche.",
+          "example_uk": "Я вмикаю лампу ввечері."
+        }
+      ]
+    },
+    {
+      "id": "appliances",
+      "title": "Техніка та сантехніка",
+      "emoji": "🔌",
+      "words": [
+        {
+          "spanish": "la ducha",
+          "pronunciation": "ла дУча",
+          "ukrainian": "душ",
+          "emoji": "🚿",
+          "sound_association": "«дуча» → звучить майже як «душ»",
+          "example_es": "Me ducho por la mañana.",
+          "example_uk": "Я приймаю душ вранці."
+        },
+        {
+          "spanish": "el lavabo",
+          "pronunciation": "ель лавАбо",
+          "ukrainian": "умивальник, раковина",
+          "emoji": "🚰",
+          "sound_association": "«лавабо» → lavar (мити) — умивальник для миття рук",
+          "example_es": "Me lavo las manos en el lavabo.",
+          "example_uk": "Я мию руки в умивальнику."
+        },
+        {
+          "spanish": "la bañera",
+          "pronunciation": "ла баньЕра",
+          "ukrainian": "ванна (для купання)",
+          "emoji": "🛁",
+          "sound_association": "«баньєра» → БАНЯ, де купаються",
+          "example_es": "El bebé se baña en la bañera.",
+          "example_uk": "Немовля купається у ванні."
+        },
+        {
+          "spanish": "el microondas",
+          "pronunciation": "ель мікроОндас",
+          "ukrainian": "мікрохвильовка",
+          "emoji": "📡",
+          "sound_association": "«мікроондас» → мікро + ondas (хвилі) — мікрохвилі",
+          "example_es": "Caliento la comida en el microondas.",
+          "example_uk": "Я підігріваю їжу в мікрохвильовці."
+        },
+        {
+          "spanish": "la lavadora",
+          "pronunciation": "ла лавадОра",
+          "ukrainian": "пральна машина",
+          "emoji": "🧺",
+          "sound_association": "«лавадора» → lavar (прати) + машина",
+          "example_es": "Pongo la ropa en la lavadora.",
+          "example_uk": "Я кладу одяг у пральну машину."
+        }
+      ]
+    },
+    {
+      "id": "stationery",
+      "title": "Речі та канцелярія",
+      "emoji": "✏️",
+      "words": [
+        {
+          "spanish": "el cuaderno",
+          "pronunciation": "ель куадЕрно",
+          "ukrainian": "зошит",
+          "emoji": "📓",
+          "sound_association": "«куадерно» → КВАДРатні клітинки в зошиті",
+          "example_es": "Escribo en mi cuaderno.",
+          "example_uk": "Я пишу у своєму зошиті."
+        },
+        {
+          "spanish": "el periódico",
+          "pronunciation": "ель періОдіко",
+          "ukrainian": "газета",
+          "emoji": "📰",
+          "sound_association": "«періодіко» → ПЕРІОДика — виходить періодично",
+          "example_es": "Leo el periódico cada mañana.",
+          "example_uk": "Я читаю газету щоранку."
+        },
+        {
+          "spanish": "la agenda",
+          "pronunciation": "ла ахЕнда",
+          "ukrainian": "щоденник, планер",
+          "emoji": "📅",
+          "sound_association": "«ахенда» → те саме слово, що й «агенда»",
+          "example_es": "Anoto la cita en mi agenda.",
+          "example_uk": "Я записую зустріч у щоденник."
+        },
+        {
+          "spanish": "el celular / el móvil",
+          "pronunciation": "ель сельУлар / ель мОвіль",
+          "ukrainian": "мобільний телефон",
+          "emoji": "📱",
+          "sound_association": "«мовіль» → MOBILE (англ.) — той самий корінь",
+          "example_es": "Mi celular está en la mesa.",
+          "example_uk": "Мій телефон на столі."
+        },
+        {
+          "spanish": "el ordenador / la computadora",
+          "pronunciation": "ель орденадОр",
+          "ukrainian": "комп'ютер",
+          "emoji": "💻",
+          "sound_association": "«орденадор» → orden (порядок) — комп'ютер усе впорядковує",
+          "example_es": "Trabajo con el ordenador.",
+          "example_uk": "Я працюю за комп'ютером."
+        },
+        {
+          "spanish": "la llave",
+          "pronunciation": "ла льЯве",
+          "ukrainian": "ключ",
+          "emoji": "🔑",
+          "sound_association": "«льяве» → звучить, наче ключ клацає в замку",
+          "example_es": "No encuentro la llave.",
+          "example_uk": "Я не можу знайти ключ."
+        },
+        {
+          "spanish": "el lápiz",
+          "pronunciation": "ель лАпіс",
+          "ukrainian": "олівець",
+          "emoji": "✏️",
+          "sound_association": "«лапіс» → lapis lazuli, синій мінерал — раніше з каменю робили грифелі",
+          "example_es": "Dibujo con el lápiz.",
+          "example_uk": "Я малюю олівцем."
+        },
+        {
+          "spanish": "el bolígrafo",
+          "pronunciation": "ель болІграфо",
+          "ukrainian": "ручка",
+          "emoji": "🖊️",
+          "sound_association": "«боліграфо» → -графо (пишу) — інструмент, що пише",
+          "example_es": "Firmo con el bolígrafo.",
+          "example_uk": "Я підписую ручкою."
+        },
+        {
+          "spanish": "el diccionario",
+          "pronunciation": "ель діксьонАріо",
+          "ukrainian": "словник",
+          "emoji": "📖",
+          "sound_association": "«діксьонаріо» → DICTIONARY (англ.) — той самий корінь",
+          "example_es": "Busco la palabra en el diccionario.",
+          "example_uk": "Я шукаю слово в словнику."
+        },
+        {
+          "spanish": "la hoja de papel",
+          "pronunciation": "ла Оха де папЕль",
+          "ukrainian": "аркуш паперу",
+          "emoji": "📄",
+          "sound_association": "«оха» → hoja (листок) — як листок дерева, тільки паперовий",
+          "example_es": "Necesito una hoja de papel.",
+          "example_uk": "Мені потрібен аркуш паперу."
+        },
+        {
+          "spanish": "el borrador",
+          "pronunciation": "ель боррадОр",
+          "ukrainian": "гумка (ластик)",
+          "emoji": "🧽",
+          "sound_association": "«боррадор» → «бореться» з помилками, стираючи їх",
+          "example_es": "Uso el borrador para corregir.",
+          "example_uk": "Я використовую гумку, щоб виправити."
+        },
+        {
+          "spanish": "el mapa",
+          "pronunciation": "ель мАпа",
+          "ukrainian": "карта",
+          "emoji": "🗺️",
+          "sound_association": "«мапа» → те саме слово, що й «мапа» українською",
+          "example_es": "Miro el mapa para no perderme.",
+          "example_uk": "Я дивлюсь на карту, щоб не загубитись."
+        },
+        {
+          "spanish": "el bolso",
+          "pronunciation": "ель бОльсо",
+          "ukrainian": "сумка",
+          "emoji": "👜",
+          "sound_association": "«больсо» → спорідене з bolsillo (кишеня)",
+          "example_es": "Llevo el móvil en el bolso.",
+          "example_uk": "Я несу телефон у сумці."
+        }
+      ]
+    }
+  ]
+}

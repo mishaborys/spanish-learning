@@ -1,0 +1,52 @@
+la casa	будинок
+el dormitorio	спальня
+el balcón	балкон
+el baño	ванна кімната
+el pasillo	коридор
+el comedor	їдальня
+la cocina	кухня
+el salón	вітальня
+el jardín	сад
+el garaje	гараж
+el piso	квартира
+el estudio	кабінет, робоча кімната
+la piscina	басейн
+el sótano	підвал
+el ático	горище, мансарда
+la escalera	сходи
+la puerta	двері
+el puerto	порт (морський)
+la ventana	вікно
+el techo	стеля, дах
+la pared	стіна
+las cortinas	штори
+el suelo	підлога
+el ascensor	ліфт
+la cama	ліжко
+el sofá	диван
+el sillón	крісло
+la televisión	телевізор
+la estantería	книжкова полиця, стелаж
+la cómoda	комод
+el armario	шафа
+la mesa	стіл
+la silla	стілець
+la lámpara	лампа
+la ducha	душ
+el lavabo	умивальник, раковина
+la bañera	ванна (для купання)
+el microondas	мікрохвильовка
+la lavadora	пральна машина
+el cuaderno	зошит
+el periódico	газета
+la agenda	щоденник, планер
+el móvil	мобільний телефон
+el ordenador	комп'ютер
+la llave	ключ
+el lápiz	олівець
+el bolígrafo	ручка
+el diccionario	словник
+la hoja de papel	аркуш паперу
+el borrador	гумка (ластик)
+el mapa	карта
+el bolso	сумка
