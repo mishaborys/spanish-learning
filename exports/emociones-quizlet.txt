@@ -1,0 +1,17 @@
+bien	добре
+contento	задоволений
+alegre	веселий, радісний
+feliz	щасливий
+triste	сумний
+preocupado	стурбований
+enfadado	злий, розсерджений
+enamorado	закоханий
+serio	серйозний
+nervioso	нервовий
+aburrido	знуджений (нудьгує)
+cansado	втомлений
+tener frío	мерзнути, відчувати холод
+tener calor	відчувати спеку
+tener dolor	відчувати біль
+tener sueño	хотіти спати
+tener hambre	бути голодним

@@ -1,0 +1,113 @@
+{
+  "id": "colores",
+  "title": "Кольори — Los colores",
+  "description": "Основні кольори іспанською",
+  "groups": [
+    {
+      "id": "colores",
+      "title": "Кольори",
+      "emoji": "🎨",
+      "words": [
+        {
+          "spanish": "rojo",
+          "pronunciation": "рОхо",
+          "ukrainian": "червоний",
+          "emoji": "🔴",
+          "sound_association": "«рохо» → троянда РОЖА такого кольору",
+          "example_es": "El coche es rojo.",
+          "example_uk": "Машина червона."
+        },
+        {
+          "spanish": "naranja",
+          "pronunciation": "нарАнха",
+          "ukrainian": "помаранчевий",
+          "emoji": "🟠",
+          "sound_association": "«наранха» — це і колір, і слово «апельсин», того ж кольору",
+          "example_es": "El sol es naranja.",
+          "example_uk": "Сонце помаранчеве."
+        },
+        {
+          "spanish": "amarillo",
+          "pronunciation": "амарІльйо",
+          "ukrainian": "жовтий",
+          "emoji": "🟡",
+          "sound_association": "«амарільйо» → АМАРИЛІС, квітка жовтого кольору",
+          "example_es": "El plátano es amarillo.",
+          "example_uk": "Банан жовтий."
+        },
+        {
+          "spanish": "verde",
+          "pronunciation": "вЕрде",
+          "ukrainian": "зелений",
+          "emoji": "🟢",
+          "sound_association": "«верде» → трава ВЕРДе, той самий корінь, що у «вертикаль»",
+          "example_es": "La hierba es verde.",
+          "example_uk": "Трава зелена."
+        },
+        {
+          "spanish": "marrón",
+          "pronunciation": "маррОн",
+          "ukrainian": "коричневий",
+          "emoji": "🟤",
+          "sound_association": "«маррон» → marron glacé, каштани в шоколаді — коричневий колір",
+          "example_es": "El oso es marrón.",
+          "example_uk": "Ведмідь коричневий."
+        },
+        {
+          "spanish": "rosa",
+          "pronunciation": "рОса",
+          "ukrainian": "рожевий",
+          "emoji": "🌸",
+          "sound_association": "«роса» → троянда РОЗА рожевого кольору",
+          "example_es": "La flor es rosa.",
+          "example_uk": "Квітка рожева."
+        },
+        {
+          "spanish": "azul",
+          "pronunciation": "асУль",
+          "ukrainian": "синій, блакитний",
+          "emoji": "🔵",
+          "sound_association": "«асуль» → АЗУРний (лазурний) колір моря",
+          "example_es": "El cielo es azul.",
+          "example_uk": "Небо синє."
+        },
+        {
+          "spanish": "morado / lila",
+          "pronunciation": "морАдо / лІла",
+          "ukrainian": "фіолетовий / бузковий",
+          "emoji": "🟣",
+          "sound_association": "«морадо» → темна морська хвиля фіолетового кольору",
+          "example_es": "La uva es morada.",
+          "example_uk": "Виноград фіолетовий."
+        },
+        {
+          "spanish": "gris",
+          "pronunciation": "грІс",
+          "ukrainian": "сірий",
+          "emoji": "🐘",
+          "sound_association": "«гріс» → ГРИЗлі, сірий ведмідь",
+          "example_es": "El elefante es gris.",
+          "example_uk": "Слон сірий."
+        },
+        {
+          "spanish": "blanco",
+          "pronunciation": "блАнко",
+          "ukrainian": "білий",
+          "emoji": "⚪",
+          "sound_association": "«бланко» → БЛАНК, чистий білий аркуш",
+          "example_es": "El oso polar es blanco.",
+          "example_uk": "Білий ведмідь білий."
+        },
+        {
+          "spanish": "negro",
+          "pronunciation": "нЕгро",
+          "ukrainian": "чорний",
+          "emoji": "⚫",
+          "sound_association": "«негро» → той самий корінь, що й «негатив», чорно-білий",
+          "example_es": "El gato negro es bonito.",
+          "example_uk": "Чорний кіт гарний."
+        }
+      ]
+    }
+  ]
+}

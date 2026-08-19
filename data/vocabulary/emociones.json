@@ -1,0 +1,174 @@
+{
+  "id": "emociones",
+  "title": "Емоції та відчуття — Sentimientos y sensaciones",
+  "description": "Почуття (з estar) та фізичні відчуття (з tener)",
+  "groups": [
+    {
+      "id": "sentimientos",
+      "title": "Почуття (estar)",
+      "emoji": "😊",
+      "words": [
+        {
+          "spanish": "bien",
+          "pronunciation": "б'Ен",
+          "ukrainian": "добре",
+          "emoji": "🙂",
+          "sound_association": "«б'єн» → БІЙ виграно — все добре",
+          "example_es": "Estoy bien, gracias.",
+          "example_uk": "Я почуваюсь добре, дякую."
+        },
+        {
+          "spanish": "contento/a",
+          "pronunciation": "контЕнто/а",
+          "ukrainian": "задоволений / задоволена",
+          "emoji": "😊",
+          "sound_association": "«контенто» → КОНТЕНТ, який тобі подобається — ти задоволений",
+          "example_es": "Estoy muy contento.",
+          "example_uk": "Я дуже задоволений."
+        },
+        {
+          "spanish": "alegre",
+          "pronunciation": "алЕгре",
+          "ukrainian": "веселий, радісний",
+          "emoji": "😄",
+          "sound_association": "«алегре» → нагадує «алегро» — швидкий і веселий музичний темп",
+          "example_es": "Ella es muy alegre.",
+          "example_uk": "Вона дуже весела."
+        },
+        {
+          "spanish": "feliz",
+          "pronunciation": "феЛІс",
+          "ukrainian": "щасливий",
+          "emoji": "😁",
+          "sound_association": "«феліс» → ФЕЛІЧІТА, свято щастя",
+          "example_es": "Estoy muy feliz hoy.",
+          "example_uk": "Я дуже щасливий сьогодні."
+        },
+        {
+          "spanish": "triste",
+          "pronunciation": "трІсте",
+          "ukrainian": "сумний",
+          "emoji": "😢",
+          "sound_association": "«тристе» → серце ТРІСнуло — сумно",
+          "example_es": "¿Por qué estás triste?",
+          "example_uk": "Чому ти сумний?"
+        },
+        {
+          "spanish": "preocupado/a",
+          "pronunciation": "преокупАдо/а",
+          "ukrainian": "стурбований / стурбована",
+          "emoji": "😰",
+          "sound_association": "«преокупадо» → PRE-OCCUPIED (англ.) — заклопотаний",
+          "example_es": "Estoy preocupado por ti.",
+          "example_uk": "Я хвилююся за тебе."
+        },
+        {
+          "spanish": "enfadado/a",
+          "pronunciation": "енфадАдо/а",
+          "ukrainian": "злий, розсерджений / розсерджена",
+          "emoji": "😠",
+          "sound_association": "«енфададо» → у тумані люті — злий",
+          "example_es": "Está enfadado conmigo.",
+          "example_uk": "Він злий на мене."
+        },
+        {
+          "spanish": "enamorado/a",
+          "pronunciation": "енаморАдо/а",
+          "ukrainian": "закоханий / закохана",
+          "emoji": "😍",
+          "sound_association": "«енаморадо» → AMOR (кохання) всередині слова",
+          "example_es": "Estoy enamorado de ti.",
+          "example_uk": "Я закоханий у тебе."
+        },
+        {
+          "spanish": "serio/a",
+          "pronunciation": "сЕріо/а",
+          "ukrainian": "серйозний / серйозна",
+          "emoji": "😐",
+          "sound_association": "«серіо» → СЕРЙОЗНО, той самий корінь",
+          "example_es": "Mi jefe es muy serio.",
+          "example_uk": "Мій керівник дуже серйозний."
+        },
+        {
+          "spanish": "nervioso/a",
+          "pronunciation": "нервьОсо/а",
+          "ukrainian": "нервовий / нервова",
+          "emoji": "😬",
+          "sound_association": "«нервьосо» → нерви на межі",
+          "example_es": "Estoy nervioso antes del examen.",
+          "example_uk": "Я нервую перед іспитом."
+        },
+        {
+          "spanish": "aburrido/a",
+          "pronunciation": "абурІдо/а",
+          "ukrainian": "знуджений / знуджена (нудьгує)",
+          "emoji": "🙄",
+          "sound_association": "«абурідо» → нудне бурчання — знудьга",
+          "example_es": "Estoy aburrido.",
+          "example_uk": "Мені нудно."
+        },
+        {
+          "spanish": "cansado/a",
+          "pronunciation": "кансАдо/а",
+          "ukrainian": "втомлений / втомлена",
+          "emoji": "😴",
+          "sound_association": "«кансадо» → ноги «садяться» від втоми",
+          "example_es": "Estoy muy cansado.",
+          "example_uk": "Я дуже втомлений."
+        }
+      ]
+    },
+    {
+      "id": "percepciones",
+      "title": "Фізичні відчуття (tener)",
+      "emoji": "🤕",
+      "words": [
+        {
+          "spanish": "tener frío",
+          "pronunciation": "теНЕР фРІо",
+          "ukrainian": "мерзнути, відчувати холод",
+          "emoji": "🥶",
+          "sound_association": "«фріо» → FREEZE-о — заморожений",
+          "example_es": "Tengo mucho frío.",
+          "example_uk": "Мені дуже холодно."
+        },
+        {
+          "spanish": "tener calor",
+          "pronunciation": "теНЕР каЛОР",
+          "ukrainian": "відчувати спеку",
+          "emoji": "🥵",
+          "sound_association": "«калор» → КАЛОРІЇ — тепло й енергія",
+          "example_es": "Tengo mucho calor.",
+          "example_uk": "Мені дуже жарко."
+        },
+        {
+          "spanish": "tener dolor",
+          "pronunciation": "теНЕР долОр",
+          "ukrainian": "відчувати біль",
+          "emoji": "🤕",
+          "sound_association": "«долор» → той самий корінь, що в «долороза»",
+          "example_es": "Tengo dolor de cabeza.",
+          "example_uk": "У мене болить голова."
+        },
+        {
+          "spanish": "tener sueño",
+          "pronunciation": "теНЕР сУЕНьйо",
+          "ukrainian": "хотіти спати",
+          "emoji": "😪",
+          "sound_association": "«суеньйо» → сон насувається",
+          "example_es": "Tengo mucho sueño.",
+          "example_uk": "Мені дуже хочеться спати."
+        },
+        {
+          "spanish": "tener hambre",
+          "pronunciation": "теНЕР Амбре",
+          "ukrainian": "бути голодним",
+          "emoji": "🍔",
+          "sound_association": "«амбре» → АМБРОЗІЯ, їжа богів",
+          "example_es": "Tengo mucha hambre.",
+          "example_uk": "Я дуже голодний."
+        }
+      ]
+    }
+  ]
+}

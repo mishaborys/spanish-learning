@@ -1,0 +1,11 @@
+rojo	червоний
+naranja	помаранчевий
+amarillo	жовтий
+verde	зелений
+marrón	коричневий
+rosa	рожевий
+azul	синій, блакитний
+morado	фіолетовий
+gris	сірий
+blanco	білий
+negro	чорний
