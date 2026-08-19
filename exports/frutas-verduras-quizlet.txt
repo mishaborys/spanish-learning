@@ -1,0 +1,20 @@
+la manzana	яблуко
+el plátano	банан
+la naranja	апельсин
+la fresa	полуниця
+la uva	виноград
+la pera	груша
+el limón	лимон
+la sandía	кавун
+el melón	диня
+la piña	ананас
+la patata	картопля
+la zanahoria	морква
+la cebolla	цибуля
+el tomate	помідор
+la lechuga	салат (латук)
+el pepino	огірок
+el ajo	часник
+el pimiento	перець
+la calabaza	гарбуз
+el brócoli	броколі

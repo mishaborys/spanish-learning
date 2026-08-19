@@ -1,0 +1,201 @@
+{
+  "id": "frutas-verduras",
+  "title": "Фрукти та овочі — Frutas y verduras",
+  "description": "Основні фрукти та овочі іспанською",
+  "groups": [
+    {
+      "id": "frutas",
+      "title": "Фрукти",
+      "emoji": "🍎",
+      "words": [
+        {
+          "spanish": "la manzana",
+          "pronunciation": "ла мансАна",
+          "ukrainian": "яблуко",
+          "emoji": "🍎",
+          "sound_association": "«мансана» → МАНСАРДА, де на горищі зберігають яблука",
+          "example_es": "Como una manzana cada día.",
+          "example_uk": "Я їм одне яблуко щодня."
+        },
+        {
+          "spanish": "el plátano",
+          "pronunciation": "ель плАтано",
+          "ukrainian": "банан",
+          "emoji": "🍌",
+          "sound_association": "«платано» → нагадує «плато» (рівнину), де ростуть банани",
+          "example_es": "El plátano es amarillo.",
+          "example_uk": "Банан жовтий."
+        },
+        {
+          "spanish": "la naranja",
+          "pronunciation": "ла нарАнха",
+          "ukrainian": "апельсин",
+          "emoji": "🍊",
+          "sound_association": "«наранха» → колір ОРАНЖевий, той самий корінь",
+          "example_es": "Bebo zumo de naranja.",
+          "example_uk": "Я п'ю апельсиновий сік."
+        },
+        {
+          "spanish": "la fresa",
+          "pronunciation": "ла фрЕса",
+          "ukrainian": "полуниця",
+          "emoji": "🍓",
+          "sound_association": "«фреса» → ФРЕШ, свіжа полуниця",
+          "example_es": "Me gusta la fresa con nata.",
+          "example_uk": "Мені подобається полуниця зі сметаною."
+        },
+        {
+          "spanish": "la uva",
+          "pronunciation": "ла Ува",
+          "ukrainian": "виноград",
+          "emoji": "🍇",
+          "sound_association": "«ува» → коротке «ух ти!», коли їси виноград",
+          "example_es": "Las uvas están dulces.",
+          "example_uk": "Виноград солодкий."
+        },
+        {
+          "spanish": "la pera",
+          "pronunciation": "ла пЕра",
+          "ukrainian": "груша",
+          "emoji": "🍐",
+          "sound_association": "«пера» → ПЕРО птаха такої ж витягнутої форми, як груша",
+          "example_es": "La pera es mi fruta favorita.",
+          "example_uk": "Груша — мій улюблений фрукт."
+        },
+        {
+          "spanish": "el limón",
+          "pronunciation": "ель лімОн",
+          "ukrainian": "лимон",
+          "emoji": "🍋",
+          "sound_association": "«лімон» → те саме слово, що й українською",
+          "example_es": "El té con limón es rico.",
+          "example_uk": "Чай з лимоном смачний."
+        },
+        {
+          "spanish": "la sandía",
+          "pronunciation": "ла сандІа",
+          "ukrainian": "кавун",
+          "emoji": "🍉",
+          "sound_association": "«сандіа» → SAND (пісок) пляжу, де влітку їдять кавун",
+          "example_es": "En verano comemos sandía.",
+          "example_uk": "Влітку ми їмо кавун."
+        },
+        {
+          "spanish": "el melón",
+          "pronunciation": "ель мелОн",
+          "ukrainian": "диня",
+          "emoji": "🍈",
+          "sound_association": "«мелон» → МЕЛОДІЯ літа, солодка диня",
+          "example_es": "El melón es muy dulce.",
+          "example_uk": "Диня дуже солодка."
+        },
+        {
+          "spanish": "la piña",
+          "pronunciation": "ла пІнья",
+          "ukrainian": "ананас",
+          "emoji": "🍍",
+          "sound_association": "«пінья» → ПІНЬЯ колада, коктейль з ананасом",
+          "example_es": "La piña colada lleva piña.",
+          "example_uk": "У піна-коладі є ананас."
+        }
+      ]
+    },
+    {
+      "id": "verduras",
+      "title": "Овочі",
+      "emoji": "🥕",
+      "words": [
+        {
+          "spanish": "la patata",
+          "pronunciation": "ла патАта",
+          "ukrainian": "картопля",
+          "emoji": "🥔",
+          "sound_association": "«патата» → звучить як англійське «potato»",
+          "example_es": "Como patatas fritas.",
+          "example_uk": "Я їм смажену картоплю."
+        },
+        {
+          "spanish": "la zanahoria",
+          "pronunciation": "ла санаОрія",
+          "ukrainian": "морква",
+          "emoji": "🥕",
+          "sound_association": "«санаорія» → САНА (здорова) морква для очей",
+          "example_es": "El conejo come zanahoria.",
+          "example_uk": "Кролик їсть моркву."
+        },
+        {
+          "spanish": "la cebolla",
+          "pronunciation": "ла себОйя",
+          "ukrainian": "цибуля",
+          "emoji": "🧅",
+          "sound_association": "«себойя» → від сліз витираєш очі САМ СОБОЮ, коли ріжеш цибулю",
+          "example_es": "Corto la cebolla y lloro.",
+          "example_uk": "Я ріжу цибулю і плачу."
+        },
+        {
+          "spanish": "el tomate",
+          "pronunciation": "ель томАте",
+          "ukrainian": "помідор",
+          "emoji": "🍅",
+          "sound_association": "«томате» → ТОМАТНИЙ соус, той самий корінь",
+          "example_es": "El tomate es rojo.",
+          "example_uk": "Помідор червоний."
+        },
+        {
+          "spanish": "la lechuga",
+          "pronunciation": "ла лечУга",
+          "ukrainian": "салат (латук)",
+          "emoji": "🥬",
+          "sound_association": "«лечуга» → ЛЕГка зелень для салату",
+          "example_es": "La ensalada tiene lechuga.",
+          "example_uk": "У салаті є латук."
+        },
+        {
+          "spanish": "el pepino",
+          "pronunciation": "ель пепІно",
+          "ukrainian": "огірок",
+          "emoji": "🥒",
+          "sound_association": "«пепіно» → зелений і хрусткий, як ПЕПсі-огірок",
+          "example_es": "El pepino está fresco.",
+          "example_uk": "Огірок свіжий."
+        },
+        {
+          "spanish": "el ajo",
+          "pronunciation": "ель Ахо",
+          "ukrainian": "часник",
+          "emoji": "🧄",
+          "sound_association": "«ахо» → «Ах!», який кажеш від запаху часнику",
+          "example_es": "Uso ajo para cocinar.",
+          "example_uk": "Я використовую часник для готування."
+        },
+        {
+          "spanish": "el pimiento",
+          "pronunciation": "ель пімьЕнто",
+          "ukrainian": "перець",
+          "emoji": "🫑",
+          "sound_association": "«пім'єнто» → той самий корінь, що й «пекучий», ПІМЕНТО",
+          "example_es": "El pimiento rojo es dulce.",
+          "example_uk": "Червоний перець солодкий."
+        },
+        {
+          "spanish": "la calabaza",
+          "pronunciation": "ла калабАса",
+          "ukrainian": "гарбуз",
+          "emoji": "🎃",
+          "sound_association": "«калабаса» → КАЛАБАС, посудина, яку роблять із висушеного гарбуза",
+          "example_es": "En Halloween usamos calabaza.",
+          "example_uk": "На Хелловін ми використовуємо гарбуз."
+        },
+        {
+          "spanish": "el brócoli",
+          "pronunciation": "ель брОколі",
+          "ukrainian": "броколі",
+          "emoji": "🥦",
+          "sound_association": "«бро́колі» → те саме слово, що й українською",
+          "example_es": "El brócoli es muy saludable.",
+          "example_uk": "Броколі дуже корисне."
+        }
+      ]
+    }
+  ]
+}
