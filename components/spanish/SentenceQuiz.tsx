@@ -5,6 +5,7 @@ import { QuizSentence } from "@/lib/db";
 
 type Props = { sentences: QuizSentence[] };
 const ADVANCE_MS = 2000;
+const WRONG_ADVANCE_MS = ADVANCE_MS * 3;
 
 function shuffle<T>(arr: T[]): T[] {
   return [...arr].sort(() => Math.random() - 0.5);
@@ -30,18 +31,20 @@ export function SentenceQuiz({ sentences }: Props) {
   lenRef.current = deck.length;
 
   const q = deck[idx];
+  const delayRef = useRef(ADVANCE_MS);
 
   useEffect(() => {
-    if (selected === null) { setBarWidth(0); return; }
+    if (selected === null || !q) { setBarWidth(0); return; }
+    delayRef.current = selected === q.correct ? ADVANCE_MS : WRONG_ADVANCE_MS;
     const raf = requestAnimationFrame(() => requestAnimationFrame(() => setBarWidth(100)));
     const timer = setTimeout(() => {
       setBarWidth(0);
       const next = idxRef.current + 1;
       if (next >= lenRef.current) setDone(true);
       else { setIdx(next); setSelected(null); }
-    }, ADVANCE_MS);
+    }, delayRef.current);
     return () => { clearTimeout(timer); cancelAnimationFrame(raf); };
-  }, [selected]);
+  }, [selected, q]);
 
   const resetSession = useCallback(() => {
     setDeck(makeDeck()); setIdx(0); setSelected(null);
@@ -147,7 +150,7 @@ export function SentenceQuiz({ sentences }: Props) {
       {/* Timer bar */}
       <div className="h-0.5 bg-muted rounded-full overflow-hidden">
         <div className="h-full bg-primary/60 rounded-full"
-          style={{ width: `${barWidth}%`, transition: barWidth === 100 ? `width ${ADVANCE_MS}ms linear` : "none" }} />
+          style={{ width: `${barWidth}%`, transition: barWidth === 100 ? `width ${delayRef.current}ms linear` : "none" }} />
       </div>
     </div>
   );
