@@ -12,6 +12,12 @@ const sql = (strings: TemplateStringsArray, ...values: any[]) =>
 
 export default sql;
 
+export type QuizSentence = {
+  question: string;
+  options: string[];
+  correct: string;
+};
+
 export type Topic = {
   id: number;
   title: string;
@@ -19,6 +25,7 @@ export type Topic = {
   grammar_text: string;
   display_order: number;
   fill_words: string[] | null;
+  quiz_sentences: string | null;
   created_at: string;
 };
 

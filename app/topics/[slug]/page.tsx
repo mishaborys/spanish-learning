@@ -56,7 +56,12 @@ export default async function TopicPage({ params }: Props) {
         )}
       </div>
 
-      <TopicTabs grammarText={topic.grammar_text} words={words} fillWords={topic.fill_words ?? undefined} />
+      <TopicTabs
+        grammarText={topic.grammar_text}
+        words={words}
+        fillWords={topic.fill_words ?? undefined}
+        quizSentences={topic.quiz_sentences ? JSON.parse(topic.quiz_sentences) : undefined}
+      />
     </div>
   );
 }

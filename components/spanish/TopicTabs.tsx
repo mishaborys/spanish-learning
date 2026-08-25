@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Word } from "@/lib/db";
+import { Word, QuizSentence } from "@/lib/db";
 import { FlashCards } from "./FlashCards";
 import { Quiz } from "./Quiz";
 import { FillInBlank } from "./FillInBlank";
@@ -19,9 +19,9 @@ const FILL_TAB: { id: Tab; label: string; emoji: string } =
 
 const VERB_RE = /^.+(ar|er|ir)$/i;
 
-type Props = { grammarText: string; words: Word[]; fillWords?: string[] };
+type Props = { grammarText: string; words: Word[]; fillWords?: string[]; quizSentences?: QuizSentence[] };
 
-export function TopicTabs({ grammarText, words, fillWords }: Props) {
+export function TopicTabs({ grammarText, words, fillWords, quizSentences }: Props) {
   const isVerbTopic = useMemo(() => {
     const n = words.filter(w => VERB_RE.test(w.spanish)).length;
     return n > words.length * 0.7;
@@ -78,7 +78,7 @@ export function TopicTabs({ grammarText, words, fillWords }: Props) {
       )}
 
       {tab === "cards" && <FlashCards words={words} />}
-      {tab === "quiz"  && <Quiz words={words} />}
+      {tab === "quiz"  && <Quiz words={words} quizSentences={quizSentences} />}
       {tab === "fill"  && <FillInBlank words={fillWords ? words.filter(w => fillWords.includes(w.spanish)) : words} />}
     </div>
   );

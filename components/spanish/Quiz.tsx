@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useMemo, useEffect, useRef, useCallback } from "react";
-import { Word } from "@/lib/db";
+import { Word, QuizSentence } from "@/lib/db";
+import { SentenceQuiz } from "./SentenceQuiz";
 
 type WordWithStatus = Word & { status?: string };
-type Props = { words: WordWithStatus[] };
-type QuizMode = "translation" | "conjugation";
+type Props = { words: WordWithStatus[]; quizSentences?: QuizSentence[] };
+type QuizMode = "translation" | "conjugation" | "sentence";
 type Direction = "es-ua" | "ua-es";
 
 const ARTICLE_RE = /^(el|la|los|las) (.+)$/;
@@ -90,7 +91,8 @@ function buildConjugateQ(word: WordWithStatus, pronoun: Pronoun): Question {
   };
 }
 
-export function Quiz({ words }: Props) {
+export function Quiz({ words, quizSentences }: Props) {
+  const hasSentenceMode = !!quizSentences && quizSentences.length > 0;
   const isVerbTopic = useMemo(() => words.filter(w => VERB_RE.test(w.spanish)).length > words.length * 0.7, [words]);
   const isArticleTopic = useMemo(() => words.filter(w => ARTICLE_RE.test(w.spanish)).length > words.length * 0.5, [words]);
   const isSingularArticleTopic = useMemo(() => isArticleTopic && !words.some(w => /^(los|las) /.test(w.spanish)), [words, isArticleTopic]);
@@ -182,6 +184,35 @@ export function Quiz({ words }: Props) {
   const switchMode = (m: QuizMode) => { setMode(m); resetSession(); };
   const switchDirection = (d: Direction) => { setDirection(d); resetSession(); };
 
+  const showModeSelector = isVerbTopic || hasSentenceMode;
+  const modeOptions: [QuizMode, string][] = [
+    ["translation", "📖 Переклад"],
+    ...(isVerbTopic ? ([["conjugation", "∿ Форми"]] as [QuizMode, string][]) : []),
+    ...(hasSentenceMode ? ([["sentence", "📝 Речення"]] as [QuizMode, string][]) : []),
+  ];
+
+  const ModeSelector = showModeSelector ? (
+    <div className="flex rounded-2xl bg-muted p-1 gap-1">
+      {modeOptions.map(([m, label]) => (
+        <button key={m} onClick={() => switchMode(m)}
+          className={`flex-1 py-2 rounded-xl text-sm font-medium transition-all ${
+            mode === m ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+          }`}>
+          {label}
+        </button>
+      ))}
+    </div>
+  ) : null;
+
+  if (mode === "sentence") {
+    return (
+      <div className="flex flex-col gap-3">
+        {ModeSelector}
+        <SentenceQuiz sentences={quizSentences ?? []} />
+      </div>
+    );
+  }
+
   if (words.length < 2) return <p className="text-muted-foreground text-sm py-8 text-center">Потрібно мінімум 2 слова.</p>;
 
   if (done || deck.length === 0) {
@@ -231,19 +262,8 @@ export function Quiz({ words }: Props) {
   return (
     <div className="flex flex-col gap-3">
 
-      {/* Mode selector — only for verb topics */}
-      {isVerbTopic && (
-        <div className="flex rounded-2xl bg-muted p-1 gap-1">
-          {([["translation", "📖 Переклад"], ["conjugation", "∿ Форми"]] as [QuizMode, string][]).map(([m, label]) => (
-            <button key={m} onClick={() => switchMode(m)}
-              className={`flex-1 py-2 rounded-xl text-sm font-medium transition-all ${
-                mode === m ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
-              }`}>
-              {label}
-            </button>
-          ))}
-        </div>
-      )}
+      {/* Mode selector */}
+      {ModeSelector}
 
       {/* Settings for translation mode */}
       {mode === "translation" && (
