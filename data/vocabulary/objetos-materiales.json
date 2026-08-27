@@ -1,0 +1,262 @@
+{
+  "id": "objetos-materiales",
+  "title": "Речі та матеріали — Objetos y materiales",
+  "description": "Для чого потрібні речі та з чого вони зроблені",
+  "groups": [
+    {
+      "id": "cosas-para",
+      "title": "Побутові речі",
+      "emoji": "🧳",
+      "words": [
+        {
+          "spanish": "la maleta",
+          "pronunciation": "ла малЕта",
+          "ukrainian": "валіза",
+          "emoji": "🧳",
+          "sound_association": "«малета» → в неї «мало» місця, тому пакуй розумно",
+          "example_es": "La maleta es para viajar.",
+          "example_uk": "Валіза для подорожей."
+        },
+        {
+          "spanish": "la tarjeta",
+          "pronunciation": "ла тархЕта",
+          "ukrainian": "картка (кредитна)",
+          "emoji": "💳",
+          "sound_association": "«тархета» → карту тримаєш у гаманці",
+          "example_es": "La tarjeta es para pagar.",
+          "example_uk": "Картка для оплати."
+        },
+        {
+          "spanish": "el bañador",
+          "pronunciation": "ель баньядОр",
+          "ukrainian": "купальник",
+          "emoji": "🩱",
+          "sound_association": "«баньядор» → від baño (купання) — одяг для купання",
+          "example_es": "El bañador es para nadar.",
+          "example_uk": "Купальник для плавання."
+        },
+        {
+          "spanish": "los guantes",
+          "pronunciation": "лос гУантес",
+          "ukrainian": "рукавички",
+          "emoji": "🧤",
+          "sound_association": "«гуантес» → руки, як у ГАНТЕЛЬ, ховаєш у рукавички взимку",
+          "example_es": "Los guantes son para el frío.",
+          "example_uk": "Рукавички для холоду."
+        },
+        {
+          "spanish": "el despertador",
+          "pronunciation": "ель деспертадОр",
+          "ukrainian": "будильник",
+          "emoji": "⏰",
+          "sound_association": "«деспертадор» → той самий корінь, що й despertar (прокидатися)",
+          "example_es": "El despertador es para despertarse.",
+          "example_uk": "Будильник для того, щоб прокидатися."
+        },
+        {
+          "spanish": "la tostadora",
+          "pronunciation": "ла тостадОра",
+          "ukrainian": "тостер",
+          "emoji": "🍞",
+          "sound_association": "«тостадора» → те саме слово, що й «тостер»",
+          "example_es": "La tostadora es para tostar pan.",
+          "example_uk": "Тостер для підсмажування хліба."
+        },
+        {
+          "spanish": "el paraguas",
+          "pronunciation": "ель парАгуас",
+          "ukrainian": "парасолька",
+          "emoji": "☂️",
+          "sound_association": "«параагуас» → para (проти) + agua (вода) — проти дощу",
+          "example_es": "El paraguas es para la lluvia.",
+          "example_uk": "Парасолька для дощу."
+        }
+      ]
+    },
+    {
+      "id": "cosas-material",
+      "title": "Речі за матеріалом",
+      "emoji": "🧵",
+      "words": [
+        {
+          "spanish": "el jersey",
+          "pronunciation": "ель хЕрсей",
+          "ukrainian": "светр, кофта",
+          "emoji": "🧥",
+          "sound_association": "«херсей» → запозичене з англійської jersey (светр)",
+          "example_es": "El jersey es de lana.",
+          "example_uk": "Светр вовняний."
+        },
+        {
+          "spanish": "el cinturón",
+          "pronunciation": "ель сінтурОн",
+          "ukrainian": "ремінь",
+          "emoji": "👔",
+          "sound_association": "«сінтурон» → cintura (талія) — ремінь оперізує талію",
+          "example_es": "El cinturón es de cuero.",
+          "example_uk": "Ремінь шкіряний."
+        },
+        {
+          "spanish": "la botella",
+          "pronunciation": "ла ботЕйя",
+          "ukrainian": "пляшка",
+          "emoji": "🍶",
+          "sound_association": "«ботейя» → той самий корінь, що й «бутиль»",
+          "example_es": "La botella es de plástico.",
+          "example_uk": "Пляшка пластикова."
+        },
+        {
+          "spanish": "el periódico",
+          "pronunciation": "ель періОдіко",
+          "ukrainian": "газета",
+          "emoji": "📰",
+          "sound_association": "«періодіко» → ПЕРІОДика — виходить періодично",
+          "example_es": "El periódico es de papel.",
+          "example_uk": "Газета паперова."
+        },
+        {
+          "spanish": "la caja",
+          "pronunciation": "ла кАха",
+          "ukrainian": "коробка",
+          "emoji": "📦",
+          "sound_association": "«каха» → готівку (кеш) часто ховають у коробці",
+          "example_es": "La caja es de cartón.",
+          "example_uk": "Коробка картонна."
+        },
+        {
+          "spanish": "el reloj",
+          "pronunciation": "ель релОх",
+          "ukrainian": "годинник",
+          "emoji": "⌚",
+          "sound_association": "«релох» → схоже на «релакс» — годинник відмірює час для відпочинку",
+          "example_es": "El reloj es de oro.",
+          "example_uk": "Годинник золотий."
+        },
+        {
+          "spanish": "los tornillos",
+          "pronunciation": "лос торнІльйос",
+          "ukrainian": "гвинти, шурупи",
+          "emoji": "🔩",
+          "sound_association": "«торнільйос» → TORNADO — гвинт теж крутять",
+          "example_es": "Los tornillos son de metal.",
+          "example_uk": "Гвинти металеві."
+        },
+        {
+          "spanish": "la mesa",
+          "pronunciation": "ла мЕса",
+          "ukrainian": "стіл",
+          "emoji": "🪑",
+          "sound_association": "«меса» → меса, служба за столом-вівтарем",
+          "example_es": "La mesa es de madera.",
+          "example_uk": "Стіл дерев'яний."
+        }
+      ]
+    },
+    {
+      "id": "materiales",
+      "title": "Матеріали",
+      "emoji": "🧱",
+      "words": [
+        {
+          "spanish": "el cartón",
+          "pronunciation": "ель картОн",
+          "ukrainian": "картон",
+          "emoji": "📦",
+          "sound_association": "«картон» → те саме слово українською",
+          "example_es": "La caja es de cartón.",
+          "example_uk": "Коробка з картону."
+        },
+        {
+          "spanish": "el cuero",
+          "pronunciation": "ель куЕро",
+          "ukrainian": "шкіра (матеріал)",
+          "emoji": "🧥",
+          "sound_association": "«куеро» → куртки й сумки часто шкіряні",
+          "example_es": "El cinturón es de cuero.",
+          "example_uk": "Ремінь зі шкіри."
+        },
+        {
+          "spanish": "la lana",
+          "pronunciation": "ла лАна",
+          "ukrainian": "шерсть",
+          "emoji": "🐑",
+          "sound_association": "«лана» → вовна овець, ланолін саме з неї",
+          "example_es": "El jersey es de lana.",
+          "example_uk": "Светр з шерсті."
+        },
+        {
+          "spanish": "la madera",
+          "pronunciation": "ла мадЕра",
+          "ukrainian": "дерево (деревина)",
+          "emoji": "🪵",
+          "sound_association": "«мадера» → майстер працює з деревом",
+          "example_es": "La mesa es de madera.",
+          "example_uk": "Стіл з дерева."
+        },
+        {
+          "spanish": "el metal",
+          "pronunciation": "ель метАль",
+          "ukrainian": "метал",
+          "emoji": "⚙️",
+          "sound_association": "«металь» → те саме слово, що й «метал»",
+          "example_es": "Los tornillos son de metal.",
+          "example_uk": "Гвинти з металу."
+        },
+        {
+          "spanish": "el oro",
+          "pronunciation": "ель Оро",
+          "ukrainian": "золото",
+          "emoji": "🥇",
+          "sound_association": "«оро» → орел на золотій монеті",
+          "example_es": "El reloj es de oro.",
+          "example_uk": "Годинник із золота."
+        },
+        {
+          "spanish": "el papel",
+          "pronunciation": "ель папЕль",
+          "ukrainian": "папір",
+          "emoji": "📄",
+          "sound_association": "«папель» → те саме слово, що й «папір»",
+          "example_es": "El periódico es de papel.",
+          "example_uk": "Газета з паперу."
+        },
+        {
+          "spanish": "el plástico",
+          "pronunciation": "ель плАстіко",
+          "ukrainian": "пластик",
+          "emoji": "♻️",
+          "sound_association": "«пластіко» → те саме слово, що й «пластик»",
+          "example_es": "La botella es de plástico.",
+          "example_uk": "Пляшка з пластику."
+        },
+        {
+          "spanish": "la plata",
+          "pronunciation": "ла плАта",
+          "ukrainian": "срібло",
+          "emoji": "🥈",
+          "sound_association": "«плата» → срібло колись було платіжним металом — звідси й «плата»",
+          "example_es": "El anillo es de plata.",
+          "example_uk": "Каблучка зі срібла."
+        },
+        {
+          "spanish": "el bronce",
+          "pronunciation": "ель брОнсе",
+          "ukrainian": "бронза",
+          "emoji": "🥉",
+          "sound_association": "«бронсе» → те саме слово, що й «бронза»",
+          "example_es": "La estatua es de bronce.",
+          "example_uk": "Статуя з бронзи."
+        },
+        {
+          "spanish": "el vidrio",
+          "pronunciation": "ель вІдріо",
+          "ukrainian": "скло",
+          "emoji": "🥃",
+          "sound_association": "«відріо» → вітрина зі скла",
+          "example_es": "La ventana es de vidrio.",
+          "example_uk": "Вікно зі скла."
+        }
+      ]
+    }
+  ]
+}

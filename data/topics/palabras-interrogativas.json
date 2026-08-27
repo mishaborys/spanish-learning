@@ -1,0 +1,274 @@
+{
+  "title": "Питальні слова — Palabras interrogativas",
+  "slug": "palabras-interrogativas",
+  "display_order": 12,
+  "grammar_text": "<h2>Питальні слова — Palabras interrogativas</h2><p>Питальні слова в іспанській мові завжди пишуться з наголосом (<strong>qué, cómo, cuándo</strong>...) і речення з ними обрамляється знаками питання з двох боків: <strong>¿...?</strong></p><table><thead><tr><th>Слово</th><th>Категорія</th><th>Переклад</th></tr></thead><tbody><tr><td><strong>¿Quién? / ¿Quiénes?</strong></td><td>Persona</td><td>Хто?</td></tr><tr><td><strong>¿Qué?</strong></td><td>Cosa</td><td>Що?</td></tr><tr><td><strong>¿Cómo?</strong></td><td>Modo</td><td>Як?</td></tr><tr><td><strong>¿Cuándo?</strong></td><td>Tiempo</td><td>Коли?</td></tr><tr><td><strong>¿Dónde?</strong></td><td>Lugar</td><td>Де?</td></tr><tr><td><strong>¿Por qué?</strong></td><td>Causa</td><td>Чому?</td></tr><tr><td><strong>¿A qué hora?</strong></td><td>Hora</td><td>О котрій годині?</td></tr><tr><td><strong>¿Cuánto(s)? / ¿Cuánta(s)?</strong></td><td>Cantidad</td><td>Скільки?</td></tr><tr><td><strong>¿Cuál? / ¿Cuáles?</strong></td><td>Opción</td><td>Який, котрий?</td></tr></tbody></table><h3>Додаткові питання (з прийменниками)</h3><p>Ті самі слова поєднуються з прийменниками <strong>a, para, de, con, desde, sin</strong>, щоб уточнити питання.</p><table><thead><tr><th>Категорія</th><th>Питання</th><th>Переклад</th></tr></thead><tbody><tr><td rowspan=\"4\">Persona</td><td><strong>¿A quién(es)?</strong></td><td>Кому?</td></tr><tr><td><strong>¿Para quién(es)?</strong></td><td>Для кого?</td></tr><tr><td><strong>¿De quién(es)?</strong></td><td>Чий? Від кого?</td></tr><tr><td><strong>¿Con quién(es)?</strong></td><td>З ким?</td></tr><tr><td rowspan=\"4\">Cosa</td><td><strong>¿A qué?</strong></td><td>До чого?</td></tr><tr><td><strong>¿Para qué?</strong></td><td>Для чого, навіщо?</td></tr><tr><td><strong>¿De qué?</strong></td><td>З чого, про що?</td></tr><tr><td><strong>¿Con qué?</strong></td><td>Чим?</td></tr><tr><td rowspan=\"2\">Tiempo</td><td><strong>¿Para cuándo?</strong></td><td>На коли?</td></tr><tr><td><strong>¿Desde cuándo?</strong></td><td>Відколи?</td></tr><tr><td rowspan=\"3\">Lugar</td><td><strong>¿De dónde?</strong></td><td>Звідки?</td></tr><tr><td><strong>¿Adónde?</strong></td><td>Куди?</td></tr><tr><td><strong>¿Para dónde?</strong></td><td>У якому напрямку?</td></tr><tr><td rowspan=\"3\">Opción</td><td><strong>¿De cuál(es)?</strong></td><td>З якого/яких?</td></tr><tr><td><strong>¿Con cuál(es)?</strong></td><td>З яким/якими?</td></tr><tr><td><strong>¿Sin cuál(es)?</strong></td><td>Без якого/яких?</td></tr><tr><td rowspan=\"3\">Cantidad</td><td><strong>¿A cuánto(s)?</strong></td><td>По скільки?</td></tr><tr><td><strong>¿Con cuánto(s)?</strong></td><td>З якою кількістю?</td></tr><tr><td><strong>¿Sin cuánto(s)?</strong></td><td>Без скількох?</td></tr></tbody></table><p><em>¿Cómo es Penélope? — Ella es morena y bonita.</em> (Яка Пенелопа? — Вона смуглява і гарна.) <em>¿Qué hora es? — Son las 12 menos 5.</em> (Котра година? — За п'ять дванадцята.)</p>",
+  "quiz_sentences": [
+    { "question": "¿___ es tu mejor amigo? — Es Carlos.", "correct": "quién", "options": ["quién", "qué", "cómo", "cuándo"] },
+    { "question": "¿___ son tus padres? — Son Ana y Pedro.", "correct": "quiénes", "options": ["quiénes", "cuáles", "dónde", "cuándo"] },
+    { "question": "¿___ escribió este libro? — Lo escribió Cervantes.", "correct": "quién", "options": ["quién", "qué", "por qué", "dónde"] },
+    { "question": "¿___ son esos chicos? — Son mis primos.", "correct": "quiénes", "options": ["quiénes", "qué", "cuánto", "cómo"] },
+    { "question": "¿___ es esto? — Es un regalo.", "correct": "qué", "options": ["qué", "quién", "cuál", "cómo"] },
+    { "question": "¿___ comes normalmente? — Como fruta y verdura.", "correct": "qué", "options": ["qué", "cuánto", "dónde", "cuándo"] },
+    { "question": "¿___ estudias en la universidad? — Estudio medicina.", "correct": "qué", "options": ["qué", "quién", "cuál", "por qué"] },
+    { "question": "¿___ quieres para tu cumpleaños? — Quiero un libro.", "correct": "qué", "options": ["qué", "cuál", "quién", "cómo"] },
+    { "question": "¿___ estás hoy? — Estoy muy bien.", "correct": "cómo", "options": ["cómo", "qué", "cuándo", "dónde"] },
+    { "question": "¿___ es tu papá? — Es alto y simpático.", "correct": "cómo", "options": ["cómo", "quién", "cuál", "qué"] },
+    { "question": "¿___ se dice 'thank you' en español? — Se dice 'gracias'.", "correct": "cómo", "options": ["cómo", "qué", "cuál", "por qué"] },
+    { "question": "¿___ llegas al trabajo? — Llego en autobús.", "correct": "cómo", "options": ["cómo", "cuándo", "dónde", "qué"] },
+    { "question": "¿___ es tu cumpleaños? — Es el 5 de mayo.", "correct": "cuándo", "options": ["cuándo", "dónde", "cómo", "qué"] },
+    { "question": "¿___ empiezan las vacaciones? — Empiezan en julio.", "correct": "cuándo", "options": ["cuándo", "a qué hora", "dónde", "por qué"] },
+    { "question": "¿___ llegaste a España? — Llegué la semana pasada.", "correct": "cuándo", "options": ["cuándo", "de dónde", "cómo", "cuál"] },
+    { "question": "¿___ es la boda? — Es el sábado.", "correct": "cuándo", "options": ["cuándo", "dónde", "quién", "qué"] },
+    { "question": "¿___ lloras? — Lloro porque estoy triste.", "correct": "por qué", "options": ["por qué", "qué", "cómo", "cuándo"] },
+    { "question": "¿___ estudias español? — Porque quiero viajar a España.", "correct": "por qué", "options": ["por qué", "para qué", "cómo", "dónde"] },
+    { "question": "¿___ no viniste a la fiesta? — Porque estaba enfermo.", "correct": "por qué", "options": ["por qué", "cuándo", "quién", "cuál"] },
+    { "question": "¿___ te enfadaste con él? — Porque llegó tarde.", "correct": "por qué", "options": ["por qué", "qué", "cómo", "dónde"] },
+    { "question": "¿___ empieza la película? — Empieza a las ocho.", "correct": "a qué hora", "options": ["a qué hora", "cuándo", "dónde", "qué"] },
+    { "question": "¿___ te levantas normalmente? — Me levanto a las siete.", "correct": "a qué hora", "options": ["a qué hora", "cuándo", "cómo", "cuál"] },
+    { "question": "¿___ cierra la tienda? — Cierra a las nueve de la noche.", "correct": "a qué hora", "options": ["a qué hora", "cuándo", "dónde", "por qué"] },
+    { "question": "¿___ llega el tren? — Llega a las cuatro y media.", "correct": "a qué hora", "options": ["a qué hora", "cuándo", "qué", "cómo"] },
+    { "question": "¿___ años tienes? — Tengo veinte años.", "correct": "cuántos", "options": ["cuántos", "cuántas", "qué", "cuál"] },
+    { "question": "¿___ cuesta el billete? — Cuesta diez euros.", "correct": "cuánto", "options": ["cuánto", "cuántos", "qué", "cómo"] },
+    { "question": "¿___ hermanos tienes? — Tengo dos hermanos.", "correct": "cuántos", "options": ["cuántos", "cuántas", "quiénes", "cuál"] },
+    { "question": "¿___ agua bebes al día? — Bebo dos litros.", "correct": "cuánta", "options": ["cuánta", "cuánto", "cuántos", "qué"] },
+    { "question": "¿___ es tu color favorito? — Mi color favorito es el azul.", "correct": "cuál", "options": ["cuál", "qué", "quién", "cómo"] },
+    { "question": "¿___ son tus películas favoritas? — Son 'Titanic' y 'Avatar'.", "correct": "cuáles", "options": ["cuáles", "cuál", "quiénes", "qué"] },
+    { "question": "¿___ prefieres, el té o el café? — Prefiero el café.", "correct": "cuál", "options": ["cuál", "qué", "cómo", "cuándo"] },
+    { "question": "¿___ es la capital de Francia? — Es París.", "correct": "cuál", "options": ["cuál", "qué", "dónde", "quién"] },
+    { "question": "¿___ vives? — Vivo en Kyiv.", "correct": "dónde", "options": ["dónde", "adónde", "de dónde", "cuándo"] },
+    { "question": "¿___ están mis llaves? — Están en la mesa.", "correct": "dónde", "options": ["dónde", "qué", "cuál", "cómo"] },
+    { "question": "¿___ trabajas? — Trabajo en un hospital.", "correct": "dónde", "options": ["dónde", "cuándo", "quién", "por qué"] },
+    { "question": "¿___ nos vemos mañana? — Nos vemos en el parque.", "correct": "dónde", "options": ["dónde", "cuándo", "cómo", "qué"] },
+    { "question": "¿___ eres? — Soy de Ucrania.", "correct": "de dónde", "options": ["de dónde", "dónde", "adónde", "cuándo"] },
+    { "question": "¿___ vas de vacaciones? — Voy a Italia.", "correct": "adónde", "options": ["adónde", "dónde", "de dónde", "cuándo"] },
+    { "question": "¿___ es este regalo? — Es de mi madre.", "correct": "de quién", "options": ["de quién", "quién", "para quién", "con quién"] },
+    { "question": "¿___ sirve esto? — Sirve para abrir botellas.", "correct": "para qué", "options": ["para qué", "por qué", "qué", "de qué"] }
+  ],
+  "words": [
+    {
+      "spanish": "quién / quiénes",
+      "ukrainian": "хто?",
+      "pronunciation": "к'Ен / к'Енес",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Quién es tu profesor?",
+      "example_uk": "Хто твій вчитель?"
+    },
+    {
+      "spanish": "qué",
+      "ukrainian": "що? який?",
+      "pronunciation": "кЕ",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Qué es esto?",
+      "example_uk": "Що це?"
+    },
+    {
+      "spanish": "cómo",
+      "ukrainian": "як? який?",
+      "pronunciation": "кОмо",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Cómo estás?",
+      "example_uk": "Як справи?"
+    },
+    {
+      "spanish": "cuándo",
+      "ukrainian": "коли?",
+      "pronunciation": "куАндо",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Cuándo es tu cumpleaños?",
+      "example_uk": "Коли твій день народження?"
+    },
+    {
+      "spanish": "dónde",
+      "ukrainian": "де?",
+      "pronunciation": "дОнде",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Dónde vives?",
+      "example_uk": "Де ти живеш?"
+    },
+    {
+      "spanish": "por qué",
+      "ukrainian": "чому?",
+      "pronunciation": "пор кЕ",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Por qué lloras?",
+      "example_uk": "Чому ти плачеш?"
+    },
+    {
+      "spanish": "a qué hora",
+      "ukrainian": "о котрій годині?",
+      "pronunciation": "а кЕ Ора",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿A qué hora empieza la clase?",
+      "example_uk": "О котрій годині починається урок?"
+    },
+    {
+      "spanish": "cuánto(s) / cuánta(s)",
+      "ukrainian": "скільки?",
+      "pronunciation": "куАнто(с) / куАнта(с)",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Cuántos años tienes?",
+      "example_uk": "Скільки тобі років?"
+    },
+    {
+      "spanish": "cuál / cuáles",
+      "ukrainian": "який, котрий?",
+      "pronunciation": "куАль / куАлес",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Cuál es tu color favorito?",
+      "example_uk": "Який твій улюблений колір?"
+    },
+    {
+      "spanish": "a quién(es)",
+      "ukrainian": "кому?",
+      "pronunciation": "а к'Ен(ес)",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿A quién llamas?",
+      "example_uk": "Кому ти дзвониш?"
+    },
+    {
+      "spanish": "para quién(es)",
+      "ukrainian": "для кого?",
+      "pronunciation": "пАра к'Ен(ес)",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Para quién es el regalo?",
+      "example_uk": "Для кого цей подарунок?"
+    },
+    {
+      "spanish": "de quién(es)",
+      "ukrainian": "чий? від кого?",
+      "pronunciation": "де к'Ен(ес)",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿De quién es este libro?",
+      "example_uk": "Чия це книга?"
+    },
+    {
+      "spanish": "con quién(es)",
+      "ukrainian": "з ким?",
+      "pronunciation": "кон к'Ен(ес)",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Con quién vives?",
+      "example_uk": "З ким ти живеш?"
+    },
+    {
+      "spanish": "a qué",
+      "ukrainian": "до чого?",
+      "pronunciation": "а кЕ",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿A qué te dedicas?",
+      "example_uk": "Чим ти займаєшся?"
+    },
+    {
+      "spanish": "para qué",
+      "ukrainian": "для чого, навіщо?",
+      "pronunciation": "пАра кЕ",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Para qué sirve esto?",
+      "example_uk": "Для чого це потрібно?"
+    },
+    {
+      "spanish": "de qué",
+      "ukrainian": "з чого, про що?",
+      "pronunciation": "де кЕ",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿De qué hablas?",
+      "example_uk": "Про що ти говориш?"
+    },
+    {
+      "spanish": "con qué",
+      "ukrainian": "чим?",
+      "pronunciation": "кон кЕ",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Con qué escribes?",
+      "example_uk": "Чим ти пишеш?"
+    },
+    {
+      "spanish": "para cuándo",
+      "ukrainian": "на коли?",
+      "pronunciation": "пАра куАндо",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Para cuándo necesitas esto?",
+      "example_uk": "На коли тобі це потрібно?"
+    },
+    {
+      "spanish": "desde cuándo",
+      "ukrainian": "відколи?",
+      "pronunciation": "дЕсде куАндо",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Desde cuándo vives aquí?",
+      "example_uk": "Відколи ти тут живеш?"
+    },
+    {
+      "spanish": "de dónde",
+      "ukrainian": "звідки?",
+      "pronunciation": "де дОнде",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿De dónde eres?",
+      "example_uk": "Звідки ти?"
+    },
+    {
+      "spanish": "adónde",
+      "ukrainian": "куди?",
+      "pronunciation": "адОнде",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Adónde vas?",
+      "example_uk": "Куди ти йдеш?"
+    },
+    {
+      "spanish": "para dónde",
+      "ukrainian": "у якому напрямку, куди?",
+      "pronunciation": "пАра дОнде",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Para dónde vas?",
+      "example_uk": "Куди ти прямуєш?"
+    },
+    {
+      "spanish": "de cuál(es)",
+      "ukrainian": "з якого/яких?",
+      "pronunciation": "де куАль(ес)",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿De cuál hablas?",
+      "example_uk": "Про який (з них) ти говориш?"
+    },
+    {
+      "spanish": "con cuál(es)",
+      "ukrainian": "з яким/якими?",
+      "pronunciation": "кон куАль(ес)",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Con cuál te quedas?",
+      "example_uk": "Який (з них) ти обираєш?"
+    },
+    {
+      "spanish": "sin cuál(es)",
+      "ukrainian": "без якого/яких?",
+      "pronunciation": "сін куАль(ес)",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Sin cuál puedes vivir?",
+      "example_uk": "Без якого ти можеш обійтися?"
+    },
+    {
+      "spanish": "a cuánto(s)",
+      "ukrainian": "по скільки?",
+      "pronunciation": "а куАнто(с)",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿A cuánto está el kilo?",
+      "example_uk": "По скільки кілограм?"
+    },
+    {
+      "spanish": "con cuánto(s)",
+      "ukrainian": "з якою кількістю?",
+      "pronunciation": "кон куАнто(с)",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Con cuánto dinero cuentas?",
+      "example_uk": "На яку суму ти розраховуєш?"
+    },
+    {
+      "spanish": "sin cuánto(s)",
+      "ukrainian": "без скількох?",
+      "pronunciation": "сін куАнто(с)",
+      "part_of_speech": "питальне слово",
+      "example_es": "¿Sin cuánto dinero no puedes viajar?",
+      "example_uk": "Без якої суми грошей ти не можеш подорожувати?"
+    }
+  ]
+}

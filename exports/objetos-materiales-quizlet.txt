@@ -1,0 +1,26 @@
+la maleta	валіза
+la tarjeta	картка (кредитна)
+el bañador	купальник
+los guantes	рукавички
+el despertador	будильник
+la tostadora	тостер
+el paraguas	парасолька
+el jersey	светр, кофта
+el cinturón	ремінь
+la botella	пляшка
+el periódico	газета
+la caja	коробка
+el reloj	годинник
+los tornillos	гвинти, шурупи
+la mesa	стіл
+el cartón	картон
+el cuero	шкіра (матеріал)
+la lana	шерсть
+la madera	дерево (деревина)
+el metal	метал
+el oro	золото
+el papel	папір
+el plástico	пластик
+la plata	срібло
+el bronce	бронза
+el vidrio	скло
