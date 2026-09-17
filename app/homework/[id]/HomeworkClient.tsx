@@ -6,6 +6,8 @@ import Link from "next/link";
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 type AudioEntry = { label: string; src: string };
+type VideoEntry = { label: string; youtube_id: string; start?: number };
+type Attachment = { label: string; src: string };
 
 type FormField  = { id: string; label: string; answer: string; given?: boolean };
 type PersonData = { nombre: string | null; apellido: string; correo: string | null; edad?: string; fields: FormField[] };
@@ -23,6 +25,8 @@ type Homework = {
   title: string;
   due_date: string;
   audio: AudioEntry[];
+  video?: VideoEntry[];
+  attachments?: Attachment[];
   exercises: (ExerciseA | ExerciseB | ExerciseC)[];
 };
 
@@ -65,6 +69,44 @@ function AudioPlayer({ entries }: { entries: AudioEntry[] }) {
             {e.label}
           </button>
         ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Video Embed ─────────────────────────────────────────────────────────────
+
+function VideoEmbed({ entries }: { entries: VideoEntry[] }) {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const active = entries[activeIdx];
+  const src = `https://www.youtube-nocookie.com/embed/${active.youtube_id}${active.start ? `?start=${active.start}` : ""}`;
+
+  return (
+    <div className="rounded-2xl border bg-muted/30 p-4 space-y-3">
+      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Відео</p>
+      {entries.length > 1 && (
+        <div className="flex flex-wrap gap-2">
+          {entries.map((e, i) => (
+            <button key={i} onClick={() => setActiveIdx(i)}
+              className={`px-4 py-2 rounded-xl text-sm font-medium border transition-all ${
+                activeIdx === i
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-background border-border hover:bg-accent/40"
+              }`}>
+              {e.label}
+            </button>
+          ))}
+        </div>
+      )}
+      <div className="relative w-full rounded-xl overflow-hidden" style={{ paddingTop: "56.25%" }}>
+        <iframe
+          key={active.youtube_id}
+          src={src}
+          title={active.label}
+          className="absolute inset-0 w-full h-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
       </div>
     </div>
   );
@@ -413,6 +455,25 @@ function ExerciseWrapper({ ex, hwId }: { ex: ExerciseA | ExerciseB | ExerciseC; 
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
+// ─── Attachments ─────────────────────────────────────────────────────────────
+
+function AttachmentsList({ entries }: { entries: Attachment[] }) {
+  return (
+    <div className="rounded-2xl border bg-muted/30 p-4 space-y-3">
+      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Файли уроку</p>
+      <div className="flex flex-wrap gap-2">
+        {entries.map((e, i) => (
+          <a key={i} href={e.src} target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border bg-background border-border hover:bg-accent/40 transition-all">
+            <span>📄</span>
+            {e.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function HomeworkClient({ hw }: { hw: Homework }) {
   const formatDate = (d: string) =>
     new Date(d).toLocaleDateString("uk-UA", { weekday: "long", day: "numeric", month: "long" });
@@ -430,10 +491,13 @@ export function HomeworkClient({ hw }: { hw: Homework }) {
       </div>
 
       <AudioPlayer entries={hw.audio} />
+      {hw.video && hw.video.length > 0 && <VideoEmbed entries={hw.video} />}
 
       {hw.exercises.map(ex => (
         <ExerciseWrapper key={ex.id} ex={ex} hwId={hw.id} />
       ))}
+
+      {hw.attachments && hw.attachments.length > 0 && <AttachmentsList entries={hw.attachments} />}
     </div>
   );
 }

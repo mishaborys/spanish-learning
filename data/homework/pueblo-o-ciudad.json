@@ -3,6 +3,12 @@
   "title": "¿Pueblo o ciudad? — Hay і місця в місті",
   "due_date": "2026-09-24",
   "audio": [],
+  "video": [
+    { "label": "En mi barrio hay...", "youtube_id": "RBbPffA3YlA", "start": 241 }
+  ],
+  "attachments": [
+    { "label": "PDF уроку — ¿Pueblo o ciudad?", "src": "/homework/pueblo-o-ciudad.pdf" }
+  ],
   "exercises": [
     {
       "id": "A",
@@ -82,6 +88,36 @@
         { "id": "c2", "label": "¿Te gusta el lugar dónde vives?" },
         { "id": "c3", "label": "¿Cómo es el lugar perfecto para ti?" },
         { "id": "c4", "label": "¿Cuál es tu lugar favorito? ¿Por qué?" }
+      ]
+    },
+    {
+      "id": "D",
+      "label": "4",
+      "instruction": "Mira el vídeo de arriba y elige la opción correcta (a, b o c).",
+      "instruction_uk": "Подивись відео вище і вибери правильний варіант (a, b чи c) — напиши свою відповідь.",
+      "type": "fill-text",
+      "fields": [
+        { "id": "d1", "label": "1. ¿Qué hay en su barrio? — a) Hay edificios  b) Hay pocas tiendas  c) Hay colegios" },
+        { "id": "d2", "label": "2. Su barrio tiene... — a) Un aeropuerto  b) Un parque  c) Un museo" },
+        { "id": "d3", "label": "3. ¿Qué no hay en su barrio? — a) No hay monumentos  b) No hay hospital  c) No hay estaciones de metro" },
+        { "id": "d4", "label": "4. Su barrio tiene... — a) Paradas de autobús  b) Una catedral  c) Un teatro" }
+      ]
+    },
+    {
+      "id": "E",
+      "label": "5",
+      "instruction": "¡Qué curioso! Completa las oraciones con una palabra del vídeo.",
+      "instruction_uk": "Подивись відео ще раз і заповни пропуски словами, які там прозвучали.",
+      "type": "fill-text",
+      "fields": [
+        { "id": "e1", "label": "1. Mi barrio tiene una ___, ___, ___ y un ___." },
+        { "id": "e2", "label": "2. En mi barrio hay ___ modernos y ___ antiguos." },
+        { "id": "e3", "label": "3. Mi ciudad tiene un ___ ___ y muchas ___." },
+        { "id": "e4", "label": "4. En mi barrio no hay ___ ni ___ ni ___ ni ___ ni ___." },
+        { "id": "e5", "label": "5. Hay ___, ___ anchas y ___ estrechas." },
+        { "id": "e6", "label": "6. Mi barrio también tiene una ___, ___ y ___." },
+        { "id": "e7", "label": "7. En mi barrio también hay ___, ___, un ___, una ___ pública y un ___." },
+        { "id": "e8", "label": "8. En mi barrio tampoco hay ___." }
       ]
     }
   ]
