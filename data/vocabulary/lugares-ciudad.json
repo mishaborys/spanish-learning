@@ -1,0 +1,192 @@
+{
+  "id": "lugares-ciudad",
+  "title": "Місця в місті — Lugares en la ciudad",
+  "description": "Заклади й місця в районі, а також типи населених пунктів",
+  "groups": [
+    {
+      "id": "lugares",
+      "title": "Місця в районі",
+      "emoji": "🏙️",
+      "words": [
+        {
+          "spanish": "el edificio",
+          "pronunciation": "ель едіфІсьо",
+          "ukrainian": "будівля",
+          "emoji": "🏢",
+          "sound_association": "«едіфісьо» → EDIFICE (англ. будівля) — той самий корінь",
+          "example_es": "Hay muchos edificios altos.",
+          "example_uk": "Є багато високих будівель."
+        },
+        {
+          "spanish": "el parque",
+          "pronunciation": "ель пАрке",
+          "ukrainian": "парк",
+          "emoji": "🌳",
+          "sound_association": "«парке» → те саме слово, що й «парк»",
+          "example_es": "Hay un parque en mi barrio.",
+          "example_uk": "У моєму районі є парк."
+        },
+        {
+          "spanish": "la calle",
+          "pronunciation": "ла кАйе",
+          "ukrainian": "вулиця",
+          "emoji": "🛣️",
+          "sound_association": "«кайе» → калейдоскоп вогнів на вулиці вночі",
+          "example_es": "Vivo en una calle tranquila.",
+          "example_uk": "Я живу на тихій вулиці."
+        },
+        {
+          "spanish": "el centro comercial",
+          "pronunciation": "ель сЕнтро комерсьЯль",
+          "ukrainian": "торговий центр",
+          "emoji": "🏬",
+          "sound_association": "«сентро комерсьяль» → «центр комерції», той самий корінь",
+          "example_es": "Voy de compras al centro comercial.",
+          "example_uk": "Я йду за покупками в торговий центр."
+        },
+        {
+          "spanish": "el colegio",
+          "pronunciation": "ель колЕхьо",
+          "ukrainian": "школа",
+          "emoji": "🏫",
+          "sound_association": "«колехьо» → КОЛЕГИ-однокласники навчаються разом",
+          "example_es": "Mi hijo va al colegio.",
+          "example_uk": "Мій син ходить до школи."
+        },
+        {
+          "spanish": "el instituto",
+          "pronunciation": "ель інстітУто",
+          "ukrainian": "школа (старші класи)",
+          "emoji": "🎓",
+          "sound_association": "«інстітуто» → ІНСТИТУТ, той самий корінь",
+          "example_es": "Los adolescentes van al instituto.",
+          "example_uk": "Підлітки ходять до старшої школи."
+        },
+        {
+          "spanish": "el mercado",
+          "pronunciation": "ель меркАдо",
+          "ukrainian": "ринок",
+          "emoji": "🥬",
+          "sound_association": "«меркадо» → МЕРКАнтильний, торговий",
+          "example_es": "Compro fruta en el mercado.",
+          "example_uk": "Я купую фрукти на ринку."
+        },
+        {
+          "spanish": "la piscina",
+          "pronunciation": "ла пісІна",
+          "ukrainian": "басейн",
+          "emoji": "🏊",
+          "sound_association": "«пісіна» → пісок біля басейну",
+          "example_es": "Nado en la piscina.",
+          "example_uk": "Я плаваю в басейні."
+        },
+        {
+          "spanish": "la tienda",
+          "pronunciation": "ла тьЕнда",
+          "ukrainian": "магазин",
+          "emoji": "🏪",
+          "sound_association": "«тьєнда» → ТЕНТ (намет) торговця, звідси й крамниця",
+          "example_es": "Hay muchas tiendas en el centro.",
+          "example_uk": "У центрі багато магазинів."
+        },
+        {
+          "spanish": "el campo de fútbol",
+          "pronunciation": "ель кАмпо де фУтболь",
+          "ukrainian": "футбольне поле",
+          "emoji": "⚽",
+          "sound_association": "«кампо» → КЕМПінг, відкрите поле",
+          "example_es": "Jugamos en el campo de fútbol.",
+          "example_uk": "Ми граємо на футбольному полі."
+        },
+        {
+          "spanish": "la biblioteca",
+          "pronunciation": "ла бібліотЕка",
+          "ukrainian": "бібліотека",
+          "emoji": "📚",
+          "sound_association": "«бібліотека» → те саме слово українською",
+          "example_es": "Estudio en la biblioteca.",
+          "example_uk": "Я навчаюся в бібліотеці."
+        },
+        {
+          "spanish": "el cine",
+          "pronunciation": "ель сІне",
+          "ukrainian": "кінотеатр",
+          "emoji": "🎬",
+          "sound_association": "«сіне» → СІНЕма, кіно",
+          "example_es": "Vamos al cine los sábados.",
+          "example_uk": "Ми ходимо в кіно по суботах."
+        },
+        {
+          "spanish": "la iglesia",
+          "pronunciation": "ла іглЕсья",
+          "ukrainian": "церква",
+          "emoji": "⛪",
+          "sound_association": "«іглесья» → нагадує «екклезію» (церкву)",
+          "example_es": "La iglesia es muy antigua.",
+          "example_uk": "Церква дуже стара."
+        },
+        {
+          "spanish": "el hospital",
+          "pronunciation": "ель оспітАль",
+          "ukrainian": "лікарня",
+          "emoji": "🏥",
+          "sound_association": "«оспіталь» → те саме слово, що й «госпіталь»",
+          "example_es": "Mi madre trabaja en el hospital.",
+          "example_uk": "Моя мама працює в лікарні."
+        },
+        {
+          "spanish": "la parada de bus",
+          "pronunciation": "ла парАда де бус",
+          "ukrainian": "автобусна зупинка",
+          "emoji": "🚏",
+          "sound_association": "«парада» → там, де автобус ЗУПИНЯЄТЬСЯ (parar)",
+          "example_es": "Espero en la parada de bus.",
+          "example_uk": "Я чекаю на автобусній зупинці."
+        },
+        {
+          "spanish": "la estación de metro",
+          "pronunciation": "ла естасьйОн де мЕтро",
+          "ukrainian": "станція метро",
+          "emoji": "🚇",
+          "sound_association": "«естасьйон» → СТАНЦІЯ, той самий корінь",
+          "example_es": "La estación de metro está cerca.",
+          "example_uk": "Станція метро поруч."
+        }
+      ]
+    },
+    {
+      "id": "tipos",
+      "title": "Тип населеного пункту",
+      "emoji": "🏘️",
+      "words": [
+        {
+          "spanish": "el barrio",
+          "pronunciation": "ель бАррьо",
+          "ukrainian": "район (мікрорайон)",
+          "emoji": "🏘️",
+          "sound_association": "«баррьо» → БАР'ЄР навколо району, межа",
+          "example_es": "Mi barrio es tranquilo.",
+          "example_uk": "Мій район тихий."
+        },
+        {
+          "spanish": "el pueblo",
+          "pronunciation": "ель пуЕбло",
+          "ukrainian": "село, містечко",
+          "emoji": "🏡",
+          "sound_association": "«пуебло» → PEOPLE, невелика громада людей",
+          "example_es": "Vivo en un pueblo pequeño.",
+          "example_uk": "Я живу в маленькому селі."
+        },
+        {
+          "spanish": "la ciudad",
+          "pronunciation": "ла сьюдАд",
+          "ukrainian": "місто",
+          "emoji": "🏙️",
+          "sound_association": "«сьюдад» → CITY, велике місто",
+          "example_es": "Madrid es una ciudad grande.",
+          "example_uk": "Мадрид — велике місто."
+        }
+      ]
+    }
+  ]
+}

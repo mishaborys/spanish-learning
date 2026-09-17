@@ -1,0 +1,88 @@
+{
+  "id": "pueblo-o-ciudad",
+  "title": "¿Pueblo o ciudad? — Hay і місця в місті",
+  "due_date": "2026-09-24",
+  "audio": [],
+  "exercises": [
+    {
+      "id": "A",
+      "label": "1",
+      "instruction": "Léxico. Lugares. Relaciona la palabra con su significado.",
+      "instruction_uk": "З'єднай іспанське слово з правильним перекладом. Постав правильний номер.",
+      "type": "match-category",
+      "categories": [
+        { "id": 1, "text": "будівля" },
+        { "id": 2, "text": "парк" },
+        { "id": 3, "text": "вулиця" },
+        { "id": 4, "text": "торговий центр" },
+        { "id": 5, "text": "школа" },
+        { "id": 6, "text": "школа (старші класи)" },
+        { "id": 7, "text": "ринок" },
+        { "id": 8, "text": "басейн" },
+        { "id": 9, "text": "магазин" },
+        { "id": 10, "text": "футбольне поле" },
+        { "id": 11, "text": "бібліотека" },
+        { "id": 12, "text": "кінотеатр" },
+        { "id": 13, "text": "церква" },
+        { "id": 14, "text": "лікарня" },
+        { "id": 15, "text": "автобусна зупинка" },
+        { "id": 16, "text": "станція метро" }
+      ],
+      "questions": [
+        { "id": "l1", "text": "el edificio", "answer": 1 },
+        { "id": "l2", "text": "el parque", "answer": 2 },
+        { "id": "l3", "text": "la calle", "answer": 3 },
+        { "id": "l4", "text": "el centro comercial", "answer": 4 },
+        { "id": "l5", "text": "el colegio", "answer": 5 },
+        { "id": "l6", "text": "el instituto", "answer": 6 },
+        { "id": "l7", "text": "el mercado", "answer": 7 },
+        { "id": "l8", "text": "la piscina", "answer": 8 },
+        { "id": "l9", "text": "la tienda", "answer": 9 },
+        { "id": "l10", "text": "el campo de fútbol", "answer": 10 },
+        { "id": "l11", "text": "la biblioteca", "answer": 11 },
+        { "id": "l12", "text": "el cine", "answer": 12 },
+        { "id": "l13", "text": "la iglesia", "answer": 13 },
+        { "id": "l14", "text": "el hospital", "answer": 14 },
+        { "id": "l15", "text": "la parada de bus", "answer": 15 },
+        { "id": "l16", "text": "la estación de metro", "answer": 16 }
+      ]
+    },
+    {
+      "id": "B",
+      "label": "2",
+      "instruction": "Lee el texto \"Mi barrio\" en la pestaña Граматика de la tema. Clasifica los lugares: ¿HAY o NO HAY en el barrio?",
+      "instruction_uk": "Прочитай текст «Mi barrio» у граматиці теми pueblo-o-ciudad. Визнач, що є (HAY), а чого немає (NO HAY) у цьому районі.",
+      "type": "match-category",
+      "categories": [
+        { "id": 1, "text": "HAY" },
+        { "id": 2, "text": "NO HAY" }
+      ],
+      "questions": [
+        { "id": "h1", "text": "un parque grande", "answer": 1 },
+        { "id": "h2", "text": "dos colegios", "answer": 1 },
+        { "id": "h3", "text": "una biblioteca", "answer": 1 },
+        { "id": "h4", "text": "un mercado", "answer": 1 },
+        { "id": "h5", "text": "una parada de bus", "answer": 1 },
+        { "id": "h6", "text": "una iglesia antigua", "answer": 1 },
+        { "id": "h7", "text": "un centro médico pequeño", "answer": 1 },
+        { "id": "h8", "text": "una piscina", "answer": 2 },
+        { "id": "h9", "text": "un cine", "answer": 2 },
+        { "id": "h10", "text": "una estación de metro", "answer": 2 },
+        { "id": "h11", "text": "un hospital", "answer": 2 }
+      ]
+    },
+    {
+      "id": "C",
+      "label": "3",
+      "instruction": "Antes de empezar... hablemos un poco. Responde las siguientes cuestiones.",
+      "instruction_uk": "Дай повну відповідь на кожне запитання — цілим реченням про себе.",
+      "type": "fill-text",
+      "fields": [
+        { "id": "c1", "label": "¿Dónde vives? ¿En un barrio, una ciudad, un pueblo…?" },
+        { "id": "c2", "label": "¿Te gusta el lugar dónde vives?" },
+        { "id": "c3", "label": "¿Cómo es el lugar perfecto para ti?" },
+        { "id": "c4", "label": "¿Cuál es tu lugar favorito? ¿Por qué?" }
+      ]
+    }
+  ]
+}

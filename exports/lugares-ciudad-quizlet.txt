@@ -1,0 +1,19 @@
+el edificio	будівля
+el parque	парк
+la calle	вулиця
+el centro comercial	торговий центр
+el colegio	школа
+el instituto	школа (старші класи)
+el mercado	ринок
+la piscina	басейн
+la tienda	магазин
+el campo de fútbol	футбольне поле
+la biblioteca	бібліотека
+el cine	кінотеатр
+la iglesia	церква
+el hospital	лікарня
+la parada de bus	автобусна зупинка
+la estación de metro	станція метро
+el barrio	район (мікрорайон)
+el pueblo	село, містечко
+la ciudad	місто
