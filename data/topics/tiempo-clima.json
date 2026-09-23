@@ -1,0 +1,38 @@
+{
+  "title": "El tiempo — погода",
+  "slug": "tiempo-clima",
+  "display_order": 15,
+  "grammar_text": "<h2>El tiempo — погода</h2><p>Щоб запитати про погоду, кажуть <strong>¿Qué tiempo hace?</strong> (Яка погода?). Відповідають трьома способами: дієсловом <strong>hacer</strong> (безособово), дієсловами <strong>llover/nevar</strong> (тільки в 3-й особі) або через <strong>hay</strong> + іменник.</p><h3>Hace + іменник</h3><p>Так само, як <em>hay</em>, форма <strong>hace</strong> тут безособова — завжди в однині, без займенника.</p><table><thead><tr><th>Іспанською</th><th>Переклад</th></tr></thead><tbody><tr><td><strong>Hace frío</strong></td><td>Холодно</td></tr><tr><td><strong>Hace calor</strong></td><td>Спекотно, жарко</td></tr><tr><td><strong>Hace sol</strong></td><td>Сонячно</td></tr><tr><td><strong>Hace viento</strong></td><td>Вітряно</td></tr><tr><td><strong>Hace buen tiempo</strong></td><td>Гарна погода</td></tr><tr><td><strong>Hace mal tiempo</strong></td><td>Погана погода</td></tr></tbody></table><h3>Llover, nevar — дощ і сніг</h3><p>Ці дієслова існують <strong>тільки в 3-й особі однини</strong> — немає форм «я йду дощем» тощо.</p><table><thead><tr><th>Іспанською</th><th>Переклад</th></tr></thead><tbody><tr><td><strong>Llueve</strong></td><td>Йде дощ</td></tr><tr><td><strong>Nieva</strong></td><td>Йде сніг</td></tr></tbody></table><h3>Hay + іменник</h3><p>Для явищ, які можна порахувати чи побачити як предмет, використовуємо <strong>hay</strong> (як у темі про hay в місті).</p><table><thead><tr><th>Іспанською</th><th>Переклад</th></tr></thead><tbody><tr><td><strong>Hay niebla</strong></td><td>Є туман</td></tr><tr><td><strong>Hay una tormenta</strong></td><td>Є гроза</td></tr><tr><td><strong>Hay nubes</strong></td><td>Є хмари</td></tr></tbody></table><h3>Іменники про погоду</h3><table><thead><tr><th>Слово</th><th>Переклад</th></tr></thead><tbody><tr><td>el aire</td><td>повітря</td></tr><tr><td>la nube</td><td>хмара</td></tr><tr><td>la nieve</td><td>сніг</td></tr><tr><td>la lluvia</td><td>дощ</td></tr><tr><td>la tormenta</td><td>буря, гроза</td></tr><tr><td>la niebla</td><td>туман</td></tr></tbody></table><p><em>¿Qué tiempo hace hoy? — Hace sol, pero hace mucho viento.</em> (Яка сьогодні погода? — Сонячно, але дуже вітряно.)</p>",
+  "quiz_sentences": [
+    { "question": "___ mucho frío en invierno.", "correct": "Hace", "options": ["Hace", "Hay", "Es", "Está"] },
+    { "question": "___ mucho sol en verano.", "correct": "Hace", "options": ["Hace", "Hay", "Es", "Llueve"] },
+    { "question": "___ mucho viento hoy.", "correct": "Hace", "options": ["Hace", "Hay", "Es", "Nieva"] },
+    { "question": "___ mucho en esta ciudad.", "correct": "Llueve", "options": ["Llueve", "Hace", "Nieva", "Hay"] },
+    { "question": "En los Alpes ___ mucho en invierno.", "correct": "nieva", "options": ["nieva", "llueve", "hace", "hay"] },
+    { "question": "___ una tormenta muy fuerte.", "correct": "Hay", "options": ["Hay", "Hace", "Es", "Está"] },
+    { "question": "___ mucha niebla esta mañana.", "correct": "Hay", "options": ["Hay", "Hace", "Es", "Llueve"] },
+    { "question": "___ muchas nubes en el cielo.", "correct": "Hay", "options": ["Hay", "Hace", "Es", "Está"] },
+    { "question": "___ mal tiempo, no puedo salir.", "correct": "Hace", "options": ["Hace", "Hay", "Es", "Llueve"] },
+    { "question": "___ buen tiempo para la playa.", "correct": "Hace", "options": ["Hace", "Hay", "Es", "Está"] },
+    { "question": "El aire ___ muy fresco.", "correct": "está", "options": ["está", "hace", "hay", "es"] },
+    { "question": "¿Qué tiempo ___ hoy?", "correct": "hace", "options": ["hace", "hay", "es", "está"] },
+    { "question": "En otoño ___ mucho.", "correct": "llueve", "options": ["llueve", "nieva", "hace", "hay"] },
+    { "question": "___ calor en el desierto.", "correct": "Hace", "options": ["Hace", "Hay", "Es", "Está"] },
+    { "question": "En diciembre ___ mucha nieve en las montañas.", "correct": "hay", "options": ["hay", "hace", "es", "está"] }
+  ],
+  "words": [
+    { "spanish": "¿Qué tiempo hace?", "ukrainian": "яка погода?", "pronunciation": "кЕ тьЕмпо Асе", "part_of_speech": "вираз", "example_es": "¿Qué tiempo hace hoy?", "example_uk": "Яка сьогодні погода?" },
+    { "spanish": "hace frío", "ukrainian": "холодно", "pronunciation": "Асе фрІо", "part_of_speech": "вираз", "example_es": "Hace mucho frío hoy.", "example_uk": "Сьогодні дуже холодно." },
+    { "spanish": "hace viento", "ukrainian": "вітряно", "pronunciation": "Асе вьЕнто", "part_of_speech": "вираз", "example_es": "Hace mucho viento en la playa.", "example_uk": "На пляжі дуже вітряно." },
+    { "spanish": "el aire", "ukrainian": "повітря", "pronunciation": "ель Айре", "part_of_speech": "іменник", "example_es": "El aire es fresco por la mañana.", "example_uk": "Вранці повітря свіже." },
+    { "spanish": "hace mal tiempo", "ukrainian": "погана погода", "pronunciation": "Асе маль тьЕмпо", "part_of_speech": "вираз", "example_es": "Hace mal tiempo, no salgo.", "example_uk": "Погана погода, я не виходжу." },
+    { "spanish": "hace sol", "ukrainian": "сонячно", "pronunciation": "Асе соль", "part_of_speech": "вираз", "example_es": "Hace sol todo el día.", "example_uk": "Цілий день сонячно." },
+    { "spanish": "hace calor", "ukrainian": "спекотно, жарко", "pronunciation": "Асе калОр", "part_of_speech": "вираз", "example_es": "Hace mucho calor en verano.", "example_uk": "Влітку дуже спекотно." },
+    { "spanish": "hace buen tiempo", "ukrainian": "гарна погода", "pronunciation": "Асе буЕн тьЕмпо", "part_of_speech": "вираз", "example_es": "Hace buen tiempo para pasear.", "example_uk": "Гарна погода для прогулянки." },
+    { "spanish": "la nube", "ukrainian": "хмара", "pronunciation": "ла нУбе", "part_of_speech": "іменник", "example_es": "Hay muchas nubes en el cielo.", "example_uk": "На небі багато хмар." },
+    { "spanish": "nieva / la nieve", "ukrainian": "йде сніг / сніг", "pronunciation": "нь'Ева / ла нь'Еве", "part_of_speech": "дієслово / іменник", "example_es": "Nieva mucho en invierno.", "example_uk": "Взимку йде багато снігу." },
+    { "spanish": "la tormenta", "ukrainian": "буря, гроза", "pronunciation": "ла тормЕнта", "part_of_speech": "іменник", "example_es": "Hay una tormenta fuerte.", "example_uk": "Сильна гроза." },
+    { "spanish": "llueve / la lluvia", "ukrainian": "йде дощ / дощ", "pronunciation": "льУЕве / ла льУвья", "part_of_speech": "дієслово / іменник", "example_es": "Llueve todos los días.", "example_uk": "Дощить щодня." },
+    { "spanish": "la niebla", "ukrainian": "туман", "pronunciation": "ла нь'Ебла", "part_of_speech": "іменник", "example_es": "Hay mucha niebla esta mañana.", "example_uk": "Сьогодні вранці великий туман." }
+  ]
+}

@@ -1,0 +1,13 @@
+hace frío	холодно
+hace viento	вітряно
+el aire	повітря
+hace mal tiempo	погана погода
+hace sol	сонячно
+hace calor	спекотно, жарко
+hace buen tiempo	гарна погода
+la nube	хмара
+nieva / la nieve	йде сніг / сніг
+la tormenta	буря, гроза
+llueve / la lluvia	йде дощ / дощ
+la niebla	туман
+¿Qué tiempo hace?	яка погода?

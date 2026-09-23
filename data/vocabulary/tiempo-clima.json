@@ -1,0 +1,131 @@
+{
+  "id": "tiempo-clima",
+  "title": "Погода — El tiempo",
+  "description": "Як говорити про погоду іспанською",
+  "groups": [
+    {
+      "id": "tiempo",
+      "title": "Погода",
+      "emoji": "☀️",
+      "words": [
+        {
+          "spanish": "hace frío",
+          "pronunciation": "Асе фрІо",
+          "ukrainian": "холодно",
+          "emoji": "🥶",
+          "sound_association": "«асе фріо» → FREEZE-о — так холодно, що все морозить",
+          "example_es": "Hace mucho frío hoy.",
+          "example_uk": "Сьогодні дуже холодно."
+        },
+        {
+          "spanish": "hace viento",
+          "pronunciation": "Асе вьЕнто",
+          "ukrainian": "вітряно",
+          "emoji": "💨",
+          "sound_association": "«в'єнто» → ВЕНТилятор дме, як вітер",
+          "example_es": "Hace mucho viento en la playa.",
+          "example_uk": "На пляжі дуже вітряно."
+        },
+        {
+          "spanish": "el aire",
+          "pronunciation": "ель Айре",
+          "ukrainian": "повітря",
+          "emoji": "🌬️",
+          "sound_association": "«айре» → AIR (англ. повітря) — той самий корінь",
+          "example_es": "El aire es fresco por la mañana.",
+          "example_uk": "Вранці повітря свіже."
+        },
+        {
+          "spanish": "hace mal tiempo",
+          "pronunciation": "Асе маль тьЕмпо",
+          "ukrainian": "погана погода",
+          "emoji": "🌧️",
+          "sound_association": "«маль» → МАЛо приємного, коли погода погана",
+          "example_es": "Hace mal tiempo, no salgo.",
+          "example_uk": "Погана погода, я не виходжу."
+        },
+        {
+          "spanish": "hace sol",
+          "pronunciation": "Асе соль",
+          "ukrainian": "сонячно",
+          "emoji": "☀️",
+          "sound_association": "«соль» → сонце «солоне», яскраве й пекуче",
+          "example_es": "Hace sol todo el día.",
+          "example_uk": "Цілий день сонячно."
+        },
+        {
+          "spanish": "hace calor",
+          "pronunciation": "Асе калОр",
+          "ukrainian": "спекотно, жарко",
+          "emoji": "🥵",
+          "sound_association": "«калор» → КАЛОРІЇ — тепло й енергія",
+          "example_es": "Hace mucho calor en verano.",
+          "example_uk": "Влітку дуже спекотно."
+        },
+        {
+          "spanish": "hace buen tiempo",
+          "pronunciation": "Асе буЕн тьЕмпо",
+          "ukrainian": "гарна погода",
+          "emoji": "🌤️",
+          "sound_association": "«буен» → BUENO (добре) — добра, гарна погода",
+          "example_es": "Hace buen tiempo para pasear.",
+          "example_uk": "Гарна погода для прогулянки."
+        },
+        {
+          "spanish": "la nube",
+          "pronunciation": "ла нУбе",
+          "ukrainian": "хмара",
+          "emoji": "☁️",
+          "sound_association": "«нубе» → пухнаста, як НУБук (хутро) хмаринка",
+          "example_es": "Hay muchas nubes en el cielo.",
+          "example_uk": "На небі багато хмар."
+        },
+        {
+          "spanish": "nieva / la nieve",
+          "pronunciation": "нь'Ева / ла нь'Еве",
+          "ukrainian": "йде сніг / сніг",
+          "emoji": "❄️",
+          "sound_association": "«н'єве» → звучить майже як «сніг» у деяких мовах",
+          "example_es": "Nieva mucho en invierno.",
+          "example_uk": "Взимку йде багато снігу."
+        },
+        {
+          "spanish": "la tormenta",
+          "pronunciation": "ла тормЕнта",
+          "ukrainian": "буря, гроза",
+          "emoji": "⛈️",
+          "sound_association": "«торментa» → ТОРМОШИТЬ вітром і громом",
+          "example_es": "Hay una tormenta fuerte.",
+          "example_uk": "Сильна гроза."
+        },
+        {
+          "spanish": "llueve / la lluvia",
+          "pronunciation": "льУЕве / ла льУвья",
+          "ukrainian": "йде дощ / дощ",
+          "emoji": "🌧️",
+          "sound_association": "«льювья» → ллЄ як з відра — дощ",
+          "example_es": "Llueve todos los días.",
+          "example_uk": "Дощить щодня."
+        },
+        {
+          "spanish": "la niebla",
+          "pronunciation": "ла нь'Ебла",
+          "ukrainian": "туман",
+          "emoji": "🌫️",
+          "sound_association": "«н'єбла» → небо стає невиразним, як у тумані",
+          "example_es": "Hay mucha niebla esta mañana.",
+          "example_uk": "Сьогодні вранці великий туман."
+        },
+        {
+          "spanish": "¿Qué tiempo hace?",
+          "pronunciation": "кЕ тьЕмпо Асе",
+          "ukrainian": "яка погода?",
+          "emoji": "🌡️",
+          "sound_association": "«тьємпо» → те саме слово, що й «темп», «час» — тут про стан погоди",
+          "example_es": "¿Qué tiempo hace hoy?",
+          "example_uk": "Яка сьогодні погода?"
+        }
+      ]
+    }
+  ]
+}
