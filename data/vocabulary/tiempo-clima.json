@@ -126,6 +126,76 @@
           "example_uk": "Яка сьогодні погода?"
         }
       ]
+    },
+    {
+      "id": "temperatura",
+      "title": "Температура",
+      "emoji": "🌡️",
+      "words": [
+        {
+          "spanish": "la temperatura",
+          "pronunciation": "ла темпераtУра",
+          "ukrainian": "температура",
+          "emoji": "🌡️",
+          "sound_association": "«темпераtура» → те саме слово, що й «температура»",
+          "example_es": "La temperatura sube en verano.",
+          "example_uk": "Влітку температура підвищується."
+        },
+        {
+          "spanish": "el grado",
+          "pronunciation": "ель грАдо",
+          "ukrainian": "градус",
+          "emoji": "📏",
+          "sound_association": "«градо» → те саме слово, що й «градус»",
+          "example_es": "Hace treinta grados.",
+          "example_uk": "Тридцять градусів."
+        },
+        {
+          "spanish": "¿Qué temperatura hace?",
+          "pronunciation": "кЕ темпераtУра Асе",
+          "ukrainian": "яка температура?",
+          "emoji": "❓",
+          "sound_association": "питання за зразком ¿Qué tiempo hace?, тільки про температуру",
+          "example_es": "¿Qué temperatura hace hoy?",
+          "example_uk": "Яка сьогодні температура?"
+        },
+        {
+          "spanish": "¿A cuántos grados estamos?",
+          "pronunciation": "а куАнтос грАдос естАмос",
+          "ukrainian": "скільки градусів?",
+          "emoji": "🔢",
+          "sound_association": "буквально «на скількох градусах ми знаходимось»",
+          "example_es": "¿A cuántos grados estamos hoy?",
+          "example_uk": "Скільки сьогодні градусів?"
+        },
+        {
+          "spanish": "estamos a ... grados",
+          "pronunciation": "естАмос а ... грАдос",
+          "ukrainian": "зараз ... градусів",
+          "emoji": "🌡️",
+          "sound_association": "estar + a + число — та сама конструкція, що й з датами",
+          "example_es": "Estamos a veinte grados.",
+          "example_uk": "Зараз двадцять градусів."
+        },
+        {
+          "spanish": "bajo cero",
+          "pronunciation": "бАхо сЕро",
+          "ukrainian": "нижче нуля",
+          "emoji": "🥶",
+          "sound_association": "«бахо» → внизу, під нулем — bajo = під",
+          "example_es": "Estamos a cinco grados bajo cero.",
+          "example_uk": "Зараз п'ять градусів нижче нуля."
+        },
+        {
+          "spanish": "la temperatura máxima / mínima",
+          "pronunciation": "ла темпераtУра мАксіма / мІніма",
+          "ukrainian": "максимальна / мінімальна температура",
+          "emoji": "📊",
+          "sound_association": "máxima/mínima — ті самі слова, що й «максимум/мінімум»",
+          "example_es": "La temperatura máxima hoy es de 25 grados.",
+          "example_uk": "Максимальна температура сьогодні — 25 градусів."
+        }
+      ]
     }
   ]
 }

@@ -11,3 +11,10 @@ la tormenta	буря, гроза
 llueve / la lluvia	йде дощ / дощ
 la niebla	туман
 ¿Qué tiempo hace?	яка погода?
+la temperatura	температура
+el grado	градус
+¿Qué temperatura hace?	яка температура?
+¿A cuántos grados estamos?	скільки градусів?
+estamos a ... grados	зараз ... градусів
+bajo cero	нижче нуля
+la temperatura máxima / mínima	максимальна / мінімальна температура
