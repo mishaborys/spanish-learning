@@ -1,0 +1,20 @@
+hablar	говорити
+trabajar	працювати
+estudiar	вчити, вчитися
+comer	їсти
+vivir	жити
+escribir	писати
+comprar	купувати
+cocinar	готувати їжу
+necesitar	потребувати
+ayudar	допомагати
+leer	читати
+beber	пити
+aprender	вчити, навчатися
+viajar	подорожувати
+escuchar	слухати
+mirar	дивитися
+bailar	танцювати
+cantar	співати
+abrir	відкривати
+preguntar	запитувати

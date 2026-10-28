@@ -1,0 +1,14 @@
+hay	є, існує
+no hay	немає
+el parque	парк
+la calle	вулиця
+el mercado	ринок
+la tienda	магазин
+el cine	кінотеатр
+la biblioteca	бібліотека
+el colegio	школа
+el hospital	лікарня
+el barrio	район
+la ciudad	місто
+cerca	близько
+lejos	далеко

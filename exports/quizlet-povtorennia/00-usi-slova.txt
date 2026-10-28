@@ -1,0 +1,174 @@
+¿Cómo te llamas?	Як тебе звати?
+Me llamo	Мене звати
+¿De dónde eres?	Звідки ти?
+Soy de	Я з
+¿Cuántos años tienes?	Скільки тобі років?
+Tengo … años	Мені … років
+¿Dónde vives?	Де ти живеш?
+Vivo en	Я живу в
+¿A qué te dedicas?	Чим ти займаєшся?
+¿Cómo estás?	Як справи?
+Trabajo como	Я працюю ким
+¿Tienes hermanos?	У тебе є брати чи сестри?
+Mucho gusto	Приємно познайомитися
+Hola	Привіт
+No entiendo	Я не розумію
+¿Puede repetir, por favor?	Можете повторити, будь ласка?
+Más despacio, por favor	Повільніше, будь ласка
+¿Cómo se dice?	Як сказати?
+¿Qué significa?	Що означає?
+No sé	Я не знаю
+Gracias	Дякую
+De nada	Будь ласка (у відповідь)
+Por favor	Будь ласка (прохання)
+Perdón	Вибачте
+Buenos días	Доброго ранку
+Buenas tardes	Доброго дня
+Buenas noches	Доброї ночі
+Hasta luego	До зустрічі
+el amigo	друг
+la amiga	подруга
+el hermano	брат
+la hermana	сестра
+el padre	батько
+la madre	мати
+el abuelo	дідусь
+la abuela	бабуся
+el tío	дядько
+la tía	тітка
+el primo	двоюрідний брат
+la prima	двоюрідна сестра
+el hombre	чоловік
+la mujer	жінка
+el profesor	викладач
+el camarero	офіціант
+casado	одружений
+soltero	неодружений
+la profesora	викладачка
+el enfermero	медбрат
+la enfermera	медсестра
+la camarera	офіціантка
+el conductor	водій
+el director	директор
+el doctor	лікар
+la doctora	лікарка
+divorciado	розлучений
+viudo	вдівець
+alto	високий
+bajo	низький
+bonito	гарний
+feo	негарний
+bueno	добрий
+malo	поганий
+nuevo	новий
+viejo	старий
+simpático	приємний
+antipático	неприємний
+rápido	швидкий
+lento	повільний
+trabajador	працьовитий
+vago	лінивий
+cansado	втомлений
+feliz	щасливий
+triste	сумний
+ocupado	зайнятий
+enfadado	злий
+contento	задоволений
+tener hambre	бути голодним
+tener sed	хотіти пити
+tener frío	мерзнути
+tener calor	відчувати спеку
+nervioso	нервовий
+preocupado	стурбований
+tener miedo	боятися
+tener sueño	хотіти спати
+la casa	будинок
+el dormitorio	спальня
+el baño	ванна кімната
+la cocina	кухня
+el salón	вітальня
+la ventana	вікно
+la puerta	двері
+la cama	ліжко
+el comedor	їдальня
+el jardín	сад
+la mesa	стіл
+la silla	стілець
+el sofá	диван
+el armario	шафа
+hay	є, існує
+no hay	немає
+el parque	парк
+la calle	вулиця
+el mercado	ринок
+la tienda	магазин
+el cine	кінотеатр
+la biblioteca	бібліотека
+el colegio	школа
+el hospital	лікарня
+el barrio	район
+la ciudad	місто
+cerca	близько
+lejos	далеко
+¿Qué hora es?	Котра година?
+¿A qué hora?	О котрій годині?
+Es la una	Перша година
+Son las	Година (мн.): Son las tres — третя
+y cuarto	і чверть
+y media	і пів (30 хв)
+menos cuarto	без чверті
+en punto	рівно
+el mediodía	полудень
+la medianoche	північ
+de la mañana	ранку
+de la tarde	дня, вечора
+de la noche	ночі
+la hora	година
+¿Qué tiempo hace?	Яка погода?
+hace frío	холодно
+hace calor	спекотно
+hace sol	сонячно
+hace viento	вітряно
+llueve	йде дощ
+nieva	йде сніг
+la temperatura	температура
+hace buen tiempo	гарна погода
+hace mal tiempo	погана погода
+la nube	хмара
+la tormenta	гроза, буря
+la niebla	туман
+bajo cero	нижче нуля
+quién	хто
+qué	що
+cómo	як
+cuándo	коли
+dónde	де
+por qué	чому
+cuánto	скільки
+cuál	який, котрий
+de dónde	звідки
+adónde	куди
+para qué	навіщо
+con quién	з ким
+a quién	кому, кого
+de quién	чий
+hablar	говорити
+trabajar	працювати
+estudiar	вчити, вчитися
+comer	їсти
+vivir	жити
+escribir	писати
+comprar	купувати
+cocinar	готувати їжу
+necesitar	потребувати
+ayudar	допомагати
+leer	читати
+beber	пити
+aprender	вчити, навчатися
+viajar	подорожувати
+escuchar	слухати
+mirar	дивитися
+bailar	танцювати
+cantar	співати
+abrir	відкривати
+preguntar	запитувати

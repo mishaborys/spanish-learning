@@ -1,0 +1,14 @@
+el profesor	викладач
+el camarero	офіціант
+casado	одружений
+soltero	неодружений
+la profesora	викладачка
+el enfermero	медбрат
+la enfermera	медсестра
+la camarera	офіціантка
+el conductor	водій
+el director	директор
+el doctor	лікар
+la doctora	лікарка
+divorciado	розлучений
+viudo	вдівець

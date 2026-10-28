@@ -1,0 +1,14 @@
+No entiendo	Я не розумію
+¿Puede repetir, por favor?	Можете повторити, будь ласка?
+Más despacio, por favor	Повільніше, будь ласка
+¿Cómo se dice?	Як сказати?
+¿Qué significa?	Що означає?
+No sé	Я не знаю
+Gracias	Дякую
+De nada	Будь ласка (у відповідь)
+Por favor	Будь ласка (прохання)
+Perdón	Вибачте
+Buenos días	Доброго ранку
+Buenas tardes	Доброго дня
+Buenas noches	Доброї ночі
+Hasta luego	До зустрічі

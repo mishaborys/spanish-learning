@@ -1,0 +1,14 @@
+cansado	втомлений
+feliz	щасливий
+triste	сумний
+ocupado	зайнятий
+enfadado	злий
+contento	задоволений
+tener hambre	бути голодним
+tener sed	хотіти пити
+tener frío	мерзнути
+tener calor	відчувати спеку
+nervioso	нервовий
+preocupado	стурбований
+tener miedo	боятися
+tener sueño	хотіти спати

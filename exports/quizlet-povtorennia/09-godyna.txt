@@ -1,0 +1,14 @@
+¿Qué hora es?	Котра година?
+¿A qué hora?	О котрій годині?
+Es la una	Перша година
+Son las	Година (мн.): Son las tres — третя
+y cuarto	і чверть
+y media	і пів (30 хв)
+menos cuarto	без чверті
+en punto	рівно
+el mediodía	полудень
+la medianoche	північ
+de la mañana	ранку
+de la tarde	дня, вечора
+de la noche	ночі
+la hora	година

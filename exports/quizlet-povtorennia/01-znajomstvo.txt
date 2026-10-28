@@ -1,0 +1,14 @@
+¿Cómo te llamas?	Як тебе звати?
+Me llamo	Мене звати
+¿De dónde eres?	Звідки ти?
+Soy de	Я з
+¿Cuántos años tienes?	Скільки тобі років?
+Tengo … años	Мені … років
+¿Dónde vives?	Де ти живеш?
+Vivo en	Я живу в
+¿A qué te dedicas?	Чим ти займаєшся?
+¿Cómo estás?	Як справи?
+Trabajo como	Я працюю ким
+¿Tienes hermanos?	У тебе є брати чи сестри?
+Mucho gusto	Приємно познайомитися
+Hola	Привіт

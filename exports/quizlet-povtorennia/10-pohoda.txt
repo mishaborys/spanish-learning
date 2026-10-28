@@ -1,0 +1,14 @@
+¿Qué tiempo hace?	Яка погода?
+hace frío	холодно
+hace calor	спекотно
+hace sol	сонячно
+hace viento	вітряно
+llueve	йде дощ
+nieva	йде сніг
+la temperatura	температура
+hace buen tiempo	гарна погода
+hace mal tiempo	погана погода
+la nube	хмара
+la tormenta	гроза, буря
+la niebla	туман
+bajo cero	нижче нуля

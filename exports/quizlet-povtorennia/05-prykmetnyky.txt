@@ -1,0 +1,14 @@
+alto	високий
+bajo	низький
+bonito	гарний
+feo	негарний
+bueno	добрий
+malo	поганий
+nuevo	новий
+viejo	старий
+simpático	приємний
+antipático	неприємний
+rápido	швидкий
+lento	повільний
+trabajador	працьовитий
+vago	лінивий

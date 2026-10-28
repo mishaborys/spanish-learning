@@ -1,0 +1,14 @@
+la casa	будинок
+el dormitorio	спальня
+el baño	ванна кімната
+la cocina	кухня
+el salón	вітальня
+la ventana	вікно
+la puerta	двері
+la cama	ліжко
+el comedor	їдальня
+el jardín	сад
+la mesa	стіл
+la silla	стілець
+el sofá	диван
+el armario	шафа

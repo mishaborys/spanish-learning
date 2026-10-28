@@ -1,0 +1,14 @@
+el amigo	друг
+la amiga	подруга
+el hermano	брат
+la hermana	сестра
+el padre	батько
+la madre	мати
+el abuelo	дідусь
+la abuela	бабуся
+el tío	дядько
+la tía	тітка
+el primo	двоюрідний брат
+la prima	двоюрідна сестра
+el hombre	чоловік
+la mujer	жінка
