@@ -1,0 +1,573 @@
+{
+  "id": "gustar",
+  "title": "Gustar — слова з уроку",
+  "description": "Слова з вправ «El verbo gustar» та пісні «Me gustas tú»",
+  "groups": [
+    {
+      "id": "leisure",
+      "title": "Дозвілля та розваги",
+      "emoji": "🎬",
+      "words": [
+        {
+          "spanish": "ver",
+          "pronunciation": "БЕР",
+          "ukrainian": "дивитися",
+          "emoji": "👀",
+          "sound_association": "«бер» → БЕРи очі в руки й дивись",
+          "example_es": "Me gusta ver series.",
+          "example_uk": "Мені подобається дивитися серіали."
+        },
+        {
+          "spanish": "jugar",
+          "pronunciation": "хуҐАР",
+          "ukrainian": "грати",
+          "emoji": "🎮",
+          "sound_association": "«хуґар» → ДЖОКЕР — карта для гри",
+          "example_es": "Me gusta jugar al fútbol.",
+          "example_uk": "Мені подобається грати у футбол."
+        },
+        {
+          "spanish": "la serie",
+          "pronunciation": "ла сЕріе",
+          "ukrainian": "серіал",
+          "emoji": "📺",
+          "sound_association": "«серіе» → СЕРІАЛ — майже те саме слово",
+          "example_es": "Me gustan las series.",
+          "example_uk": "Мені подобаються серіали."
+        },
+        {
+          "spanish": "el documental",
+          "pronunciation": "ель докуменТАЛь",
+          "ukrainian": "документальний фільм",
+          "emoji": "🎞️",
+          "sound_association": "«документаль» → ДОКУМЕНТ — фільм за документами",
+          "example_es": "Me gustan los documentales.",
+          "example_uk": "Мені подобаються документальні фільми."
+        },
+        {
+          "spanish": "la peli",
+          "pronunciation": "ла пЕлі",
+          "ukrainian": "фільм (розм.)",
+          "emoji": "🎬",
+          "sound_association": "«пелі» → скорочення від película, як «ПЛІвка» в кіно",
+          "example_es": "Me encanta la peli.",
+          "example_uk": "Я обожнюю цей фільм."
+        },
+        {
+          "spanish": "la película de terror",
+          "pronunciation": "ла пеЛІкула де теРРОР",
+          "ukrainian": "фільм жахів",
+          "emoji": "👻",
+          "sound_association": "«террор» → ТЕРОР — страх",
+          "example_es": "No me gustan las películas de terror.",
+          "example_uk": "Мені не подобаються фільми жахів."
+        },
+        {
+          "spanish": "el tenis",
+          "pronunciation": "ель тЕніс",
+          "ukrainian": "теніс",
+          "emoji": "🎾",
+          "sound_association": "«теніс» → ТЕНІС — те саме слово",
+          "example_es": "Me encanta el tenis.",
+          "example_uk": "Я обожнюю теніс."
+        },
+        {
+          "spanish": "el deporte",
+          "pronunciation": "ель депОрте",
+          "ukrainian": "спорт",
+          "emoji": "🏃",
+          "sound_association": "«депорте» → ДЕ + ПОРТ, схоже на СПОРТ",
+          "example_es": "Me gustan los deportes.",
+          "example_uk": "Мені подобається спорт."
+        },
+        {
+          "spanish": "el museo",
+          "pronunciation": "ель мусЕо",
+          "ukrainian": "музей",
+          "emoji": "🏛️",
+          "sound_association": "«мусео» → МУЗЕЙ",
+          "example_es": "Me gustan los museos.",
+          "example_uk": "Мені подобаються музеї."
+        },
+        {
+          "spanish": "el teatro",
+          "pronunciation": "ель теАтро",
+          "ukrainian": "театр",
+          "emoji": "🎭",
+          "sound_association": "«театро» → ТЕАТР",
+          "example_es": "Me interesa el teatro.",
+          "example_uk": "Мене цікавить театр."
+        },
+        {
+          "spanish": "el flamenco",
+          "pronunciation": "ель флаМЕНко",
+          "ukrainian": "фламенко",
+          "emoji": "💃",
+          "sound_association": "«фламенко» → ФЛАМІНГО — рожевий птах, що ніби танцює",
+          "example_es": "¿Le gusta a usted el flamenco?",
+          "example_uk": "Вам подобається фламенко?"
+        },
+        {
+          "spanish": "la fiesta",
+          "pronunciation": "ла фьЄста",
+          "ukrainian": "свято, вечірка",
+          "emoji": "🎉",
+          "sound_association": "«фьєста» → ФІЄСТА — вечірка, майже без змін",
+          "example_es": "Nos gustan las fiestas.",
+          "example_uk": "Нам подобаються вечірки."
+        },
+        {
+          "spanish": "el chocolate",
+          "pronunciation": "ель чоколАте",
+          "ukrainian": "шоколад",
+          "emoji": "🍫",
+          "sound_association": "«чоколате» → ШОКОЛАД",
+          "example_es": "Me encanta el chocolate.",
+          "example_uk": "Я обожнюю шоколад."
+        },
+        {
+          "spanish": "el sushi",
+          "pronunciation": "ель сУші",
+          "ukrainian": "суші",
+          "emoji": "🍣",
+          "sound_association": "«суші» — те саме слово",
+          "example_es": "No me gusta el sushi.",
+          "example_uk": "Мені не подобаються суші."
+        }
+      ]
+    },
+    {
+      "id": "feelings",
+      "title": "Описи та почуття",
+      "emoji": "💭",
+      "words": [
+        {
+          "spanish": "relajante",
+          "pronunciation": "релаХАНте",
+          "ukrainian": "розслаблюючий",
+          "emoji": "🧘",
+          "sound_association": "«релахантe» → РЕЛАКС",
+          "example_es": "Leer es relajante.",
+          "example_uk": "Читати розслабляє."
+        },
+        {
+          "spanish": "divertido",
+          "pronunciation": "дібертІдо",
+          "ukrainian": "веселий, цікавий",
+          "emoji": "🎡",
+          "sound_association": "«дівертідо» → ДИВЕРТИСМЕНТ — розвага",
+          "example_es": "Bailar es muy divertido.",
+          "example_uk": "Танцювати дуже весело."
+        },
+        {
+          "spanish": "perfecto",
+          "pronunciation": "перфЕкто",
+          "ukrainian": "ідеальний",
+          "emoji": "💯",
+          "sound_association": "«перфекто» → ПЕРФЕКТНИЙ",
+          "example_es": "Es perfecto.",
+          "example_uk": "Це ідеально."
+        },
+        {
+          "spanish": "importante",
+          "pronunciation": "імпортАнте",
+          "ukrainian": "важливий",
+          "emoji": "❗",
+          "sound_association": "«імпортанте» → ІМПОРТ — те, що «ввозять» як важливе; схоже на «імпортний»",
+          "example_es": "Es muy importante.",
+          "example_uk": "Це дуже важливо."
+        },
+        {
+          "spanish": "clásico",
+          "pronunciation": "клАсіко",
+          "ukrainian": "класичний",
+          "emoji": "🎻",
+          "sound_association": "«класіко» → КЛАСИКА",
+          "example_es": "Me encanta la música clásica.",
+          "example_uk": "Я обожнюю класичну музику."
+        },
+        {
+          "spanish": "desconocido",
+          "pronunciation": "десконосІдо",
+          "ukrainian": "незнайомий",
+          "emoji": "🕵️",
+          "sound_association": "des- = «не» (як ДЕЗінформація) + conocido (відомий) → невідомий",
+          "example_es": "No hablo con gente desconocida.",
+          "example_uk": "Я не розмовляю з незнайомими людьми."
+        },
+        {
+          "spanish": "libre",
+          "pronunciation": "лІбре",
+          "ukrainian": "вільний",
+          "emoji": "🕊️",
+          "sound_association": "«лібре» → ЛІБЕРАЛ, ЛІБЕРТІ — свобода",
+          "example_es": "Tengo tiempo libre los sábados.",
+          "example_uk": "У мене є вільний час по суботах."
+        },
+        {
+          "spanish": "encantar",
+          "pronunciation": "енкантАР",
+          "ukrainian": "обожнювати",
+          "emoji": "😍",
+          "sound_association": "«енкантар» → ЗАЧАРУВАТИ (англ. enchanted)",
+          "example_es": "Me encanta el mar.",
+          "example_uk": "Я обожнюю море."
+        },
+        {
+          "spanish": "interesar",
+          "pronunciation": "інтересАР",
+          "ukrainian": "цікавити",
+          "emoji": "🤔",
+          "sound_association": "«інтересар» → ІНТЕРЕС",
+          "example_es": "Me interesa la historia.",
+          "example_uk": "Мене цікавить історія."
+        },
+        {
+          "spanish": "molestar",
+          "pronunciation": "молестАР",
+          "ukrainian": "дратувати",
+          "emoji": "😤",
+          "sound_association": "«молестар» → англ. MOLEST — набридати, дратувати",
+          "example_es": "Me molesta el ruido.",
+          "example_uk": "Мене дратує шум."
+        }
+      ]
+    },
+    {
+      "id": "life",
+      "title": "Життя та речі",
+      "emoji": "🧩",
+      "words": [
+        {
+          "spanish": "la gente",
+          "pronunciation": "ла хЕнте",
+          "ukrainian": "люди",
+          "emoji": "👥",
+          "sound_association": "«хенте» → ДЖЕНТРІ (шляхта) — «люди»",
+          "example_es": "Hay mucha gente en el parque.",
+          "example_uk": "У парку багато людей."
+        },
+        {
+          "spanish": "la historia",
+          "pronunciation": "ла істОріа",
+          "ukrainian": "історія",
+          "emoji": "📜",
+          "sound_association": "«історіа» → ІСТОРІЯ",
+          "example_es": "La historia de España es interesante.",
+          "example_uk": "Історія Іспанії цікава."
+        },
+        {
+          "spanish": "la araña",
+          "pronunciation": "ла арАнья",
+          "ukrainian": "павук",
+          "emoji": "🕷️",
+          "sound_association": "«аранья» → АРАХНІД, АРАХНОФОБІЯ — страх павуків",
+          "example_es": "No me gustan las arañas.",
+          "example_uk": "Мені не подобаються павуки."
+        },
+        {
+          "spanish": "la serpiente",
+          "pronunciation": "ла серпьЄнте",
+          "ukrainian": "змія",
+          "emoji": "🐍",
+          "sound_association": "«серп'єнте» → СЕРПАНТИН — звивається, як змія",
+          "example_es": "No me gustan las serpientes.",
+          "example_uk": "Мені не подобаються змії."
+        },
+        {
+          "spanish": "el mosquito",
+          "pronunciation": "ель москІто",
+          "ukrainian": "комар",
+          "emoji": "🦟",
+          "sound_association": "«москіто» → МОСКІТНА сітка",
+          "example_es": "Me molestan los mosquitos.",
+          "example_uk": "Мене дратують комарі."
+        },
+        {
+          "spanish": "el ruido",
+          "pronunciation": "ель рУідо",
+          "ukrainian": "шум",
+          "emoji": "🔊",
+          "sound_association": "«руідо» → РУЇНА, гуркіт — шум, що «руйнує» тишу",
+          "example_es": "No me gusta nada el ruido.",
+          "example_uk": "Мені зовсім не подобається шум."
+        },
+        {
+          "spanish": "la luz",
+          "pronunciation": "ла лУс",
+          "ukrainian": "світло",
+          "emoji": "💡",
+          "sound_association": "«лус» → ЛЮКС — одиниця освітленості",
+          "example_es": "No hay luz en la casa.",
+          "example_uk": "У будинку немає світла."
+        },
+        {
+          "spanish": "apagar",
+          "pronunciation": "апаҐАР",
+          "ukrainian": "вимикати, гасити",
+          "emoji": "🔌",
+          "sound_association": "«апаґар» → ПОГАСИТИ світло",
+          "example_es": "Apago la luz.",
+          "example_uk": "Я вимикаю світло."
+        },
+        {
+          "spanish": "el filtro",
+          "pronunciation": "ель фІльтро",
+          "ukrainian": "фільтр",
+          "emoji": "☕",
+          "sound_association": "«фільтро» → ФІЛЬТР",
+          "example_es": "No me gusta el filtro del café.",
+          "example_uk": "Мені не подобається фільтр для кави."
+        },
+        {
+          "spanish": "madrugar",
+          "pronunciation": "мадруҐАР",
+          "ukrainian": "рано вставати",
+          "emoji": "🌅",
+          "sound_association": "«мадруґар» → МАДРУГА — рання пора",
+          "example_es": "No me gusta madrugar.",
+          "example_uk": "Мені не подобається рано вставати."
+        },
+        {
+          "spanish": "perder",
+          "pronunciation": "перДЕР",
+          "ukrainian": "втрачати",
+          "emoji": "😟",
+          "sound_association": "«пердер» → англ. PERDITION — те, що втрачене",
+          "example_es": "Pierdo mi tiempo con gente desconocida.",
+          "example_uk": "Я марную час із незнайомими людьми."
+        }
+      ]
+    },
+    {
+      "id": "song",
+      "title": "Пісня «Me gustas tú»",
+      "emoji": "🎵",
+      "words": [
+        {
+          "spanish": "el fuego",
+          "pronunciation": "ель фУеґо",
+          "ukrainian": "вогонь",
+          "emoji": "🔥",
+          "sound_association": "«фуеґо» → ФЕЄРВЕРК — вогонь",
+          "example_es": "El fuego es caliente.",
+          "example_uk": "Вогонь гарячий."
+        },
+        {
+          "spanish": "volver",
+          "pronunciation": "болбЕР",
+          "ukrainian": "повертатися",
+          "emoji": "🔄",
+          "sound_association": "«болвер» → ВЕРнутися (ВЕР-…) — повертатися",
+          "example_es": "Vuelvo a casa a las seis.",
+          "example_uk": "Я повертаюся додому о шостій."
+        },
+        {
+          "spanish": "el vecino",
+          "pronunciation": "ель бесІно",
+          "ukrainian": "сусід",
+          "emoji": "🏠",
+          "sound_association": "«весіно» → італ. VICINO — той, хто живе поруч",
+          "example_es": "Mi vecino es muy simpático.",
+          "example_uk": "Мій сусід дуже приємний."
+        },
+        {
+          "spanish": "la vecina",
+          "pronunciation": "ла бесІна",
+          "ukrainian": "сусідка",
+          "emoji": "🏡",
+          "sound_association": "«весіна» → італ. VICINA — та, що живе поруч",
+          "example_es": "Mi vecina trabaja en un hospital.",
+          "example_uk": "Моя сусідка працює в лікарні."
+        },
+        {
+          "spanish": "soñar",
+          "pronunciation": "соньЯР",
+          "ukrainian": "мріяти",
+          "emoji": "💭",
+          "sound_association": "«соньяр» → СОН — бачити уві сні, мріяти",
+          "example_es": "Me gusta soñar.",
+          "example_uk": "Мені подобається мріяти."
+        },
+        {
+          "spanish": "el avión",
+          "pronunciation": "ель абьОН",
+          "ukrainian": "літак",
+          "emoji": "✈️",
+          "sound_association": "«авіон» → АВІА, АВІАЦІЯ",
+          "example_es": "Me gusta viajar en avión.",
+          "example_uk": "Мені подобається подорожувати літаком."
+        },
+        {
+          "spanish": "la cena",
+          "pronunciation": "ла сЕна",
+          "ukrainian": "вечеря",
+          "emoji": "🍽️",
+          "sound_association": "«сена» → СЕАНС — після вечірнього сеансу вечеря",
+          "example_es": "La cena es a las nueve.",
+          "example_uk": "Вечеря о дев'ятій."
+        },
+        {
+          "spanish": "la guitarra",
+          "pronunciation": "ла ґітАрра",
+          "ukrainian": "гітара",
+          "emoji": "🎸",
+          "sound_association": "«гітарра» → ГІТАРА",
+          "example_es": "Toco la guitarra.",
+          "example_uk": "Я граю на гітарі."
+        },
+        {
+          "spanish": "la canela",
+          "pronunciation": "ла канЕла",
+          "ukrainian": "кориця",
+          "emoji": "🍂",
+          "sound_association": "«канела» → КАНЕЛЮРИ — як скручена паличка кориці",
+          "example_es": "Me gusta el café con canela.",
+          "example_uk": "Мені подобається кава з корицею."
+        },
+        {
+          "spanish": "camelar",
+          "pronunciation": "камелАР",
+          "ukrainian": "залицятися (розм.)",
+          "emoji": "😉",
+          "sound_association": "«камелар» → КАМЕЛІЯ — квіти дарують, щоб залицятися",
+          "example_es": "Él camela a su novia.",
+          "example_uk": "Він залицяється до своєї дівчини."
+        },
+        {
+          "spanish": "menear",
+          "pronunciation": "менеАР",
+          "ukrainian": "рухати, танцювати",
+          "emoji": "🕺",
+          "sound_association": "«менеар» → МЕНУЕТ — рухатися в такт",
+          "example_es": "Me gusta menear al bailar.",
+          "example_uk": "Мені подобається рухатися, коли танцюю."
+        },
+        {
+          "spanish": "perdido",
+          "pronunciation": "пердІдо",
+          "ukrainian": "загублений",
+          "emoji": "🧭",
+          "sound_association": "від perder: «пердідо» → англ. PERDITION — втрачений, загублений",
+          "example_es": "Estoy perdido en la ciudad.",
+          "example_uk": "Я загубився в місті."
+        }
+      ]
+    },
+    {
+      "id": "meta",
+      "title": "Метамова та інструкції",
+      "emoji": "📝",
+      "words": [
+        {
+          "spanish": "el sujeto",
+          "pronunciation": "ель сухЕто",
+          "ukrainian": "підмет",
+          "emoji": "📝",
+          "sound_association": "«сухето» → СУБ'ЄКТ",
+          "example_es": "El sujeto es lo que gusta.",
+          "example_uk": "Підмет — це те, що подобається."
+        },
+        {
+          "spanish": "el énfasis",
+          "pronunciation": "ель ЕнФасіс",
+          "ukrainian": "акцент",
+          "emoji": "❗",
+          "sound_association": "«енфасіс» → ЕМФАЗА, ЕМФАТИЧНИЙ — з наголосом",
+          "example_es": "A mí me encanta la música.",
+          "example_uk": "Саме мені подобається музика."
+        },
+        {
+          "spanish": "el contraste",
+          "pronunciation": "ель контрАсте",
+          "ukrainian": "контраст",
+          "emoji": "⚖️",
+          "sound_association": "«контрасте» → КОНТРАСТ",
+          "example_es": "Me encanta el tenis. A mí no me gusta nada.",
+          "example_uk": "Я обожнюю теніс. А мені зовсім не подобається."
+        },
+        {
+          "spanish": "propio",
+          "pronunciation": "прОпіо",
+          "ukrainian": "власний",
+          "emoji": "🏷️",
+          "sound_association": "«пропіо» → ПРОПРІЄТАР, ПРОПРІЄТАРНИЙ — власний",
+          "example_es": "A Manuel le gusta leer.",
+          "example_uk": "Мануелю подобається читати. (A + ім'я)"
+        },
+        {
+          "spanish": "corregir",
+          "pronunciation": "корехІр",
+          "ukrainian": "виправляти",
+          "emoji": "✏️",
+          "sound_association": "«корехір» → КОРЕГУВАТИ",
+          "example_es": "Corrige el error.",
+          "example_uk": "Виправ помилку."
+        },
+        {
+          "spanish": "grabar",
+          "pronunciation": "ґрабАР",
+          "ukrainian": "записувати",
+          "emoji": "🎙️",
+          "sound_association": "«ґрабар» → ГРАВІЮВАТИ — вигравіювати запис",
+          "example_es": "Graba un audio de 30 segundos.",
+          "example_uk": "Запиши аудіо на 30 секунд."
+        },
+        {
+          "spanish": "apuntar",
+          "pronunciation": "апунтАР",
+          "ukrainian": "занотовувати",
+          "emoji": "📌",
+          "sound_association": "«апунтар» → ПУНКТ — занотувати по пунктах",
+          "example_es": "Apunta la tarea.",
+          "example_uk": "Запиши домашнє завдання."
+        },
+        {
+          "spanish": "arrastrar",
+          "pronunciation": "арраСТРАР",
+          "ukrainian": "перетягувати",
+          "emoji": "🖱️",
+          "sound_association": "«аррастрар» → ТРАЛ — тягнути, як трал по дну",
+          "example_es": "Arrastra la palabra.",
+          "example_uk": "Перетягни слово."
+        },
+        {
+          "spanish": "la canción",
+          "pronunciation": "ла кансьОн",
+          "ukrainian": "пісня",
+          "emoji": "🎵",
+          "sound_association": "«кансьйон» → КАНЦОНА — пісня",
+          "example_es": "Escucho la canción.",
+          "example_uk": "Я слухаю пісню."
+        },
+        {
+          "spanish": "la reacción",
+          "pronunciation": "ла реакСьОН",
+          "ukrainian": "реакція",
+          "emoji": "⚡",
+          "sound_association": "«реаксьйон» → РЕАКЦІЯ",
+          "example_es": "Escribe tu reacción.",
+          "example_uk": "Напиши свою реакцію."
+        },
+        {
+          "spanish": "la entrevista",
+          "pronunciation": "ла ентребІста",
+          "ukrainian": "інтерв'ю",
+          "emoji": "🎤",
+          "sound_association": "«ентревіста» → ІНТЕРВ'Ю",
+          "example_es": "Esta es una entrevista.",
+          "example_uk": "Це інтерв'ю."
+        },
+        {
+          "spanish": "el audio",
+          "pronunciation": "ель Аудіо",
+          "ukrainian": "аудіо",
+          "emoji": "🎧",
+          "sound_association": "«аудіо» — те саме слово",
+          "example_es": "Escucho el audio.",
+          "example_uk": "Я слухаю аудіо."
+        }
+      ]
+    }
+  ]
+}

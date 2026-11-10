@@ -1,0 +1,834 @@
+{
+  "title": "Gustar — займенники me, te, le, nos, os, les",
+  "slug": "gustar-pronombres",
+  "display_order": 18,
+  "grammar_text": "<h2>Gustar — тренування займенників</h2><p>Тут тільки одне: вибрати правильний займенник <strong>me / te / le / nos / os / les</strong> (кому подобається) і правильну форму <strong>gusta / gustan</strong>. Спочатку таблиця, потім — вкладка «Тест».</p><table><thead><tr><th>Кому подобається</th><th>Займенник</th><th>Приклад</th></tr></thead><tbody><tr><td><strong>A mí</strong> — мені</td><td><strong>me</strong></td><td>A mí me gusta el chocolate.</td></tr><tr><td><strong>A ti</strong> — тобі</td><td><strong>te</strong></td><td>A ti te gustan los gatos.</td></tr><tr><td><strong>A él / a ella / a usted</strong> — йому / їй / Вам<br><strong>A Marta, a mi hermano…</strong> (одна особа)</td><td><strong>le</strong></td><td>A Marta le gusta cocinar. ¿A usted le gusta el flamenco?</td></tr><tr><td><strong>A nosotros / a nosotras</strong> — нам<br><strong>A mi amigo y a mí</strong> (я + хтось)</td><td><strong>nos</strong></td><td>A nosotros nos gustan las películas de terror.</td></tr><tr><td><strong>A vosotros / a vosotras</strong> — вам</td><td><strong>os</strong></td><td>A vosotros os gusta la montaña.</td></tr><tr><td><strong>A ellos / a ellas / a ustedes</strong> — їм / Вам (мн.)<br><strong>A mis padres, a Pablo y a Lucía…</strong> (двоє і більше)</td><td><strong>les</strong></td><td>A mis padres les gustan los museos. A Pablo y a Lucía les gusta bailar.</td></tr></tbody></table><h2>Як вибрати швидко</h2><ol><li><strong>Хто</strong> — один чи кілька? Для «він / вона / Ви» та одного імені — <strong>le</strong>; для «вони / Ви (мн.)» та кількох імен — <strong>les</strong> (літера <em>s</em> = «багато»).</li><li><strong>Я та ти / ми</strong> — <strong>me</strong> (я), <strong>te</strong> (ти), <strong>nos</strong> (ми), <strong>os</strong> (ви, Іспанія).</li><li>Дієслово <strong>не залежить від людини</strong>: <em>gusta</em> — коли подобається одна річ або дія, <em>gustan</em> — коли кілька речей.</li></ol><p>⚠️ Не плутай: <em>A ellos <strong>le</strong> gusta</em> ❌ → <em>A ellos <strong>les</strong> gusta</em> ✅. Імена: <em>A Ana y a Pedro <strong>les</strong> gusta bailar</em> — двоє людей, тому les.</p>",
+  "quiz_sentences": [
+    {
+      "question": "A Juan y a Laura ___ gustan los perros.",
+      "correct": "les",
+      "options": [
+        "les",
+        "os",
+        "me",
+        "te"
+      ]
+    },
+    {
+      "question": "A nosotras ___ gustan los perros.",
+      "correct": "nos",
+      "options": [
+        "nos",
+        "le",
+        "me",
+        "te"
+      ]
+    },
+    {
+      "question": "___ le gusta cocinar.",
+      "correct": "A ella",
+      "options": [
+        "A ella",
+        "A ellas",
+        "A mí",
+        "A vosotros"
+      ]
+    },
+    {
+      "question": "A mi amigo y a mí ___ gustan los idiomas.",
+      "correct": "nos",
+      "options": [
+        "nos",
+        "os",
+        "le",
+        "me"
+      ]
+    },
+    {
+      "question": "A él ___ gustan las películas.",
+      "correct": "le",
+      "options": [
+        "le",
+        "te",
+        "les",
+        "me"
+      ]
+    },
+    {
+      "question": "A él ___ gusta el cine.",
+      "correct": "le",
+      "options": [
+        "le",
+        "os",
+        "nos",
+        "les"
+      ]
+    },
+    {
+      "question": "A Pablo y a Lucía ___ gusta el fútbol.",
+      "correct": "les",
+      "options": [
+        "les",
+        "os",
+        "te",
+        "me"
+      ]
+    },
+    {
+      "question": "A ellos ___ gustan los gatos.",
+      "correct": "les",
+      "options": [
+        "les",
+        "os",
+        "nos",
+        "le"
+      ]
+    },
+    {
+      "question": "A vosotros ___ gusta el chocolate.",
+      "correct": "os",
+      "options": [
+        "os",
+        "nos",
+        "le",
+        "les"
+      ]
+    },
+    {
+      "question": "A Ana ___ gustan los museos.",
+      "correct": "le",
+      "options": [
+        "le",
+        "os",
+        "nos",
+        "te"
+      ]
+    },
+    {
+      "question": "___ os gusta la montaña.",
+      "correct": "A vosotros",
+      "options": [
+        "A vosotros",
+        "A nosotros",
+        "A ellos",
+        "A usted"
+      ]
+    },
+    {
+      "question": "A vosotros ___ gusta bailar.",
+      "correct": "os",
+      "options": [
+        "os",
+        "te",
+        "le",
+        "me"
+      ]
+    },
+    {
+      "question": "A ellas ___ gustan las fiestas.",
+      "correct": "les",
+      "options": [
+        "les",
+        "le",
+        "te",
+        "os"
+      ]
+    },
+    {
+      "question": "A usted ___ gusta bailar.",
+      "correct": "le",
+      "options": [
+        "le",
+        "os",
+        "les",
+        "nos"
+      ]
+    },
+    {
+      "question": "A usted ___ gusta el chocolate.",
+      "correct": "le",
+      "options": [
+        "le",
+        "me",
+        "te",
+        "les"
+      ]
+    },
+    {
+      "question": "A Ana ___ gustan los perros.",
+      "correct": "le",
+      "options": [
+        "le",
+        "me",
+        "nos",
+        "te"
+      ]
+    },
+    {
+      "question": "A mis padres ___ gustan los museos.",
+      "correct": "les",
+      "options": [
+        "les",
+        "os",
+        "te",
+        "nos"
+      ]
+    },
+    {
+      "question": "A ustedes ___ gusta bailar.",
+      "correct": "les",
+      "options": [
+        "les",
+        "nos",
+        "os",
+        "le"
+      ]
+    },
+    {
+      "question": "A ella ___ gusta cocinar.",
+      "correct": "le",
+      "options": [
+        "le",
+        "te",
+        "os",
+        "nos"
+      ]
+    },
+    {
+      "question": "A ti y a mí ___ gustan los deportes.",
+      "correct": "nos",
+      "options": [
+        "nos",
+        "me",
+        "te",
+        "les"
+      ]
+    },
+    {
+      "question": "___ gustan los museos. (мої батьки)",
+      "correct": "les",
+      "options": [
+        "les",
+        "os",
+        "nos",
+        "le"
+      ]
+    },
+    {
+      "question": "A ellas ___ gusta cocinar.",
+      "correct": "les",
+      "options": [
+        "les",
+        "me",
+        "le",
+        "te"
+      ]
+    },
+    {
+      "question": "A mi amigo y a mí ___ gusta el cine.",
+      "correct": "nos",
+      "options": [
+        "nos",
+        "me",
+        "te",
+        "les"
+      ]
+    },
+    {
+      "question": "A Pablo y a Lucía ___ gusta el cine.",
+      "correct": "les",
+      "options": [
+        "les",
+        "me",
+        "nos",
+        "le"
+      ]
+    },
+    {
+      "question": "A vosotras ___ gusta la música.",
+      "correct": "os",
+      "options": [
+        "os",
+        "te",
+        "les",
+        "nos"
+      ]
+    },
+    {
+      "question": "A ti ___ gustan los deportes.",
+      "correct": "te",
+      "options": [
+        "te",
+        "os",
+        "les",
+        "nos"
+      ]
+    },
+    {
+      "question": "A ti ___ gusta la música.",
+      "correct": "te",
+      "options": [
+        "te",
+        "le",
+        "nos",
+        "les"
+      ]
+    },
+    {
+      "question": "A nosotros ___ gustan las series.",
+      "correct": "nos",
+      "options": [
+        "nos",
+        "le",
+        "os",
+        "les"
+      ]
+    },
+    {
+      "question": "¿___ gusta el cine? (я питаю вас, Іспанія)",
+      "correct": "os",
+      "options": [
+        "os",
+        "les",
+        "le",
+        "te"
+      ]
+    },
+    {
+      "question": "A mí ___ gusta el chocolate.",
+      "correct": "me",
+      "options": [
+        "me",
+        "les",
+        "te",
+        "os"
+      ]
+    },
+    {
+      "question": "___ me encanta el mar.",
+      "correct": "A mí",
+      "options": [
+        "A mí",
+        "A ti",
+        "A nosotros",
+        "A ella"
+      ]
+    },
+    {
+      "question": "A ella ___ gustan las fiestas.",
+      "correct": "le",
+      "options": [
+        "le",
+        "me",
+        "nos",
+        "os"
+      ]
+    },
+    {
+      "question": "A nosotras ___ gusta la música.",
+      "correct": "nos",
+      "options": [
+        "nos",
+        "me",
+        "le",
+        "les"
+      ]
+    },
+    {
+      "question": "A Juan y a Laura ___ gustan las pizzas.",
+      "correct": "les",
+      "options": [
+        "les",
+        "nos",
+        "os",
+        "me"
+      ]
+    },
+    {
+      "question": "A vosotras ___ gustan los deportes.",
+      "correct": "os",
+      "options": [
+        "os",
+        "le",
+        "les",
+        "nos"
+      ]
+    },
+    {
+      "question": "A vosotras ___ gustan las fiestas.",
+      "correct": "os",
+      "options": [
+        "os",
+        "te",
+        "nos",
+        "le"
+      ]
+    },
+    {
+      "question": "A ella ___ gustan los deportes.",
+      "correct": "le",
+      "options": [
+        "le",
+        "nos",
+        "les",
+        "os"
+      ]
+    },
+    {
+      "question": "A ustedes ___ gustan las flores.",
+      "correct": "les",
+      "options": [
+        "les",
+        "le",
+        "te",
+        "nos"
+      ]
+    },
+    {
+      "question": "A ellas ___ gustan los museos.",
+      "correct": "les",
+      "options": [
+        "les",
+        "le",
+        "nos",
+        "os"
+      ]
+    },
+    {
+      "question": "¿___ gustan los idiomas? (я питаю тебе)",
+      "correct": "te",
+      "options": [
+        "te",
+        "nos",
+        "os",
+        "le"
+      ]
+    },
+    {
+      "question": "A mis padres ___ gustan los perros.",
+      "correct": "les",
+      "options": [
+        "les",
+        "le",
+        "nos",
+        "me"
+      ]
+    },
+    {
+      "question": "A ti y a mí ___ gustan las pizzas.",
+      "correct": "nos",
+      "options": [
+        "nos",
+        "te",
+        "les",
+        "le"
+      ]
+    },
+    {
+      "question": "___ encanta el chocolate. (я кажу про себе)",
+      "correct": "me",
+      "options": [
+        "me",
+        "te",
+        "nos",
+        "les"
+      ]
+    },
+    {
+      "question": "A ellos ___ gusta el cine.",
+      "correct": "les",
+      "options": [
+        "les",
+        "le",
+        "nos",
+        "te"
+      ]
+    },
+    {
+      "question": "A nosotras ___ gustan las pizzas.",
+      "correct": "nos",
+      "options": [
+        "nos",
+        "me",
+        "les",
+        "le"
+      ]
+    },
+    {
+      "question": "A Ana ___ gusta cocinar.",
+      "correct": "le",
+      "options": [
+        "le",
+        "os",
+        "te",
+        "nos"
+      ]
+    },
+    {
+      "question": "A ti ___ gustan las pizzas.",
+      "correct": "te",
+      "options": [
+        "te",
+        "le",
+        "nos",
+        "me"
+      ]
+    },
+    {
+      "question": "A él ___ gusta el fútbol.",
+      "correct": "le",
+      "options": [
+        "le",
+        "te",
+        "me",
+        "os"
+      ]
+    },
+    {
+      "question": "A nosotros ___ gusta bailar.",
+      "correct": "nos",
+      "options": [
+        "nos",
+        "les",
+        "os",
+        "me"
+      ]
+    },
+    {
+      "question": "A ti y a mí ___ gusta cocinar.",
+      "correct": "nos",
+      "options": [
+        "nos",
+        "te",
+        "os",
+        "me"
+      ]
+    },
+    {
+      "question": "A Juan y a Laura ___ gusta cocinar.",
+      "correct": "les",
+      "options": [
+        "les",
+        "le",
+        "os",
+        "nos"
+      ]
+    },
+    {
+      "question": "A mi hermano ___ gusta el fútbol.",
+      "correct": "le",
+      "options": [
+        "le",
+        "me",
+        "te",
+        "nos"
+      ]
+    },
+    {
+      "question": "A vosotros ___ gustan las películas.",
+      "correct": "os",
+      "options": [
+        "os",
+        "le",
+        "me",
+        "te"
+      ]
+    },
+    {
+      "question": "A ustedes ___ gusta el chocolate.",
+      "correct": "les",
+      "options": [
+        "les",
+        "te",
+        "me",
+        "os"
+      ]
+    },
+    {
+      "question": "A Marta ___ gustan las fiestas.",
+      "correct": "le",
+      "options": [
+        "le",
+        "me",
+        "nos",
+        "te"
+      ]
+    },
+    {
+      "question": "A mi amigo y a mí ___ gusta el fútbol.",
+      "correct": "nos",
+      "options": [
+        "nos",
+        "os",
+        "me",
+        "le"
+      ]
+    },
+    {
+      "question": "___ le gusta leer.",
+      "correct": "A Manuel",
+      "options": [
+        "A Manuel",
+        "A Manuel y a Ana",
+        "A nosotros",
+        "A vosotras"
+      ]
+    },
+    {
+      "question": "___ les gustan los museos.",
+      "correct": "A mis padres",
+      "options": [
+        "A mis padres",
+        "A mi padre",
+        "A mi hermana",
+        "A ti"
+      ]
+    },
+    {
+      "question": "___ te gusta bailar.",
+      "correct": "A ti",
+      "options": [
+        "A ti",
+        "A mí",
+        "A él",
+        "A ellos"
+      ]
+    },
+    {
+      "question": "___ les gusta el cine.",
+      "correct": "A ellos",
+      "options": [
+        "A ellos",
+        "A él",
+        "A nosotros",
+        "A ti"
+      ]
+    },
+    {
+      "question": "___ nos gustan las fiestas.",
+      "correct": "A nosotros",
+      "options": [
+        "A nosotros",
+        "A ellos",
+        "A vosotros",
+        "A mí"
+      ]
+    },
+    {
+      "question": "___ gusta mucho bailar. (ми)",
+      "correct": "nos",
+      "options": [
+        "nos",
+        "os",
+        "le",
+        "les"
+      ]
+    },
+    {
+      "question": "A mis padres ___ gusta la música.",
+      "correct": "les",
+      "options": [
+        "les",
+        "nos",
+        "os",
+        "me"
+      ]
+    },
+    {
+      "question": "A nosotros ___ gusta el chocolate.",
+      "correct": "nos",
+      "options": [
+        "nos",
+        "os",
+        "les",
+        "te"
+      ]
+    },
+    {
+      "question": "A Pablo y a Lucía ___ gustan las series.",
+      "correct": "les",
+      "options": [
+        "les",
+        "os",
+        "te",
+        "nos"
+      ]
+    },
+    {
+      "question": "A Marta ___ gustan los museos.",
+      "correct": "le",
+      "options": [
+        "le",
+        "os",
+        "les",
+        "me"
+      ]
+    },
+    {
+      "question": "A usted ___ gustan los gatos.",
+      "correct": "le",
+      "options": [
+        "le",
+        "te",
+        "os",
+        "me"
+      ]
+    },
+    {
+      "question": "A mí ___ gustan los idiomas.",
+      "correct": "me",
+      "options": [
+        "me",
+        "nos",
+        "os",
+        "le"
+      ]
+    },
+    {
+      "question": "A mí ___ gusta bailar.",
+      "correct": "me",
+      "options": [
+        "me",
+        "os",
+        "nos",
+        "te"
+      ]
+    },
+    {
+      "question": "A Marta ___ gusta la música.",
+      "correct": "le",
+      "options": [
+        "le",
+        "les",
+        "te",
+        "os"
+      ]
+    },
+    {
+      "question": "A mi hermano ___ gustan las flores.",
+      "correct": "le",
+      "options": [
+        "le",
+        "me",
+        "os",
+        "te"
+      ]
+    },
+    {
+      "question": "A ellos ___ gusta el fútbol.",
+      "correct": "les",
+      "options": [
+        "les",
+        "me",
+        "nos",
+        "os"
+      ]
+    },
+    {
+      "question": "¿___ gusta a usted el vino?",
+      "correct": "le",
+      "options": [
+        "le",
+        "os",
+        "nos",
+        "te"
+      ]
+    },
+    {
+      "question": "A mi hermano ___ gusta el cine.",
+      "correct": "le",
+      "options": [
+        "le",
+        "te",
+        "les",
+        "nos"
+      ]
+    }
+  ],
+  "words": [
+    {
+      "spanish": "a mí",
+      "ukrainian": "me — мені",
+      "example_es": "A mí me gusta el café.",
+      "example_uk": "Мені подобається кава.",
+      "part_of_speech": "займенник"
+    },
+    {
+      "spanish": "a ti",
+      "ukrainian": "te — тобі",
+      "example_es": "A ti te gustan los gatos.",
+      "example_uk": "Тобі подобаються коти.",
+      "part_of_speech": "займенник"
+    },
+    {
+      "spanish": "a él",
+      "ukrainian": "le — йому",
+      "example_es": "A ella le gusta cocinar.",
+      "example_uk": "Їй подобається готувати.",
+      "part_of_speech": "займенник"
+    },
+    {
+      "spanish": "a ella",
+      "ukrainian": "le — їй",
+      "example_es": "A ella le gusta cocinar.",
+      "example_uk": "Їй подобається готувати.",
+      "part_of_speech": "займенник"
+    },
+    {
+      "spanish": "a usted",
+      "ukrainian": "le — Вам",
+      "example_es": "A ella le gusta cocinar.",
+      "example_uk": "Їй подобається готувати.",
+      "part_of_speech": "займенник"
+    },
+    {
+      "spanish": "a nosotros",
+      "ukrainian": "nos — нам",
+      "example_es": "A nosotros nos gusta el mar.",
+      "example_uk": "Нам подобається море.",
+      "part_of_speech": "займенник"
+    },
+    {
+      "spanish": "a nosotras",
+      "ukrainian": "nos — нам (жінкам)",
+      "example_es": "A nosotros nos gusta el mar.",
+      "example_uk": "Нам подобається море.",
+      "part_of_speech": "займенник"
+    },
+    {
+      "spanish": "a vosotros",
+      "ukrainian": "os — вам",
+      "example_es": "A vosotros os gusta la montaña.",
+      "example_uk": "Вам подобається гора.",
+      "part_of_speech": "займенник"
+    },
+    {
+      "spanish": "a vosotras",
+      "ukrainian": "os — вам (жінкам)",
+      "example_es": "A vosotros os gusta la montaña.",
+      "example_uk": "Вам подобається гора.",
+      "part_of_speech": "займенник"
+    },
+    {
+      "spanish": "a ellos",
+      "ukrainian": "les — їм",
+      "example_es": "A ellos les gusta el cine.",
+      "example_uk": "Їм подобається кіно.",
+      "part_of_speech": "займенник"
+    },
+    {
+      "spanish": "a ellas",
+      "ukrainian": "les — їм (жінкам)",
+      "example_es": "A ellos les gusta el cine.",
+      "example_uk": "Їм подобається кіно.",
+      "part_of_speech": "займенник"
+    },
+    {
+      "spanish": "a ustedes",
+      "ukrainian": "les — Вам (мн.)",
+      "example_es": "A ellos les gusta el cine.",
+      "example_uk": "Їм подобається кіно.",
+      "part_of_speech": "займенник"
+    }
+  ]
+}

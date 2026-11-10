@@ -1,0 +1,14 @@
+ver	дивитися
+jugar	грати
+la serie	серіал
+el documental	документальний фільм
+la peli	фільм (розм.)
+la película de terror	фільм жахів
+el tenis	теніс
+el deporte	спорт
+el museo	музей
+el teatro	театр
+el flamenco	фламенко
+la fiesta	свято, вечірка
+el chocolate	шоколад
+el sushi	суші

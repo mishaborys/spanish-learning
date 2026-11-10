@@ -1,0 +1,10 @@
+relajante	розслаблюючий
+divertido	веселий, цікавий
+perfecto	ідеальний
+importante	важливий
+clásico	класичний
+desconocido	незнайомий
+libre	вільний
+encantar	обожнювати
+interesar	цікавити
+molestar	дратувати

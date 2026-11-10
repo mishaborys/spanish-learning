@@ -1,0 +1,59 @@
+ver	дивитися
+jugar	грати
+la serie	серіал
+el documental	документальний фільм
+la peli	фільм (розм.)
+la película de terror	фільм жахів
+el tenis	теніс
+el deporte	спорт
+el museo	музей
+el teatro	театр
+el flamenco	фламенко
+la fiesta	свято, вечірка
+el chocolate	шоколад
+el sushi	суші
+relajante	розслаблюючий
+divertido	веселий, цікавий
+perfecto	ідеальний
+importante	важливий
+clásico	класичний
+desconocido	незнайомий
+libre	вільний
+encantar	обожнювати
+interesar	цікавити
+molestar	дратувати
+la gente	люди
+la historia	історія
+la araña	павук
+la serpiente	змія
+el mosquito	комар
+el ruido	шум
+la luz	світло
+apagar	вимикати, гасити
+el filtro	фільтр
+madrugar	рано вставати
+perder	втрачати
+el fuego	вогонь
+volver	повертатися
+el vecino	сусід
+la vecina	сусідка
+soñar	мріяти
+el avión	літак
+la cena	вечеря
+la guitarra	гітара
+la canela	кориця
+camelar	залицятися (розм.)
+menear	рухати, танцювати
+perdido	загублений
+el sujeto	підмет
+el énfasis	акцент
+el contraste	контраст
+propio	власний
+corregir	виправляти
+grabar	записувати
+apuntar	занотовувати
+arrastrar	перетягувати
+la canción	пісня
+la reacción	реакція
+la entrevista	інтерв'ю
+el audio	аудіо

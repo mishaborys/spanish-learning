@@ -1,0 +1,12 @@
+el sujeto	підмет
+el énfasis	акцент
+el contraste	контраст
+propio	власний
+corregir	виправляти
+grabar	записувати
+apuntar	занотовувати
+arrastrar	перетягувати
+la canción	пісня
+la reacción	реакція
+la entrevista	інтерв'ю
+el audio	аудіо

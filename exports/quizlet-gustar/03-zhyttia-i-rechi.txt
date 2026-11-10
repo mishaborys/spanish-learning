@@ -1,0 +1,11 @@
+la gente	люди
+la historia	історія
+la araña	павук
+la serpiente	змія
+el mosquito	комар
+el ruido	шум
+la luz	світло
+apagar	вимикати, гасити
+el filtro	фільтр
+madrugar	рано вставати
+perder	втрачати
