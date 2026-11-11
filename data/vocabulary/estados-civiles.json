@@ -2,6 +2,7 @@
   "id": "estados-civiles",
   "title": "Цивільний стан — Estado civil",
   "description": "Сімейний стан людини",
+  "added_at": "2026-08-07T16:36:18+03:00",
   "groups": [
     {
       "id": "estado-civil",

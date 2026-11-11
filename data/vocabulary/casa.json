@@ -2,6 +2,7 @@
   "id": "casa",
   "title": "Дім — La casa",
   "description": "Кімнати, меблі, техніка та речі вдома",
+  "added_at": "2026-08-13T16:10:24+03:00",
   "groups": [
     {
       "id": "rooms",

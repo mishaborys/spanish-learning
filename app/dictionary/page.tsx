@@ -8,6 +8,7 @@ type VocabSetMeta = {
   description: string;
   totalWords: number;
   groupCount: number;
+  addedAt: number;
 };
 
 function loadSets(): VocabSetMeta[] {
@@ -23,8 +24,10 @@ function loadSets(): VocabSetMeta[] {
         description: raw.description,
         totalWords: raw.groups.reduce((s: number, g: { words: unknown[] }) => s + g.words.length, 0),
         groupCount: raw.groups.length,
+        addedAt: raw.added_at ? Date.parse(raw.added_at) : 0,
       };
-    });
+    })
+    .sort((a, b) => b.addedAt - a.addedAt || a.id.localeCompare(b.id));
 }
 
 export default function DictionaryPage() {
