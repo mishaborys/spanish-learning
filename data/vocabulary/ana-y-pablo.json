@@ -1,0 +1,229 @@
+{
+  "id": "ana-y-pablo",
+  "title": "Ana y Pablo — слова з уроку",
+  "description": "Слова з тексту «Ana y Pablo tienen gustos diferentes» та вправ про вподобання",
+  "added_at": "2026-11-13T17:31:02+02:00",
+  "groups": [
+    {
+      "id": "verbs",
+      "title": "Дієслова",
+      "emoji": "🏃",
+      "words": [
+        {
+          "spanish": "tomar",
+          "pronunciation": "томАР",
+          "ukrainian": "пити",
+          "emoji": "🥤",
+          "sound_association": "«томар» ≈ «ТОМАТНИЙ сік» — п'ю томатний сік",
+          "example_es": "Tomo un café por la mañana.",
+          "example_uk": "Я п'ю каву вранці."
+        },
+        {
+          "spanish": "decir",
+          "pronunciation": "десІР",
+          "ukrainian": "казати",
+          "emoji": "🗣️",
+          "sound_association": "«десір» ≈ «ДИКТОР» — диктор каже новини",
+          "example_es": "Ana dice que el deporte es cansado.",
+          "example_uk": "Ана каже, що спорт втомлює."
+        },
+        {
+          "spanish": "probar",
+          "pronunciation": "пробАР",
+          "ukrainian": "куштувати, пробувати",
+          "emoji": "🍴",
+          "sound_association": "«пробар» ≈ «ПРОБА» — проба на смак",
+          "example_es": "Me gusta probar comida nueva.",
+          "example_uk": "Мені подобається пробувати нову їжу."
+        },
+        {
+          "spanish": "quedar con",
+          "pronunciation": "кедАР кон",
+          "ukrainian": "домовитися зустрітися",
+          "emoji": "🤝",
+          "sound_association": "«кедар» ≈ «КЕДР» — домовилися зустрітися під кедром",
+          "example_es": "Quedo con una amiga para tomar un café.",
+          "example_uk": "Я зустрічаюся з подругою, щоб випити кави."
+        },
+        {
+          "spanish": "quedarse",
+          "pronunciation": "кедАРсе",
+          "ukrainian": "залишатися",
+          "emoji": "🏠",
+          "sound_association": "«кедарсе» ≈ «КЕДР» — кедр нікуди не йде, лишається на місці",
+          "example_es": "Prefiero quedarme en casa.",
+          "example_uk": "Я віддаю перевагу тому, щоб залишитися вдома."
+        },
+        {
+          "spanish": "salir",
+          "pronunciation": "салІР",
+          "ukrainian": "виходити, йти кудись",
+          "emoji": "🚪",
+          "sound_association": "«салір» ≈ «САЛОН» — виходжу з салону",
+          "example_es": "Salgo con amigos los sábados.",
+          "example_uk": "Я ходжу гуляти з друзями по суботах."
+        },
+        {
+          "spanish": "disfrutar de",
+          "pronunciation": "дисфрутАР де",
+          "ukrainian": "насолоджуватися",
+          "emoji": "😌",
+          "sound_association": "«дисфрутар» ≈ «ФРУКТ» — насолоджуюсь фруктами",
+          "example_es": "Pablo disfruta de jugar al fútbol.",
+          "example_uk": "Пабло насолоджується грою у футбол."
+        },
+        {
+          "spanish": "conocer",
+          "pronunciation": "коносЕР",
+          "ukrainian": "знайомитися, відкривати",
+          "emoji": "🧭",
+          "sound_association": "«коносер» ≈ англ. CONNOISSEUR — знавець: той, хто добре знає місця й людей",
+          "example_es": "Me encanta conocer lugares nuevos.",
+          "example_uk": "Я обожнюю відкривати нові місця."
+        },
+        {
+          "spanish": "levantarse",
+          "pronunciation": "лебантАРсе",
+          "ukrainian": "вставати з ліжка",
+          "emoji": "⏰",
+          "sound_association": "«левантарсе» ≈ «ЛЕВ ВСТАВ» — лев встав з лігва",
+          "example_es": "No me gusta levantarme temprano.",
+          "example_uk": "Мені не подобається рано вставати."
+        },
+        {
+          "spanish": "saber",
+          "pronunciation": "сабЕР",
+          "ukrainian": "знати",
+          "emoji": "🧠",
+          "sound_association": "«сабер» ≈ «САПЕР» — сапер знає, де міна",
+          "example_es": "No sé qué hacer.",
+          "example_uk": "Я не знаю, що робити."
+        },
+        {
+          "spanish": "querer",
+          "pronunciation": "керЕР",
+          "ukrainian": "хотіти",
+          "emoji": "🎯",
+          "sound_association": "«керер» ≈ «КЕРУВАТИ» — хочу керувати",
+          "example_es": "Quiero viajar a España.",
+          "example_uk": "Я хочу поїхати до Іспанії."
+        },
+        {
+          "spanish": "pedir",
+          "pronunciation": "педІР",
+          "ukrainian": "просити",
+          "emoji": "🙏",
+          "sound_association": "«педір» ≈ «ПІДІЙДИ» — підійди й попроси",
+          "example_es": "Pido un café, por favor.",
+          "example_uk": "Я прошу каву, будь ласка."
+        },
+        {
+          "spanish": "ir",
+          "pronunciation": "ІР",
+          "ukrainian": "йти, їхати",
+          "emoji": "🚶",
+          "sound_association": "«ір» ≈ «ІДИ» — іди!",
+          "example_es": "Voy al cine con mis amigos.",
+          "example_uk": "Я йду в кіно з друзями."
+        }
+      ]
+    },
+    {
+      "id": "words",
+      "title": "Слова та вирази",
+      "emoji": "💬",
+      "words": [
+        {
+          "spanish": "rico",
+          "pronunciation": "рІко",
+          "ukrainian": "смачний",
+          "emoji": "😋",
+          "sound_association": "«ріко» ≈ англ. RICH — ситна, смачна їжа",
+          "example_es": "La pizza está muy rica.",
+          "example_uk": "Піца дуже смачна."
+        },
+        {
+          "spanish": "aunque",
+          "pronunciation": "АУНке",
+          "ukrainian": "хоча",
+          "emoji": "➕",
+          "sound_association": "«аунке» ≈ «АУ!» — крикнув «ау!», хоча зовсім не боляче",
+          "example_es": "Aunque hace frío, salgo a caminar.",
+          "example_uk": "Хоча холодно, я виходжу гуляти."
+        },
+        {
+          "spanish": "el lugar",
+          "pronunciation": "ель луҐАР",
+          "ukrainian": "місце",
+          "emoji": "📍",
+          "sound_association": "«лугар» ≈ «ЛУГ» — луг — гарне місце для відпочинку",
+          "example_es": "Es un lugar muy bonito.",
+          "example_uk": "Це дуже гарне місце."
+        },
+        {
+          "spanish": "cómodo",
+          "pronunciation": "кОмодо",
+          "ukrainian": "зручний",
+          "emoji": "🛋️",
+          "sound_association": "«комодо» ≈ «КОМОД» — зручний комод поруч із ліжком",
+          "example_es": "El sofá es muy cómodo.",
+          "example_uk": "Диван дуже зручний."
+        },
+        {
+          "spanish": "salir de casa",
+          "pronunciation": "салІР де кАса",
+          "ukrainian": "виходити з дому",
+          "emoji": "🚪",
+          "sound_association": "salir (виходити) + de casa (з дому): «САЛОН» → вихід з дому",
+          "example_es": "No me gusta salir de casa.",
+          "example_uk": "Мені не подобається виходити з дому."
+        },
+        {
+          "spanish": "en cambio",
+          "pronunciation": "ен кАмбіо",
+          "ukrainian": "натомість, навпаки",
+          "emoji": "🔁",
+          "sound_association": "від cambiar (змінювати): а тут усе ЗМІНИЛОСЯ — натомість",
+          "example_es": "Ana lee; Pablo, en cambio, juega al fútbol.",
+          "example_uk": "Ана читає; Пабло ж натомість грає у футбол."
+        },
+        {
+          "spanish": "mientras que",
+          "pronunciation": "мьЄнтрас ке",
+          "ukrainian": "тоді як",
+          "emoji": "⚖️",
+          "sound_association": "«мьєнтрас» ≈ «МІНЯЛИ ТРАСУ» — одні їхали прямо, тоді як інші МІНЯЛИ ТРАСУ",
+          "example_es": "Ana prefiere leer, mientras que Pablo prefiere viajar.",
+          "example_uk": "Ана віддає перевагу читанню, тоді як Пабло — подорожам."
+        },
+        {
+          "spanish": "temprano",
+          "pronunciation": "темпрАно",
+          "ukrainian": "рано",
+          "emoji": "🌅",
+          "sound_association": "«темпрано» ≈ «ТЕМП + РАНО» — темп рано",
+          "example_es": "Me levanto temprano.",
+          "example_uk": "Я встаю рано."
+        },
+        {
+          "spanish": "algo",
+          "pronunciation": "АЛґо",
+          "ukrainian": "щось",
+          "emoji": "❓",
+          "sound_association": "«алго» ≈ «АЛЛО» — «Алло! Щось сталося»",
+          "example_es": "Quiero algo rico.",
+          "example_uk": "Я хочу щось смачне."
+        },
+        {
+          "spanish": "el ejemplo",
+          "pronunciation": "ель ехЕмпло",
+          "ukrainian": "приклад",
+          "emoji": "📝",
+          "sound_association": "«ехемпло» ≈ «ЕКЗЕМПЛЯР» — екземпляр, зразок, приклад",
+          "example_es": "Un ejemplo, por favor.",
+          "example_uk": "Приклад, будь ласка."
+        }
+      ]
+    }
+  ]
+}
