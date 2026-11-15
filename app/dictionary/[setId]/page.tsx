@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { allWordsGroup, loadVocabularySet } from "@/lib/vocabulary";
+import { PinnedAboveNav } from "@/components/spanish/PinnedAboveNav";
 
 export default async function DictionarySetPage({ params }: { params: Promise<{ setId: string }> }) {
   const { setId } = await params;
@@ -41,17 +42,19 @@ export default async function DictionarySetPage({ params }: { params: Promise<{ 
 
       {/* Фінальний прохід: усі слова набору разом, після вивчення по частинах */}
       {all && (
-        <Link href={`/dictionary/${set.id}/${all.id}`}
-          className="block rounded-2xl border-2 border-primary/30 bg-primary/5 p-4 hover:bg-primary/10 transition-colors active:scale-[0.99]">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl w-9 text-center">{all.emoji}</span>
-            <div className="flex-1 min-w-0">
-              <p className="font-semibold text-sm">Вивчити все</p>
-              <p className="text-xs text-muted-foreground mt-0.5">усі {all.words.length} слів набору за один раз</p>
+        <PinnedAboveNav>
+          <Link href={`/dictionary/${set.id}/${all.id}`}
+            className="block rounded-2xl border-2 border-primary/30 bg-card p-4 shadow-sm hover:bg-accent/30 transition-colors active:scale-[0.99]">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl w-9 text-center">{all.emoji}</span>
+              <div className="flex-1 min-w-0">
+                <p className="font-semibold text-sm">Вивчити все</p>
+                <p className="text-xs text-muted-foreground mt-0.5">усі {all.words.length} слів набору за один раз</p>
+              </div>
+              <span className="text-muted-foreground text-sm shrink-0">→</span>
             </div>
-            <span className="text-muted-foreground text-sm shrink-0">→</span>
-          </div>
-        </Link>
+          </Link>
+        </PinnedAboveNav>
       )}
     </div>
   );

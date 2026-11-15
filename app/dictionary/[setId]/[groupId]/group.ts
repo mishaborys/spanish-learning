@@ -1,13 +1,10 @@
 import { notFound } from "next/navigation";
-import { allWordsGroup, ALL_WORDS_GROUP_ID, loadVocabularySet, type VocabGroup, type VocabSet } from "@/lib/vocabulary";
+import { findGroup, loadVocabularySet, type VocabGroup, type VocabSet } from "@/lib/vocabulary";
 
 /** Група набору (або «Усі слова» — `all`) для сторінок `/dictionary/<набір>/<група>/…`; 404, якщо такої немає. */
 export function loadGroupOr404(setId: string, groupId: string): { set: VocabSet; group: VocabGroup; groupHref: string; backHref: string } {
   const set = loadVocabularySet(setId);
-  // Справжня група з таким id має пріоритет над псевдогрупою «Усі слова»
-  const group = !set ? undefined
-    : set.groups.find(g => g.id === groupId)
-      ?? (groupId === ALL_WORDS_GROUP_ID ? allWordsGroup(set) ?? undefined : undefined);
+  const group = set ? findGroup(set, groupId) : null;
   if (!set || !group) notFound();
   return {
     set,

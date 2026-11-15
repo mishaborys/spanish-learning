@@ -1,27 +1,22 @@
 // Збереження етапів Learn у Neon. Лише читання/запис рядків — правила в ./core.ts.
-import sql from "@/lib/db";
+import sql, { once } from "@/lib/db";
 import type { Stage } from "./core";
-
-let ready: Promise<void> | undefined;
 
 /**
  * Створює таблицю, якщо її ще немає. Викликається один раз на процес.
  * `scope` — '' для звичайних груп (етап на слово, спільний для всіх груп)
  * або 'all:<набір>' для фінального проходу «Усі слова» (окремий прогрес).
  */
-export function ensureSchema(): Promise<void> {
-  ready ??= (async () => {
-    await sql`
-      CREATE TABLE IF NOT EXISTS learn_progress (
-        scope TEXT NOT NULL DEFAULT '',
-        word_key TEXT NOT NULL,
-        stage TEXT NOT NULL CHECK (stage IN ('new', 'learning', 'mastered')),
-        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-        PRIMARY KEY (scope, word_key)
-      )`;
-  })().catch(e => { ready = undefined; throw e; });
-  return ready;
-}
+export const ensureSchema = once(async () => {
+  await sql`
+    CREATE TABLE IF NOT EXISTS learn_progress (
+      scope TEXT NOT NULL DEFAULT '',
+      word_key TEXT NOT NULL,
+      stage TEXT NOT NULL CHECK (stage IN ('new', 'learning', 'mastered')),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+      PRIMARY KEY (scope, word_key)
+    )`;
+});
 
 export async function loadStages(scope: string, keys: string[]): Promise<Record<string, Stage>> {
   if (keys.length === 0) return {};

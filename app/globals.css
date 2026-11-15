@@ -50,6 +50,8 @@
 }
 
 :root {
+  /* Висота нижнього меню: блоки, притиснуті до низу (напр. «Вивчити все»), стають рівно над ним */
+  --bottom-nav-h: 4.25rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -172,3 +174,74 @@
 .dark .swipe-counter-hesitant { border-color: #B07800; background: transparent; color: #B07800; }
 .dark .swipe-text-known { color: #59E8B5; }
 .dark .swipe-text-unknown { color: #FF983A; }
+
+/* ─── Blast ─────────────────────────────────────────────────────────────────── */
+.blast-space {
+  background:
+    radial-gradient(1px 1px at 12% 18%, rgb(0 0 0 / .25), transparent),
+    radial-gradient(1px 1px at 68% 32%, rgb(0 0 0 / .2), transparent),
+    radial-gradient(1.5px 1.5px at 38% 74%, rgb(0 0 0 / .2), transparent),
+    radial-gradient(1px 1px at 84% 82%, rgb(0 0 0 / .25), transparent),
+    radial-gradient(1.5px 1.5px at 22% 52%, rgb(0 0 0 / .15), transparent),
+    linear-gradient(180deg, #eef1fb 0%, #f7f8fc 100%);
+}
+.dark .blast-space {
+  background:
+    radial-gradient(1px 1px at 12% 18%, rgb(255 255 255 / .7), transparent),
+    radial-gradient(1px 1px at 68% 32%, rgb(255 255 255 / .5), transparent),
+    radial-gradient(1.5px 1.5px at 38% 74%, rgb(255 255 255 / .6), transparent),
+    radial-gradient(1px 1px at 84% 82%, rgb(255 255 255 / .5), transparent),
+    radial-gradient(1.5px 1.5px at 22% 52%, rgb(255 255 255 / .4), transparent),
+    linear-gradient(180deg, #0b0d24 0%, #141733 100%);
+}
+.blast-rock {
+  color: #fff;
+  text-shadow: 0 1px 2px rgb(0 0 0 / .55);
+  border-radius: 47% 53% 44% 56% / 55% 45% 55% 45%;
+  background:
+    radial-gradient(circle at 72% 30%, rgb(0 0 0 / .16) 0 8%, transparent 9%),
+    radial-gradient(circle at 26% 74%, rgb(0 0 0 / .14) 0 6%, transparent 7%),
+    radial-gradient(circle at 78% 70%, rgb(0 0 0 / .12) 0 5%, transparent 6%),
+    radial-gradient(circle at 32% 28%, #a9b1c4 0%, #6d768c 48%, #474e62 100%);
+  box-shadow: inset -6px -8px 0 rgb(0 0 0 / .16), 0 6px 14px rgb(0 0 0 / .18);
+  transition: transform 120ms ease;
+}
+.blast-rock:active { transform: scale(.96); }
+.blast-shake { animation: blast-shake 380ms ease; }
+@keyframes blast-shake {
+  0%, 100% { translate: 0; box-shadow: inset -6px -8px 0 rgb(0 0 0 / .16), 0 0 0 0 #FF983A; }
+  20% { translate: -7px; box-shadow: inset -6px -8px 0 rgb(0 0 0 / .16), 0 0 0 4px #FF983A; }
+  40% { translate: 6px; }
+  60% { translate: -4px; }
+  80% { translate: 3px; }
+}
+.blast-burst {
+  width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 9999px;
+  background: radial-gradient(circle, #fff7d6 0%, #FFC94D 25%, #FF983A 45%, rgb(255 152 58 / 0) 70%);
+  animation: blast-burst 520ms ease-out forwards;
+}
+@keyframes blast-burst {
+  0% { transform: scale(.3); opacity: 1; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+.blast-popup {
+  transform: translate(-50%, -50%);
+  animation: blast-popup 780ms ease-out forwards;
+  text-shadow: 0 1px 0 rgb(255 255 255 / .6);
+}
+@keyframes blast-popup {
+  0% { translate: 0 0; opacity: 1; }
+  100% { translate: 0 -48px; opacity: 0; }
+}
+.blast-shot {
+  height: 3px; margin-top: -1.5px; border-radius: 9999px; transform-origin: 0 50%;
+  box-shadow: 0 0 8px currentColor;
+  animation: blast-shot 220ms ease-out forwards;
+}
+@keyframes blast-shot {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .blast-fx, .blast-shake { animation-duration: 1ms !important; }
+}

@@ -56,7 +56,7 @@ export function BottomNav() {
 
   return (
     <nav className="fixed bottom-0 inset-x-0 z-40 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="max-w-lg mx-auto flex">
+      <div className="max-w-lg mx-auto flex" style={{ height: "var(--bottom-nav-h)" }}>
         {NAV_ITEMS.map(({ href, label, Icon, exact }) => {
           const active = exact ? pathname === href : pathname.startsWith(href);
           return (

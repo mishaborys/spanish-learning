@@ -17,7 +17,8 @@ export const FRESH_SLOTS = 5;
 /** Стан слова в розкладі. `level` — скільки сходинок драбини пройдено (0..INTERVALS.length). */
 export type Card = { key: string; level: number; dueOn: string; lastGrade: Grade };
 
-export type Rng = () => number;
+import { shuffle, type Rng } from "@/lib/random";
+export type { Rng };
 
 // ─── Дні ──────────────────────────────────────────────────────────────────────
 
@@ -57,14 +58,7 @@ export function nextCard(prev: Card | null, key: string, grade: Grade, today: st
   }
 }
 
-export function shuffle<T>(arr: readonly T[], rng: Rng = Math.random): T[] {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(rng() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
+export { shuffle };
 
 /**
  * Добірка з 10 слів: 5 на повторення (спочатку борг — «не знаю»/«вагався»,

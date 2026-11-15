@@ -12,6 +12,15 @@ const sql = (strings: TemplateStringsArray, ...values: any[]) =>
 
 export default sql;
 
+/**
+ * Обгортка для одноразової асинхронної дії (напр. CREATE TABLE IF NOT EXISTS):
+ * виконується один раз на процес; якщо впала — наступний виклик спробує знову.
+ */
+export function once(fn: () => Promise<void>): () => Promise<void> {
+  let ready: Promise<void> | undefined;
+  return () => (ready ??= fn().catch(e => { ready = undefined; throw e; }));
+}
+
 export type QuizSentence = {
   question: string;
   options: string[];

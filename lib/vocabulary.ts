@@ -63,3 +63,9 @@ export function allWordsGroup(set: VocabSet): VocabGroup | null {
   }
   return { id: ALL_WORDS_GROUP_ID, title: "Усі слова", emoji: "📚", words };
 }
+
+/** Група набору за id; `all` — «Усі слова» (справжня група з таким id має пріоритет). */
+export function findGroup(set: VocabSet, groupId: string): VocabGroup | null {
+  return set.groups.find(g => g.id === groupId)
+    ?? (groupId === ALL_WORDS_GROUP_ID ? allWordsGroup(set) : null);
+}

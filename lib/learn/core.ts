@@ -16,20 +16,14 @@ export function nextStage(stage: Stage, kind: QuestionKind, correct: boolean): S
   return STAGE_ORDER.indexOf(reached) > STAGE_ORDER.indexOf(stage) ? reached : stage;
 }
 
-export type Rng = () => number;
+import { shuffle, type Rng } from "@/lib/random";
+export type { Rng };
 export const ROUND_SIZE = 7;
 
 export type LearnWord = { key: string; stage: Stage };
 export type Question = { key: string; kind: QuestionKind };
 
-export function shuffle<T>(arr: readonly T[], rng: Rng = Math.random): T[] {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(rng() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
+export { shuffle };
 
 /**
  * Раунд до 7 питань: спершу слова, що пройшли вибір і чекають на вписування,

@@ -1,43 +1,38 @@
 // Збереження стану довгого повторення в Neon. Лише читання/запис рядків —
 // усі правила в ./core.ts.
-import sql from "@/lib/db";
+import sql, { once } from "@/lib/db";
 import type { Card, Grade, Mode } from "./core";
 
-let ready: Promise<void> | undefined;
-
 /** Створює таблиці, якщо їх ще немає. Викликається один раз на процес. */
-export function ensureSchema(): Promise<void> {
-  ready ??= (async () => {
-    await sql`
-      CREATE TABLE IF NOT EXISTS review_cards (
-        word_key TEXT PRIMARY KEY,
-        level INTEGER NOT NULL DEFAULT 0,
-        due_on DATE NOT NULL,
-        last_grade TEXT NOT NULL CHECK (last_grade IN ('known', 'hesitant', 'unknown')),
-        times_reviewed INTEGER NOT NULL DEFAULT 0,
-        last_reviewed_on DATE
-      )`;
-    await sql`
-      CREATE TABLE IF NOT EXISTS review_batches (
-        day DATE NOT NULL,
-        batch INTEGER NOT NULL,
-        mode TEXT NOT NULL,
-        word_keys TEXT[] NOT NULL,
-        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-        PRIMARY KEY (day, batch)
-      )`;
-    await sql`
-      CREATE TABLE IF NOT EXISTS review_answers (
-        day DATE NOT NULL,
-        batch INTEGER NOT NULL,
-        word_key TEXT NOT NULL,
-        grade TEXT NOT NULL CHECK (grade IN ('known', 'hesitant', 'unknown')),
-        answered_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-        PRIMARY KEY (day, batch, word_key)
-      )`;
-  })().catch(e => { ready = undefined; throw e; });
-  return ready;
-}
+export const ensureSchema = once(async () => {
+  await sql`
+    CREATE TABLE IF NOT EXISTS review_cards (
+      word_key TEXT PRIMARY KEY,
+      level INTEGER NOT NULL DEFAULT 0,
+      due_on DATE NOT NULL,
+      last_grade TEXT NOT NULL CHECK (last_grade IN ('known', 'hesitant', 'unknown')),
+      times_reviewed INTEGER NOT NULL DEFAULT 0,
+      last_reviewed_on DATE
+    )`;
+  await sql`
+    CREATE TABLE IF NOT EXISTS review_batches (
+      day DATE NOT NULL,
+      batch INTEGER NOT NULL,
+      mode TEXT NOT NULL,
+      word_keys TEXT[] NOT NULL,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+      PRIMARY KEY (day, batch)
+    )`;
+  await sql`
+    CREATE TABLE IF NOT EXISTS review_answers (
+      day DATE NOT NULL,
+      batch INTEGER NOT NULL,
+      word_key TEXT NOT NULL,
+      grade TEXT NOT NULL CHECK (grade IN ('known', 'hesitant', 'unknown')),
+      answered_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+      PRIMARY KEY (day, batch, word_key)
+    )`;
+});
 
 export type BatchRow = { batch: number; mode: Mode; wordKeys: string[] };
 export type AnswerRow = { batch: number; wordKey: string; grade: Grade };

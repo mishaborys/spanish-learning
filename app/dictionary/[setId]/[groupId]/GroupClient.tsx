@@ -29,9 +29,11 @@ type Props = {
   stages: Record<string, Stage> | null;
   /** Область прогресу Learn ('' або 'all:<набір>'). */
   scope: string;
+  /** Рекорд Blast; null — ще не грав (або база недоступна). */
+  blastBest: number | null;
 };
 
-export function GroupClient({ group, setTitle, groupHref, backHref, backLabel, stages, scope }: Props) {
+export function GroupClient({ group, setTitle, groupHref, backHref, backLabel, stages, scope, blastBest }: Props) {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [resetting, setResetting] = useState(false);
@@ -102,7 +104,8 @@ export function GroupClient({ group, setTitle, groupHref, backHref, backLabel, s
         <ModeButton href={`${groupHref}/flashcards`} icon={<CardsIcon />} label="Flashcards" />
         <ModeButton href={stages ? `${groupHref}/learn` : undefined} icon={<LearnIcon />} label="Learn"
           note={!stages ? "немає зв'язку з базою" : progress.done ? "усе вивчено ✓" : `вивчено ${mastered} з ${progress.total}`} />
-        <ModeButton icon={<BlastIcon />} label="Blast" note="скоро" />
+        <ModeButton href={`${groupHref}/blast`} icon={<BlastIcon />} label="Blast"
+          note={blastBest !== null ? `рекорд ${blastBest}` : undefined} />
       </div>
 
       {/* Прогрес */}
