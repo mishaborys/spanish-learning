@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { ReviewItem, ReviewToday } from "@/lib/review";
 import { gradeTyped, type Grade, type Mode } from "@/lib/review/core";
-import { SwipeFlipCard, type SwipeDir, type SwipeFlipCardHandle } from "./SwipeFlipCard";
+import { SwipeCounters, SwipeFlipCard, type SwipeDir, type SwipeFlipCardHandle } from "./SwipeFlipCard";
 
 const MODE_LABEL: Record<Mode, string> = {
   "cards-es-ua": "ES → UA",
@@ -49,6 +49,7 @@ export function DailyReview({ review }: { review: ReviewToday }) {
   // Стан поточного слова
   const [revealed, setRevealed] = useState(false); // зворотний бік вже бачили
   const [flipped, setFlipped] = useState(false);
+  const [swipe, setSwipe] = useState<{ dir: SwipeDir | null; level: number }>({ dir: null, level: 0 });
   const [grade, setGrade] = useState<Grade | null>(null);
   const [autoGrade, setAutoGrade] = useState<Grade | null>(null);
   const [typed, setTyped] = useState("");
@@ -90,27 +91,49 @@ export function DailyReview({ review }: { review: ReviewToday }) {
     if (!isRetry && !g) return;
     setBusy(true);
     setError(null);
-    const fly = cardRef.current?.flyOut(dir, g ?? (isRetry ? "hesitant" : undefined)) ?? Promise.resolve();
-    try {
-      if (!isRetry && g) await post({ action: "answer", day: review.day, batch: review.batch, key: item.key, grade: g });
+    const current = item;
+    const isLast = idx + 1 >= queue.length;
+    const fly = cardRef.current?.flyOut(dir, g ?? undefined) ?? Promise.resolve();
+    const save = !isRetry && g
+      ? post({ action: "answer", day: review.day, batch: review.batch, key: current.key, grade: g })
+      : Promise.resolve();
+
+    if (isLast) {
+      // Останнє слово: чекаємо збереження, бо далі — підсумок зі статистикою
+      try {
+        await Promise.all([save, fly]);
+      } catch (e) {
+        setError((e as Error).message);
+        await fly;
+        await cardRef.current?.reset();
+        setBusy(false);
+        return;
+      }
+    } else {
+      // Як у Quizlet: наступна картка з'являється одразу після відльоту, збереження — у фоні
+      save.catch((e: Error) => {
+        setError(`${e.message} — слово «${current.word.spanish}» повториться в кінці`);
+        setAnswers(prev => {
+          const next = { ...prev };
+          delete next[current.key];
+          return next;
+        });
+        setQueue(q => [...q, current]);
+      });
       await fly;
-    } catch (e) {
-      setError((e as Error).message);
-      await fly;
-      await cardRef.current?.reset();
-      setBusy(false);
-      return;
     }
+
     setBusy(false);
-    let current = answers;
+    let nextAnswers = answers;
     if (!isRetry && g) {
-      current = { ...answers, [item.key]: g };
-      setAnswers(current);
+      nextAnswers = { ...answers, [current.key]: g };
+      setAnswers(nextAnswers);
     }
     resetCard();
-    if (idx + 1 < queue.length) setIdx(idx + 1);
-    else finishPhase(current);
+    if (!isLast) setIdx(idx + 1);
+    else finishPhase(nextAnswers);
   };
+
 
   const check = () => {
     if (!item || !typed.trim()) return;
@@ -172,7 +195,8 @@ export function DailyReview({ review }: { review: ReviewToday }) {
   }
 
   const total = queue.length;
-  const nextItem = queue[idx + 1];
+  const tally = { known: 0, hesitant: 0, unknown: 0 } as Record<Grade, number>;
+  for (const g of Object.values(answers)) tally[g]++;
   const isType = mode === "type";
   const typedGrade = grade ?? autoGrade;
 
@@ -201,6 +225,14 @@ export function DailyReview({ review }: { review: ReviewToday }) {
         </span>
       </div>
 
+      {!isType && (
+        <SwipeCounters
+          left={{ count: isRetry ? 0 : tally.unknown, label: "Не знаю" }}
+          right={{ count: isRetry ? 0 : tally.known + tally.hesitant, label: "Знаю" }}
+          progress={swipe}
+        />
+      )}
+
       {/* Картка: тап — перевернути, свайп праворуч — «Знаю», ліворуч — «Не знаю» */}
       <SwipeFlipCard
         key={`${phase}-${item.key}`}
@@ -208,13 +240,13 @@ export function DailyReview({ review }: { review: ReviewToday }) {
         flipped={flipped}
         onFlip={flip}
         canFlip={!busy && (!isType || revealed)}
-        canSwipe={!busy && !isType && revealed}
+        canSwipe={!busy && !isType}
+        onProgress={(dir, level) => setSwipe({ dir, level })}
+        labels={{ unknown: "Не знаю" }}
         onSwipe={dir => commit(isRetry ? null : dir === "right" ? "known" : "unknown", dir)}
-        tintRight={isRetry ? "hesitant" : "known"}
-        minHeight={280}
+        minHeight={320}
         front={<CardFront item={item} mode={mode} />}
         back={<WordDetails item={item} />}
-        under={nextItem && <CardFront item={nextItem} mode={mode} />}
       />
 
       {/* Дії */}
@@ -242,7 +274,7 @@ export function DailyReview({ review }: { review: ReviewToday }) {
 
       {revealed && !isType && !isRetry && (
         <div className="grid grid-cols-3 gap-2">
-          {(["unknown", "hesitant", "known"] as Grade[]).map(g => (
+          {(["known", "hesitant", "unknown"] as Grade[]).map(g => (
             <button key={g} onClick={() => commit(g, g === "unknown" ? "left" : "right")} disabled={busy}
               className={`min-h-[48px] rounded-2xl border-2 text-sm font-medium transition-all active:scale-[0.98] hover:bg-accent/40 disabled:opacity-50 ${GRADE_OUTLINE[g]}`}>
               {GRADE_LABEL[g]}
@@ -270,7 +302,7 @@ export function DailyReview({ review }: { review: ReviewToday }) {
         <p className="text-center text-xs text-muted-foreground opacity-60">
           {revealed
             ? isRetry ? "Свайпни картку, щоб іти далі" : "← не знаю · свайп · знаю →"
-            : "Натисни на картку, щоб перевернути"}
+            : "Натисни на картку, щоб перевернути · свайп ← не знаю / знаю →"}
         </p>
       )}
     </div>

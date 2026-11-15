@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useRef } from "react";
 import { Word } from "@/lib/db";
-import { SwipeFlipCard, type SwipeFlipCardHandle } from "./SwipeFlipCard";
+import { SwipeCounters, SwipeFlipCard, type SwipeDir, type SwipeFlipCardHandle } from "./SwipeFlipCard";
 
 type WordWithStatus = Word & { status?: string };
 type Props = { words: WordWithStatus[] };
@@ -39,6 +39,8 @@ export function FlashCards({ words }: Props) {
 
   const cardRef = useRef<SwipeFlipCardHandle>(null);
   const [busy, setBusy] = useState(false);
+  const [swipe, setSwipe] = useState<{ dir: SwipeDir | null; level: number }>({ dir: null, level: 0 });
+  const [tally, setTally] = useState({ known: 0, learning: 0 });
 
   const word = deck[deckIndex];
   const isDone = deckIndex >= deck.length;
@@ -63,12 +65,14 @@ export function FlashCards({ words }: Props) {
     setBusy(true);
     const fly = cardRef.current?.flyOut(known ? "right" : "left") ?? Promise.resolve();
     // force_known: true means flashcard "Знаю" → immediately sets status="known" in DB
-    const saved = fetch("/api/progress", {
+    // Зберігаємо у фоні — наступна картка з'являється одразу після відльоту, як у Quizlet
+    void fetch("/api/progress", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ word_id: word.id, correct: known, force_known: known }),
     }).catch(() => {});
-    await Promise.all([fly, saved]);
+    await fly;
+    setTally(t => known ? { ...t, known: t.known + 1 } : { ...t, learning: t.learning + 1 });
     setFlipped(false);
     setDeckIndex(i => i + 1);
     setBusy(false);
@@ -77,6 +81,7 @@ export function FlashCards({ words }: Props) {
   const handleShuffle = () => {
     setDeck(freshDeck());
     setDeckIndex(0);
+    setTally({ known: 0, learning: 0 });
     setFlipped(false);
   };
 
@@ -94,6 +99,7 @@ export function FlashCards({ words }: Props) {
     setMode(m);
     setDeck(freshDeck());
     setDeckIndex(0);
+    setTally({ known: 0, learning: 0 });
     setFlipped(false);
   };
 
@@ -127,7 +133,6 @@ export function FlashCards({ words }: Props) {
 
   const frontText = mode === "es-ua" ? word.spanish : word.ukrainian;
   const backPrimary = mode === "es-ua" ? word.ukrainian : word.spanish;
-  const nextWord = deck[deckIndex + 1];
 
   return (
     <div className="space-y-4">
@@ -159,6 +164,12 @@ export function FlashCards({ words }: Props) {
         </button>
       </div>
 
+      <SwipeCounters
+        left={{ count: tally.learning, label: "Ще вчу" }}
+        right={{ count: tally.known, label: "Знаю" }}
+        progress={swipe}
+      />
+
       {/* Card: тап — перевернути, свайп праворуч — «Знаю», ліворуч — «Не знаю» */}
       <SwipeFlipCard
         key={`${mode}-${deckIndex}-${word.id}`}
@@ -168,6 +179,7 @@ export function FlashCards({ words }: Props) {
         canFlip={!busy}
         canSwipe={!busy}
         onSwipe={dir => handleAnswer(dir === "right")}
+        onProgress={(dir, level) => setSwipe({ dir, level })}
         front={
           <>
             {word.part_of_speech && mode === "es-ua" && (
@@ -198,11 +210,6 @@ export function FlashCards({ words }: Props) {
             )}
           </>
         }
-        under={nextWord && (
-          <span className="text-4xl font-bold tracking-tight leading-tight">
-            {mode === "es-ua" ? nextWord.spanish : nextWord.ukrainian}
-          </span>
-        )}
       />
 
       {/* Action buttons */}

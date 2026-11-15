@@ -160,3 +160,15 @@
     transition-duration: 0ms !important;
   }
 }
+
+/* Лічильники свайпу (кольори Quizlet: світла / темна тема) */
+.swipe-counter-known { border-color: #98F1D1; background: #E6FCF4; color: #18AE79; }
+.swipe-counter-unknown { border-color: #FFC38C; background: #FFF6EF; color: #CC4E00; }
+.swipe-counter-hesitant { border-color: #FFE08A; background: #FFF9E6; color: #B07800; }
+.swipe-text-known { color: #18AE79; }
+.swipe-text-unknown { color: #CC4E00; }
+.dark .swipe-counter-known { border-color: #18AE79; background: transparent; color: #18AE79; }
+.dark .swipe-counter-unknown { border-color: #CC4E00; background: transparent; color: #CC4E00; }
+.dark .swipe-counter-hesitant { border-color: #B07800; background: transparent; color: #B07800; }
+.dark .swipe-text-known { color: #59E8B5; }
+.dark .swipe-text-unknown { color: #FF983A; }
