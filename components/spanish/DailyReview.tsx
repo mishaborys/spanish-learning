@@ -18,6 +18,13 @@ const GRADE_STYLE: Record<Grade, string> = {
   unknown: "border-red-500 bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-300",
 };
 
+/** Кнопки оцінки до вибору: кольорова рамка й текст, без заливки. */
+const GRADE_OUTLINE: Record<Grade, string> = {
+  known: "border-emerald-500/70 text-emerald-700 dark:text-emerald-300",
+  hesitant: "border-amber-500/70 text-amber-700 dark:text-amber-300",
+  unknown: "border-red-500/70 text-red-700 dark:text-red-300",
+};
+
 type Phase = "main" | "retry" | "done";
 
 async function post(body: unknown) {
@@ -223,10 +230,10 @@ export function DailyReview({ review }: { review: ReviewToday }) {
 
       {revealed && mode !== "type" && !isRetry && (
         <div className="grid grid-cols-3 gap-2">
-          {(["unknown", "hesitant", "known"] as Grade[]).map(g => (
+          {(["known", "hesitant", "unknown"] as Grade[]).map(g => (
             <button key={g} onClick={() => setGrade(g)}
-              className={`min-h-[48px] rounded-2xl border text-sm font-medium transition-all active:scale-[0.98] ${
-                grade === g ? GRADE_STYLE[g] : "hover:bg-accent/40"
+              className={`min-h-[48px] rounded-2xl text-sm font-medium transition-all active:scale-[0.98] ${
+                grade === g ? `border-2 ${GRADE_STYLE[g]}` : `border-2 ${GRADE_OUTLINE[g]} hover:bg-accent/40`
               }`}>
               {GRADE_LABEL[g]}
             </button>
