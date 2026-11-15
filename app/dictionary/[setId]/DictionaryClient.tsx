@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import type { VocabSet, VocabGroup, VocabWord } from "./page";
+import { SwipeCounters, SwipeFlipCard, type SwipeDir, type SwipeFlipCardHandle } from "@/components/spanish/SwipeFlipCard";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -58,37 +59,36 @@ function GroupList({ set, onSelect }: { set: VocabSet; onSelect: (g: VocabGroup)
   );
 }
 
-// ─── Flashcard View ───────────────────────────────────────────────────────────
+// ─── Flashcard View (сортування як у Quizlet) ──────────────────────────────────
+
+type Sort = "know" | "learning";
+
+function UndoIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 14 4 9l5-5" />
+      <path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11" />
+    </svg>
+  );
+}
 
 function FlashcardView({ group, onBack }: { group: VocabGroup; onBack: () => void }) {
+  // Раунд: слова, які зараз сортуємо. Після раунду можна продовжити з тими, що «ще вчу».
+  const [round, setRound] = useState<VocabWord[]>(group.words);
+  const [roundNo, setRoundNo] = useState(1);
   const [index, setIndex] = useState(0);
+  const [results, setResults] = useState<Sort[]>([]);
   const [flipped, setFlipped] = useState(false);
+  const [busy, setBusy] = useState(false);
   const [speaking, setSpeaking] = useState(false);
-  const [dragX, setDragX] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const [animatingOut, setAnimatingOut] = useState(false);
   const [showList, setShowList] = useState(false);
+  const [swipe, setSwipe] = useState<{ dir: SwipeDir | null; level: number }>({ dir: null, level: 0 });
+  const cardRef = useRef<SwipeFlipCardHandle>(null);
 
-  const cardRef = useRef<HTMLDivElement>(null);
-  const isTapRef = useRef(true);
-
-  const word: VocabWord = group.words[index];
-  const isFirst = index === 0;
-  const isLast = index === group.words.length - 1;
-
-  const goNext = () => {
-    if (isLast) return;
-    setFlipped(false);
-    setDragX(0);
-    setTimeout(() => setIndex(i => i + 1), 30);
-  };
-
-  const goPrev = () => {
-    if (isFirst) return;
-    setFlipped(false);
-    setDragX(0);
-    setTimeout(() => setIndex(i => i - 1), 30);
-  };
+  const word: VocabWord | undefined = round[index];
+  const done = index >= round.length;
+  const knowCount = results.filter(r => r === "know").length;
+  const learningCount = results.length - knowCount;
 
   const speak = () => {
     if (!word || speaking) return;
@@ -100,148 +100,157 @@ function FlashcardView({ group, onBack }: { group: VocabGroup; onBack: () => voi
     window.speechSynthesis.speak(u);
   };
 
-  // Swipe to navigate
-  const commitSwipeRef = useRef<(right: boolean) => void>(() => {});
-  const commitSwipe = (toRight: boolean) => {
-    const target = toRight ? -(window.innerWidth + 200) : (window.innerWidth + 200);
-    setAnimatingOut(true);
-    setDragX(target);
-    setTimeout(() => {
-      setDragX(0);
-      setAnimatingOut(false);
-      setFlipped(false);
-      setIndex(i => toRight ? Math.max(0, i - 1) : Math.min(group.words.length - 1, i + 1));
-    }, 280);
+  const sort = async (dir: SwipeDir) => {
+    if (!word || busy) return;
+    setBusy(true);
+    await cardRef.current?.flyOut(dir);
+    setResults(r => [...r, dir === "right" ? "know" : "learning"]);
+    setFlipped(false);
+    setIndex(i => i + 1);
+    setBusy(false);
   };
-  commitSwipeRef.current = commitSwipe;
 
-  useEffect(() => {
-    const el = cardRef.current;
-    if (!el) return;
-    let startX = 0, startY = 0, curDx = 0, isH = false;
-    const onStart = (e: TouchEvent) => {
-      startX = e.touches[0].clientX; startY = e.touches[0].clientY;
-      curDx = 0; isH = false; isTapRef.current = true;
-    };
-    const onMove = (e: TouchEvent) => {
-      const dx = e.touches[0].clientX - startX;
-      const dy = Math.abs(e.touches[0].clientY - startY);
-      if (!isH && Math.abs(dx) > 10) isH = Math.abs(dx) > dy * 0.5;
-      if (isH) {
-        e.preventDefault();
-        curDx = dx;
-        if (Math.abs(dx) > 15) isTapRef.current = false;
-        setDragX(dx); setIsDragging(true);
-      }
-    };
-    const onEnd = () => {
-      setIsDragging(false);
-      if (isTapRef.current || Math.abs(curDx) < 15) { setDragX(0); isH = false; return; }
-      if (Math.abs(curDx) >= 80) commitSwipeRef.current(curDx > 0);
-      else setDragX(0);
-      isH = false;
-    };
-    el.addEventListener("touchstart", onStart, { passive: true });
-    el.addEventListener("touchmove", onMove, { passive: false });
-    el.addEventListener("touchend", onEnd, { passive: true });
-    return () => {
-      el.removeEventListener("touchstart", onStart);
-      el.removeEventListener("touchmove", onMove);
-      el.removeEventListener("touchend", onEnd);
-    };
-  }, []);
+  const undo = () => {
+    if (busy || index === 0) return;
+    setResults(r => r.slice(0, -1));
+    setFlipped(false);
+    setIndex(i => i - 1);
+  };
 
-  const rotation = dragX * 0.05;
+  const startRound = (words: VocabWord[], no: number) => {
+    setRound(words);
+    setRoundNo(no);
+    setIndex(0);
+    setResults([]);
+    setFlipped(false);
+  };
+
+  const header = (
+    <div className="flex items-center justify-between gap-3">
+      <button onClick={onBack} className="text-sm text-muted-foreground hover:text-foreground transition-colors truncate">
+        ← {group.emoji} {group.title}
+      </button>
+      {roundNo > 1 && <span className="text-xs text-muted-foreground shrink-0">Раунд {roundNo}</span>}
+    </div>
+  );
+
+  if (done) {
+    const learning = round.filter((_, i) => results[i] === "learning");
+    return (
+      <div className="space-y-5">
+        {header}
+        <div className="text-center space-y-1 pt-4">
+          <p className="text-4xl">{learning.length === 0 ? "🎉" : "💪"}</p>
+          <p className="font-semibold text-lg">
+            {learning.length === 0 ? "Усі слова знаєш!" : "Раунд завершено"}
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          <div className="rounded-2xl border p-3 text-center swipe-counter-known">
+            <p className="text-2xl font-bold tabular-nums">{knowCount}</p>
+            <p className="text-xs">Знаю</p>
+          </div>
+          <div className="rounded-2xl border p-3 text-center swipe-counter-unknown">
+            <p className="text-2xl font-bold tabular-nums">{learningCount}</p>
+            <p className="text-xs">Ще вчу</p>
+          </div>
+        </div>
+        {learning.length > 0 && (
+          <button onClick={() => startRound(learning, roundNo + 1)}
+            className="w-full min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium active:scale-[0.98] transition-all">
+            Вчити далі: {learning.length} {learning.length === 1 ? "слово" : "слів"}
+          </button>
+        )}
+        <button onClick={() => startRound(group.words, 1)}
+          className="w-full min-h-[52px] rounded-2xl border text-sm font-medium hover:bg-accent/40 active:scale-[0.98] transition-all">
+          Почати спочатку
+        </button>
+        {index > 0 && (
+          <button onClick={undo} className="w-full text-xs text-muted-foreground hover:text-foreground py-2">
+            ↺ Повернути останню картку
+          </button>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-4">
-      {/* Header */}
-      <div className="flex items-center gap-3">
-        <button onClick={onBack} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-          ← {group.emoji} {group.title}
-        </button>
-      </div>
+      {header}
 
       {/* Progress */}
       <div className="flex items-center gap-3">
         <div className="flex-1 bg-muted rounded-full h-1.5 overflow-hidden">
           <div className="h-full bg-primary rounded-full transition-all duration-300"
-            style={{ width: `${((index + 1) / group.words.length) * 100}%` }} />
+            style={{ width: `${(index / round.length) * 100}%` }} />
         </div>
         <span className="text-xs text-muted-foreground tabular-nums shrink-0">
-          {index + 1} / {group.words.length}
+          {index + 1} / {round.length}
         </span>
       </div>
 
-      {/* Card */}
-      <div ref={cardRef} className="relative select-none" style={{ minHeight: 320 }}
-        onClick={() => { if (isTapRef.current) setFlipped(f => !f); }}>
-        <div className="card-flip-container" style={{ minHeight: 320 }}>
-          <div className="card-flip-inner cursor-pointer"
-            style={{
-              minHeight: 320,
-              transform: `translateX(${dragX}px) rotate(${rotation}deg) rotateY(${flipped ? 180 : 0}deg)`,
-              transition: isDragging ? "none" : animatingOut
-                ? "transform 0.28s cubic-bezier(0.4,0,1,1)"
-                : "transform 0.45s cubic-bezier(0.4,0,0.2,1)",
-            }}>
+      {/* Лічильники як у Quizlet: зліва «Ще вчу», справа «Знаю» */}
+      <SwipeCounters edge left={{ count: learningCount }} right={{ count: knowCount }} progress={swipe} />
 
-            {/* Front */}
-            <div className="card-flip-face rounded-3xl border bg-card flex flex-col items-center justify-center p-8 text-center" style={{ minHeight: 320 }}>
-              <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-full mb-4">дієслово</span>
-              <span className="text-4xl font-bold tracking-tight">{word.spanish}</span>
-              <span className="text-base text-muted-foreground mt-2 font-mono tracking-wide">{word.pronunciation}</span>
-              <span className="text-xs text-muted-foreground mt-8 opacity-40">натисни щоб відкрити</span>
-            </div>
-
-            {/* Back */}
-            <div className="card-flip-back card-flip-face rounded-3xl border bg-card flex flex-col items-center p-6 text-center">
-              <span className="text-lg font-semibold text-muted-foreground mt-2">{word.spanish}</span>
-              <span className="text-sm text-muted-foreground/60 font-mono mt-0.5">{word.pronunciation}</span>
-              {word.emoji && <span className="text-5xl mt-3">{word.emoji}</span>}
-              <span className="text-3xl font-bold mt-2">{word.ukrainian}</span>
-
-              {/* Sound association + example */}
-              <div className="mt-4 w-full pt-4 border-t space-y-2">
+      {/* Картка на статичній колоді: тап — перевернути, свайп праворуч — «Знаю», ліворуч — «Ще вчу» */}
+      <SwipeFlipCard
+        key={`${roundNo}-${index}-${word!.spanish}`}
+        ref={cardRef}
+        stack={index + 1 < round.length}
+        flipped={flipped}
+        onFlip={() => setFlipped(f => !f)}
+        canFlip={!busy}
+        canSwipe={!busy}
+        onSwipe={sort}
+        onProgress={(dir, level) => setSwipe({ dir, level })}
+        minHeight={380}
+        front={
+          <>
+            <span className="text-4xl font-bold tracking-tight">{word!.spanish}</span>
+            <span className="text-base text-muted-foreground mt-2 font-mono tracking-wide">{word!.pronunciation}</span>
+          </>
+        }
+        back={
+          <div className="flex flex-col items-center w-full">
+            <span className="text-lg font-semibold text-muted-foreground">{word!.spanish}</span>
+            <span className="text-sm text-muted-foreground/60 font-mono mt-0.5">{word!.pronunciation}</span>
+            {word!.emoji && <span className="text-5xl mt-3">{word!.emoji}</span>}
+            <span className="text-3xl font-bold mt-2">{word!.ukrainian}</span>
+            <div className="mt-4 w-full pt-4 border-t space-y-2">
+              {word!.sound_association && (
                 <div className="flex items-start gap-2 text-left bg-amber-50 dark:bg-amber-950/30 rounded-2xl p-3">
                   <span className="shrink-0 mt-0.5 text-amber-500"><BulbIcon /></span>
                   <div className="space-y-0.5">
                     <p className="text-[10px] font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">Звукова асоціація</p>
-                    <p className="text-xs text-amber-800 dark:text-amber-200 leading-relaxed">{word.sound_association}</p>
+                    <p className="text-xs text-amber-800 dark:text-amber-200 leading-relaxed">{word!.sound_association}</p>
                   </div>
                 </div>
+              )}
+              {word!.example_es && (
                 <div className="text-left bg-sky-50 dark:bg-sky-950/30 rounded-2xl p-3">
                   <p className="text-[10px] font-semibold uppercase tracking-wider text-sky-600 dark:text-sky-400 mb-1">Приклад</p>
-                  <p className="text-sm font-medium text-sky-900 dark:text-sky-100 italic">{word.example_es}</p>
-                  <p className="text-xs text-sky-700 dark:text-sky-300 mt-0.5">{word.example_uk}</p>
+                  <p className="text-sm font-medium text-sky-900 dark:text-sky-100 italic">{word!.example_es}</p>
+                  <p className="text-xs text-sky-700 dark:text-sky-300 mt-0.5">{word!.example_uk}</p>
                 </div>
-              </div>
+              )}
             </div>
           </div>
-        </div>
-      </div>
+        }
+      />
 
-      {/* Nav buttons */}
-      <div className="flex items-center gap-2">
-        <button onClick={goPrev} disabled={isFirst}
-          className={`flex-1 min-h-[52px] rounded-2xl border text-sm font-medium transition-all ${
-            isFirst ? "opacity-30 cursor-not-allowed" : "hover:bg-accent/40 active:scale-[0.98]"
-          }`}>
-          ← Назад
+      {/* Нижня панель як у Quizlet: скасувати зліва, звук справа */}
+      <div className="flex items-center justify-between px-6">
+        <button onClick={undo} disabled={busy || index === 0} aria-label="Повернути попередню картку"
+          className="p-3 rounded-full text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors">
+          <UndoIcon />
         </button>
-        <button onClick={speak} className="min-h-[52px] px-4 rounded-2xl border bg-muted/50 text-muted-foreground hover:bg-muted active:scale-[0.98] transition-all"
+        <span className="text-xs text-muted-foreground opacity-60">← ще вчу · знаю →</span>
+        <button onClick={speak} aria-label="Вимовити"
+          className="p-3 rounded-full text-muted-foreground hover:text-foreground transition-colors"
           style={{ opacity: speaking ? 0.6 : 1 }}>
           <SpeakerIcon />
         </button>
-        <button onClick={goNext} disabled={isLast}
-          className={`flex-1 min-h-[52px] rounded-2xl border text-sm font-medium transition-all ${
-            isLast ? "opacity-30 cursor-not-allowed" : "hover:bg-accent/40 active:scale-[0.98]"
-          }`}>
-          Далі →
-        </button>
       </div>
-
-      <p className="text-center text-xs text-muted-foreground opacity-40">← свайп / →</p>
 
       {/* Word list toggle */}
       <button onClick={() => setShowList(v => !v)}
@@ -254,16 +263,14 @@ function FlashcardView({ group, onBack }: { group: VocabGroup; onBack: () => voi
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{group.emoji} {group.title}</p>
           </div>
           <div className="divide-y">
-            {group.words.map((w, i) => (
-              <button key={w.spanish} onClick={() => { setIndex(i); setFlipped(false); setShowList(false); }}
-                className={`w-full px-4 py-3 flex items-center gap-3 text-left hover:bg-accent/30 transition-colors ${i === index ? "bg-primary/5" : ""}`}>
-                <span className={`text-xs font-mono w-5 shrink-0 ${i === index ? "text-primary font-bold" : "text-muted-foreground"}`}>{i + 1}</span>
+            {group.words.map(w => (
+              <div key={w.spanish} className="px-4 py-3 flex items-center gap-3">
                 <div className="flex-1 min-w-0">
                   <p className="font-medium text-sm">{w.spanish}</p>
                   <p className="text-xs font-mono text-muted-foreground">{w.pronunciation}</p>
                 </div>
                 <p className="text-sm text-muted-foreground shrink-0">{w.ukrainian}</p>
-              </button>
+              </div>
             ))}
           </div>
         </div>

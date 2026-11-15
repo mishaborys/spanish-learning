@@ -174,6 +174,7 @@ export function FlashCards({ words }: Props) {
       <SwipeFlipCard
         key={`${mode}-${deckIndex}-${word.id}`}
         ref={cardRef}
+        stack={deckIndex + 1 < deck.length}
         flipped={flipped}
         onFlip={() => setFlipped(f => !f)}
         canFlip={!busy}

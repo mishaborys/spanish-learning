@@ -70,6 +70,8 @@ type Props = {
   tintRight?: CardTint;
   tintLeft?: CardTint;
   labels?: Partial<Record<CardTint, string>>;
+  /** Статична «колода» під карткою (як у Quizlet): лежить на місці, поки верхня картка відлітає. */
+  stack?: boolean;
   minHeight?: number;
   ref?: Ref<SwipeFlipCardHandle>;
 };
@@ -79,7 +81,7 @@ const REST: Motion = { x: 0, y: 0, w: 400, ms: 0, tint: null, level: 0 };
 
 export function SwipeFlipCard({
   front, back, flipped, onFlip, canFlip = true, onSwipe, canSwipe = true, onProgress,
-  tintRight = "known", tintLeft = "unknown", labels, minHeight = 320, ref,
+  tintRight = "known", tintLeft = "unknown", labels, minHeight = 320, stack = false, ref,
 }: Props) {
   const elRef = useRef<HTMLDivElement>(null);
   const [m, setM] = useState<Motion>(REST);
@@ -180,7 +182,7 @@ export function SwipeFlipCard({
   const face = "min-w-0 break-words border bg-card shadow-sm flex flex-col items-center justify-center px-8 py-10 text-center overflow-hidden";
   const faceStyle = { borderRadius: RADIUS, backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" } as const;
 
-  return (
+  const card = (
     <div
       ref={elRef}
       role="button"
@@ -231,6 +233,14 @@ export function SwipeFlipCard({
       </div>
     </div>
   );
+
+  if (!stack) return card;
+  return (
+    <div className="relative">
+      <div aria-hidden className="absolute inset-0 border bg-card pointer-events-none" style={{ borderRadius: RADIUS }} />
+      {card}
+    </div>
+  );
 }
 
 /**
@@ -238,19 +248,31 @@ export function SwipeFlipCard({
  * Під час свайпу поверх лічильника проявляється заповнений «+1».
  */
 export function SwipeCounters({
-  left, right, progress,
+  left, right, progress, edge = false,
 }: {
-  left: { count: number; label: string; tint?: CardTint };
-  right: { count: number; label: string; tint?: CardTint };
+  left: { count: number; label?: string; tint?: CardTint };
+  right: { count: number; label?: string; tint?: CardTint };
   progress: { dir: SwipeDir | null; level: number };
+  /** Як у Quizlet на телефоні: пілюлі без підписів, наполовину заходять за краї екрана. */
+  edge?: boolean;
 }) {
+  const leftPill = <Counter count={left.count} tint={left.tint ?? "unknown"} plus={progress.dir === "left" ? progress.level : 0} />;
+  const rightPill = <Counter count={right.count} tint={right.tint ?? "known"} plus={progress.dir === "right" ? progress.level : 0} />;
+  if (edge) {
+    return (
+      <div className="relative h-10 -mx-4">
+        <div className="absolute left-0 top-0 -translate-x-[30%]">{leftPill}</div>
+        <div className="absolute right-0 top-0 translate-x-[30%]">{rightPill}</div>
+      </div>
+    );
+  }
   return (
     <div className="flex items-center gap-3">
-      <Counter count={left.count} tint={left.tint ?? "unknown"} plus={progress.dir === "left" ? progress.level : 0} />
+      {leftPill}
       <span className="text-sm font-semibold swipe-text-unknown">{left.label}</span>
       <div className="flex-1" />
       <span className="text-sm font-semibold swipe-text-known">{right.label}</span>
-      <Counter count={right.count} tint={right.tint ?? "known"} plus={progress.dir === "right" ? progress.level : 0} />
+      {rightPill}
     </div>
   );
 }

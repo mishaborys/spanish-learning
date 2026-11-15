@@ -237,6 +237,7 @@ export function DailyReview({ review }: { review: ReviewToday }) {
       <SwipeFlipCard
         key={`${phase}-${item.key}`}
         ref={cardRef}
+        stack={idx + 1 < queue.length}
         flipped={flipped}
         onFlip={flip}
         canFlip={!busy && (!isType || revealed)}
