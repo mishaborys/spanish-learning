@@ -272,6 +272,8 @@ function TypeInput({ value, onChange, onSubmit }: { value: string; onChange: (v:
 
 function WordDetails({ item }: { item: ReviewItem }) {
   const w = item.word;
+  // Згорнуто за замовчуванням, щоб картка й кнопки влазили на екран.
+  const [showAssociation, setShowAssociation] = useState(false);
   return (
     <div className="rounded-3xl border bg-card flex flex-col items-center p-6 text-center">
       <span className="text-2xl font-bold">{w.spanish}</span>
@@ -280,10 +282,16 @@ function WordDetails({ item }: { item: ReviewItem }) {
       <span className="text-2xl font-semibold mt-2">{w.ukrainian}</span>
       <div className="mt-4 w-full pt-4 border-t space-y-2">
         {w.sound_association && (
-          <div className="text-left bg-amber-50 dark:bg-amber-950/30 rounded-2xl p-3">
-            <p className="text-[10px] font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">Звукова асоціація</p>
-            <p className="text-xs text-amber-800 dark:text-amber-200 leading-relaxed">{w.sound_association}</p>
-          </div>
+          <button type="button" onClick={() => setShowAssociation(v => !v)}
+            className="w-full text-left bg-amber-50 dark:bg-amber-950/30 rounded-2xl p-3">
+            <p className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+              <span>Звукова асоціація</span>
+              <span aria-hidden>{showAssociation ? "▲" : "▼"}</span>
+            </p>
+            {showAssociation && (
+              <p className="text-xs text-amber-800 dark:text-amber-200 leading-relaxed mt-0.5">{w.sound_association}</p>
+            )}
+          </button>
         )}
         {w.example_es && (
           <div className="text-left bg-sky-50 dark:bg-sky-950/30 rounded-2xl p-3">
