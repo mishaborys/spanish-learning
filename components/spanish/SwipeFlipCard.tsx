@@ -73,6 +73,10 @@ type Props = {
   /** Статична «колода» під карткою (як у Quizlet): лежить на місці, поки верхня картка відлітає. */
   stack?: boolean;
   minHeight?: number;
+  /** Фіксований розмір: картка займає всю висоту батька, довгий вміст прокручується всередині. */
+  fill?: boolean;
+  /** Просте гортання без оцінок: свайп без підсвітки й без «+1». */
+  plain?: boolean;
   ref?: Ref<SwipeFlipCardHandle>;
 };
 
@@ -81,7 +85,7 @@ const REST: Motion = { x: 0, y: 0, w: 400, ms: 0, tint: null, level: 0 };
 
 export function SwipeFlipCard({
   front, back, flipped, onFlip, canFlip = true, onSwipe, canSwipe = true, onProgress,
-  tintRight = "known", tintLeft = "unknown", labels, minHeight = 320, stack = false, ref,
+  tintRight = "known", tintLeft = "unknown", labels, minHeight = 320, stack = false, fill = false, plain = false, ref,
 }: Props) {
   const elRef = useRef<HTMLDivElement>(null);
   const [m, setM] = useState<Motion>(REST);
@@ -99,10 +103,10 @@ export function SwipeFlipCard({
       y: prev.y,
       w,
       ms: FLY_OUT_MS,
-      tint: tint ?? (dir === "right" ? tintRight : tintLeft),
-      level: 1,
+      tint: plain ? null : tint ?? (dir === "right" ? tintRight : tintLeft),
+      level: plain ? 0 : 1,
     }));
-    onProgress?.(dir, 1);
+    if (!plain) onProgress?.(dir, 1);
     await wait(FLY_OUT_MS);
     onProgress?.(null, 0);
   };
@@ -129,14 +133,21 @@ export function SwipeFlipCard({
     const dy = e.clientY - d.sy;
     if (!d.active) {
       if (Math.hypot(dx, dy) < TAP_SLOP) return;
+      // Фіксована картка з довгим вмістом: вертикальний рух — це прокрутка всередині, а не перетягування
+      if (fill && Math.abs(dy) > Math.abs(dx)) {
+        const scrollable = [...(elRef.current?.querySelectorAll<HTMLElement>("[data-face]") ?? [])]
+          .some(f => f.scrollHeight > f.clientHeight + 1);
+        if (scrollable) { drag.current = null; return; }
+      }
       d.active = true;
       elRef.current?.setPointerCapture(e.pointerId);
     }
     const w = screenW();
-    const level = canSwipe ? Math.min(Math.abs(dx) / (PROGRESS_FULL * w), 1) : 0;
+    const level = canSwipe && !plain ? Math.min(Math.abs(dx) / (PROGRESS_FULL * w), 1) : 0;
     const dir: SwipeDir | null = dx > 0 ? "right" : dx < 0 ? "left" : null;
-    setM({ x: dx, y: dy, w, ms: 0, tint: dir === "right" ? tintRight : dir === "left" ? tintLeft : null, level });
-    onProgress?.(dir, level);
+    const tint = plain ? null : dir === "right" ? tintRight : dir === "left" ? tintLeft : null;
+    setM({ x: dx, y: dy, w, ms: 0, tint, level });
+    if (!plain) onProgress?.(dir, level);
   };
 
   const onPointerUp = (e: React.PointerEvent) => {
@@ -179,7 +190,10 @@ export function SwipeFlipCard({
   const tilt = Math.abs(m.x) > TILT_START * m.w ? (m.x * TILT_DEG) / m.w : 0;
   const color = m.tint ? SWIPE_COLORS[m.tint] : "transparent";
   const label = m.tint ? labels?.[m.tint] ?? DEFAULT_LABELS[m.tint] : "";
-  const face = "min-w-0 break-words border bg-card shadow-sm flex flex-col items-center justify-center px-8 py-10 text-center overflow-hidden";
+  // Вміст центрується через my-auto, щоб при прокрутці (fill) верх не обрізався
+  const face = `min-w-0 break-words border bg-card shadow-sm flex flex-col items-center px-8 py-10 text-center ${
+    fill ? "min-h-0 overflow-y-auto overscroll-contain" : "overflow-hidden"}`;
+  const inner = "my-auto w-full flex flex-col items-center";
   const faceStyle = { borderRadius: RADIUS, backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" } as const;
 
   const card = (
@@ -193,9 +207,9 @@ export function SwipeFlipCard({
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerCancel}
       onKeyDown={onKeyDown}
-      className="swipe-card relative select-none cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      className={`swipe-card relative select-none cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring ${fill ? "h-full" : ""}`}
       style={{
-        minHeight,
+        minHeight: fill ? undefined : minHeight,
         borderRadius: RADIUS,
         touchAction: "pan-y",
         transform: `translate3d(${m.x}px, ${m.y}px, 0) rotate(${tilt}deg)`,
@@ -205,17 +219,22 @@ export function SwipeFlipCard({
     >
       {/* Обидва боки в одній клітинці grid: висота = більший із них */}
       <div
-        className="grid"
+        className={fill ? "grid h-full" : "grid"}
         style={{
           gridTemplateColumns: "minmax(0, 1fr)",
-          minHeight,
+          gridTemplateRows: fill ? "minmax(0, 1fr)" : undefined,
+          minHeight: fill ? undefined : minHeight,
           transformStyle: "preserve-3d",
           transform: `rotateY(${flipped ? 180 : 0}deg)`,
           transition: `transform ${FLIP_MS}ms ${EASE}`,
         }}
       >
-        <div className={face} style={{ gridArea: "1 / 1", ...faceStyle }}>{front}</div>
-        <div className={face} style={{ gridArea: "1 / 1", ...faceStyle, transform: "rotateY(180deg)" }}>{back}</div>
+        <div data-face className={face} style={{ gridArea: "1 / 1", ...faceStyle }}>
+          <div className={inner}>{front}</div>
+        </div>
+        <div data-face className={face} style={{ gridArea: "1 / 1", ...faceStyle, transform: "rotateY(180deg)" }}>
+          <div className={inner}>{back}</div>
+        </div>
       </div>
 
       {/* Шар підсвітки Quizlet: фон картки + рамка 2dp + напис по центру, прозорість = прогрес */}
@@ -236,7 +255,7 @@ export function SwipeFlipCard({
 
   if (!stack) return card;
   return (
-    <div className="relative">
+    <div className={fill ? "relative h-full" : "relative"}>
       <div aria-hidden className="absolute inset-0 border bg-card pointer-events-none" style={{ borderRadius: RADIUS }} />
       {card}
     </div>
