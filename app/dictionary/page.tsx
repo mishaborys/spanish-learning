@@ -1,6 +1,5 @@
-import fs from "fs";
-import path from "path";
 import Link from "next/link";
+import { loadVocabularySets } from "@/lib/vocabulary";
 
 type VocabSetMeta = {
   id: string;
@@ -12,21 +11,15 @@ type VocabSetMeta = {
 };
 
 function loadSets(): VocabSetMeta[] {
-  const dir = path.join(process.cwd(), "data/vocabulary");
-  if (!fs.existsSync(dir)) return [];
-  return fs.readdirSync(dir)
-    .filter(f => f.endsWith(".json"))
-    .map(f => {
-      const raw = JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8"));
-      return {
-        id: raw.id,
-        title: raw.title,
-        description: raw.description,
-        totalWords: raw.groups.reduce((s: number, g: { words: unknown[] }) => s + g.words.length, 0),
-        groupCount: raw.groups.length,
-        addedAt: raw.added_at ? Date.parse(raw.added_at) : 0,
-      };
-    })
+  return loadVocabularySets()
+    .map(raw => ({
+      id: raw.id,
+      title: raw.title,
+      description: raw.description,
+      totalWords: raw.groups.reduce((s, g) => s + g.words.length, 0),
+      groupCount: raw.groups.length,
+      addedAt: raw.added_at ? Date.parse(raw.added_at) : 0,
+    }))
     .sort((a, b) => b.addedAt - a.addedAt || a.id.localeCompare(b.id));
 }
 

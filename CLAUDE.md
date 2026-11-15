@@ -26,7 +26,7 @@ spanish-learning/
 ├── app/
 │   ├── page.tsx                   # Головна — список тем
 │   ├── topics/[slug]/page.tsx     # Сторінка теми (слова + граматика)
-│   ├── review/page.tsx            # Повторення (spaced repetition)
+│   ├── review/page.tsx            # Довге повторення слів зі Словника
 │   ├── homework/
 │   │   ├── page.tsx               # Список домашніх завдань
 │   │   └── [id]/
@@ -40,7 +40,7 @@ spanish-learning/
 │   ├── FlashCards.tsx             # Флешкарти
 │   ├── Quiz.tsx                   # Вікторина (вибрати переклад)
 │   ├── FillInBlank.tsx            # Вставити слово
-│   └── ReviewSession.tsx          # Сесія повторення
+│   └── DailyReview.tsx            # Щоденна сесія довгого повторення
 ├── data/
 │   ├── topics/                    # JSON-файли тем (seed → БД)
 │   └── homework/                  # JSON-файли домашніх завдань
@@ -51,6 +51,8 @@ spanish-learning/
 │   └── export-quizlet.ts
 ├── lib/
 │   ├── db.ts                      # SQL клієнт + типи (Topic, Word, Progress)
+│   ├── vocabulary.ts              # Завантаження data/vocabulary/*.json + типи
+│   ├── review/                    # Модуль довгого повторення (див. нижче)
 │   └── schema.sql                 # Схема бази даних
 └── audio/                         # MP3-файли для домашніх завдань
 ```
@@ -228,6 +230,19 @@ npm run seed
 
 ---
 
+## Довге повторення (`/review`)
+
+Щоденне повторення **всіх слів зі Словника** (`data/vocabulary/*.json`). Терміни — у `GLOSSARY.md`.
+
+- `lib/review/core.ts` — усі правила, чистий код без БД (тести: `npm test`):
+  інтервали «знаю» 14 → 30 → 60 → 120 днів; «вагався» — через 2 дні, наступне «знаю» повторює попередній інтервал; «не знаю» — завтра, з початку драбини;
+  добірка 5 на повторення (борг → планові) + 5 нових випадкових; режим дня — випадковий, не як учора;
+  перевірка вписаного (наголоси/ñ/регістр не важливі, артикль можна не писати, неправильний артикль або одна опечатка — «вагався»).
+- `lib/review/store.ts` — таблиці `review_cards`, `review_batches`, `review_answers` (створюються автоматично при першому зверненні).
+- `lib/review/index.ts` — інтерфейс модуля: `getTodayReview`, `recordAnswer`, `addBatch`, `changeMode`. API: `POST /api/review` з `action`.
+- Слово ідентифікується за іспанським написанням (`wordKey`): зміна написання в JSON = нове слово для розкладу.
+- День рахується за Києвом.
+
 ## Схема бази даних
 
 ```sql
@@ -246,6 +261,7 @@ progress (id, word_id→words UNIQUE, status∈{new,learning,known}, correct_cou
 npm run dev           # Запустити dev-сервер (http://localhost:3000)
 npm run build         # Збірка продакшн
 npm run lint          # ESLint
+npm test              # Тести (lib/**/*.test.ts)
 npm run seed          # Залити всі data/topics/*.json в БД
 npx tsx scripts/seed-topic.ts data/topics/foo.json   # Один файл
 npx tsx scripts/delete-topic.ts <slug>               # Видалити тему

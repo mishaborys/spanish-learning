@@ -30,21 +30,12 @@ async function getTopicsWithProgress() {
   }));
 }
 
-async function getReviewCount() {
-  const result = (await sql`
-    SELECT COUNT(*)::int AS count FROM progress
-    WHERE next_review_at <= NOW() AND status != 'known'
-  `) as { count: number }[];
-  return result[0]?.count ?? 0;
-}
-
 export default async function HomePage() {
   let topics: Awaited<ReturnType<typeof getTopicsWithProgress>> = [];
-  let reviewCount = 0;
   let dbError = false;
 
   try {
-    [topics, reviewCount] = await Promise.all([getTopicsWithProgress(), getReviewCount()]);
+    topics = await getTopicsWithProgress();
   } catch {
     dbError = true;
   }
@@ -81,32 +72,11 @@ export default async function HomePage() {
                 {totalKnown} з {totalWords} слів
               </p>
             </div>
-            {reviewCount > 0 && (
-              <Link
-                href="/review"
-                className="inline-flex items-center gap-1.5 rounded-xl bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity"
-              >
-                <span className="text-base leading-none">↩</span>
-                {reviewCount} до повторення
-              </Link>
-            )}
           </div>
           <Progress value={overallPercent} className="h-2" />
         </div>
       )}
 
-      {/* Review banner when no overall stats yet */}
-      {totalWords === 0 && reviewCount > 0 && (
-        <Link href="/review">
-          <div className="rounded-2xl border bg-primary text-primary-foreground p-5 flex items-center justify-between">
-            <div>
-              <p className="font-semibold">Час повторювати</p>
-              <p className="text-sm opacity-80">{reviewCount} слів чекають</p>
-            </div>
-            <span className="text-2xl">↩</span>
-          </div>
-        </Link>
-      )}
 
       {/* Topics list */}
       <div className="space-y-2">
