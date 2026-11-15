@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { wordKey } from "@/lib/review/core";
 
 export type VocabWord = {
   spanish: string;
@@ -39,4 +40,26 @@ export function loadVocabularySets(): VocabSet[] {
   return fs.readdirSync(DIR)
     .filter(f => f.endsWith(".json"))
     .map(f => JSON.parse(fs.readFileSync(path.join(DIR, f), "utf-8")) as VocabSet);
+}
+
+/** Адреса псевдогрупи «Усі слова» набору: `/dictionary/<набір>/all`. */
+export const ALL_WORDS_GROUP_ID = "all";
+
+/**
+ * Псевдогрупа «Усі слова» — для фінального проходу після вивчення по частинах.
+ * Є лише в наборах із 2+ групами. Слово, що є в кількох групах, іде один раз.
+ */
+export function allWordsGroup(set: VocabSet): VocabGroup | null {
+  if (set.groups.length < 2) return null;
+  const seen = new Set<string>();
+  const words: VocabWord[] = [];
+  for (const g of set.groups) {
+    for (const w of g.words) {
+      const key = wordKey(w.spanish);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      words.push(w);
+    }
+  }
+  return { id: ALL_WORDS_GROUP_ID, title: "Усі слова", emoji: "📚", words };
 }

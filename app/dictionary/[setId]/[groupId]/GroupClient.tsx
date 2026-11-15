@@ -2,17 +2,18 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { wordKey } from "@/lib/review/core";
+import { groupProgress, type Stage } from "@/lib/learn/core";
 import type { VocabGroup, VocabWord } from "@/lib/vocabulary";
 import { DEFAULT_FLASHCARD_SETTINGS, useFlashcardSettings } from "@/lib/flashcardSettings";
 import { speakSpanish } from "@/lib/speak";
 import { SpeakerIcon, WordNotes } from "@/components/spanish/WordNotes";
 
-/** Статус слова в Learn. Поки Learn не зроблено (етап 2), усі слова — «не вивчав». */
-export type LearnStatus = "new" | "learning" | "mastered";
-
-const STATUS_ORDER: LearnStatus[] = ["learning", "new", "mastered"];
-const STATUS_LABEL: Record<LearnStatus, string> = { learning: "Ще вчу", new: "Не вивчав", mastered: "Вивчено" };
-const STATUS_DOT: Record<LearnStatus, string> = {
+/** Статус слова веде тільки Learn. */
+const STATUS_ORDER: Stage[] = ["learning", "new", "mastered"];
+const STATUS_LABEL: Record<Stage, string> = { learning: "Ще вчу", new: "Не вивчав", mastered: "Вивчено" };
+const STATUS_DOT: Record<Stage, string> = {
   learning: "bg-[#FF983A]",
   new: "bg-muted-foreground/30",
   mastered: "bg-[#18AE79]",
@@ -24,19 +25,70 @@ type Props = {
   groupHref: string;
   backHref: string;
   backLabel: string;
-  /** Статуси слів за іспанським написанням; відсутнє слово — «не вивчав». */
-  statuses?: Record<string, LearnStatus>;
+  /** Етапи Learn за ключем слова; null — база недоступна. */
+  stages: Record<string, Stage> | null;
+  /** Область прогресу Learn ('' або 'all:<набір>'). */
+  scope: string;
 };
 
-export function GroupClient({ group, setTitle, groupHref, backHref, backLabel, statuses = {} }: Props) {
-  const statusOf = (w: VocabWord): LearnStatus => statuses[w.spanish] ?? "new";
-  const mastered = group.words.filter(w => statusOf(w) === "mastered").length;
+export function GroupClient({ group, setTitle, groupHref, backHref, backLabel, stages, scope }: Props) {
+  const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [resetting, setResetting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const known = stages ?? {};
+  const statusOf = (w: VocabWord): Stage => known[wordKey(w.spanish)] ?? "new";
+  const keys = [...new Set(group.words.map(w => wordKey(w.spanish)))];
+  const progress = groupProgress(keys, known);
+  const mastered = progress.mastered;
+
+  const resetProgress = async () => {
+    setMenuOpen(false);
+    if (!confirm(`Скинути прогрес Learn для «${group.title}»? Усі ${keys.length} слів стануть «не вивчав».`)) return;
+    setResetting(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/learn", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "reset", scope, keys }),
+      });
+      if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error ?? "Не вдалося скинути прогрес");
+      router.refresh();
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setResetting(false);
+    }
+  };
 
   return (
     <div className="space-y-5">
-      <Link href={backHref} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-        ← {backLabel}
-      </Link>
+      <div className="flex items-center justify-between gap-3">
+        <Link href={backHref} className="text-sm text-muted-foreground hover:text-foreground transition-colors truncate">
+          ← {backLabel}
+        </Link>
+        {stages && (
+          <div className="relative shrink-0">
+            <button type="button" onClick={() => setMenuOpen(v => !v)} aria-label="Ще дії" aria-expanded={menuOpen}
+              className="h-9 w-9 rounded-full border flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-accent/40 transition-colors">
+              <DotsIcon />
+            </button>
+            {menuOpen && (
+              <>
+                <button type="button" aria-label="Закрити меню" onClick={() => setMenuOpen(false)} className="fixed inset-0 z-10 cursor-default" />
+                <div className="absolute right-0 top-11 z-20 w-56 rounded-2xl border bg-background shadow-lg p-1">
+                  <button type="button" onClick={resetProgress} disabled={resetting || mastered + progress.learning === 0}
+                    className="w-full text-left px-3 py-2.5 rounded-xl text-sm text-destructive hover:bg-destructive/10 disabled:opacity-40 disabled:hover:bg-transparent">
+                    Скинути прогрес
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        )}
+      </div>
+      {error && <p className="text-sm text-destructive">{error}</p>}
 
       <PreviewCarousel words={group.words} />
 
@@ -47,8 +99,9 @@ export function GroupClient({ group, setTitle, groupHref, backHref, backLabel, s
 
       {/* Режими */}
       <div className="space-y-2">
-        <ModeButton href={`${groupHref}/flashcards`} icon={<CardsIcon />} label="Флешкартки" />
-        <ModeButton icon={<LearnIcon />} label="Learn" note="скоро" />
+        <ModeButton href={`${groupHref}/flashcards`} icon={<CardsIcon />} label="Flashcards" />
+        <ModeButton href={stages ? `${groupHref}/learn` : undefined} icon={<LearnIcon />} label="Learn"
+          note={!stages ? "немає зв'язку з базою" : progress.done ? "усе вивчено ✓" : `вивчено ${mastered} з ${progress.total}`} />
         <ModeButton icon={<BlastIcon />} label="Blast" note="скоро" />
       </div>
 
@@ -174,6 +227,14 @@ function ModeButton({ href, icon, label, note }: { href?: string; icon: React.Re
 }
 
 const iconProps = { width: 24, height: 24, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" } as const;
+
+function DotsIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+      <circle cx="5" cy="12" r="2" /><circle cx="12" cy="12" r="2" /><circle cx="19" cy="12" r="2" />
+    </svg>
+  );
+}
 
 function CardsIcon() {
   return (

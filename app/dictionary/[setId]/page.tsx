@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { loadVocabularySet } from "@/lib/vocabulary";
+import { allWordsGroup, loadVocabularySet } from "@/lib/vocabulary";
 
 export default async function DictionarySetPage({ params }: { params: Promise<{ setId: string }> }) {
   const { setId } = await params;
@@ -10,7 +10,8 @@ export default async function DictionarySetPage({ params }: { params: Promise<{ 
   // Набір з однією групою: проміжний список зайвий — одразу сторінка групи
   if (set.groups.length === 1) redirect(`/dictionary/${set.id}/${set.groups[0].id}`);
 
-  const total = set.groups.reduce((s, g) => s + g.words.length, 0);
+  const all = allWordsGroup(set);
+  const total = all?.words.length ?? set.groups[0]?.words.length ?? 0;
 
   return (
     <div className="space-y-4">
@@ -37,6 +38,21 @@ export default async function DictionarySetPage({ params }: { params: Promise<{ 
           </Link>
         ))}
       </div>
+
+      {/* Фінальний прохід: усі слова набору разом, після вивчення по частинах */}
+      {all && (
+        <Link href={`/dictionary/${set.id}/${all.id}`}
+          className="block rounded-2xl border-2 border-primary/30 bg-primary/5 p-4 hover:bg-primary/10 transition-colors active:scale-[0.99]">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl w-9 text-center">{all.emoji}</span>
+            <div className="flex-1 min-w-0">
+              <p className="font-semibold text-sm">Вивчити все</p>
+              <p className="text-xs text-muted-foreground mt-0.5">усі {all.words.length} слів набору за один раз</p>
+            </div>
+            <span className="text-muted-foreground text-sm shrink-0">→</span>
+          </div>
+        </Link>
+      )}
     </div>
   );
 }
