@@ -89,7 +89,8 @@ export function SwipeFlipCard({
 }: Props) {
   const elRef = useRef<HTMLDivElement>(null);
   const [m, setM] = useState<Motion>(REST);
-  const drag = useRef<{ id: number; sx: number; sy: number; active: boolean } | null>(null);
+  /** scroll — вертикальний жест на довгому вмісті фіксованої картки: прокручуємо сторону вручну. */
+  const drag = useRef<{ id: number; sx: number; sy: number; active: boolean; scroll?: { el: HTMLElement; top: number } } | null>(null);
   const locked = useRef(false);
 
   const wait = (ms: number) => new Promise<void>(r => setTimeout(r, reducedMotion() ? 0 : ms));
@@ -134,13 +135,18 @@ export function SwipeFlipCard({
     if (!d.active) {
       if (Math.hypot(dx, dy) < TAP_SLOP) return;
       // Фіксована картка з довгим вмістом: вертикальний рух — це прокрутка всередині, а не перетягування
-      if (fill && Math.abs(dy) > Math.abs(dx)) {
-        const scrollable = [...(elRef.current?.querySelectorAll<HTMLElement>("[data-face]") ?? [])]
-          .some(f => f.scrollHeight > f.clientHeight + 1);
-        if (scrollable) { drag.current = null; return; }
-      }
       d.active = true;
       elRef.current?.setPointerCapture(e.pointerId);
+      // Фіксована картка має touch-action: none (інакше браузер забирає жест посеред свайпу),
+      // тож вертикальний рух по довгій стороні прокручуємо самі
+      if (fill && Math.abs(dy) > Math.abs(dx)) {
+        const face = elRef.current?.querySelector<HTMLElement>(`[data-face="${flipped ? "back" : "front"}"]`);
+        if (face && face.scrollHeight > face.clientHeight + 1) d.scroll = { el: face, top: face.scrollTop };
+      }
+    }
+    if (d.scroll) {
+      d.scroll.el.scrollTop = d.scroll.top - dy;
+      return;
     }
     const w = screenW();
     const level = canSwipe && !plain ? Math.min(Math.abs(dx) / (PROGRESS_FULL * w), 1) : 0;
@@ -154,6 +160,7 @@ export function SwipeFlipCard({
     const d = drag.current;
     if (!d || d.id !== e.pointerId) return;
     drag.current = null;
+    if (d.scroll) return; // це була прокрутка, не свайп і не тап
     if (!d.active) {
       // Тап по кнопці/посиланню всередині картки (напр. «Звукова асоціація») — не перевертаємо
       const interactive = (e.target as HTMLElement).closest("button, a, input, textarea, select");
@@ -172,7 +179,7 @@ export function SwipeFlipCard({
   };
 
   const onPointerCancel = () => {
-    if (drag.current?.active) {
+    if (drag.current?.active && !drag.current.scroll) {
       locked.current = true;
       void reset();
     }
@@ -194,7 +201,11 @@ export function SwipeFlipCard({
   const face = `min-w-0 break-words border bg-card shadow-sm flex flex-col items-center px-8 py-10 text-center ${
     fill ? "min-h-0 overflow-y-auto overscroll-contain" : "overflow-hidden"}`;
   const inner = "my-auto w-full flex flex-col items-center";
-  const faceStyle = { borderRadius: RADIUS, backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" } as const;
+  // touch-action не успадковується крізь прокручуваний блок, тож на сторонах його теж треба вимкнути
+  const faceStyle = {
+    borderRadius: RADIUS, backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden",
+    touchAction: fill ? "none" : undefined,
+  } as const;
 
   const card = (
     <div
@@ -211,7 +222,7 @@ export function SwipeFlipCard({
       style={{
         minHeight: fill ? undefined : minHeight,
         borderRadius: RADIUS,
-        touchAction: "pan-y",
+        touchAction: fill ? "none" : "pan-y",
         transform: `translate3d(${m.x}px, ${m.y}px, 0) rotate(${tilt}deg)`,
         transition: m.ms ? `transform ${m.ms}ms ${EASE}` : "none",
         perspective: 864,
@@ -229,10 +240,10 @@ export function SwipeFlipCard({
           transition: `transform ${FLIP_MS}ms ${EASE}`,
         }}
       >
-        <div data-face className={face} style={{ gridArea: "1 / 1", ...faceStyle }}>
+        <div data-face="front" className={face} style={{ gridArea: "1 / 1", ...faceStyle }}>
           <div className={inner}>{front}</div>
         </div>
-        <div data-face className={face} style={{ gridArea: "1 / 1", ...faceStyle, transform: "rotateY(180deg)" }}>
+        <div data-face="back" className={face} style={{ gridArea: "1 / 1", ...faceStyle, transform: "rotateY(180deg)" }}>
           <div className={inner}>{back}</div>
         </div>
       </div>
