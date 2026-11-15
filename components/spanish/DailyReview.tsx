@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { ReviewItem, ReviewToday } from "@/lib/review";
 import { gradeTyped, type Grade, type Mode } from "@/lib/review/core";
+import { SwipeFlipCard, type SwipeDir, type SwipeFlipCardHandle } from "./SwipeFlipCard";
 
 const MODE_LABEL: Record<Mode, string> = {
   "cards-es-ua": "ES → UA",
@@ -46,18 +47,20 @@ export function DailyReview({ review }: { review: ReviewToday }) {
   const [idx, setIdx] = useState(0);
 
   // Стан поточного слова
-  const [revealed, setRevealed] = useState(false);
+  const [revealed, setRevealed] = useState(false); // зворотний бік вже бачили
+  const [flipped, setFlipped] = useState(false);
   const [grade, setGrade] = useState<Grade | null>(null);
   const [autoGrade, setAutoGrade] = useState<Grade | null>(null);
   const [typed, setTyped] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const cardRef = useRef<SwipeFlipCardHandle>(null);
   const item = queue[idx];
   const isRetry = phase === "retry";
 
   const resetCard = () => {
-    setRevealed(false); setGrade(null); setAutoGrade(null); setTyped(""); setError(null);
+    setRevealed(false); setFlipped(false); setGrade(null); setAutoGrade(null); setTyped(""); setError(null);
   };
 
   const switchMode = (m: Mode) => {
@@ -76,21 +79,32 @@ export function DailyReview({ review }: { review: ReviewToday }) {
     router.refresh(); // оновити статистику
   };
 
-  const next = async () => {
-    if (!item) return;
-    let current = answers;
-    if (!isRetry) {
-      if (!grade) return;
-      setBusy(true);
-      try {
-        await post({ action: "answer", day: review.day, batch: review.batch, key: item.key, grade });
-      } catch (e) {
-        setError((e as Error).message);
-        setBusy(false);
-        return;
-      }
+  const flip = () => {
+    setFlipped(f => !f);
+    setRevealed(true);
+  };
+
+  /** Оцінити поточне слово: картка відлітає (як у Quizlet), паралельно зберігаємо відповідь. */
+  const commit = async (g: Grade | null, dir: SwipeDir) => {
+    if (!item || busy) return;
+    if (!isRetry && !g) return;
+    setBusy(true);
+    setError(null);
+    const fly = cardRef.current?.flyOut(dir, g ?? (isRetry ? "hesitant" : undefined)) ?? Promise.resolve();
+    try {
+      if (!isRetry && g) await post({ action: "answer", day: review.day, batch: review.batch, key: item.key, grade: g });
+      await fly;
+    } catch (e) {
+      setError((e as Error).message);
+      await fly;
+      await cardRef.current?.reset();
       setBusy(false);
-      current = { ...answers, [item.key]: grade };
+      return;
+    }
+    setBusy(false);
+    let current = answers;
+    if (!isRetry && g) {
+      current = { ...answers, [item.key]: g };
       setAnswers(current);
     }
     resetCard();
@@ -104,6 +118,7 @@ export function DailyReview({ review }: { review: ReviewToday }) {
     setAutoGrade(g);
     setGrade(g);
     setRevealed(true);
+    setFlipped(true);
   };
 
   const more = async () => {
@@ -156,15 +171,17 @@ export function DailyReview({ review }: { review: ReviewToday }) {
     );
   }
 
-  const w = item.word;
   const total = queue.length;
+  const nextItem = queue[idx + 1];
+  const isType = mode === "type";
+  const typedGrade = grade ?? autoGrade;
 
   return (
     <div className="space-y-4">
       {/* Режим */}
       <div className="flex rounded-2xl bg-muted p-1 gap-1">
         {(Object.keys(MODE_LABEL) as Mode[]).map(m => (
-          <button key={m} onClick={() => switchMode(m)}
+          <button key={m} onClick={() => switchMode(m)} disabled={busy}
             className={`flex-1 py-2 rounded-xl text-sm font-medium transition-all ${
               mode === m ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
             }`}>
@@ -184,42 +201,37 @@ export function DailyReview({ review }: { review: ReviewToday }) {
         </span>
       </div>
 
-      {/* Лицьовий бік */}
-      {!revealed && (
-        <div className="rounded-3xl border bg-card flex flex-col items-center justify-center p-8 text-center min-h-[260px]">
-          {mode === "cards-es-ua" ? (
-            <>
-              <span className="text-4xl font-bold tracking-tight">{w.spanish}</span>
-              <span className="text-base text-muted-foreground mt-2 font-mono tracking-wide">{w.pronunciation}</span>
-            </>
-          ) : (
-            <>
-              {w.emoji && <span className="text-5xl mb-3">{w.emoji}</span>}
-              <span className="text-3xl font-bold">{w.ukrainian}</span>
-              {item.hint && <span className="text-sm text-muted-foreground mt-2">підказка: <span className="font-mono">{item.hint}</span></span>}
-            </>
-          )}
-        </div>
-      )}
-
-      {/* Зворотний бік */}
-      {revealed && <WordDetails item={item} />}
+      {/* Картка: тап — перевернути, свайп праворуч — «Знаю», ліворуч — «Не знаю» */}
+      <SwipeFlipCard
+        key={`${phase}-${item.key}`}
+        ref={cardRef}
+        flipped={flipped}
+        onFlip={flip}
+        canFlip={!busy && (!isType || revealed)}
+        canSwipe={!busy && !isType && revealed}
+        onSwipe={dir => commit(isRetry ? null : dir === "right" ? "known" : "unknown", dir)}
+        tintRight={isRetry ? "hesitant" : "known"}
+        minHeight={280}
+        front={<CardFront item={item} mode={mode} />}
+        back={<WordDetails item={item} />}
+        under={nextItem && <CardFront item={nextItem} mode={mode} />}
+      />
 
       {/* Дії */}
-      {mode === "type" && !revealed && (
+      {isType && !revealed && (
         <TypeInput value={typed} onChange={setTyped} onSubmit={check} />
       )}
 
-      {mode !== "type" && !revealed && (
-        <button onClick={() => setRevealed(true)}
+      {!isType && !revealed && (
+        <button onClick={flip}
           className="w-full min-h-[52px] rounded-2xl border text-sm font-medium hover:bg-accent/40 active:scale-[0.98] transition-all">
           Показати відповідь
         </button>
       )}
 
-      {revealed && mode === "type" && autoGrade && (
-        <div className={`rounded-2xl border p-3 text-sm flex items-center justify-between gap-3 ${GRADE_STYLE[grade ?? autoGrade]}`}>
-          <span>Ти написав: <strong>{typed}</strong> → {GRADE_LABEL[grade ?? autoGrade]}</span>
+      {revealed && isType && autoGrade && (
+        <div className={`rounded-2xl border p-3 text-sm flex items-center justify-between gap-3 ${GRADE_STYLE[typedGrade ?? autoGrade]}`}>
+          <span>Ти написав: <strong>{typed}</strong> → {GRADE_LABEL[typedGrade ?? autoGrade]}</span>
           {autoGrade !== "known" && grade !== "known" && (
             <button onClick={() => setGrade("known")} className="shrink-0 text-xs underline">
               Я мав на увазі це
@@ -228,13 +240,11 @@ export function DailyReview({ review }: { review: ReviewToday }) {
         </div>
       )}
 
-      {revealed && mode !== "type" && !isRetry && (
+      {revealed && !isType && !isRetry && (
         <div className="grid grid-cols-3 gap-2">
-          {(["known", "hesitant", "unknown"] as Grade[]).map(g => (
-            <button key={g} onClick={() => setGrade(g)}
-              className={`min-h-[48px] rounded-2xl text-sm font-medium transition-all active:scale-[0.98] ${
-                grade === g ? `border-2 ${GRADE_STYLE[g]}` : `border-2 ${GRADE_OUTLINE[g]} hover:bg-accent/40`
-              }`}>
+          {(["unknown", "hesitant", "known"] as Grade[]).map(g => (
+            <button key={g} onClick={() => commit(g, g === "unknown" ? "left" : "right")} disabled={busy}
+              className={`min-h-[48px] rounded-2xl border-2 text-sm font-medium transition-all active:scale-[0.98] hover:bg-accent/40 disabled:opacity-50 ${GRADE_OUTLINE[g]}`}>
               {GRADE_LABEL[g]}
             </button>
           ))}
@@ -243,13 +253,46 @@ export function DailyReview({ review }: { review: ReviewToday }) {
 
       {error && <p className="text-sm text-destructive text-center">{error}</p>}
 
-      {revealed && (
-        <button onClick={next} disabled={busy || (!isRetry && !grade)}
+      {revealed && (isType || isRetry) && (
+        <button
+          onClick={() => {
+            const g = isRetry ? null : typedGrade;
+            if (!isRetry && !g) return;
+            commit(g, g === "unknown" ? "left" : "right");
+          }}
+          disabled={busy || (!isRetry && !typedGrade)}
           className="w-full min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium active:scale-[0.98] transition-all disabled:opacity-40">
           {busy ? "…" : "Далі →"}
         </button>
       )}
+
+      {!isType && (
+        <p className="text-center text-xs text-muted-foreground opacity-60">
+          {revealed
+            ? isRetry ? "Свайпни картку, щоб іти далі" : "← не знаю · свайп · знаю →"
+            : "Натисни на картку, щоб перевернути"}
+        </p>
+      )}
     </div>
+  );
+}
+
+function CardFront({ item, mode }: { item: ReviewItem; mode: Mode }) {
+  const w = item.word;
+  if (mode === "cards-es-ua") {
+    return (
+      <>
+        <span className="text-4xl font-bold tracking-tight">{w.spanish}</span>
+        <span className="text-base text-muted-foreground mt-2 font-mono tracking-wide">{w.pronunciation}</span>
+      </>
+    );
+  }
+  return (
+    <>
+      {w.emoji && <span className="text-5xl mb-3">{w.emoji}</span>}
+      <span className="text-3xl font-bold">{w.ukrainian}</span>
+      {item.hint && <span className="text-sm text-muted-foreground mt-2">підказка: <span className="font-mono">{item.hint}</span></span>}
+    </>
   );
 }
 
@@ -275,7 +318,7 @@ function WordDetails({ item }: { item: ReviewItem }) {
   // Згорнуто за замовчуванням, щоб картка й кнопки влазили на екран.
   const [showAssociation, setShowAssociation] = useState(false);
   return (
-    <div className="rounded-3xl border bg-card flex flex-col items-center p-6 text-center">
+    <div className="flex flex-col items-center w-full">
       <span className="text-2xl font-bold">{w.spanish}</span>
       <span className="text-sm text-muted-foreground font-mono mt-0.5">{w.pronunciation}</span>
       {w.emoji && <span className="text-5xl mt-3">{w.emoji}</span>}

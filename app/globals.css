@@ -124,6 +124,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* картка, що відлітає за край, не має давати горизонтальний скрол */
+    overflow-x: clip;
   }
   html {
     @apply font-sans;
@@ -149,4 +151,12 @@
 }
 .card-flip-back {
   transform: rotateY(180deg);
+}
+
+/* SwipeFlipCard: без анімацій для тих, хто їх вимкнув у системі */
+@media (prefers-reduced-motion: reduce) {
+  .swipe-card,
+  .swipe-card * {
+    transition-duration: 0ms !important;
+  }
 }
