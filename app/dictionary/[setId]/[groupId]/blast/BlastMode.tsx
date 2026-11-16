@@ -1,11 +1,18 @@
 "use client";
 
-import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
+import { Pause, Play, Volume2, VolumeX } from "lucide-react";
 import {
   accuracy, createGame, endRound, goalFor, isRoundComplete, MAX_MULTIPLIER, multiplierFor, ROUND_MS, STREAK_STEP, tap,
   type BlastGame, type TapResult,
 } from "@/lib/blast/core";
+import { BlastMusic, readMuted, saveMuted, subscribeMuted } from "@/lib/blastMusic";
+
+const subscribeVisibility = (cb: () => void) => {
+  document.addEventListener("visibilitychange", cb);
+  return () => document.removeEventListener("visibilitychange", cb);
+};
 
 export type BlastModeWord = { key: string; spanish: string; prompt: string; emoji?: string };
 export type BlastRecord = { score: number; level: number };
@@ -42,6 +49,16 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
   const [newRecord, setNewRecord] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
 
+  // Пауза: час раунду, політ астероїдів і музика стоять; екран розмитий
+  // pausedAt — єдине джерело правди для логіки (null = гра йде); `paused` — лише для рендера
+  const [paused, setPausedState] = useState(false);
+  const pausedAt = useRef<number | null>(null);
+  const isPaused = () => pausedAt.current !== null;
+  const muted = useSyncExternalStore(subscribeMuted, readMuted, () => false);
+  const tabHidden = useSyncExternalStore(subscribeVisibility, () => document.hidden, () => false);
+  const music = useRef<BlastMusic | null>(null);
+  useEffect(() => () => music.current?.dispose(), []);
+
   // Актуальний стан гри для обробників тапів (швидкі тапи не повинні бачити застарілий стан)
   const gameRef = useRef<BlastGame | null>(null);
   const deadline = useRef(0);
@@ -62,6 +79,11 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
   };
 
   const start = () => {
+    // Звук браузер дозволяє лише з кліку — тому аудіо створюється тут
+    music.current ??= new BlastMusic();
+    if (!readMuted()) music.current.start();
+    pausedAt.current = null;
+    setPausedState(false);
     update(createGame(words.map(w => ({ key: w.key, prompt: w.prompt }))));
     setRunId(r => r + 1);
     setNewRecord(false);
@@ -89,19 +111,63 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
     }
   };
 
-  // Кінець раунду; коли вкладка схована — пауза, щоб не втрачати час.
+  /** Пауза можлива лише посеред раунду. */
+  const pause = useCallback(() => {
+    if (pausedAt.current !== null || phaseRef.current !== "playing") return;
+    pausedAt.current = performance.now();
+    setPausedState(true);
+  }, []);
+
+  const resume = useCallback(() => {
+    if (pausedAt.current === null) return;
+    deadline.current += performance.now() - pausedAt.current;
+    pausedAt.current = null;
+    setPausedState(false);
+  }, []);
+
+  /** Скільки мс лишилось у раунді; на паузі — застигає. */
+  const remaining = useCallback(
+    () => Math.max(0, deadline.current - (pausedAt.current ?? performance.now())), []);
+
+  // Музика грає під час гри; на паузі, з мютом, у схованій вкладці, до старту й після кінця — мовчить
+  const inGame = phase === "goal" || phase === "playing" || phase === "levelDone";
+  const musicOn = inGame && !paused && !muted && !tabHidden;
+  useEffect(() => {
+    if (!music.current) return;
+    if (musicOn) music.current.start();
+    else music.current.pause();
+  }, [musicOn]);
+
+  /** Мют — з кліку: увімкнення звуку мусить статись у жесті користувача (iOS). */
+  const toggleMute = () => {
+    const next = !muted;
+    saveMuted(next);
+    if (!next && inGame && !paused) {
+      music.current ??= new BlastMusic();
+      music.current.start();
+    }
+  };
+
+  // Esc або P — пауза / продовжити (без автоповтору й без Cmd/Ctrl, щоб Cmd+P не ставив на паузу)
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key !== "Escape" && e.key.toLowerCase() !== "p" && e.key.toLowerCase() !== "з") return;
+      if (pausedAt.current !== null) resume(); else pause();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [pause, resume]);
+
+  // Кінець раунду за часом. Сховали вкладку — пауза (і ще під час заставки «Ціль» теж).
   // Секунди на екрані малюють окремі компоненти, щоб не перемальовувати все поле 10 разів на секунду.
   useEffect(() => {
     if (phase !== "playing") return;
-    // Вкладку могли сховати ще під час заставки «Ціль» — тоді пауза починається з цього моменту
-    let hiddenAt = document.hidden ? performance.now() : 0;
-    const onVisibility = () => {
-      if (document.hidden) hiddenAt = performance.now();
-      else if (hiddenAt) { deadline.current += performance.now() - hiddenAt; hiddenAt = 0; }
-    };
+    if (document.hidden) pause();
+    const onVisibility = () => { if (document.hidden) pause(); };
     document.addEventListener("visibilitychange", onVisibility);
     const id = setInterval(() => {
-      if (document.hidden) return;
+      if (isPaused()) return;
       const g = gameRef.current;
       if (deadline.current > performance.now() || !g) return;
       // Ціль набрали в останню мить — раунд уже закінчує onTap, це не кінець гри
@@ -120,7 +186,7 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
   const onTap = useCallback((key: string): TapResult | null => {
     const g = gameRef.current;
     // Повторний тап по щойно збитому астероїду (до перемальовування) — ігноруємо, це не промах
-    if (!g || g.over || phaseRef.current !== "playing" || !g.visible.includes(key)) return null;
+    if (!g || g.over || pausedAt.current !== null || phaseRef.current !== "playing" || !g.visible.includes(key)) return null;
     const result = tap(g, key);
     gameRef.current = result.game;
     setGame(result.game);
@@ -141,7 +207,6 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
 
   const byKey = useMemo(() => new Map(words.map(w => [w.key, w])), [words]);
   const target = game?.target ? byKey.get(game.target) : undefined;
-  const inGame = phase === "goal" || phase === "playing" || phase === "levelDone";
   const goal = game ? goalFor(game.level) : 0;
 
   return (
@@ -149,16 +214,29 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
       <div className="h-full max-w-lg mx-auto flex flex-col px-4"
         style={{ paddingTop: "max(env(safe-area-inset-top), 12px)", paddingBottom: "max(env(safe-area-inset-bottom), 12px)" }}>
         {/* Верхня панель */}
-        <div className="flex items-center justify-between h-12 shrink-0">
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center h-12 shrink-0">
           <Link href={exitHref} aria-label="Закрити Blast"
-            className="h-10 w-10 rounded-full border flex items-center justify-center hover:bg-accent/40 transition-colors">
+            className="justify-self-start h-10 w-10 rounded-full border flex items-center justify-center hover:bg-accent/40 transition-colors">
             <CloseIcon />
           </Link>
           <div className="text-center">
             <p className="text-sm font-semibold">Blast</p>
             <p className="text-[10px] text-muted-foreground leading-none">{title}</p>
           </div>
-          <div className="h-10 w-10" />
+          <div className="flex items-center justify-end gap-2">
+            <button type="button" onClick={toggleMute} aria-pressed={muted}
+              aria-label={muted ? "Увімкнути музику" : "Вимкнути музику"}
+              className="h-10 w-10 rounded-full border flex items-center justify-center hover:bg-accent/40 transition-colors">
+              {muted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+            </button>
+            {inGame && (
+              <button type="button" onClick={paused ? resume : pause} disabled={phase !== "playing" && !paused}
+                aria-label={paused ? "Продовжити гру" : "Пауза"} aria-pressed={paused}
+                className="h-10 w-10 rounded-full border flex items-center justify-center hover:bg-accent/40 disabled:opacity-40 transition-colors">
+                {paused ? <Play size={20} /> : <Pause size={20} />}
+              </button>
+            )}
+          </div>
         </div>
 
         {phase === "intro" && (
@@ -166,7 +244,10 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
         )}
 
         {inGame && game && (
-          <>
+          <div className="relative flex-1 min-h-0 flex flex-col">
+          {/* На паузі все розмито: не видно ні підказки, ні слів на астероїдах */}
+          <div aria-hidden={paused} className={`flex-1 min-h-0 flex flex-col transition-[filter] duration-200 ${
+            paused ? "blur-xl pointer-events-none select-none" : ""}`}>
             {/* Підказка й час раунду */}
             <div className="shrink-0 mt-2 rounded-3xl border bg-card overflow-hidden">
               <div className="px-5 py-3 min-h-[64px] flex items-center justify-center gap-3 text-center" aria-live="polite">
@@ -177,14 +258,14 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
                   </div>
                 )}
               </div>
-              <TimeBar deadline={deadline} phase={phase} />
+              <TimeBar key={`${runId}-${game.level}`} remaining={remaining} phase={phase} paused={paused} />
             </div>
 
             <div className="relative flex-1 min-h-0 flex flex-col">
               {phase === "playing" && (
                 <>
-                  <Seconds deadline={deadline} />
-                  <Playfield key={`${runId}-${game.level}`} visible={game.visible} byKey={byKey} onTap={onTap} />
+                  <Seconds remaining={remaining} paused={paused} />
+                  <Playfield key={`${runId}-${game.level}`} visible={game.visible} byKey={byKey} onTap={onTap} paused={paused} />
                 </>
               )}
               {phase === "goal" && (
@@ -197,7 +278,9 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
 
             {/* Нижня панель: рівень і бали до цілі, серія */}
             <Hud level={game.level} levelScore={game.levelScore} goal={goal} streak={game.streak} />
-          </>
+          </div>
+          {paused && <PauseOverlay onResume={resume} exitHref={exitHref} />}
+          </div>
         )}
 
         {phase === "over" && game && (
@@ -209,40 +292,69 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
   );
 }
 
-/** Скільки мс лишилось до кінця раунду; оновлюється сама, не чіпаючи решту екрана. */
-function useMsLeft(deadline: React.RefObject<number>, active: boolean, everyMs: number): number {
+/**
+ * Скільки мс лишилось до кінця раунду; оновлюється сама, не чіпаючи решту екрана.
+ * Поки `running` = false (пауза), показує застигле останнє значення.
+ */
+function useMsLeft(remaining: () => number, running: boolean, everyMs: number): number {
   const [left, setLeft] = useState(ROUND_MS);
   useEffect(() => {
-    if (!active) return;
-    const tick = () => { if (!document.hidden) setLeft(Math.max(0, deadline.current - performance.now())); };
+    if (!running) return;
+    const tick = () => setLeft(remaining());
     tick();
     const id = setInterval(tick, everyMs);
     return () => clearInterval(id);
-  }, [deadline, active, everyMs]);
-  return active ? left : ROUND_MS;
+  }, [remaining, running, everyMs]);
+  return left;
 }
 
 /** Смуга часу під підказкою: заповнюється за 60 секунд раунду. */
-function TimeBar({ deadline, phase }: { deadline: React.RefObject<number>; phase: Phase }) {
-  const left = useMsLeft(deadline, phase === "playing", 100);
+function TimeBar({ remaining, phase, paused }: { remaining: () => number; phase: Phase; paused: boolean }) {
+  const left = useMsLeft(remaining, phase === "playing" && !paused, 100);
   const done = phase === "levelDone";
+  // Під час заставки «Ціль» раунд ще не почався — смуга порожня (а не з минулого раунду)
+  const elapsed = phase === "goal" ? 0 : done ? ROUND_MS : ROUND_MS - left;
   return (
     <div className="h-1.5 bg-muted" aria-hidden>
       <div className={`h-full transition-[width] duration-100 ease-linear ${done ? "bg-[#18AE79]" : "bg-primary"}`}
-        style={{ width: `${done ? 100 : ((ROUND_MS - left) / ROUND_MS) * 100}%` }} />
+        style={{ width: `${(elapsed / ROUND_MS) * 100}%` }} />
     </div>
   );
 }
 
 /** Секунди до кінця раунду — великим блідим числом над полем. */
-function Seconds({ deadline }: { deadline: React.RefObject<number> }) {
-  const seconds = Math.ceil(useMsLeft(deadline, true, 250) / 1000);
+function Seconds({ remaining, paused }: { remaining: () => number; paused: boolean }) {
+  const seconds = Math.ceil(useMsLeft(remaining, !paused, 250) / 1000);
   return (
     <p aria-label={`Лишилось ${seconds} с`}
       className={`absolute top-5 inset-x-0 text-center text-4xl font-bold tabular-nums pointer-events-none z-10 ${
         seconds <= 10 ? "text-[#CC4E00]/60 dark:text-[#FF983A]/60" : "text-foreground/15"}`}>
       {seconds}
     </p>
+  );
+}
+
+function PauseOverlay({ onResume, exitHref }: { onResume: () => void; exitHref: string }) {
+  const ref = useRef<HTMLButtonElement>(null);
+  useEffect(() => { ref.current?.focus(); }, []);
+  return (
+    <div role="dialog" aria-label="Пауза"
+      className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-5 text-center animate-in fade-in duration-150">
+      <div className="space-y-1">
+        <p className="text-3xl font-bold">Пауза</p>
+        <p className="text-sm text-muted-foreground">Час раунду стоїть</p>
+      </div>
+      <div className="w-full max-w-xs space-y-2">
+        <button ref={ref} type="button" onClick={onResume}
+          className="w-full min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium active:scale-[0.98] transition-all">
+          Продовжити
+        </button>
+        <Link href={exitHref}
+          className="w-full min-h-[52px] rounded-2xl border bg-background text-sm font-medium flex items-center justify-center hover:bg-accent/40 transition-all">
+          Вийти з гри
+        </Link>
+      </div>
+    </div>
   );
 }
 
@@ -303,11 +415,14 @@ type NewEffect = DistributiveOmit<Effect, "id">;
 
 const reducedMotion = () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const Playfield = memo(function Playfield({ visible, byKey, onTap }: {
+const Playfield = memo(function Playfield({ visible, byKey, onTap, paused }: {
   visible: string[];
   byKey: Map<string, BlastModeWord>;
   onTap: (key: string) => TapResult | null;
+  /** На паузі астероїди застигають. */
+  paused: boolean;
 }) {
+
   const fieldRef = useRef<HTMLDivElement>(null);
   const bodies = useRef(new Map<string, Body>());
   const els = useRef(new Map<string, HTMLElement>());
@@ -384,8 +499,19 @@ const Playfield = memo(function Playfield({ visible, byKey, onTap }: {
     return () => ro.disconnect();
   }, [measure]);
 
-  // Політ: позиції пишемо прямо в DOM, без перемальовування React на кожному кадрі
+  // Політ: позиції пишемо прямо в DOM, без перемальовування React на кожному кадрі.
+  // На паузі цикл не крутиться; після паузи час підльоту зсувається на її тривалість.
+  const pausedSince = useRef<number | null>(null);
   useEffect(() => {
+    if (paused) {
+      pausedSince.current = performance.now();
+      return;
+    }
+    if (pausedSince.current !== null) {
+      const away = performance.now() - pausedSince.current;
+      for (const b of bodies.current.values()) b.enteredBy += away;
+      pausedSince.current = null;
+    }
     let raf = 0;
     let last = performance.now();
     const step = (now: number) => {
@@ -431,7 +557,7 @@ const Playfield = memo(function Playfield({ visible, byKey, onTap }: {
     };
     raf = requestAnimationFrame(step);
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, [paused]);
 
   const addEffects = (list: NewEffect[]) => {
     const fresh = list.map(e => ({ ...e, id: ++effectId.current }) as Effect);
