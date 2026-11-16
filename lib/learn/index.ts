@@ -47,7 +47,7 @@ export async function recordAnswer(input: { scope: string; key: string; kind: Qu
   const { key, kind, correct } = input;
   const scope = checkScope(input.scope);
   if (typeof key !== "string" || !key || key.length > 200) throw new LearnInputError("Некоректне слово");
-  if (kind !== "choice" && kind !== "write") throw new LearnInputError("Некоректний тип питання");
+  if (kind !== "choice" && kind !== "reverse" && kind !== "write") throw new LearnInputError("Некоректний тип питання");
   if (typeof correct !== "boolean") throw new LearnInputError("Некоректна відповідь");
   if (!allWordKeys().has(key)) throw new LearnInputError("Такого слова немає в словнику");
   const review = parseReviewScope(scope);
@@ -96,19 +96,23 @@ function allWordKeys(): Set<string> {
 
 /** Що потрібно екрану Learn, окрім самих слів групи. */
 export type LearnMaterials = {
-  /** Запас хибних варіантів у порядку: своя група → інші групи набору → інші набори. */
+  /** Запас хибних варіантів у порядку: своя група → інші групи набору → інші набори. Текст — український переклад. */
   layers: Option[][];
+  /** Ті самі слова для питань «переклад → іспанське»: текст — іспанське слово, `meaning` — переклад. */
+  reverseLayers: Option[][];
   /** Для кожного слова групи — інші іспанські слова з тим самим перекладом. */
   sameTranslation: Record<string, string[]>;
 };
 
-const toOption = (w: { spanish: string; ukrainian: string }): Option => ({ key: wordKey(w.spanish), text: w.ukrainian });
+type Pair = { spanish: string; ukrainian: string };
+const toOption = (w: Pair): Option => ({ key: wordKey(w.spanish), text: w.ukrainian });
+const toReverseOption = (w: Pair): Option => ({ key: wordKey(w.spanish), text: w.spanish, meaning: w.ukrainian });
 
 export function learnMaterials(set: VocabSet, group: VocabGroup): LearnMaterials {
   const sets = loadVocabularySets();
   // «Усі слова» вже містять увесь набір — інших груп набору для них немає
-  const inSet = group.id === ALL_WORDS_GROUP_ID ? [] : set.groups.filter(g => g.id !== group.id).flatMap(g => g.words.map(toOption));
-  const elsewhere = sets.filter(s => s.id !== set.id).flatMap(s => s.groups.flatMap(g => g.words.map(toOption)));
+  const inSet = group.id === ALL_WORDS_GROUP_ID ? [] : set.groups.filter(g => g.id !== group.id).flatMap(g => g.words);
+  const elsewhere = sets.filter(s => s.id !== set.id).flatMap(s => s.groups.flatMap(g => g.words));
   return materials(sets, group.words, inSet, elsewhere);
 }
 
@@ -116,12 +120,11 @@ export function learnMaterials(set: VocabSet, group: VocabGroup): LearnMaterials
 export function reviewLearnMaterials(words: VocabWord[]): LearnMaterials {
   const sets = loadVocabularySets();
   const own = new Set(words.map(w => wordKey(w.spanish)));
-  const elsewhere = sets.flatMap(s => s.groups.flatMap(g => g.words.map(toOption))).filter(o => !own.has(o.key));
+  const elsewhere = sets.flatMap(s => s.groups.flatMap(g => g.words)).filter(w => !own.has(wordKey(w.spanish)));
   return materials(sets, words, [], elsewhere);
 }
 
-function materials(sets: VocabSet[], words: VocabWord[], inSet: Option[], elsewhereAll: Option[]): LearnMaterials {
-  const own = words.map(toOption);
+function materials(sets: VocabSet[], words: VocabWord[], inSet: Pair[], elsewhereAll: Pair[]): LearnMaterials {
   // Інші набори — у випадковому порядку, щоб варіанти не були щоразу ті самі; на екран досить кількох десятків
   const elsewhere = shuffle(elsewhereAll).slice(0, 60);
 
@@ -136,5 +139,6 @@ function materials(sets: VocabSet[], words: VocabWord[], inSet: Option[], elsewh
     const others = [...(byTranslation.get(w.ukrainian.trim().toLowerCase()) ?? [])].filter(s => wordKey(s) !== wordKey(w.spanish));
     if (others.length) sameTranslation[wordKey(w.spanish)] = others;
   }
-  return { layers: [own, inSet, elsewhere], sameTranslation };
+  const pools = [words, inSet, elsewhere];
+  return { layers: pools.map(p => p.map(toOption)), reverseLayers: pools.map(p => p.map(toReverseOption)), sameTranslation };
 }

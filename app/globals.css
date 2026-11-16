@@ -163,6 +163,20 @@
   }
 }
 
+/* Learn: плавна поява нового питання й коротке зникнення попереднього */
+.learn-step {
+  transition: opacity 180ms ease, transform 180ms ease;
+  animation: learn-in 280ms ease-out backwards;
+}
+.learn-step-leaving { opacity: 0; transform: translateX(-12px); }
+@keyframes learn-in {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .learn-step { animation: none; transition: none; }
+}
+
 /* Лічильники свайпу (кольори Quizlet: світла / темна тема) */
 .swipe-counter-known { border-color: #98F1D1; background: #E6FCF4; color: #18AE79; }
 .swipe-counter-unknown { border-color: #FFC38C; background: #FFF6EF; color: #CC4E00; }

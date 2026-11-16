@@ -4,15 +4,20 @@ import { gradeTyped } from "@/lib/review/core";
 
 /** Етап слова: не вивчав → ще вчу (пройшов вибір) → вивчено (ще й правильно вписав). */
 export type Stage = "new" | "learning" | "mastered";
-/** Тип питання: вибір із 4 перекладів або вписування іспанською. */
-export type QuestionKind = "choice" | "write";
+/**
+ * Тип питання (три режими):
+ * - `choice`: іспанське слово → вибір українського перекладу з 4;
+ * - `reverse`: український переклад → вибір іспанського слова з 4;
+ * - `write`: український переклад → вписати іспанською.
+ */
+export type QuestionKind = "choice" | "reverse" | "write";
 
 const STAGE_ORDER: Stage[] = ["new", "learning", "mastered"];
 
 /** Етап після відповіді: помилка — назад на вибір; правильна відповідь етап не знижує. */
 export function nextStage(stage: Stage, kind: QuestionKind, correct: boolean): Stage {
   if (!correct) return "new"; // повертається на вибір
-  const reached: Stage = kind === "choice" ? "learning" : "mastered";
+  const reached: Stage = kind === "write" ? "mastered" : "learning"; // обидва види вибору — етап «ще вчу»
   return STAGE_ORDER.indexOf(reached) > STAGE_ORDER.indexOf(stage) ? reached : stage;
 }
 
@@ -25,22 +30,52 @@ export type Question = { key: string; kind: QuestionKind };
 
 export { shuffle };
 
+/** Скільки питань підряд в одному режимі, перш ніж режим зміниться. */
+export const RUN_LENGTH = 2;
+
 /**
  * Раунд до 7 питань: спершу слова, що пройшли вибір і чекають на вписування,
- * потім нові на вибір (спершу ті, де помилився в цій сесії). Вивчені не потрапляють. Усередині раунду — перемішано.
+ * потім нові на вибір (спершу ті, де помилився в цій сесії). Вивчені не потрапляють.
+ * Нові слова навпіл діляться між `choice` і `reverse`; режими йдуть серіями по {@link RUN_LENGTH}
+ * питання, а порядок серій випадковий (той самий режим двічі поспіль лише коли інших не лишилось).
  */
 export function buildRound(opts: { words: LearnWord[]; missed?: Set<string>; rng?: Rng; size?: number }): Question[] {
   const { words, missed = new Set<string>(), rng = Math.random, size = ROUND_SIZE } = opts;
-  const write = words.filter(w => w.stage === "learning").map(w => ({ key: w.key, kind: "write" as const }));
+  const write = words.filter(w => w.stage === "learning").map(w => w.key);
   // Серед нових спершу ті, де вже помилився, — вони мають повернутися в наступному раунді
   const fresh = words.filter(w => w.stage === "new");
-  const choice = [...fresh.filter(w => missed.has(w.key)), ...fresh.filter(w => !missed.has(w.key))]
-    .map(w => ({ key: w.key, kind: "choice" as const }));
-  return shuffle([...write, ...choice].slice(0, size), rng);
+  const choice = [...fresh.filter(w => missed.has(w.key)), ...fresh.filter(w => !missed.has(w.key))].map(w => w.key);
+
+  const picked = [
+    ...write.map(key => ({ key, write: true })),
+    ...choice.map(key => ({ key, write: false })),
+  ].slice(0, size);
+
+  const queues: Record<QuestionKind, Question[]> = { choice: [], reverse: [], write: [] };
+  for (const key of shuffle(picked.filter(p => p.write).map(p => p.key), rng)) queues.write.push({ key, kind: "write" });
+  shuffle(picked.filter(p => !p.write).map(p => p.key), rng)
+    .forEach((key, i) => queues[i % 2 === 0 ? "choice" : "reverse"].push({ key, kind: i % 2 === 0 ? "choice" : "reverse" }));
+
+  const kinds: QuestionKind[] = ["choice", "reverse", "write"];
+  const round: Question[] = [];
+  let last: QuestionKind | null = null;
+  for (;;) {
+    const left = kinds.filter(k => queues[k].length > 0);
+    if (left.length === 0) break;
+    const other = left.filter(k => k !== last);
+    const from = other.length > 0 ? other : left;
+    const kind = from[Math.min(Math.floor(rng() * from.length), from.length - 1)];
+    round.push(...queues[kind].splice(0, RUN_LENGTH));
+    last = kind;
+  }
+  return round;
 }
 
-/** Варіант відповіді на вибір: ключ слова + український переклад. */
-export type Option = { key: string; text: string };
+/**
+ * Варіант відповіді на вибір: ключ слова + текст, що показується (український переклад або іспанське слово).
+ * `meaning` — український переклад, коли `text` іспанський: за ним відсікаються слова з тим самим значенням.
+ */
+export type Option = { key: string; text: string; meaning?: string };
 
 export const OPTION_COUNT = 4;
 /** Запас слів, з якого беруться хибні варіанти (разом із правильним). */
@@ -51,15 +86,17 @@ const sameText = (a: string, b: string) => a.trim().toLowerCase() === b.trim().t
 /**
  * 4 варіанти (1 правильний + 3 хибні), перемішані. Хибні беруться із запасу
  * щонайменше 20 слів: спершу своя група, потім інші групи набору, потім інші набори
- * (`layers` — у цьому порядку). Переклад, що збігається з правильним, не береться.
+ * (`layers` — у цьому порядку). Варіант з тим самим текстом чи значенням, що в правильного, не береться
+ * (інакше «інше правильне» слово з тим самим перекладом стало б хибним варіантом).
  */
 export function pickOptions(opts: { target: Option; layers: Option[][]; rng?: Rng }): Option[] {
   const { target, layers, rng = Math.random } = opts;
+  const meaning = (o: Option) => o.meaning ?? o.text;
   const pool: Option[] = [];
   for (const layer of layers) {
     for (const o of layer) {
       if (pool.length >= OPTION_POOL - 1) break;
-      if (o.key === target.key || sameText(o.text, target.text)) continue;
+      if (o.key === target.key || sameText(o.text, target.text) || sameText(meaning(o), meaning(target))) continue;
       if (pool.some(p => p.key === o.key || sameText(p.text, o.text))) continue;
       pool.push(o);
     }

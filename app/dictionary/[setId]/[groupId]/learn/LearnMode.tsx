@@ -10,10 +10,13 @@ import {
   type Option, type Question, type Stage,
 } from "@/lib/learn/core";
 import { speakSpanish } from "@/lib/speak";
+import { useVisibleViewport } from "@/lib/useVisibleViewport";
 import { SpeakerIcon, WordNotes } from "@/components/spanish/WordNotes";
 
 /** Скільки показувати «Правильно!», перш ніж перейти далі самому. */
-const CORRECT_PAUSE_MS = 900;
+const CORRECT_PAUSE_MS = 1300;
+/** Скільки триває зникнення питання перед наступним (має збігатися з `.learn-step` у globals.css). */
+const LEAVE_MS = 180;
 
 type Feedback =
   | { result: "correct"; spelling: boolean; typed?: string; picked?: string }
@@ -47,6 +50,7 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [resetting, setResetting] = useState(false);
+  const viewport = useVisibleViewport();
 
   // Відповіді пишемо по черзі, щоб «Я мав на увазі це» не обігнало попередній запис
   const saving = useRef<Promise<unknown>>(Promise.resolve());
@@ -79,9 +83,21 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
     save({ action: "answer", scope, key: q.key, kind: q.kind, correct });
   };
 
+  // Перехід до наступного питання: коротке зникнення, потім заміна. Ref — щоб подвійний клік не пропустив питання.
+  const [leaving, setLeaving] = useState(false);
+  const leavingRef = useRef(false);
+  const leaveTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  useEffect(() => () => clearTimeout(leaveTimer.current), []);
   const next = () => {
-    setFeedback(null);
-    setQIndex(i => i + 1);
+    if (leavingRef.current) return;
+    leavingRef.current = true;
+    setLeaving(true);
+    leaveTimer.current = setTimeout(() => {
+      setFeedback(null);
+      setQIndex(i => i + 1);
+      leavingRef.current = false;
+      setLeaving(false);
+    }, LEAVE_MS);
   };
 
   const startNextRound = () => {
@@ -128,7 +144,9 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
   const finished = progress.done && (roundDone || round.length === 0);
 
   return (
-    <div className="fixed inset-0 z-50 bg-background overflow-y-auto">
+    <div className="fixed inset-0 z-50 bg-background overflow-y-auto overscroll-contain"
+      // Клавіатура на iOS зсуває visual viewport — тримаємо оверлей рівно по видимій області
+      style={viewport ? { top: viewport.top, height: viewport.height, bottom: "auto" } : undefined}>
       <div className="min-h-full max-w-lg mx-auto flex flex-col px-4"
         style={{ paddingTop: "max(env(safe-area-inset-top), 12px)", paddingBottom: "max(env(safe-area-inset-bottom), 16px)" }}>
         {/* Верхня панель */}
@@ -150,16 +168,20 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
         {error && <p className="text-xs text-destructive text-center mt-2">{error}</p>}
 
         <div className="flex-1 flex flex-col py-5">
+          {/* key змінюється з кожним питанням/екраном — так спрацьовує анімація появи */}
+          <div key={finished ? "finished" : roundDone || round.length === 0 ? `summary-${roundNo}` : `${roundNo}-${qIndex}`}
+            className={`learn-step flex-1 flex flex-col ${leaving ? "learn-step-leaving" : ""}`}>
           {finished ? (
             <Finished total={progress.total} onAgain={learnAgain} busy={resetting} exitHref={exitHref} exitLabel={exitLabel} />
           ) : roundDone || round.length === 0 ? (
             <RoundSummary roundNo={roundNo} answers={answers} byKey={byKey} progress={progress}
               onContinue={startNextRound} exitHref={exitHref} />
           ) : question && word ? (
-            question.kind === "choice" ? (
+            question.kind !== "write" ? (
               <ChoiceQuestion key={`${roundNo}-${qIndex}`} word={word} wordKeyValue={question.key}
+                reverse={question.kind === "reverse"}
                 seed={seed + roundNo * 1000 + qIndex}
-                layers={materials.layers} feedback={feedback}
+                layers={question.kind === "reverse" ? materials.reverseLayers : materials.layers} feedback={feedback}
                 onAnswer={(picked, correct) => {
                   answer(question, correct);
                   setFeedback(correct ? { result: "correct", spelling: false, picked } : { result: "wrong", picked, dontKnow: picked === "" });
@@ -179,6 +201,7 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
                 onNext={next} />
             )
           ) : null}
+          </div>
         </div>
       </div>
     </div>
@@ -187,30 +210,44 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
 
 // ─── Питання: вибір ───────────────────────────────────────────────────────────
 
-function ChoiceQuestion({ word, wordKeyValue, seed, layers, feedback, onAnswer, onNext }: {
+function ChoiceQuestion({ word, wordKeyValue, reverse, seed, layers, feedback, onAnswer, onNext }: {
   word: VocabWord;
   wordKeyValue: string;
+  /** Показати переклад і обирати іспанське слово (інакше — навпаки). */
+  reverse: boolean;
   seed: number;
   layers: Option[][];
   feedback: Feedback | null;
   onAnswer: (pickedKey: string, correct: boolean) => void;
   onNext: () => void;
 }) {
-  const [options] = useState(() => pickOptions({ target: { key: wordKeyValue, text: word.ukrainian }, layers, rng: seededRng(seed) }));
+  const [options] = useState(() => pickOptions({
+    target: reverse ? { key: wordKeyValue, text: word.spanish, meaning: word.ukrainian } : { key: wordKeyValue, text: word.ukrainian },
+    layers, rng: seededRng(seed),
+  }));
   const answered = feedback !== null;
 
   return (
     <div className="flex-1 flex flex-col gap-5">
-      <div className="rounded-3xl border bg-card p-6 min-h-[180px] flex flex-col items-center justify-center text-center relative">
-        <p className="absolute top-4 left-5 text-xs text-muted-foreground">Слово</p>
-        <SpeakButton word={word} />
-        <span className="text-3xl font-bold tracking-tight break-words">{word.spanish}</span>
-        <span className="text-sm text-muted-foreground mt-1.5 font-mono">{word.pronunciation}</span>
-      </div>
+      {reverse ? (
+        // Переклад → іспанське: ні озвучення, ні вимова, бо вони підказують відповідь
+        <div className="rounded-3xl border bg-card p-6 min-h-[180px] flex flex-col items-center justify-center text-center relative">
+          <p className="absolute top-4 left-5 text-xs text-muted-foreground">Переклад</p>
+          {word.emoji && <span className="text-5xl mb-2">{word.emoji}</span>}
+          <span className="text-2xl font-bold break-words">{word.ukrainian}</span>
+        </div>
+      ) : (
+        <div className="rounded-3xl border bg-card p-6 min-h-[180px] flex flex-col items-center justify-center text-center relative">
+          <p className="absolute top-4 left-5 text-xs text-muted-foreground">Слово</p>
+          <SpeakButton word={word} />
+          <span className="text-3xl font-bold tracking-tight break-words">{word.spanish}</span>
+          <span className="text-sm text-muted-foreground mt-1.5 font-mono">{word.pronunciation}</span>
+        </div>
+      )}
 
       <div className="space-y-2">
         <p className="text-sm font-medium text-muted-foreground">
-          {!answered ? "Обери правильний переклад" : feedback.result === "correct" ? "Правильно! 🎉" : feedback.dontKnow ? "Нічого, запам'ятаємо:" : "Ще не зовсім — правильна відповідь:"}
+          {!answered ? (reverse ? "Обери слово іспанською" : "Обери правильний переклад") : feedback.result === "correct" ? "Правильно! 🎉" : feedback.dontKnow ? "Нічого, запам'ятаємо:" : "Ще не зовсім — правильна відповідь:"}
         </p>
         {options.map(o => {
           const isCorrect = o.key === wordKeyValue;
