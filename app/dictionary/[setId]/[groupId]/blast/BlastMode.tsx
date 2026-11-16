@@ -20,11 +20,13 @@ export type BlastRecord = { score: number; level: number };
 
 /** Скільки показувати «Ціль: N балів» перед раундом і «Рівень N пройдено» після. */
 const GOAL_BANNER_MS = 1600;
-const LEVEL_DONE_MS = 2200;
 /** Поділок на шкалі серії: від ×1.0 до стелі з кроком 0.2. */
 const STREAK_SEGMENTS = Math.round((MAX_MULTIPLIER - 1) / STREAK_STEP);
 
-type Phase = "intro" | "goal" | "playing" | "levelDone" | "over";
+/** clearing — ціль набрано: астероїди, що лишились, лопаються по черзі; levelDone — підсумок рівня з кнопкою «Далі». */
+type Phase = "intro" | "goal" | "playing" | "clearing" | "levelDone" | "over";
+/** Пауза між «лопанням» астероїдів після набраної цілі. */
+const POP_EVERY_MS = 180;
 
 /**
  * Blast — механіка як у Quizlet: у кожному раунді за 60 секунд треба набрати ціль (50, 75, 125, 200, 250…);
@@ -50,6 +52,8 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
   const [newRecord, setNewRecord] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [savedOffline, setSavedOffline] = useState(false);
+  /** Скільки секунд знадобилось на пройдений раунд (для підсумку). */
+  const [roundSeconds, setRoundSeconds] = useState(0);
 
   // Пауза: час раунду, політ астероїдів і музика стоять; екран розмитий
   // pausedAt — єдине джерело правди для логіки (null = гра йде); `paused` — лише для рендера
@@ -133,7 +137,7 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
     () => Math.max(0, deadline.current - (pausedAt.current ?? performance.now())), []);
 
   // Музика грає під час гри; на паузі, з мютом, у схованій вкладці, до старту й після кінця — мовчить
-  const inGame = phase === "goal" || phase === "playing" || phase === "levelDone";
+  const inGame = phase === "goal" || phase === "playing" || phase === "clearing" || phase === "levelDone";
   const musicOn = inGame && !paused && !muted && !tabHidden;
   useEffect(() => {
     if (!music.current) return;
@@ -193,20 +197,26 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
     const result = tap(g, key);
     gameRef.current = result.game;
     setGame(result.game);
-    // Ціль набрано — раунд одразу закінчено: «Рівень N пройдено», потім ціль наступного
+    // Ціль набрано — раунд закінчено: час стоїть, решта астероїдів лопається, потім підсумок
     if (isRoundComplete(result.game)) {
-      setPhase("levelDone"); // з цієї миті тапи не приймаються, а таймер раунду не завершить гру
-      later(() => {
-        // Гру могли перезапустити чи закрити, поки показувався банер
-        if (phaseRef.current !== "levelDone" || !gameRef.current) return;
-        update(endRound(gameRef.current));
-        announceLevel();
-      }, LEVEL_DONE_MS);
+      setRoundSeconds(Math.round((ROUND_MS - remaining()) / 1000));
+      setPhase("clearing"); // з цієї миті тапи не приймаються, а таймер раунду не завершить гру
     }
     return result;
     // Помічники вище працюють лише з ref-ами та сетерами стану, тож перша їх версія завжди актуальна
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  /** Усі астероїди лопнули — показати підсумок рівня. */
+  const onCleared = useCallback(() => {
+    if (phaseRef.current === "clearing") setPhase("levelDone");
+  }, []);
+  /** «Далі» на підсумку: наступний рівень. */
+  const nextLevel = () => {
+    if (phaseRef.current !== "levelDone" || !gameRef.current) return;
+    update(endRound(gameRef.current));
+    announceLevel();
+  };
 
   const byKey = useMemo(() => new Map(words.map(w => [w.key, w])), [words]);
   const target = game?.target ? byKey.get(game.target) : undefined;
@@ -265,17 +275,18 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
             </div>
 
             <div className="relative flex-1 min-h-0 flex flex-col">
-              {phase === "playing" && (
+              {(phase === "playing" || phase === "clearing") && (
                 <>
-                  <Seconds remaining={remaining} paused={paused} />
-                  <Playfield key={`${runId}-${game.level}`} visible={game.visible} byKey={byKey} onTap={onTap} paused={paused} />
+                  <Seconds remaining={remaining} running={phase === "playing" && !paused} />
+                  <Playfield key={`${runId}-${game.level}`} visible={game.visible} byKey={byKey} onTap={onTap} paused={paused}
+                    clearing={phase === "clearing"} onCleared={onCleared} />
                 </>
               )}
               {phase === "goal" && (
                 <Banner title={`Ціль: ${goal} балів`} subtitle={game.level > 1 ? `Рівень ${game.level}` : "60 секунд на раунд"} />
               )}
               {phase === "levelDone" && (
-                <Banner title={`Рівень ${game.level} пройдено`} subtitle={`+${game.levelScore} · загальний рахунок: ${game.totalScore}`} />
+                <LevelSummary game={game} seconds={roundSeconds} onNext={nextLevel} />
               )}
             </div>
 
@@ -314,9 +325,10 @@ function useMsLeft(remaining: () => number, running: boolean, everyMs: number): 
 /** Смуга часу під підказкою: заповнюється за 60 секунд раунду. */
 function TimeBar({ remaining, phase, paused }: { remaining: () => number; phase: Phase; paused: boolean }) {
   const left = useMsLeft(remaining, phase === "playing" && !paused, 100);
-  const done = phase === "levelDone";
+  // Ціль набрано: смуга зеленіє й застигає там, де зупинився час
+  const done = phase === "clearing" || phase === "levelDone";
   // Під час заставки «Ціль» раунд ще не почався — смуга порожня (а не з минулого раунду)
-  const elapsed = phase === "goal" ? 0 : done ? ROUND_MS : ROUND_MS - left;
+  const elapsed = phase === "goal" ? 0 : ROUND_MS - left;
   return (
     <div className="h-1.5 bg-muted" aria-hidden>
       <div className={`h-full transition-[width] duration-100 ease-linear ${done ? "bg-[#18AE79]" : "bg-primary"}`}
@@ -326,8 +338,8 @@ function TimeBar({ remaining, phase, paused }: { remaining: () => number; phase:
 }
 
 /** Секунди до кінця раунду — великим блідим числом над полем. */
-function Seconds({ remaining, paused }: { remaining: () => number; paused: boolean }) {
-  const seconds = Math.ceil(useMsLeft(remaining, !paused, 250) / 1000);
+function Seconds({ remaining, running }: { remaining: () => number; running: boolean }) {
+  const seconds = Math.ceil(useMsLeft(remaining, running, 250) / 1000);
   return (
     <p aria-label={`Лишилось ${seconds} с`}
       className={`absolute top-5 inset-x-0 text-center text-4xl font-bold tabular-nums pointer-events-none z-10 ${
@@ -357,6 +369,40 @@ function PauseOverlay({ onResume, exitHref }: { onResume: () => void; exitHref: 
           Вийти з гри
         </Link>
       </div>
+    </div>
+  );
+}
+
+/** Підсумок пройденого рівня; далі — лише кнопкою. */
+function LevelSummary({ game, seconds, onNext }: { game: BlastGame; seconds: number; onNext: () => void }) {
+  const ref = useRef<HTMLButtonElement>(null);
+  useEffect(() => { ref.current?.focus(); }, []);
+  return (
+    <div className="flex-1 flex flex-col items-center justify-center gap-5 my-3 px-6 rounded-3xl blast-space text-center animate-in fade-in zoom-in-95 duration-300">
+      <div className="space-y-1">
+        <p className="text-4xl">🎉</p>
+        <p className="text-2xl font-bold">Рівень {game.level} пройдено</p>
+        <p className="text-sm text-muted-foreground">за {seconds} с</p>
+      </div>
+      <div className="grid grid-cols-3 gap-2 w-full max-w-xs">
+        <SummaryStat value={`+${game.levelScore}`} label="за раунд" />
+        <SummaryStat value={String(game.totalScore)} label="загалом" />
+        <SummaryStat value={`×${multiplierFor(game.streak)}`} label="серія" />
+      </div>
+      <p className="text-sm text-muted-foreground">Далі — рівень {game.level + 1}, ціль {goalFor(game.level + 1)} балів</p>
+      <button ref={ref} type="button" onClick={onNext}
+        className="w-full max-w-xs min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium active:scale-[0.98] transition-all">
+        Далі →
+      </button>
+    </div>
+  );
+}
+
+function SummaryStat({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="rounded-2xl border bg-background/70 p-2.5">
+      <p className="text-lg font-bold tabular-nums">{value}</p>
+      <p className="text-[11px] text-muted-foreground">{label}</p>
     </div>
   );
 }
@@ -421,13 +467,17 @@ const reducedMotion = () => typeof window !== "undefined" && window.matchMedia("
 /** Швидкість дрейфу астероїда на полі, px/с. */
 const driftSpeed = () => (28 + Math.random() * 24) * (reducedMotion() ? 0.5 : 1);
 
-const Playfield = memo(function Playfield({ visible, byKey, onTap, paused }: {
+const Playfield = memo(function Playfield({ visible, byKey, onTap, paused, clearing, onCleared }: {
   visible: string[];
   byKey: Map<string, BlastModeWord>;
   onTap: (key: string) => TapResult | null;
   /** На паузі астероїди застигають. */
   paused: boolean;
+  /** Ціль набрано: астероїди на полі лопаються по черзі, потім `onCleared`. */
+  clearing: boolean;
+  onCleared: () => void;
 }) {
+  const [popped, setPopped] = useState<Set<string>>(() => new Set());
 
   const fieldRef = useRef<HTMLDivElement>(null);
   const bodies = useRef(new Map<string, Body>());
@@ -579,6 +629,27 @@ const Playfield = memo(function Playfield({ visible, byKey, onTap, paused }: {
     setTimeout(() => setEffects(prev => prev.filter(e => !fresh.includes(e))), 800);
   };
 
+  // Зачистка: астероїди на полі лопаються по одному, ті, що ще не залетіли, просто зникають
+  useEffect(() => {
+    if (!clearing) return;
+    const { w, h, d: dia } = size.current;
+    const onField = [...bodies.current.entries()].filter(([, b]) =>
+      b.x + dia / 2 >= 0 && b.x + dia / 2 <= w && b.y + dia / 2 >= 0 && b.y + dia / 2 <= h);
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    // Спершу ховаємо тих, хто ще за краєм
+    const offField = [...bodies.current.keys()].filter(k => !onField.some(([key]) => key === k));
+    if (offField.length) setPopped(prev => new Set([...prev, ...offField]));
+    onField.forEach(([key, b], i) => {
+      timers.push(setTimeout(() => {
+        addEffects([{ kind: "burst", x: b.x + dia / 2, y: b.y + dia / 2 }]);
+        setPopped(prev => new Set(prev).add(key));
+      }, (i + 1) * POP_EVERY_MS + 250)); // +250 мс — дати догоріти вибуху останнього влучання
+    });
+    timers.push(setTimeout(onCleared, (onField.length + 1) * POP_EVERY_MS + 250 + 550));
+    return () => timers.forEach(clearTimeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clearing]);
+
   /** Постріл по астероїду: перевірка відповіді й ефекти. */
   const fire = (key: string) => {
     const b = bodies.current.get(key);
@@ -606,7 +677,7 @@ const Playfield = memo(function Playfield({ visible, byKey, onTap, paused }: {
     <div ref={fieldRef} className="relative flex-1 min-h-0 my-3 overflow-hidden rounded-3xl blast-space" style={{ touchAction: "manipulation" }}>
       {visible.map(key => {
         const w = byKey.get(key);
-        if (!w) return null;
+        if (!w || popped.has(key)) return null;
         return (
           <div key={key} className="absolute left-0 top-0 will-change-transform"
             style={{ width: d, height: d, transform: "translate3d(-9999px, 0, 0)" }}
