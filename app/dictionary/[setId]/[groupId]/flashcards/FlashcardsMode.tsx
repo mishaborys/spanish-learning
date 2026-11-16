@@ -1,12 +1,12 @@
 "use client";
 
 import { Fragment, useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import type { VocabGroup, VocabWord } from "@/lib/vocabulary";
 import { setFlashcardSettings, useFlashcardSettings, type FlashcardSettings } from "@/lib/flashcardSettings";
 import { speakSpanish, speakUkrainian } from "@/lib/speak";
 import { SwipeCounters, SwipeFlipCard, type SwipeDir, type SwipeFlipCardHandle } from "@/components/spanish/SwipeFlipCard";
 import { SpeakerIcon, WordNotes } from "@/components/spanish/WordNotes";
+import { ExitLink } from "@/components/spanish/ExitLink";
 
 /**
  * Флешкартки групи на весь екран, як у Quizlet: хрестик, лічильник, шестерня.
@@ -42,7 +42,7 @@ export function FlashcardsShell({ exitHref, exitLabel = "До групи", empty
         {settings && empty && (
           <div className="flex-1 flex flex-col items-center justify-center gap-4 text-sm text-muted-foreground">
             <p>Тут ще немає слів.</p>
-            <Link href={exitHref} className="underline">{exitLabel}</Link>
+            <ExitLink href={exitHref} className="underline">{exitLabel}</ExitLink>
           </div>
         )}
         {settings && !empty && (
@@ -144,10 +144,10 @@ export function Round({ words, settings, exitHref, exitLabel = "До групи"
 
   const topBar = (
     <div className="flex items-center justify-between h-12 shrink-0">
-      <Link href={exitHref} aria-label="Закрити флешкартки"
+      <ExitLink href={exitHref} aria-label="Закрити флешкартки"
         className="h-10 w-10 rounded-full border flex items-center justify-center text-foreground hover:bg-accent/40 transition-colors">
         <CloseIcon />
-      </Link>
+      </ExitLink>
       <div className="text-center">
         <p className="text-sm font-semibold tabular-nums">{Math.min(index + 1, deck.length)} / {deck.length}</p>
         {roundNo > 1 && <p className="text-[10px] text-muted-foreground leading-none">раунд {roundNo}</p>}
@@ -203,10 +203,10 @@ export function Round({ words, settings, exitHref, exitLabel = "До групи"
               className="w-full min-h-[52px] rounded-2xl border text-sm font-medium hover:bg-accent/40 active:scale-[0.98] transition-all">
               Почати спочатку
             </button>
-            <Link href={exitHref}
+            <ExitLink href={exitHref}
               className="w-full min-h-[52px] rounded-2xl border text-sm font-medium flex items-center justify-center hover:bg-accent/40 active:scale-[0.98] transition-all">
               {exitLabel}
-            </Link>
+            </ExitLink>
             {index > 0 && (
               <button type="button" onClick={back} className="w-full text-xs text-muted-foreground hover:text-foreground py-2">
                 ↺ Повернути останню картку

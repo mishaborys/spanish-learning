@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { LearnMode } from "./LearnMode";
 import { loadGroupOr404 } from "../group";
 import { getStages, learnMaterials, learnScope, newSeed, type Stage } from "@/lib/learn";
+import { ExitLink } from "@/components/spanish/ExitLink";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +15,7 @@ export default async function GroupLearnPage({ params }: { params: Promise<{ set
     console.error(e);
     return (
       <div className="space-y-4">
-        <Link href={groupHref} className="text-sm text-muted-foreground hover:text-foreground">← {group.title}</Link>
+        <ExitLink href={groupHref} className="text-sm text-muted-foreground hover:text-foreground">← {group.title}</ExitLink>
         <div className="rounded-2xl border bg-muted/40 p-5 text-sm text-muted-foreground">
           Не вдалося завантажити прогрес. Перевір підключення до бази даних (<code>DATABASE_URL</code>) і онови сторінку.
         </div>

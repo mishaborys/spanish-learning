@@ -5,6 +5,7 @@ import { ThemeProvider } from "next-themes";
 import { ThemeToggle } from "@/components/spanish/ThemeToggle";
 import { BottomNav } from "@/components/spanish/BottomNav";
 import { ServiceWorker } from "@/components/spanish/ServiceWorker";
+import { NavTracker } from "@/components/spanish/NavTracker";
 import Link from "next/link";
 
 const geist = Geist({ subsets: ["latin"] });
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {/* Bottom navigation */}
             <BottomNav />
             <ServiceWorker />
+            <NavTracker />
 
           </div>
         </ThemeProvider>

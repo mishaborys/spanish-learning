@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
 import type { VocabGroup, VocabWord } from "@/lib/vocabulary";
 import type { LearnMaterials } from "@/lib/learn";
 import { wordKey } from "@/lib/review/core";
@@ -12,6 +11,7 @@ import {
 import { speakSpanish } from "@/lib/speak";
 import { useVisibleViewport } from "@/lib/useVisibleViewport";
 import { SpeakerIcon, WordNotes } from "@/components/spanish/WordNotes";
+import { ExitLink } from "@/components/spanish/ExitLink";
 
 /** Скільки показувати «Правильно!», перш ніж перейти далі самому. */
 const CORRECT_PAUSE_MS = 1300;
@@ -155,10 +155,10 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
         style={{ paddingTop: "max(env(safe-area-inset-top), 12px)" }}>
         {/* Верхня панель */}
         <div className="flex items-center justify-between h-12 shrink-0">
-          <Link href={exitHref} aria-label="Закрити Learn"
+          <ExitLink href={exitHref} aria-label="Закрити Learn"
             className="h-10 w-10 rounded-full border flex items-center justify-center hover:bg-accent/40 transition-colors">
             <CloseIcon />
-          </Link>
+          </ExitLink>
           <div className="text-center">
             <p className="text-sm font-semibold">Learn</p>
             <p className="text-[10px] text-muted-foreground leading-none">
@@ -463,10 +463,10 @@ function RoundSummary({ roundNo, answers, byKey, progress, onContinue, exitHref 
           className="w-full min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium active:scale-[0.98] transition-all">
           Продовжити
         </button>
-        <Link href={exitHref}
+        <ExitLink href={exitHref}
           className="w-full min-h-[52px] rounded-2xl border text-sm font-medium flex items-center justify-center hover:bg-accent/40 transition-all">
           Завершити на сьогодні
-        </Link>
+        </ExitLink>
       </div>
     </div>
   );
@@ -481,10 +481,10 @@ function Finished({ total, onAgain, busy, exitHref, exitLabel }: { total: number
         <p className="text-sm text-muted-foreground">Ти пройшов усі {total} слів: і вибір, і написання.</p>
       </div>
       <div className="space-y-2">
-        <Link href={exitHref}
+        <ExitLink href={exitHref}
           className="w-full min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium flex items-center justify-center active:scale-[0.98] transition-all">
           {exitLabel}
-        </Link>
+        </ExitLink>
         <button type="button" onClick={onAgain} disabled={busy}
           className="w-full min-h-[52px] rounded-2xl border text-sm font-medium hover:bg-accent/40 disabled:opacity-50 transition-all">
           {busy ? "…" : "Вчити знову"}

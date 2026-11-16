@@ -1,7 +1,6 @@
 "use client";
 
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
-import Link from "next/link";
 import { Pause, Play, Volume2, VolumeX } from "lucide-react";
 import {
   accuracy, createGame, endRound, goalFor, isRoundComplete, MAX_MULTIPLIER, multiplierFor, ROUND_MS, STREAK_STEP, tap,
@@ -9,6 +8,7 @@ import {
 } from "@/lib/blast/core";
 import { BlastMusic, readMuted, saveMuted, subscribeMuted } from "@/lib/blastMusic";
 import { submitScore } from "@/lib/blastOutbox";
+import { ExitLink } from "@/components/spanish/ExitLink";
 
 const subscribeVisibility = (cb: () => void) => {
   document.addEventListener("visibilitychange", cb);
@@ -228,10 +228,10 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
         style={{ paddingTop: "max(env(safe-area-inset-top), 12px)", paddingBottom: "max(env(safe-area-inset-bottom), 12px)" }}>
         {/* Верхня панель */}
         <div className="grid grid-cols-[1fr_auto_1fr] items-center h-12 shrink-0">
-          <Link href={exitHref} aria-label="Закрити Blast"
+          <ExitLink href={exitHref} aria-label="Закрити Blast"
             className="justify-self-start h-10 w-10 rounded-full border flex items-center justify-center hover:bg-accent/40 transition-colors">
             <CloseIcon />
-          </Link>
+          </ExitLink>
           <div className="text-center">
             <p className="text-sm font-semibold">Blast</p>
             <p className="text-[10px] text-muted-foreground leading-none">{title}</p>
@@ -364,10 +364,10 @@ function PauseOverlay({ onResume, exitHref }: { onResume: () => void; exitHref: 
           className="w-full min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium active:scale-[0.98] transition-all">
           Продовжити
         </button>
-        <Link href={exitHref}
+        <ExitLink href={exitHref}
           className="w-full min-h-[52px] rounded-2xl border bg-background text-sm font-medium flex items-center justify-center hover:bg-accent/40 transition-all">
           Вийти з гри
-        </Link>
+        </ExitLink>
       </div>
     </div>
   );
@@ -785,10 +785,10 @@ function Results({ game, best, newRecord, savedOffline, saveError, dbOk, onAgain
           className="w-full min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium active:scale-[0.98] transition-all">
           Ще раз
         </button>
-        <Link href={exitHref}
+        <ExitLink href={exitHref}
           className="w-full min-h-[52px] rounded-2xl border text-sm font-medium flex items-center justify-center hover:bg-accent/40 transition-all">
           До групи
-        </Link>
+        </ExitLink>
       </div>
     </div>
   );

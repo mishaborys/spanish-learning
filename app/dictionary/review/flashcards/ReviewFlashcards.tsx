@@ -16,6 +16,7 @@ import {
   GRADE_LABEL, GradeCounters, gradeCounts, REVIEW_HREF, ReviewDayGuard, useMoreWords, usePracticeWords, useReviewAnswers,
   wordsLabel,
 } from "../shared";
+import { ExitLink } from "@/components/spanish/ExitLink";
 
 const EXIT_LABEL = "До повторення";
 
@@ -151,10 +152,10 @@ function GradingRound({ review, settings, exitHref, paused, onOpenSettings }: {
 
   const topBar = (
     <div className="flex items-center justify-between h-12 shrink-0">
-      <Link href={exitHref} aria-label="Закрити флешкартки"
+      <ExitLink href={exitHref} aria-label="Закрити флешкартки"
         className="h-10 w-10 rounded-full border flex items-center justify-center text-foreground hover:bg-accent/40 transition-colors">
         <CloseIcon />
-      </Link>
+      </ExitLink>
       <div className="text-center">
         <p className="text-sm font-semibold tabular-nums">{Math.min(index + 1, deck.length)} / {deck.length}</p>
         {phase !== "grade" && (
@@ -331,10 +332,10 @@ function Summary({ review, answers, training, exitHref, onBack }: {
           </button>
         )}
         {error && <p className="text-sm text-destructive text-center">{error}</p>}
-        <Link href={exitHref}
+        <ExitLink href={exitHref}
           className="w-full min-h-[52px] rounded-2xl border text-sm font-medium flex items-center justify-center hover:bg-accent/40 active:scale-[0.98] transition-all">
           {EXIT_LABEL}
-        </Link>
+        </ExitLink>
         {onBack && (
           <button type="button" onClick={onBack} className="w-full text-xs text-muted-foreground hover:text-foreground py-2">
             ↺ Повернути останню картку

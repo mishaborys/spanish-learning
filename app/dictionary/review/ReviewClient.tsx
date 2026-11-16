@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import type { ReviewToday } from "@/lib/review";
 import { groupProgress, type Stage } from "@/lib/learn/core";
 import { BlastIcon, CardsIcon, LearnIcon, ModeButton, WordRow } from "../[setId]/[groupId]/GroupClient";
@@ -8,6 +7,7 @@ import {
   GRADE_DOT, GRADE_LABEL, GRADE_ORDER, GradeCounters, gradeCounts, REVIEW_HREF, ReviewDayGuard, useMoreWords, usePracticeWords,
   useReviewAnswers, wordsLabel,
 } from "./shared";
+import { ExitLink } from "@/components/spanish/ExitLink";
 
 /**
  * Сторінка Повторення — як сторінка групи Словника: прогрес дня, режими Flashcards / Learn / Blast
@@ -37,9 +37,9 @@ export function ReviewClient({ review, stages, blastBest }: {
   return (
     <div className="space-y-5">
       <ReviewDayGuard day={review.day} />
-      <Link href="/dictionary" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+      <ExitLink href="/dictionary" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
         ← Словник
-      </Link>
+      </ExitLink>
 
       <div>
         <h1 className="text-xl font-bold">🔁 Повторення</h1>

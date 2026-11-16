@@ -9,6 +9,7 @@ import type { VocabGroup, VocabWord } from "@/lib/vocabulary";
 import { DEFAULT_FLASHCARD_SETTINGS, useFlashcardSettings } from "@/lib/flashcardSettings";
 import { speakSpanish } from "@/lib/speak";
 import { SpeakerIcon, WordNotes } from "@/components/spanish/WordNotes";
+import { ExitLink } from "@/components/spanish/ExitLink";
 
 /** Статус слова веде тільки Learn. */
 const STATUS_ORDER: Status[] = ["learning", "new", "mastered"];
@@ -67,9 +68,9 @@ export function GroupClient({ group, setTitle, groupHref, backHref, backLabel, s
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between gap-3">
-        <Link href={backHref} className="text-sm text-muted-foreground hover:text-foreground transition-colors truncate">
+        <ExitLink href={backHref} className="text-sm text-muted-foreground hover:text-foreground transition-colors truncate">
           ← {backLabel}
-        </Link>
+        </ExitLink>
         {stages && (
           <div className="relative shrink-0">
             <button type="button" onClick={() => setMenuOpen(v => !v)} aria-label="Ще дії" aria-expanded={menuOpen}

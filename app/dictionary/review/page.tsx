@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { getTodayReview, type ReviewToday } from "@/lib/review";
 import { getStages, reviewLearnScope, type Stage } from "@/lib/learn";
 import { getBest, REVIEW_BLAST } from "@/lib/blast";
 import { ReviewClient } from "./ReviewClient";
+import { ExitLink } from "@/components/spanish/ExitLink";
 
 export const dynamic = "force-dynamic";
 
@@ -14,7 +14,7 @@ export default async function ReviewPage() {
     console.error(e);
     return (
       <div className="space-y-4">
-        <Link href="/dictionary" className="text-sm text-muted-foreground hover:text-foreground">← Словник</Link>
+        <ExitLink href="/dictionary" className="text-sm text-muted-foreground hover:text-foreground">← Словник</ExitLink>
         <h1 className="text-xl font-bold">Повторення</h1>
         <div className="rounded-2xl border bg-muted/40 p-5 text-sm text-muted-foreground">
           Не вдалося завантажити повторення. Перевір підключення до бази даних (<code>DATABASE_URL</code>) і онови сторінку.

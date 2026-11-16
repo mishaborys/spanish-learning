@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { allWordsGroup, loadVocabularySet, setHref } from "@/lib/vocabulary";
 import { PinnedAboveNav } from "@/components/spanish/PinnedAboveNav";
+import { ExitLink } from "@/components/spanish/ExitLink";
 
 export default async function DictionarySetPage({ params }: { params: Promise<{ setId: string }> }) {
   const { setId } = await params;
@@ -17,9 +18,9 @@ export default async function DictionarySetPage({ params }: { params: Promise<{ 
   return (
     <div className="space-y-4">
       <div>
-        <Link href="/dictionary" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+        <ExitLink href="/dictionary" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
           ← Словник
-        </Link>
+        </ExitLink>
         <h1 className="text-xl font-bold mt-2">{set.title}</h1>
         <p className="text-sm text-muted-foreground">{total} слів · {set.groups.length} груп</p>
       </div>
