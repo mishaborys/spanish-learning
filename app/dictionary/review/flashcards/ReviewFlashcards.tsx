@@ -246,7 +246,8 @@ function GradingRound({ review, settings, exitHref, paused, onOpenSettings }: {
 
       {grading && (
         <div className="grid grid-cols-3 gap-2 shrink-0">
-          {(["known", "hesitant", "unknown"] as Grade[]).map(g => (
+          {/* Як свайп: «Не знаю» зліва, «Знаю» справа */}
+          {(["unknown", "hesitant", "known"] as Grade[]).map(g => (
             <button key={g} type="button" disabled={busy}
               onClick={() => commit(g, g === "unknown" ? "left" : "right")}
               className={`min-h-[48px] rounded-2xl border-2 text-sm font-medium transition-all active:scale-[0.98] disabled:opacity-50 swipe-counter-${g}`}>
