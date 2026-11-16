@@ -1,17 +1,27 @@
 "use client";
 
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { accuracy, createGame, multiplierFor, tap, type BlastGame, type TapResult } from "@/lib/blast/core";
+import {
+  accuracy, createGame, endRound, goalFor, MAX_MULTIPLIER, multiplierFor, ROUND_MS, STREAK_STEP, tap,
+  type BlastGame, type TapResult,
+} from "@/lib/blast/core";
 
 export type BlastModeWord = { key: string; spanish: string; prompt: string; emoji?: string };
+export type BlastRecord = { score: number; level: number };
 
-/** Пауза після останнього влучання, щоб вибух доіграв перед екраном результату. */
-const FINISH_DELAY_MS = 650;
+/** Скільки показувати «Ціль: N балів» перед раундом і «Рівень N пройдено» після. */
+const GOAL_BANNER_MS = 1600;
+const LEVEL_DONE_MS = 2200;
+/** Поділок на шкалі серії: від ×1.0 до стелі з кроком 0.2. */
+const STREAK_SEGMENTS = Math.round((MAX_MULTIPLIER - 1) / STREAK_STEP);
+
+type Phase = "intro" | "goal" | "playing" | "levelDone" | "over";
 
 /**
- * Blast: унизу переклад, по полю дрейфують до 4 астероїдів з іспанськими словами групи.
- * Влучив у правильний — вибух і прилітає наступне слово; промах — астероїд тремтить і лишається.
+ * Blast — механіка як у Quizlet: раунди по 60 секунд, у кожному треба набрати ціль
+ * (50, 75, 100…). 5 балів × множник серії (+0.2 за влучання поспіль, до ×2.4); промах −3 і серія з нуля.
+ * Не набрав ціль за раунд — гра закінчується.
  */
 export function BlastMode({ words, title, setId, groupId, exitHref, initialBest, dbOk }: {
   words: BlastModeWord[];
@@ -19,44 +29,56 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
   setId: string;
   groupId: string;
   exitHref: string;
-  initialBest: number | null;
+  initialBest: BlastRecord | null;
   dbOk: boolean;
 }) {
-  const [phase, setPhase] = useState<"intro" | "playing" | "over">("intro");
+  const [phase, setPhaseState] = useState<Phase>("intro");
+  // Фаза в ref міняється синхронно: тап одразу після кінця раунду вже не зарахується
+  const phaseRef = useRef<Phase>("intro");
+  const setPhase = (p: Phase) => { phaseRef.current = p; setPhaseState(p); };
   const [game, setGame] = useState<BlastGame | null>(null);
   const [runId, setRunId] = useState(0);
-  const [best, setBest] = useState<number | null>(initialBest);
+  const [best, setBest] = useState<BlastRecord | null>(initialBest);
   const [newRecord, setNewRecord] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
 
   // Актуальний стан гри для обробників тапів (швидкі тапи не повинні бачити застарілий стан)
   const gameRef = useRef<BlastGame | null>(null);
-  const shownAt = useRef(0);
+  const deadline = useRef(0);
+  // Відкладені переходи між екранами; у кожен момент чекає щонайбільше один
+  const pending = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const later = (fn: () => void, ms: number) => { clearTimeout(pending.current); pending.current = setTimeout(fn, ms); };
+  useEffect(() => () => clearTimeout(pending.current), []);
+
+  const update = (g: BlastGame) => { gameRef.current = g; setGame(g); };
+
+  /** Показати ціль рівня, потім запустити 60 секунд. */
+  const announceLevel = () => {
+    setPhase("goal");
+    later(() => {
+      deadline.current = performance.now() + ROUND_MS;
+      setPhase("playing");
+    }, GOAL_BANNER_MS);
+  };
 
   const start = () => {
-    const g = createGame(words.map(w => ({ key: w.key, prompt: w.prompt })));
-    gameRef.current = g;
-    shownAt.current = performance.now();
-    setGame(g);
+    update(createGame(words.map(w => ({ key: w.key, prompt: w.prompt }))));
     setRunId(r => r + 1);
     setNewRecord(false);
     setSaveError(null);
-    setPhase("playing");
+    announceLevel();
   };
 
-  const finishTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  useEffect(() => () => clearTimeout(finishTimer.current), []);
-
-  /** Кінець гри: рекорд зберігаємо одразу (навіть якщо гравець закриє гру під час вибуху), результати — після паузи. */
+  /** Кінець гри: рекорд — загальний рахунок і рівень, до якого дійшов. */
   const finish = async (final: BlastGame) => {
-    setNewRecord(final.score > 0 && (best === null || final.score > best));
-    finishTimer.current = setTimeout(() => setPhase("over"), FINISH_DELAY_MS);
+    setNewRecord(final.totalScore > 0 && (best === null || final.totalScore > best.score));
+    setPhase("over");
     if (!dbOk) return;
     try {
       const res = await fetch("/api/blast", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "score", setId, groupId, score: final.score }),
+        body: JSON.stringify({ action: "score", setId, groupId, score: final.totalScore, level: final.level }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error ?? "Не вдалося зберегти рекорд");
@@ -67,21 +89,49 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
     }
   };
 
-  const onTap = (key: string): TapResult | null => {
+  // Кінець раунду; коли вкладка схована — пауза, щоб не втрачати час.
+  // Секунди на екрані малюють окремі компоненти, щоб не перемальовувати все поле 10 разів на секунду.
+  useEffect(() => {
+    if (phase !== "playing") return;
+    // Вкладку могли сховати ще під час заставки «Ціль» — тоді пауза починається з цього моменту
+    let hiddenAt = document.hidden ? performance.now() : 0;
+    const onVisibility = () => {
+      if (document.hidden) hiddenAt = performance.now();
+      else if (hiddenAt) { deadline.current += performance.now() - hiddenAt; hiddenAt = 0; }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    const id = setInterval(() => {
+      if (document.hidden) return;
+      if (deadline.current > performance.now() || !gameRef.current) return;
+      clearInterval(id);
+      const next = endRound(gameRef.current);
+      if (next.over) {
+        update(next);
+        void finish(next);
+      } else {
+        setPhase("levelDone"); // з цієї миті тапи не приймаються, тож `next` не застаріє
+        later(() => { update(next); announceLevel(); }, LEVEL_DONE_MS);
+      }
+    }, 100);
+    return () => { clearInterval(id); document.removeEventListener("visibilitychange", onVisibility); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase]);
+
+  // Стабільний обробник (лише ref-и), щоб поле з астероїдами не перемальовувалось без потреби
+  const onTap = useCallback((key: string): TapResult | null => {
     const g = gameRef.current;
     // Повторний тап по щойно збитому астероїду (до перемальовування) — ігноруємо, це не промах
-    if (!g || g.done || !g.visible.includes(key)) return null;
-    const result = tap(g, key, performance.now() - shownAt.current);
-    if (result.correct) shownAt.current = performance.now(); // нова підказка — новий відлік
+    if (!g || g.over || phaseRef.current !== "playing" || !g.visible.includes(key)) return null;
+    const result = tap(g, key);
     gameRef.current = result.game;
     setGame(result.game);
-    if (result.game.done) void finish(result.game);
     return result;
-  };
+  }, []);
 
-  const byKey = new Map(words.map(w => [w.key, w]));
+  const byKey = useMemo(() => new Map(words.map(w => [w.key, w])), [words]);
   const target = game?.target ? byKey.get(game.target) : undefined;
-  const multiplier = game ? multiplierFor(game.streak) : 1;
+  const inGame = phase === "goal" || phase === "playing" || phase === "levelDone";
+  const goal = game ? goalFor(game.level) : 0;
 
   return (
     <div className="fixed inset-0 z-50 bg-background">
@@ -95,52 +145,130 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
           </Link>
           <div className="text-center">
             <p className="text-sm font-semibold">Blast</p>
-            <p className="text-[10px] text-muted-foreground leading-none tabular-nums">
-              {phase === "playing" && game ? `збито ${game.hits} з ${words.length}` : title}
-            </p>
+            <p className="text-[10px] text-muted-foreground leading-none">{title}</p>
           </div>
-          <div className="min-w-10 text-right">
-            {phase === "playing" && game && (
-              <div className="leading-tight">
-                <p className="text-base font-bold tabular-nums" aria-label={`Рахунок ${game.score}`}>{game.score}</p>
-                {multiplier > 1 && (
-                  <p key={multiplier} className="text-[11px] font-bold text-[#CC4E00] dark:text-[#FF983A] animate-in zoom-in-50">
-                    ×{multiplier}
-                  </p>
-                )}
-              </div>
-            )}
-          </div>
+          <div className="h-10 w-10" />
         </div>
 
         {phase === "intro" && (
           <Intro title={title} count={words.length} best={best} dbOk={dbOk} onStart={start} />
         )}
 
-        {phase === "playing" && game && (
+        {inGame && game && (
           <>
-            <div className="bg-muted rounded-full h-1 overflow-hidden shrink-0 mt-2">
-              <div className="h-full bg-primary rounded-full transition-all duration-300"
-                style={{ width: `${(game.hits / Math.max(words.length, 1)) * 100}%` }} />
+            {/* Підказка й час раунду */}
+            <div className="shrink-0 mt-2 rounded-3xl border bg-card overflow-hidden">
+              <div className="px-5 py-3 min-h-[64px] flex items-center justify-center gap-3 text-center" aria-live="polite">
+                {phase === "playing" && target && (
+                  <div key={`${game.hits}-${game.target}`} className="flex items-center gap-3 animate-in fade-in zoom-in-95 duration-200">
+                    {target.emoji && <span className="text-3xl">{target.emoji}</span>}
+                    <span className="text-xl font-bold break-words">{target.prompt}</span>
+                  </div>
+                )}
+              </div>
+              <TimeBar deadline={deadline} phase={phase} />
             </div>
-            <Playfield key={runId} visible={game.visible} byKey={byKey} onTap={onTap} />
-            {/* Підказка: переклад слова, яке треба збити */}
-            <div className="shrink-0 rounded-3xl border bg-card px-5 py-4 min-h-[88px] flex items-center justify-center gap-3 text-center"
-              aria-live="polite">
-              {target && (
-                <div key={game.target} className="flex items-center gap-3 animate-in fade-in zoom-in-95 duration-200">
-                  {target.emoji && <span className="text-4xl">{target.emoji}</span>}
-                  <span className="text-xl font-bold break-words">{target.prompt}</span>
-                </div>
+
+            <div className="relative flex-1 min-h-0 flex flex-col">
+              {phase === "playing" && (
+                <>
+                  <Seconds deadline={deadline} />
+                  <Playfield key={`${runId}-${game.level}`} visible={game.visible} byKey={byKey} onTap={onTap} />
+                </>
+              )}
+              {phase === "goal" && (
+                <Banner title={`Ціль: ${goal} балів`} subtitle={game.level > 1 ? `Рівень ${game.level}` : "60 секунд на раунд"} />
+              )}
+              {phase === "levelDone" && (
+                <Banner title={`Рівень ${game.level} пройдено`} subtitle={`Загальний рахунок: ${game.totalScore}`} />
               )}
             </div>
+
+            {/* Нижня панель: рівень і бали до цілі, серія */}
+            <Hud level={game.level} levelScore={game.levelScore} goal={goal} streak={game.streak} />
           </>
         )}
 
         {phase === "over" && game && (
-          <Results game={game} total={words.length} best={best} newRecord={newRecord}
+          <Results game={game} best={best} newRecord={newRecord}
             saveError={saveError} dbOk={dbOk} onAgain={start} exitHref={exitHref} />
         )}
+      </div>
+    </div>
+  );
+}
+
+/** Скільки мс лишилось до кінця раунду; оновлюється сама, не чіпаючи решту екрана. */
+function useMsLeft(deadline: React.RefObject<number>, active: boolean, everyMs: number): number {
+  const [left, setLeft] = useState(ROUND_MS);
+  useEffect(() => {
+    if (!active) return;
+    const tick = () => { if (!document.hidden) setLeft(Math.max(0, deadline.current - performance.now())); };
+    tick();
+    const id = setInterval(tick, everyMs);
+    return () => clearInterval(id);
+  }, [deadline, active, everyMs]);
+  return active ? left : ROUND_MS;
+}
+
+/** Смуга часу під підказкою: заповнюється за 60 секунд раунду. */
+function TimeBar({ deadline, phase }: { deadline: React.RefObject<number>; phase: Phase }) {
+  const left = useMsLeft(deadline, phase === "playing", 100);
+  const done = phase === "levelDone";
+  return (
+    <div className="h-1.5 bg-muted" aria-hidden>
+      <div className={`h-full transition-[width] duration-100 ease-linear ${done ? "bg-[#18AE79]" : "bg-primary"}`}
+        style={{ width: `${done ? 100 : ((ROUND_MS - left) / ROUND_MS) * 100}%` }} />
+    </div>
+  );
+}
+
+/** Секунди до кінця раунду — великим блідим числом над полем. */
+function Seconds({ deadline }: { deadline: React.RefObject<number> }) {
+  const seconds = Math.ceil(useMsLeft(deadline, true, 250) / 1000);
+  return (
+    <p aria-label={`Лишилось ${seconds} с`}
+      className={`absolute top-5 inset-x-0 text-center text-4xl font-bold tabular-nums pointer-events-none z-10 ${
+        seconds <= 10 ? "text-[#CC4E00]/60 dark:text-[#FF983A]/60" : "text-foreground/15"}`}>
+      {seconds}
+    </p>
+  );
+}
+
+function Banner({ title, subtitle }: { title: string; subtitle: string }) {
+  return (
+    <div className="flex-1 flex flex-col items-center justify-center text-center gap-1 my-3 rounded-3xl blast-space animate-in fade-in zoom-in-95 duration-300">
+      <p className="text-3xl font-bold">{title}</p>
+      <p className="text-sm text-muted-foreground">{subtitle}</p>
+    </div>
+  );
+}
+
+function Hud({ level, levelScore, goal, streak }: { level: number; levelScore: number; goal: number; streak: number }) {
+  const multiplier = multiplierFor(streak);
+  const lit = Math.round((multiplier - 1) / STREAK_STEP);
+  const reached = levelScore >= goal;
+  return (
+    <div className="shrink-0 grid grid-cols-2 gap-6 pt-1 pb-1">
+      <div className="space-y-1">
+        <div className="flex items-baseline justify-between text-sm font-bold tabular-nums">
+          <span>Рівень {level}</span>
+          <span aria-label={`Бали ${levelScore} з ${goal}`} className={reached ? "text-[#18AE79]" : ""}>{levelScore}/{goal}</span>
+        </div>
+        <div className="h-2 rounded-full bg-muted overflow-hidden">
+          <div className={`h-full rounded-full transition-all duration-300 ${reached ? "bg-[#18AE79]" : "bg-primary"}`}
+            style={{ width: `${Math.min(levelScore / goal, 1) * 100}%` }} />
+        </div>
+      </div>
+      <div className="space-y-1">
+        <p className="text-right text-sm font-bold">
+          Серія <span key={multiplier} className="inline-block animate-in zoom-in-50 text-[#CC4E00] dark:text-[#FF983A] tabular-nums">×{multiplier}</span>
+        </p>
+        <div className="flex gap-0.5" aria-hidden>
+          {Array.from({ length: STREAK_SEGMENTS }, (_, i) => (
+            <span key={i} className={`h-2 flex-1 rounded-full transition-colors ${i < lit ? "bg-[#FF983A]" : "bg-muted"}`} />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -164,7 +292,7 @@ type NewEffect = DistributiveOmit<Effect, "id">;
 
 const reducedMotion = () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-function Playfield({ visible, byKey, onTap }: {
+const Playfield = memo(function Playfield({ visible, byKey, onTap }: {
   visible: string[];
   byKey: Map<string, BlastModeWord>;
   onTap: (key: string) => TapResult | null;
@@ -361,11 +489,11 @@ function Playfield({ visible, byKey, onTap }: {
       </div>
     </div>
   );
-}
+});
 
 // ─── Екрани до й після гри ────────────────────────────────────────────────────
 
-function Intro({ title, count, best, dbOk, onStart }: { title: string; count: number; best: number | null; dbOk: boolean; onStart: () => void }) {
+function Intro({ title, count, best, dbOk, onStart }: { title: string; count: number; best: BlastRecord | null; dbOk: boolean; onStart: () => void }) {
   return (
     <div className="flex-1 flex flex-col justify-center gap-6 py-6 text-center">
       <div className="space-y-2">
@@ -376,10 +504,10 @@ function Intro({ title, count, best, dbOk, onStart }: { title: string; count: nu
         <p className="text-sm text-muted-foreground">{title} · {count} слів</p>
       </div>
       <ul className="text-sm text-left space-y-2 rounded-2xl border bg-card p-4">
-        <li>☄️ Внизу — переклад. Збий астероїд з іспанським словом, що йому відповідає.</li>
-        <li>⚡ Швидше — більше очок: повний бонус, якщо влучив за 2 секунди.</li>
-        <li>🔥 Серія без промахів множить очки: ×2 після 3 поспіль, ×3 після 6.</li>
-        <li>💥 Промах — мінус 50 і серія з початку.</li>
+        <li>☄️ Угорі — переклад. Збий астероїд з іспанським словом, що йому відповідає.</li>
+        <li>⏱️ Раунд — 60 секунд. Набери ціль (50 балів, далі більше), щоб пройти на наступний рівень.</li>
+        <li>🔥 Влучання — 5 балів × серія: кожне правильне поспіль додає +0.2, до ×2.4.</li>
+        <li>💥 Промах — мінус 3 бали, серія з початку.</li>
       </ul>
       <div className="space-y-2">
         {count === 0 ? (
@@ -391,7 +519,7 @@ function Intro({ title, count, best, dbOk, onStart }: { title: string; count: nu
           </button>
         )}
         <p className="text-xs text-muted-foreground">
-          {best !== null ? `Рекорд: ${best}` : "Рекорду ще немає"}
+          {best ? `Рекорд: ${best.score} · рівень ${best.level}` : "Рекорду ще немає"}
           {!dbOk && " · немає зв'язку з базою — рекорд не збережеться"}
         </p>
       </div>
@@ -399,10 +527,9 @@ function Intro({ title, count, best, dbOk, onStart }: { title: string; count: nu
   );
 }
 
-function Results({ game, total, best, newRecord, saveError, dbOk, onAgain, exitHref }: {
+function Results({ game, best, newRecord, saveError, dbOk, onAgain, exitHref }: {
   game: BlastGame;
-  total: number;
-  best: number | null;
+  best: BlastRecord | null;
   newRecord: boolean;
   saveError: string | null;
   dbOk: boolean;
@@ -412,18 +539,19 @@ function Results({ game, total, best, newRecord, saveError, dbOk, onAgain, exitH
   return (
     <div className="flex-1 flex flex-col justify-center gap-6 py-6 text-center">
       <div className="space-y-1">
-        <p className="text-sm text-muted-foreground">Гру завершено</p>
-        <p className="text-5xl font-bold tabular-nums">{game.score}</p>
+        <p className="text-sm text-muted-foreground">Час вийшов на рівні {game.level}: {game.levelScore} з {goalFor(game.level)}</p>
+        <p className="text-5xl font-bold tabular-nums">{game.totalScore}</p>
+        <p className="text-sm text-muted-foreground">загальний рахунок</p>
         {newRecord ? (
           <p className="text-sm font-semibold text-[#18AE79] animate-in zoom-in-75">🏆 Новий рекорд!</p>
         ) : (
-          best !== null && <p className="text-sm text-muted-foreground">Рекорд: {best}</p>
+          best && <p className="text-sm text-muted-foreground">Рекорд: {best.score} · рівень {best.level}</p>
         )}
       </div>
       <div className="grid grid-cols-3 gap-2">
+        <Stat value={String(game.level - 1)} label="рівнів пройдено" />
         <Stat value={`${accuracy(game)}%`} label="точність" />
-        <Stat value={`${game.hits}/${total}`} label="збито" />
-        <Stat value={String(game.misses)} label="промахів" />
+        <Stat value={String(game.hits)} label="влучань" />
       </div>
       {saveError && <p className="text-xs text-destructive">{saveError}</p>}
       {!dbOk && <p className="text-xs text-muted-foreground">Немає зв&apos;язку з базою — рекорд не збережено.</p>}

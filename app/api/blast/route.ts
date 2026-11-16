@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { BlastInputError, recordScore } from "@/lib/blast";
 
-type Body = { action: "score"; setId: string; groupId: string; score: number };
+type Body = { action: "score"; setId: string; groupId: string; score: number; level: number };
 
 export async function POST(req: NextRequest) {
   const body = (await req.json().catch(() => null)) as Body | null;
@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Некоректний запит" }, { status: 400 });
   }
   try {
-    const best = await recordScore({ setId: body.setId, groupId: body.groupId, score: body.score });
+    const best = await recordScore({ setId: body.setId, groupId: body.groupId, score: body.score, level: body.level });
     return NextResponse.json({ ok: true, best });
   } catch (e) {
     if (e instanceof BlastInputError) return NextResponse.json({ error: e.message }, { status: 400 });

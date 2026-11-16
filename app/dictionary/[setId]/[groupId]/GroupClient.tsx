@@ -30,7 +30,7 @@ type Props = {
   /** Область прогресу Learn ('' або 'all:<набір>'). */
   scope: string;
   /** Рекорд Blast; null — ще не грав (або база недоступна). */
-  blastBest: number | null;
+  blastBest: { score: number; level: number } | null;
 };
 
 export function GroupClient({ group, setTitle, groupHref, backHref, backLabel, stages, scope, blastBest }: Props) {
@@ -105,18 +105,18 @@ export function GroupClient({ group, setTitle, groupHref, backHref, backLabel, s
         <ModeButton href={stages ? `${groupHref}/learn` : undefined} icon={<LearnIcon />} label="Learn"
           note={!stages ? "немає зв'язку з базою" : progress.done ? "усе вивчено ✓" : `вивчено ${mastered} з ${progress.total}`} />
         <ModeButton href={`${groupHref}/blast`} icon={<BlastIcon />} label="Blast"
-          note={blastBest !== null ? `рекорд ${blastBest}` : undefined} />
+          note={blastBest ? `рекорд ${blastBest.score} · рівень ${blastBest.level}` : undefined} />
       </div>
 
       {/* Прогрес */}
       <div className="space-y-1.5">
         <div className="flex items-center justify-between text-xs text-muted-foreground">
           <span>Прогрес</span>
-          <span className="tabular-nums">вивчено {mastered} з {group.words.length}</span>
+          <span className="tabular-nums">вивчено {mastered} з {progress.total}</span>
         </div>
         <div className="bg-muted rounded-full h-1.5 overflow-hidden">
           <div className="h-full rounded-full bg-[#18AE79] transition-all duration-300"
-            style={{ width: `${(mastered / Math.max(group.words.length, 1)) * 100}%` }} />
+            style={{ width: `${(mastered / Math.max(progress.total, 1)) * 100}%` }} />
         </div>
       </div>
 
