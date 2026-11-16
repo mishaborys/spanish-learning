@@ -1,12 +1,13 @@
 // Рекорди Blast у Neon. Лише читання/запис рядків — правила гри в ./core.ts.
 import sql, { once } from "@/lib/db";
+import { RULES_VERSION } from "./core";
 
 export type BlastRecord = { score: number; level: number };
 
 /**
  * Створює таблицю, якщо її ще немає. Один раз на процес.
- * Перша версія гри рахувала бали інакше (сотні за влучання) і не мала рівня — такі рекорди
- * (best_level порожній або 0) нова гра ніколи б не побила, тож вони видаляються.
+ * Рекорди, зароблені за іншою версією правил (`RULES_VERSION`), нова гра могла б ніколи не побити
+ * або сервер вважав би їх неможливими — тож вони видаляються.
  */
 export const ensureSchema = once(async () => {
   await sql`
@@ -18,8 +19,8 @@ export const ensureSchema = once(async () => {
       PRIMARY KEY (set_id, group_id)
     )`;
   await sql`ALTER TABLE blast_scores ADD COLUMN IF NOT EXISTS best_level INTEGER`;
-  // Справжня гра завжди дає рівень ≥ 1; 0 лишився від проміжної міграції з DEFAULT 0
-  await sql`DELETE FROM blast_scores WHERE best_level IS NULL OR best_level < 1`;
+  await sql`ALTER TABLE blast_scores ADD COLUMN IF NOT EXISTS rules_version INTEGER`;
+  await sql`DELETE FROM blast_scores WHERE rules_version IS DISTINCT FROM ${RULES_VERSION}`;
 });
 
 export async function loadBest(setId: string, groupId: string): Promise<BlastRecord | null> {
@@ -33,7 +34,8 @@ export async function loadBest(setId: string, groupId: string): Promise<BlastRec
 /** Рекорд — одна найкраща гра (за загальним рахунком) разом із її рівнем. Повертає рекорд після запису. */
 export async function saveIfBest(setId: string, groupId: string, score: number, level: number): Promise<BlastRecord> {
   const rows = (await sql`
-    INSERT INTO blast_scores (set_id, group_id, best_score, best_level) VALUES (${setId}, ${groupId}, ${score}, ${level})
+    INSERT INTO blast_scores (set_id, group_id, best_score, best_level, rules_version)
+    VALUES (${setId}, ${groupId}, ${score}, ${level}, ${RULES_VERSION})
     ON CONFLICT (set_id, group_id) DO UPDATE SET
       best_score = GREATEST(blast_scores.best_score, EXCLUDED.best_score),
       best_level = CASE WHEN EXCLUDED.best_score > blast_scores.best_score THEN EXCLUDED.best_level ELSE blast_scores.best_level END,

@@ -1,16 +1,22 @@
-// Правила гри Blast у Словнику — механіка як у Quizlet Blast (відновлена з рахунку реальної гри).
+// Правила гри Blast у Словнику — механіка як у Quizlet Blast (відновлена з реальної гри та спостережень).
 // Чистий модуль: без БД, без React — тестується напряму. Політ астероїдів і таймер — в інтерфейсі.
 import { shuffle, type Rng } from "@/lib/random";
 export type { Rng };
+
+/**
+ * Версія правил підрахунку. Рекорди, зароблені за іншими правилами, у базі не порівнюються
+ * з новими (видаляються при міграції). Змінюй разом із правилами нижче.
+ */
+export const RULES_VERSION = 3;
 
 /** Бали за влучання до множника. */
 export const BASE_POINTS = 5;
 /** На скільки росте множник за кожне влучання поспіль. */
 export const STREAK_STEP = 0.2;
 /** Стеля множника. */
-export const MAX_MULTIPLIER = 2.4;
+export const MAX_MULTIPLIER = 3;
 
-/** Множник серії: 1 + 0.2 за кожне влучання поспіль, не більше ×2.4. */
+/** Множник серії: 1 + 0.2 за кожне влучання поспіль, не більше ×3. */
 export function multiplierFor(streak: number): number {
   // Округлення прибирає хвости на кшталт 1.2000000000000002
   return Math.min(Math.round((1 + STREAK_STEP * streak) * 10) / 10, MAX_MULTIPLIER);
@@ -21,15 +27,31 @@ export function pointsForHit(streak: number): number {
   return Math.round(BASE_POINTS * multiplierFor(streak));
 }
 
-/** Ціль рівня (мінімум за раунд): 50 на першому, далі +25. */
+/** Цілі перших рівнів як у Quizlet; далі — +50 за рівень (продовження не спостерігали). */
+const GOALS = [50, 75, 125, 200, 250];
+const GOAL_STEP_AFTER = 50;
+
+/** Ціль рівня: раунд закінчується, щойно її набрано. */
 export function goalFor(level: number): number {
-  return 50 + 25 * (level - 1);
+  const last = GOALS.length;
+  return level <= last ? GOALS[level - 1] : GOALS[last - 1] + GOAL_STEP_AFTER * (level - last);
 }
 
 /** Мінімальний загальний рахунок, щоб дійти до рівня `level`: сума цілей усіх попередніх. */
 export function minScoreToReach(level: number): number {
   let total = 0;
   for (let l = 1; l < level; l++) total += goalFor(l);
+  return total;
+}
+
+/**
+ * Найбільший загальний рахунок гри, що закінчилась (вийшов час) на рівні `level`:
+ * у кожному пройденому раунді — ціль − 1 + найбільше влучання, в останньому — ціль − 1.
+ */
+export function maxScoreToEndAt(level: number): number {
+  const bestHit = pointsForHit(Number.MAX_SAFE_INTEGER);
+  let total = goalFor(level) - 1;
+  for (let l = 1; l < level; l++) total += goalFor(l) - 1 + bestHit;
   return total;
 }
 
@@ -50,7 +72,7 @@ export type BlastGame = {
   deck: string[];
   /** Слово, переклад якого зараз показано. */
   target: string | null;
-  /** Бали в поточному рівні (порівнюються з ціллю). */
+  /** Бали в поточному раунді (окремі для кожного раунду; порівнюються з ціллю). */
   levelScore: number;
   /** Загальний рахунок за гру. */
   totalScore: number;
@@ -102,7 +124,7 @@ function nextTarget(words: BlastWord[], visible: string[], previous: string | nu
 }
 
 /** Штраф за промах; бали не опускаються нижче нуля. */
-export const MISS_PENALTY = 3;
+export const MISS_PENALTY = 2;
 
 export type TapResult = { game: BlastGame; correct: boolean; points: number };
 
@@ -115,7 +137,7 @@ function samePrompt(game: BlastGame, a: string, b: string): boolean {
 
 /** Тап по астероїду `key`. */
 export function tap(game: BlastGame, key: string, rng: Rng = Math.random): TapResult {
-  if (game.over || !game.target || !game.visible.includes(key)) return { game, correct: false, points: 0 };
+  if (game.over || isRoundComplete(game) || !game.target || !game.visible.includes(key)) return { game, correct: false, points: 0 };
   if (!samePrompt(game, key, game.target)) {
     const levelScore = Math.max(0, game.levelScore - MISS_PENALTY);
     const lost = game.levelScore - levelScore;
@@ -126,6 +148,7 @@ export function tap(game: BlastGame, key: string, rng: Rng = Math.random): TapRe
     };
   }
   const points = pointsForHit(game.streak);
+  const levelScore = game.levelScore + points;
   // Замінник — не з тих, що лишаються на полі; збите слово може повернутися лише якщо інших немає (мала група)
   const { key: replacement, deck } = draw(game, game.visible.filter(k => k !== key), rng, key);
   // Новий астероїд стає на місце збитого
@@ -138,7 +161,7 @@ export function tap(game: BlastGame, key: string, rng: Rng = Math.random): TapRe
       visible,
       deck,
       target: nextTarget(game.words, visible, game.target, rng),
-      levelScore: game.levelScore + points,
+      levelScore,
       totalScore: game.totalScore + points,
       streak: game.streak + 1,
       hits: game.hits + 1,
@@ -146,13 +169,18 @@ export function tap(game: BlastGame, key: string, rng: Rng = Math.random): TapRe
   };
 }
 
+/** Ціль раунду набрано — раунд закінчено, далі `endRound` переводить на наступний рівень. */
+export function isRoundComplete(game: Pick<BlastGame, "level" | "levelScore">): boolean {
+  return game.levelScore >= goalFor(game.level);
+}
+
 /**
- * Час раунду вийшов. Ціль набрано — наступний рівень: нова ціль, бали рівня з нуля,
- * поле заповнюється новими словами. Не набрано — гру завершено.
+ * Кінець раунду. Ціль набрано (`isRoundComplete`) — наступний рівень: нова ціль, бали раунду з нуля
+ * (загальні лишаються), поле заповнюється новими словами. Інакше вийшов час — гру завершено.
  */
 export function endRound(game: BlastGame, rng: Rng = Math.random): BlastGame {
   if (game.over) return game;
-  if (game.levelScore < goalFor(game.level)) return { ...game, over: true, target: null };
+  if (!isRoundComplete(game)) return { ...game, over: true, target: null };
   const cleared: BlastGame = { ...game, level: game.level + 1, levelScore: 0, visible: [], deck: [...game.deck, ...game.visible] };
   const field = fill(cleared, rng);
   return { ...cleared, ...field, target: nextTarget(game.words, field.visible, game.target, rng) };
@@ -162,14 +190,6 @@ export function endRound(game: BlastGame, rng: Rng = Math.random): BlastGame {
 export function accuracy(game: Pick<BlastGame, "hits" | "misses">): number {
   const taps = game.hits + game.misses;
   return taps === 0 ? 100 : Math.round((game.hits / taps) * 100);
-}
-
-/**
- * Верхня межа загального рахунку для перевірки на сервері: за рівень не більше
- * ніж ~2 влучання на секунду з максимальним множником.
- */
-export function maxPlausibleScore(level: number): number {
-  return level * (ROUND_MS / 500) * pointsForHit(Number.MAX_SAFE_INTEGER);
 }
 
 /** Нова гра: рівень 1, на полі до 4 слів, підказка про одне з них. */

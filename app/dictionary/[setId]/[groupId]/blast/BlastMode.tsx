@@ -3,7 +3,7 @@
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import {
-  accuracy, createGame, endRound, goalFor, MAX_MULTIPLIER, multiplierFor, ROUND_MS, STREAK_STEP, tap,
+  accuracy, createGame, endRound, goalFor, isRoundComplete, MAX_MULTIPLIER, multiplierFor, ROUND_MS, STREAK_STEP, tap,
   type BlastGame, type TapResult,
 } from "@/lib/blast/core";
 
@@ -19,9 +19,9 @@ const STREAK_SEGMENTS = Math.round((MAX_MULTIPLIER - 1) / STREAK_STEP);
 type Phase = "intro" | "goal" | "playing" | "levelDone" | "over";
 
 /**
- * Blast — механіка як у Quizlet: раунди по 60 секунд, у кожному треба набрати ціль
- * (50, 75, 100…). 5 балів × множник серії (+0.2 за влучання поспіль, до ×2.4); промах −3 і серія з нуля.
- * Не набрав ціль за раунд — гра закінчується.
+ * Blast — механіка як у Quizlet: у кожному раунді за 60 секунд треба набрати ціль (50, 75, 125, 200, 250…);
+ * раунд закінчується, щойно її набрано. 5 балів × множник серії (+0.2 за влучання поспіль, до ×3);
+ * промах −2 і серія з нуля. Не набрав ціль за 60 секунд — гра закінчується.
  */
 export function BlastMode({ words, title, setId, groupId, exitHref, initialBest, dbOk }: {
   words: BlastModeWord[];
@@ -102,16 +102,15 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
     document.addEventListener("visibilitychange", onVisibility);
     const id = setInterval(() => {
       if (document.hidden) return;
-      if (deadline.current > performance.now() || !gameRef.current) return;
+      const g = gameRef.current;
+      if (deadline.current > performance.now() || !g) return;
+      // Ціль набрали в останню мить — раунд уже закінчує onTap, це не кінець гри
+      if (phaseRef.current !== "playing" || isRoundComplete(g)) { clearInterval(id); return; }
+      // Час вийшов, а ціль не набрано
       clearInterval(id);
-      const next = endRound(gameRef.current);
-      if (next.over) {
-        update(next);
-        void finish(next);
-      } else {
-        setPhase("levelDone"); // з цієї миті тапи не приймаються, тож `next` не застаріє
-        later(() => { update(next); announceLevel(); }, LEVEL_DONE_MS);
-      }
+      const next = endRound(g);
+      update(next);
+      void finish(next);
     }, 100);
     return () => { clearInterval(id); document.removeEventListener("visibilitychange", onVisibility); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -125,7 +124,19 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
     const result = tap(g, key);
     gameRef.current = result.game;
     setGame(result.game);
+    // Ціль набрано — раунд одразу закінчено: «Рівень N пройдено», потім ціль наступного
+    if (isRoundComplete(result.game)) {
+      setPhase("levelDone"); // з цієї миті тапи не приймаються, а таймер раунду не завершить гру
+      later(() => {
+        // Гру могли перезапустити чи закрити, поки показувався банер
+        if (phaseRef.current !== "levelDone" || !gameRef.current) return;
+        update(endRound(gameRef.current));
+        announceLevel();
+      }, LEVEL_DONE_MS);
+    }
     return result;
+    // Помічники вище працюють лише з ref-ами та сетерами стану, тож перша їх версія завжди актуальна
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const byKey = useMemo(() => new Map(words.map(w => [w.key, w])), [words]);
@@ -180,7 +191,7 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
                 <Banner title={`Ціль: ${goal} балів`} subtitle={game.level > 1 ? `Рівень ${game.level}` : "60 секунд на раунд"} />
               )}
               {phase === "levelDone" && (
-                <Banner title={`Рівень ${game.level} пройдено`} subtitle={`Загальний рахунок: ${game.totalScore}`} />
+                <Banner title={`Рівень ${game.level} пройдено`} subtitle={`+${game.levelScore} · загальний рахунок: ${game.totalScore}`} />
               )}
             </div>
 
@@ -247,7 +258,7 @@ function Banner({ title, subtitle }: { title: string; subtitle: string }) {
 function Hud({ level, levelScore, goal, streak }: { level: number; levelScore: number; goal: number; streak: number }) {
   const multiplier = multiplierFor(streak);
   const lit = Math.round((multiplier - 1) / STREAK_STEP);
-  const reached = levelScore >= goal;
+  const reached = isRoundComplete({ level, levelScore });
   return (
     <div className="shrink-0 grid grid-cols-2 gap-6 pt-1 pb-1">
       <div className="space-y-1">
@@ -505,9 +516,10 @@ function Intro({ title, count, best, dbOk, onStart }: { title: string; count: nu
       </div>
       <ul className="text-sm text-left space-y-2 rounded-2xl border bg-card p-4">
         <li>☄️ Угорі — переклад. Збий астероїд з іспанським словом, що йому відповідає.</li>
-        <li>⏱️ Раунд — 60 секунд. Набери ціль (50 балів, далі більше), щоб пройти на наступний рівень.</li>
-        <li>🔥 Влучання — 5 балів × серія: кожне правильне поспіль додає +0.2, до ×2.4.</li>
-        <li>💥 Промах — мінус 3 бали, серія з початку.</li>
+        <li>⏱️ На раунд — 60 секунд: набери ціль (50, 75, 125, 200, 250…), і раунд одразу закінчиться — далі наступний рівень.</li>
+        <li>🔥 Влучання — 5 балів × серія: кожне правильне поспіль додає +0.2, до ×3.</li>
+        <li>💥 Промах — мінус 2 бали, серія з початку.</li>
+        <li>🏁 Не встиг набрати ціль — гра закінчується. Бали всіх раундів складаються в загальний рахунок.</li>
       </ul>
       <div className="space-y-2">
         {count === 0 ? (

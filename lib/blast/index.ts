@@ -1,6 +1,6 @@
 // Інтерфейс модуля Blast: сторінки й API звертаються лише сюди.
 import { findGroup, loadVocabularySet } from "@/lib/vocabulary";
-import { maxPlausibleScore, minScoreToReach } from "./core";
+import { maxScoreToEndAt, minScoreToReach } from "./core";
 import * as store from "./store";
 
 export type { BlastRecord } from "./store";
@@ -20,9 +20,9 @@ export async function recordScore(input: { setId: string; groupId: string; score
   const group = set && typeof groupId === "string" ? findGroup(set, groupId) : null;
   if (!set || !group) throw new BlastInputError("Такої групи немає");
   if (!Number.isInteger(level) || level < 1 || level > 100) throw new BlastInputError("Некоректний рівень");
-  // Гра на час, тож точного максимуму немає. Але рахунок має відповідати рівню:
-  // щоб дійти до рівня, треба було набрати цілі всіх попередніх, і не більше, ніж реально встигнути
-  if (!Number.isInteger(score) || score < minScoreToReach(level) || score > maxPlausibleScore(level)) {
+  // Рахунок має відповідати рівню, на якому вийшов час: пройдені раунди закінчуються одразу після цілі,
+  // тож загальний рахунок лежить між сумою цілей і сумою «ціль − 1 + найбільше влучання»
+  if (!Number.isInteger(score) || score < minScoreToReach(level) || score > maxScoreToEndAt(level)) {
     throw new BlastInputError("Некоректний рахунок");
   }
   await store.ensureSchema();
