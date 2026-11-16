@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { VocabGroup, VocabWord } from "@/lib/vocabulary";
 import { setFlashcardSettings, useFlashcardSettings, type FlashcardSettings } from "@/lib/flashcardSettings";
-import { speakSpanish } from "@/lib/speak";
+import { speakSpanish, speakUkrainian } from "@/lib/speak";
 import { SwipeCounters, SwipeFlipCard, type SwipeDir, type SwipeFlipCardHandle } from "@/components/spanish/SwipeFlipCard";
 import { SpeakerIcon, WordNotes } from "@/components/spanish/WordNotes";
 
@@ -199,6 +199,8 @@ function Round({ words, settings, exitHref, paused, onOpenSettings }: {
     );
   }
 
+  // Який бік картки зараз видно: лицьовий — за налаштуванням, після перевертання — інший
+  const spanishVisible = (front === "es") !== flipped;
   const es = (
     <>
       <span className="text-4xl font-bold tracking-tight">{word!.spanish}</span>
@@ -256,7 +258,10 @@ function Round({ words, settings, exitHref, paused, onOpenSettings }: {
         <span className="text-xs text-muted-foreground opacity-60">
           {sorting ? "← ще вчу · знаю →" : "← наступна · попередня →"}
         </span>
-        <button type="button" onClick={() => speakSpanish(word!.spanish)} aria-label={`Вимовити «${word!.spanish}»`}
+        {/* Звук — того боку, який зараз видно: інакше з українського боку він підказував би іспанське слово */}
+        <button type="button"
+          onClick={() => (spanishVisible ? speakSpanish(word!.spanish) : speakUkrainian(word!.ukrainian))}
+          aria-label={spanishVisible ? "Вимовити іспанське слово" : "Вимовити переклад"}
           className="p-3 rounded-full text-muted-foreground hover:text-foreground transition-colors">
           <SpeakerIcon />
         </button>
