@@ -69,3 +69,11 @@ export function findGroup(set: VocabSet, groupId: string): VocabGroup | null {
   return set.groups.find(g => g.id === groupId)
     ?? (groupId === ALL_WORDS_GROUP_ID ? allWordsGroup(set) : null);
 }
+
+/**
+ * Адреса набору в Словнику. Набір з однією групою власної сторінки не має (вона лише перенаправляє),
+ * тож посилання веде одразу на групу — перенаправлену сторінку Safari з офлайн-кешу не віддає.
+ */
+export function setHref(set: VocabSet): string {
+  return set.groups.length === 1 ? `/dictionary/${set.id}/${set.groups[0].id}` : `/dictionary/${set.id}`;
+}

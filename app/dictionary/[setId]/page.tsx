@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { allWordsGroup, loadVocabularySet } from "@/lib/vocabulary";
+import { allWordsGroup, loadVocabularySet, setHref } from "@/lib/vocabulary";
 import { PinnedAboveNav } from "@/components/spanish/PinnedAboveNav";
 
 export default async function DictionarySetPage({ params }: { params: Promise<{ setId: string }> }) {
@@ -9,7 +9,7 @@ export default async function DictionarySetPage({ params }: { params: Promise<{ 
   if (!set) notFound();
 
   // Набір з однією групою: проміжний список зайвий — одразу сторінка групи
-  if (set.groups.length === 1) redirect(`/dictionary/${set.id}/${set.groups[0].id}`);
+  if (setHref(set) !== `/dictionary/${set.id}`) redirect(setHref(set));
 
   const all = allWordsGroup(set);
   const total = all?.words.length ?? set.groups[0]?.words.length ?? 0;

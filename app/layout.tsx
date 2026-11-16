@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ThemeToggle } from "@/components/spanish/ThemeToggle";
 import { BottomNav } from "@/components/spanish/BottomNav";
+import { ServiceWorker } from "@/components/spanish/ServiceWorker";
 import Link from "next/link";
 
 const geist = Geist({ subsets: ["latin"] });
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             {/* Bottom navigation */}
             <BottomNav />
+            <ServiceWorker />
 
           </div>
         </ThemeProvider>

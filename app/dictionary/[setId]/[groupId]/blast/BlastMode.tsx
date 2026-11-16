@@ -8,6 +8,7 @@ import {
   type BlastGame, type TapResult,
 } from "@/lib/blast/core";
 import { BlastMusic, readMuted, saveMuted, subscribeMuted } from "@/lib/blastMusic";
+import { submitScore } from "@/lib/blastOutbox";
 
 const subscribeVisibility = (cb: () => void) => {
   document.addEventListener("visibilitychange", cb);
@@ -48,6 +49,7 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
   const [best, setBest] = useState<BlastRecord | null>(initialBest);
   const [newRecord, setNewRecord] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
+  const [savedOffline, setSavedOffline] = useState(false);
 
   // Пауза: час раунду, політ астероїдів і музика стоять; екран розмитий
   // pausedAt — єдине джерело правди для логіки (null = гра йде); `paused` — лише для рендера
@@ -88,6 +90,7 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
     setRunId(r => r + 1);
     setNewRecord(false);
     setSaveError(null);
+    setSavedOffline(false);
     announceLevel();
   };
 
@@ -97,14 +100,14 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
     setPhase("over");
     if (!dbOk) return;
     try {
-      const res = await fetch("/api/blast", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "score", setId, groupId, score: final.totalScore, level: final.level }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.error ?? "Не вдалося зберегти рекорд");
-      setBest(data.best);
+      const result = await submitScore({ setId, groupId, score: final.totalScore, level: final.level });
+      if (result.queued) {
+        // Без інтернету: рекорд чекає на телефоні; на екрані вже показуємо кращий
+        setSavedOffline(true);
+        if (best === null || final.totalScore > best.score) setBest({ score: final.totalScore, level: final.level });
+      } else {
+        setBest(result.best);
+      }
     } catch (e) {
       // Рекорд на екрані не змінюємо: у базі його немає
       setSaveError((e as Error).message);
@@ -284,7 +287,7 @@ export function BlastMode({ words, title, setId, groupId, exitHref, initialBest,
         )}
 
         {phase === "over" && game && (
-          <Results game={game} best={best} newRecord={newRecord}
+          <Results game={game} best={best} newRecord={newRecord} savedOffline={savedOffline}
             saveError={saveError} dbOk={dbOk} onAgain={start} exitHref={exitHref} />
         )}
       </div>
@@ -676,10 +679,11 @@ function Intro({ title, count, best, dbOk, onStart }: { title: string; count: nu
   );
 }
 
-function Results({ game, best, newRecord, saveError, dbOk, onAgain, exitHref }: {
+function Results({ game, best, newRecord, savedOffline, saveError, dbOk, onAgain, exitHref }: {
   game: BlastGame;
   best: BlastRecord | null;
   newRecord: boolean;
+  savedOffline: boolean;
   saveError: string | null;
   dbOk: boolean;
   onAgain: () => void;
@@ -703,6 +707,7 @@ function Results({ game, best, newRecord, saveError, dbOk, onAgain, exitHref }: 
         <Stat value={String(game.hits)} label="влучань" />
       </div>
       {saveError && <p className="text-xs text-destructive">{saveError}</p>}
+      {savedOffline && <p className="text-xs text-muted-foreground">Немає інтернету — результат збережено на телефоні й відправиться, щойно з&apos;явиться зв&apos;язок.</p>}
       {!dbOk && <p className="text-xs text-muted-foreground">Немає зв&apos;язку з базою — рекорд не збережено.</p>}
       <div className="space-y-2">
         <button type="button" onClick={onAgain}

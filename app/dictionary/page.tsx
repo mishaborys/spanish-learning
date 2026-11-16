@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { loadVocabularySets } from "@/lib/vocabulary";
+import { loadVocabularySets, setHref } from "@/lib/vocabulary";
 
 type VocabSetMeta = {
   id: string;
@@ -8,6 +8,7 @@ type VocabSetMeta = {
   totalWords: number;
   groupCount: number;
   addedAt: number;
+  href: string;
 };
 
 function loadSets(): VocabSetMeta[] {
@@ -19,6 +20,7 @@ function loadSets(): VocabSetMeta[] {
       totalWords: raw.groups.reduce((s, g) => s + g.words.length, 0),
       groupCount: raw.groups.length,
       addedAt: raw.added_at ? Date.parse(raw.added_at) : 0,
+      href: setHref(raw),
     }))
     .sort((a, b) => b.addedAt - a.addedAt || a.id.localeCompare(b.id));
 }
@@ -39,7 +41,7 @@ export default function DictionaryPage() {
 
       <div className="space-y-3">
         {sets.map(s => (
-          <Link key={s.id} href={`/dictionary/${s.id}`}
+          <Link key={s.id} href={s.href}
             className="block rounded-2xl border bg-card p-4 hover:bg-accent/30 transition-colors active:scale-[0.99]">
             <div className="flex items-start justify-between gap-3">
               <div className="space-y-1">
