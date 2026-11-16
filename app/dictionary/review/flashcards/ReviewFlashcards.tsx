@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { ReviewItem, ReviewToday } from "@/lib/review";
-import type { Grade } from "@/lib/review/core";
+import { wordsToRetry, type Grade } from "@/lib/review/core";
 import type { FlashcardSettings } from "@/lib/flashcardSettings";
 import { flushReviewOutbox, queueAnswer, queueUndo } from "@/lib/reviewOutbox";
 import { speakSpanish, speakUkrainian } from "@/lib/speak";
@@ -79,6 +79,8 @@ function GradingRound({ review, settings, exitHref, paused, onOpenSettings }: {
   const item: ReviewItem | undefined = deck[index];
   const done = index >= deck.length;
   const grading = phase === "grade";
+  // Підсумок проходу оцінювання: слова, яких не знав чи вагався, можна пройти ще раз
+  const retryCount = done && grading ? wordsToRetry(deck, results.map(r => r.grade)).length : 0;
   const tally = { known: 0, hesitant: 0, unknown: 0 } as Record<Grade, number>;
   for (const r of results) tally[r.grade]++;
 
@@ -95,35 +97,35 @@ function GradingRound({ review, settings, exitHref, paused, onOpenSettings }: {
     // Рахується перша оцінка слова за день: якщо його вже оцінив Learn, це просто тренування
     const recorded = grading && !answers[item.key];
     if (recorded) queueAnswer({ day: review.day, batch: review.batch, key: item.key }, grade);
-    const nextResults = [...results, { grade, recorded }];
+    setResults(r => [...r, { grade, recorded }]);
     setFlipped(false);
     setBusy(false);
-    // Кінець оцінювання: ще раз слова, яких не знав чи вагався (уже без запису)
-    const again = grading && index + 1 >= deck.length ? deck.filter((_, i) => nextResults[i].grade !== "known") : [];
-    if (again.length > 0) {
-      setGraded({ deck, results: nextResults });
-      setPhase("retry");
-      setDeck(order(again));
-      setIndex(0);
-      setResults([]);
-      return;
-    }
-    setResults(nextResults);
     setIndex(i => i + 1);
+  };
+
+  /** Після підсумку проходу оцінювання: ще раз слова, яких не знав чи вагався (уже без запису). */
+  const startRetry = () => {
+    if (!grading) return;
+    const again = wordsToRetry(deck, results.map(r => r.grade));
+    if (again.length === 0) return;
+    setGraded({ deck, results });
+    setPhase("retry");
+    setDeck(order(again));
+    setIndex(0);
+    setResults([]);
+    setFlipped(false);
   };
 
   /** Назад: попередня картка; її оцінка в розкладі скасовується повністю. */
   const back = () => {
     if (busy) return;
     if (index === 0) {
-      // З першої картки «ще раз» — назад до останньої оціненої
+      // З першої картки «ще раз» — назад до підсумку оцінювання (оцінки лишаються)
       if (phase !== "retry" || !graded) return;
-      const last = graded.results[graded.results.length - 1];
-      if (last.recorded) queueUndo({ day: review.day, batch: review.batch, key: graded.deck[graded.deck.length - 1].key });
       setPhase("grade");
       setDeck(graded.deck);
-      setResults(graded.results.slice(0, -1));
-      setIndex(graded.deck.length - 1);
+      setResults(graded.results);
+      setIndex(graded.deck.length);
       setGraded(null);
       setFlipped(false);
       return;
@@ -182,7 +184,7 @@ function GradingRound({ review, settings, exitHref, paused, onOpenSettings }: {
         {topBar}
         {progress}
         <Summary review={review} answers={answers} training={phase === "training"} exitHref={exitHref}
-          onBack={canGoBack ? back : undefined} />
+          retryCount={retryCount} onRetry={startRetry} onBack={canGoBack ? back : undefined} />
       </>
     );
   }
@@ -281,11 +283,14 @@ function GradingRound({ review, settings, exitHref, paused, onOpenSettings }: {
   );
 }
 
-function Summary({ review, answers, training, exitHref, onBack }: {
+function Summary({ review, answers, training, exitHref, retryCount, onRetry, onBack }: {
   review: ReviewToday;
   answers: Record<string, Grade>;
   training: boolean;
   exitHref: string;
+  /** Слів, які можна пройти ще раз («не знаю» / «вагався» цього проходу). */
+  retryCount: number;
+  onRetry: () => void;
   onBack?: () => void;
 }) {
   const { more, busy, error } = useMoreWords();
@@ -297,9 +302,9 @@ function Summary({ review, answers, training, exitHref, onBack }: {
   return (
     <div className="flex-1 min-h-0 overflow-y-auto flex flex-col justify-center gap-5 py-6">
       <div className="text-center space-y-1">
-        <p className="text-4xl">{allGraded ? "🎉" : "💪"}</p>
+        <p className="text-4xl">{allGraded && retryCount === 0 ? "🎉" : "💪"}</p>
         <p className="font-semibold text-lg">
-          {training ? "Тренування завершено" : allGraded ? "На сьогодні все!" : "Сесію завершено"}
+          {training ? "Тренування завершено" : retryCount > 0 ? "Прохід завершено" : allGraded ? "На сьогодні все!" : "Сесію завершено"}
         </p>
       </div>
       <GradeCounters counts={counts} />
@@ -308,6 +313,12 @@ function Summary({ review, answers, training, exitHref, onBack }: {
         <p>Завтра на повторення: <strong>{review.stats.dueTomorrow}</strong> + нові</p>
       </div>
       <div className="space-y-2">
+        {retryCount > 0 && (
+          <button type="button" onClick={onRetry}
+            className="w-full min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium active:scale-[0.98] transition-all">
+            Ще раз: {retryCount} {wordsLabel(retryCount)}
+          </button>
+        )}
         {/* Далі — тренування слів, яких не знав чи вагався */}
         {toPractice > 0 && (
           <>

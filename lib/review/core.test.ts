@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
+  wordsToRetry,
   addDays, Card, firstLetterHint, gradeTyped, kyivDay, nextCard, pickBatch, practiceWords, scheduleDay,
 } from "./core";
 
@@ -162,4 +163,16 @@ test("Learn і Blast тренують слова з «не знаю» й «ва�
 
 test("поки в добірці є неоцінені слова, Learn і Blast закриті", () => {
   assert.equal(practiceWords(["a", "b"], { a: "unknown" }), null);
+});
+
+// ─── Повтор після проходу Flashcards ──────────────────────────────────────────
+
+test("на повтор йдуть слова, оцінені «не знаю» чи «вагався», у порядку колоди", () => {
+  const deck = ["a", "b", "c", "d"];
+  assert.deepEqual(wordsToRetry(deck, ["known", "unknown", "known", "hesitant"]), ["b", "d"]);
+});
+
+test("усі «знаю» — повтору немає; неоцінені (прохід не закінчено) на повтор не йдуть", () => {
+  assert.deepEqual(wordsToRetry(["a", "b"], ["known", "known"]), []);
+  assert.deepEqual(wordsToRetry(["a", "b", "c"], ["unknown"]), ["a"]);
 });

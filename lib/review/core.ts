@@ -229,3 +229,8 @@ export function firstLetterHint(spanish: string): string {
   const form = alt?.forms[0] ?? spanish;
   return `${form.charAt(0)}…`;
 }
+
+/** Слова колоди, які після проходу Flashcards треба повторити: оцінені «не знаю» чи «вагався». `grades[i]` — оцінка `deck[i]`. */
+export function wordsToRetry<T>(deck: T[], grades: Grade[]): T[] {
+  return deck.filter((_, i) => grades[i] !== undefined && grades[i] !== "known");
+}
