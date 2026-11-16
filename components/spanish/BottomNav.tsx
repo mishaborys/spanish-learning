@@ -12,16 +12,6 @@ function BookIcon() {
   );
 }
 
-function RepeatIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M17 2l4 4-4 4" />
-      <path d="M3 11V9a4 4 0 0 1 4-4h14" />
-      <path d="M7 22l-4-4 4-4" />
-      <path d="M21 13v2a4 4 0 0 1-4 4H3" />
-    </svg>
-  );
-}
 
 function HomeworkIcon() {
   return (
@@ -46,7 +36,6 @@ function DictionaryIcon() {
 
 const NAV_ITEMS = [
   { href: "/",           label: "Теми",      Icon: BookIcon,       exact: true  },
-  { href: "/review",     label: "Повторення", Icon: RepeatIcon,    exact: false },
   { href: "/homework",   label: "ДЗ",        Icon: HomeworkIcon,   exact: false },
   { href: "/dictionary", label: "Словник",   Icon: DictionaryIcon, exact: false },
 ];

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildRound, checkWritten, groupProgress, nextStage, pickOptions, seededRng, type Stage } from "./core";
+import { buildRound, checkWritten, groupProgress, nextStage, pickOptions, reviewGrade, seededRng, type Stage } from "./core";
 
 /** Детермінований «рандом» для тестів. */
 const seq = (...v: number[]) => { let i = 0; return () => v[i++ % v.length]; };
@@ -106,4 +106,26 @@ test("seededRng: те саме зерно дає той самий раунд (�
   const c = buildRound({ words: ws, rng: seededRng(7) }).map(q => q.key);
   assert.deepEqual(a, b);
   assert.notDeepEqual(a, c);
+});
+
+// ─── Оцінка для Повторення ────────────────────────────────────────────────────
+
+test("Learn у Повторенні: помилка на першому ж питанні слова — «не знаю»", () => {
+  assert.equal(reviewGrade({ stageBefore: "new", kind: "choice", correct: false, typo: false }), "unknown");
+});
+
+test("Learn у Повторенні: помилка після правильного вибору — «вагався»", () => {
+  assert.equal(reviewGrade({ stageBefore: "learning", kind: "write", correct: false, typo: false }), "hesitant");
+});
+
+test("Learn у Повторенні: правильно вписав без жодної помилки — «знаю»", () => {
+  assert.equal(reviewGrade({ stageBefore: "learning", kind: "write", correct: true, typo: false }), "known");
+});
+
+test("Learn у Повторенні: вписав з опечаткою чи «Я мав на увазі це» — «вагався»", () => {
+  assert.equal(reviewGrade({ stageBefore: "learning", kind: "write", correct: true, typo: true }), "hesitant");
+});
+
+test("Learn у Повторенні: правильний вибір ще не дає оцінки — чекаємо вписування", () => {
+  assert.equal(reviewGrade({ stageBefore: "new", kind: "choice", correct: true, typo: false }), null);
 });

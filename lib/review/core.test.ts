@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  addDays, Card, firstLetterHint, gradeTyped, kyivDay, nextCard, pickBatch, pickMode,
+  addDays, Card, firstLetterHint, gradeTyped, kyivDay, nextCard, pickBatch, scheduleDay,
 } from "./core";
 
 const today = "2026-11-15";
@@ -91,8 +91,15 @@ test("не беремо майбутні, виключені та видален
   assert.deepEqual(batch, ["n0"]);
 });
 
-test("режим дня не повторює вчорашній", () => {
-  for (let i = 0; i < 50; i++) assert.notEqual(pickMode("type", Math.random), "type");
+test("оцінка, зроблена без інтернету, рахується від дня відповіді, а не від дня відправки", () => {
+  assert.equal(scheduleDay({ batchDay: "2026-11-14", answeredOn: "2026-11-14", today: "2026-11-16" }), "2026-11-14");
+});
+
+test("день відповіді не може бути раніше за добірку чи пізніше за сьогодні (годинник телефона може брехати)", () => {
+  assert.equal(scheduleDay({ batchDay: "2026-11-14", answeredOn: "2026-11-01", today: "2026-11-16" }), "2026-11-14");
+  assert.equal(scheduleDay({ batchDay: "2026-11-14", answeredOn: "2026-12-30", today: "2026-11-16" }), "2026-11-16");
+  assert.equal(scheduleDay({ batchDay: "2026-11-14", answeredOn: "nonsense", today: "2026-11-16" }), "2026-11-16");
+  assert.equal(scheduleDay({ batchDay: "2026-11-14", today: "2026-11-16" }), "2026-11-16");
 });
 
 // ─── Вписати ──────────────────────────────────────────────────────────────────

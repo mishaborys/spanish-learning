@@ -1,7 +1,8 @@
 // Інтерфейс модуля Learn: сторінки й API звертаються лише сюди.
-import { ALL_WORDS_GROUP_ID, loadVocabularySets, type VocabGroup, type VocabSet } from "@/lib/vocabulary";
+import { ALL_WORDS_GROUP_ID, loadVocabularySets, type VocabGroup, type VocabSet, type VocabWord } from "@/lib/vocabulary";
 import { wordKey } from "@/lib/review/core";
-import { nextStage, shuffle, type Option, type QuestionKind, type Stage } from "./core";
+import { checkInBatch, recordAnswer as recordReviewAnswer, ReviewInputError } from "@/lib/review";
+import { nextStage, reviewGrade, shuffle, type Option, type QuestionKind, type Stage } from "./core";
 import * as store from "./store";
 import { randomInt } from "node:crypto";
 
@@ -18,8 +19,19 @@ export function learnScope(set: VocabSet, group: VocabGroup): string {
   return group.id === ALL_WORDS_GROUP_ID ? `all:${set.id}` : "";
 }
 
+/** Область прогресу Learn для добірки Повторення: у кожної добірки свій, на групи не впливає. */
+export function reviewLearnScope(day: string, batch: number): string {
+  return `review:${day}:${batch}`;
+}
+
+function parseReviewScope(scope: string): { day: string; batch: number } | null {
+  const m = scope.match(/^review:(\d{4}-\d{2}-\d{2}):(\d{1,4})$/);
+  return m ? { day: m[1], batch: Number(m[2]) } : null;
+}
+
 function checkScope(scope: unknown): string {
   if (scope === "") return "";
+  if (typeof scope === "string" && parseReviewScope(scope)) return scope;
   if (typeof scope === "string" && scope.startsWith("all:") && loadVocabularySets().some(s => `all:${s.id}` === scope)) return scope;
   throw new LearnInputError("Некоректна область прогресу");
 }
@@ -30,19 +42,38 @@ export async function getStages(spanish: string[], scope = ""): Promise<Record<s
   return store.loadStages(scope, [...new Set(spanish.map(wordKey))]);
 }
 
-/** Записує відповідь і повертає новий етап слова. */
-export async function recordAnswer(input: { scope: string; key: string; kind: QuestionKind; correct: boolean }): Promise<Stage> {
+/**
+ * Записує відповідь і повертає новий етап слова. У добірці Повторення відповідь ще й ставить оцінку
+ * для розкладу (`typo` — зараховано з підказкою правопису чи через «Я мав на увазі це»).
+ */
+export async function recordAnswer(input: { scope: string; key: string; kind: QuestionKind; correct: boolean; typo?: boolean }): Promise<Stage> {
   const { key, kind, correct } = input;
   const scope = checkScope(input.scope);
   if (typeof key !== "string" || !key || key.length > 200) throw new LearnInputError("Некоректне слово");
   if (kind !== "choice" && kind !== "write") throw new LearnInputError("Некоректний тип питання");
   if (typeof correct !== "boolean") throw new LearnInputError("Некоректна відповідь");
   if (!allWordKeys().has(key)) throw new LearnInputError("Такого слова немає в словнику");
+  const review = parseReviewScope(scope);
+  // Без оцінки (правильний вибір) recordReviewAnswer не викликається — перевіряємо слово окремо
+  if (review) await asLearnError(checkInBatch({ ...review, key }));
   await store.ensureSchema();
   const current = (await store.loadStages(scope, [key]))[key] ?? "new";
+  if (review) {
+    // Оцінка — до етапу: якщо запис оцінки впаде, етап не зміниться і повторна відповідь дасть ту саму оцінку.
+    // Рахується перша оцінка слова в добірці — повторні сервер Повторення сам ігнорує.
+    const grade = reviewGrade({ stageBefore: current, kind, correct, typo: input.typo === true });
+    if (grade) await asLearnError(recordReviewAnswer({ ...review, key, grade }));
+  }
   const stage = nextStage(current, kind, correct);
   await store.saveStage(scope, key, stage);
   return stage;
+}
+
+async function asLearnError<T>(p: Promise<T>): Promise<T> {
+  try { return await p; } catch (e) {
+    if (e instanceof ReviewInputError) throw new LearnInputError(e.message);
+    throw e;
+  }
 }
 
 /** Скидає прогрес слів (усі стають «не вивчав»). */
@@ -85,11 +116,24 @@ const toOption = (w: { spanish: string; ukrainian: string }): Option => ({ key: 
 
 export function learnMaterials(set: VocabSet, group: VocabGroup): LearnMaterials {
   const sets = loadVocabularySets();
-  const own = group.words.map(toOption);
   // «Усі слова» вже містять увесь набір — інших груп набору для них немає
   const inSet = group.id === ALL_WORDS_GROUP_ID ? [] : set.groups.filter(g => g.id !== group.id).flatMap(g => g.words.map(toOption));
+  const elsewhere = sets.filter(s => s.id !== set.id).flatMap(s => s.groups.flatMap(g => g.words.map(toOption)));
+  return materials(sets, group.words, inSet, elsewhere);
+}
+
+/** Learn для добірки Повторення: хибні варіанти — з інших слів Словника. */
+export function reviewLearnMaterials(words: VocabWord[]): LearnMaterials {
+  const sets = loadVocabularySets();
+  const own = new Set(words.map(w => wordKey(w.spanish)));
+  const elsewhere = sets.flatMap(s => s.groups.flatMap(g => g.words.map(toOption))).filter(o => !own.has(o.key));
+  return materials(sets, words, [], elsewhere);
+}
+
+function materials(sets: VocabSet[], words: VocabWord[], inSet: Option[], elsewhereAll: Option[]): LearnMaterials {
+  const own = words.map(toOption);
   // Інші набори — у випадковому порядку, щоб варіанти не були щоразу ті самі; на екран досить кількох десятків
-  const elsewhere = shuffle(sets.filter(s => s.id !== set.id).flatMap(s => s.groups.flatMap(g => g.words.map(toOption)))).slice(0, 60);
+  const elsewhere = shuffle(elsewhereAll).slice(0, 60);
 
   const byTranslation = new Map<string, Set<string>>();
   for (const s of sets) for (const g of s.groups) for (const w of g.words) {
@@ -98,7 +142,7 @@ export function learnMaterials(set: VocabSet, group: VocabGroup): LearnMaterials
     byTranslation.get(t)!.add(w.spanish);
   }
   const sameTranslation: Record<string, string[]> = {};
-  for (const w of group.words) {
+  for (const w of words) {
     const others = [...(byTranslation.get(w.ukrainian.trim().toLowerCase()) ?? [])].filter(s => wordKey(s) !== wordKey(w.spanish));
     if (others.length) sameTranslation[wordKey(w.spanish)] = others;
   }

@@ -18,8 +18,10 @@ self.addEventListener("activate", event => event.waitUntil(self.clients.claim())
 
 const isBuildFile = url => url.pathname.startsWith("/_next/static/");
 const isAppFile = url => /^\/(icon-\d+\.png|apple-icon\.png|icon\.svg|manifest\.json)$/.test(url.pathname);
-/** Сторінки, які мають офлайн-копію (Словник) — тільки їх і зберігаємо. */
-const isOfflinePage = url => url.pathname === OFFLINE_PAGE || url.pathname === "/dictionary" || url.pathname.startsWith("/dictionary/");
+/** Сторінки, які мають офлайн-копію (Словник без Learn: він пише прогрес у базу) — тільки їх і зберігаємо. */
+const isOfflinePage = url =>
+  url.pathname === OFFLINE_PAGE ||
+  ((url.pathname === "/dictionary" || url.pathname.startsWith("/dictionary/")) && !url.pathname.endsWith("/learn"));
 
 self.addEventListener("fetch", event => {
   const req = event.request;

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { LearnInputError, recordAnswer, resetWords, type QuestionKind } from "@/lib/learn";
 
 type Body =
-  | { action: "answer"; scope: string; key: string; kind: QuestionKind; correct: boolean }
+  | { action: "answer"; scope: string; key: string; kind: QuestionKind; correct: boolean; typo?: boolean }
   | { action: "reset"; scope: string; keys: string[] };
 
 export async function POST(req: NextRequest) {
@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
   try {
     switch (body.action) {
       case "answer": {
-        const stage = await recordAnswer({ scope: body.scope, key: body.key, kind: body.kind, correct: body.correct });
+        const stage = await recordAnswer({ scope: body.scope, key: body.key, kind: body.kind, correct: body.correct, typo: body.typo });
         return NextResponse.json({ ok: true, stage });
       }
       case "reset":

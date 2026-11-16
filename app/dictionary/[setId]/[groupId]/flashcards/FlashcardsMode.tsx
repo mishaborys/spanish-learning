@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { VocabGroup, VocabWord } from "@/lib/vocabulary";
 import { setFlashcardSettings, useFlashcardSettings, type FlashcardSettings } from "@/lib/flashcardSettings";
@@ -13,6 +13,24 @@ import { SpeakerIcon, WordNotes } from "@/components/spanish/WordNotes";
  * Із сортуванням — «Знаю / Ще вчу» з раундами; без — просте гортання в обидва боки.
  */
 export function FlashcardsMode({ group, exitHref }: { group: VocabGroup; exitHref: string }) {
+  return (
+    <FlashcardsShell exitHref={exitHref} empty={group.words.length === 0}
+      round={(settings, paused, onOpenSettings) => (
+        <Round words={group.words} settings={settings} exitHref={exitHref} paused={paused} onOpenSettings={onOpenSettings} />
+      )} />
+  );
+}
+
+/**
+ * Рамка флешкарток на весь екран із налаштуваннями. `round` малює сам раунд; він починається заново
+ * («Почати спочатку», зміна перемішування чи сортування) — через новий key.
+ */
+export function FlashcardsShell({ exitHref, exitLabel = "До групи", empty, round }: {
+  exitHref: string;
+  exitLabel?: string;
+  empty: boolean;
+  round: (settings: FlashcardSettings, paused: boolean, onOpenSettings: () => void) => React.ReactNode;
+}) {
   const settings = useFlashcardSettings(); // null, поки сторінка не ожила в браузері
   const [run, setRun] = useState(0);
   const [showSettings, setShowSettings] = useState(false);
@@ -21,17 +39,17 @@ export function FlashcardsMode({ group, exitHref }: { group: VocabGroup; exitHre
     <div className="fixed inset-0 z-50 bg-background">
       <div className="h-full max-w-lg mx-auto flex flex-col px-4"
         style={{ paddingTop: "max(env(safe-area-inset-top), 12px)", paddingBottom: "max(env(safe-area-inset-bottom), 12px)" }}>
-        {settings && group.words.length === 0 && (
+        {settings && empty && (
           <div className="flex-1 flex flex-col items-center justify-center gap-4 text-sm text-muted-foreground">
-            <p>У цій групі ще немає слів.</p>
-            <Link href={exitHref} className="underline">До групи</Link>
+            <p>Тут ще немає слів.</p>
+            <Link href={exitHref} className="underline">{exitLabel}</Link>
           </div>
         )}
-        {settings && group.words.length > 0 && (
+        {settings && !empty && (
           // Перемішування й сортування міняють сам раунд — починаємо його заново
-          <Round key={`${run}-${settings.shuffle}-${settings.sorting}`}
-            words={group.words} settings={settings} exitHref={exitHref} paused={showSettings}
-            onOpenSettings={() => setShowSettings(true)} />
+          <Fragment key={`${run}-${settings.shuffle}-${settings.sorting}`}>
+            {round(settings, showSettings, () => setShowSettings(true))}
+          </Fragment>
         )}
       </div>
       {settings && showSettings && (
@@ -54,10 +72,11 @@ function shuffled<T>(items: T[]): T[] {
 
 type Sort = "know" | "learning";
 
-function Round({ words, settings, exitHref, paused, onOpenSettings }: {
+export function Round({ words, settings, exitHref, exitLabel = "До групи", paused, onOpenSettings }: {
   words: VocabWord[];
   settings: FlashcardSettings;
   exitHref: string;
+  exitLabel?: string;
   /** Відкриті налаштування: клавіатура не має керувати карткою під ними. */
   paused: boolean;
   onOpenSettings: () => void;
@@ -186,7 +205,7 @@ function Round({ words, settings, exitHref, paused, onOpenSettings }: {
             </button>
             <Link href={exitHref}
               className="w-full min-h-[52px] rounded-2xl border text-sm font-medium flex items-center justify-center hover:bg-accent/40 active:scale-[0.98] transition-all">
-              До групи
+              {exitLabel}
             </Link>
             {index > 0 && (
               <button type="button" onClick={back} className="w-full text-xs text-muted-foreground hover:text-foreground py-2">
@@ -334,15 +353,15 @@ function Toggle({ label, hint, checked, onChange }: { label: string; hint: strin
 
 const stroke = { width: 22, height: 22, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" } as const;
 
-function CloseIcon() {
+export function CloseIcon() {
   return <svg {...stroke}><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>;
 }
 
-function UndoIcon() {
+export function UndoIcon() {
   return <svg {...stroke}><path d="M9 14 4 9l5-5" /><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11" /></svg>;
 }
 
-function GearIcon() {
+export function GearIcon() {
   return (
     <svg {...stroke}>
       <circle cx="12" cy="12" r="3" />

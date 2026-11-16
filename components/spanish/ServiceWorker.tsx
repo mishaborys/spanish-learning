@@ -2,17 +2,19 @@
 
 import { useEffect } from "react";
 import { flushOutbox } from "@/lib/blastOutbox";
+import { flushReviewOutbox } from "@/lib/reviewOutbox";
 import { refreshOfflineCopy } from "@/lib/offlineCache";
 
 /**
  * Офлайн для застосунку на головному екрані: реєструє service worker і зберігає
- * Словник (Flashcards, Blast) для поточної збірки. Відправляє відкладені рекорди Blast.
+ * Словник (Flashcards, Blast) для поточної збірки. Відправляє відкладені рекорди Blast і оцінки Повторення.
  * Лише в продакшн-збірці — у розробці service worker заважав би гарячому перезавантаженню.
  */
 export function ServiceWorker() {
   useEffect(() => {
-    void flushOutbox();
-    const onOnline = () => void flushOutbox();
+    const flush = () => { void flushOutbox(); void flushReviewOutbox(); };
+    flush();
+    const onOnline = flush;
     window.addEventListener("online", onOnline);
 
     if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {

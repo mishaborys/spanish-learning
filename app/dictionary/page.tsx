@@ -1,5 +1,10 @@
 import Link from "next/link";
 import { loadVocabularySets, setHref } from "@/lib/vocabulary";
+import { getTodayReview } from "@/lib/review";
+import { ReviewButton, type ReviewBadge } from "./ReviewButton";
+
+// Кнопка Повторення показує, скільки слів лишилось на сьогодні — це дані з бази
+export const dynamic = "force-dynamic";
 
 type VocabSetMeta = {
   id: string;
@@ -25,14 +30,29 @@ function loadSets(): VocabSetMeta[] {
     .sort((a, b) => b.addedAt - a.addedAt || a.id.localeCompare(b.id));
 }
 
-export default function DictionaryPage() {
+/** Поточна добірка Повторення для лічильника на кнопці; null — база недоступна. */
+async function reviewBadge(): Promise<ReviewBadge | null> {
+  try {
+    const { day, batch, items, answers } = await getTodayReview();
+    return { day, batch, keys: items.map(i => i.key), answers };
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+}
+
+export default async function DictionaryPage() {
   const sets = loadSets();
+  const badge = await reviewBadge();
 
   return (
     <div className="space-y-4">
-      <div>
-        <h1 className="text-xl font-bold">Словник</h1>
-        <p className="text-sm text-muted-foreground mt-1">Набори слів для вивчення</p>
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <h1 className="text-xl font-bold">Словник</h1>
+          <p className="text-sm text-muted-foreground mt-1">Набори слів для вивчення</p>
+        </div>
+        <ReviewButton badge={badge} />
       </div>
 
       {sets.length === 0 && (

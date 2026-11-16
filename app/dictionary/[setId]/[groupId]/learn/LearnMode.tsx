@@ -10,6 +10,7 @@ import {
   type Option, type Question, type Stage,
 } from "@/lib/learn/core";
 import { speakSpanish } from "@/lib/speak";
+import { flushReviewOutbox } from "@/lib/reviewOutbox";
 import { SpeakerIcon, WordNotes } from "@/components/spanish/WordNotes";
 
 /** Скільки показувати «Правильно!», перш ніж перейти далі самому. */
@@ -25,8 +26,10 @@ type RoundAnswer = { key: string; correct: boolean };
  * Learn як у Quizlet: раунди до 7 питань — спершу вибір із 4 перекладів,
  * потім те саме слово треба вписати іспанською. Етапи пишуться в базу після кожної відповіді.
  */
-export function LearnMode({ group, initialStages, materials, exitHref, scope, seed }: {
+export function LearnMode({ group, initialStages, materials, exitHref, exitLabel = "До групи", scope, seed }: {
   group: VocabGroup;
+  /** Підпис кнопки виходу після завершення. */
+  exitLabel?: string;
   initialStages: Record<string, Stage>;
   materials: LearnMaterials;
   exitHref: string;
@@ -48,6 +51,10 @@ export function LearnMode({ group, initialStages, materials, exitHref, scope, se
 
   // Відповіді пишемо по черзі, щоб «Я мав на увазі це» не обігнало попередній запис
   const saving = useRef<Promise<unknown>>(Promise.resolve());
+  // Learn у Повторенні: спершу мають дійти оцінки Flashcards, що чекають у черзі, — рахується перша оцінка слова
+  useEffect(() => {
+    if (scope.startsWith("review:")) saving.current = flushReviewOutbox();
+  }, [scope]);
   const save = (body: object) => {
     saving.current = saving.current.then(async () => {
       const res = await fetch("/api/learn", {
@@ -65,7 +72,7 @@ export function LearnMode({ group, initialStages, materials, exitHref, scope, se
   const roundDone = qIndex >= round.length;
 
   /** Записати відповідь: локально одразу, у базу — у фоні. */
-  const answer = (q: Question, correct: boolean) => {
+  const answer = (q: Question, correct: boolean, typo = false) => {
     setStages(s => ({ ...s, [q.key]: nextStage(s[q.key] ?? "new", q.kind, correct) }));
     setMissed(m => {
       const next = new Set(m);
@@ -74,7 +81,7 @@ export function LearnMode({ group, initialStages, materials, exitHref, scope, se
     });
     // «Я мав на увазі це» замінює попередню відповідь на це ж слово
     setAnswers(a => [...a.filter(x => x.key !== q.key), { key: q.key, correct }]);
-    save({ action: "answer", scope, key: q.key, kind: q.kind, correct });
+    save({ action: "answer", scope, key: q.key, kind: q.kind, correct, typo });
   };
 
   const next = () => {
@@ -149,7 +156,7 @@ export function LearnMode({ group, initialStages, materials, exitHref, scope, se
 
         <div className="flex-1 flex flex-col py-5">
           {finished ? (
-            <Finished total={progress.total} onAgain={learnAgain} busy={resetting} exitHref={exitHref} />
+            <Finished total={progress.total} onAgain={learnAgain} busy={resetting} exitHref={exitHref} exitLabel={exitLabel} />
           ) : roundDone || round.length === 0 ? (
             <RoundSummary roundNo={roundNo} answers={answers} byKey={byKey} progress={progress}
               onContinue={startNextRound} exitHref={exitHref} />
@@ -167,11 +174,11 @@ export function LearnMode({ group, initialStages, materials, exitHref, scope, se
               <WriteQuestion key={`${roundNo}-${qIndex}`} word={word}
                 sameTranslation={materials.sameTranslation[question.key] ?? []} feedback={feedback}
                 onAnswer={(typed, correct, spelling) => {
-                  answer(question, correct);
+                  answer(question, correct, correct && spelling);
                   setFeedback(correct ? { result: "correct", spelling, typed } : { result: "wrong", typed, dontKnow: typed === "" });
                 }}
                 onOverride={() => {
-                  answer(question, true);
+                  answer(question, true, true);
                   setFeedback(f => f && f.result === "wrong" ? { result: "correct", spelling: true, typed: f.typed } : f);
                 }}
                 onNext={next} />
@@ -424,7 +431,7 @@ function RoundSummary({ roundNo, answers, byKey, progress, onContinue, exitHref 
   );
 }
 
-function Finished({ total, onAgain, busy, exitHref }: { total: number; onAgain: () => void; busy: boolean; exitHref: string }) {
+function Finished({ total, onAgain, busy, exitHref, exitLabel }: { total: number; onAgain: () => void; busy: boolean; exitHref: string; exitLabel: string }) {
   return (
     <div className="flex-1 flex flex-col justify-center gap-5 text-center">
       <div className="space-y-1">
@@ -435,7 +442,7 @@ function Finished({ total, onAgain, busy, exitHref }: { total: number; onAgain: 
       <div className="space-y-2">
         <Link href={exitHref}
           className="w-full min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium flex items-center justify-center active:scale-[0.98] transition-all">
-          До групи
+          {exitLabel}
         </Link>
         <button type="button" onClick={onAgain} disabled={busy}
           className="w-full min-h-[52px] rounded-2xl border text-sm font-medium hover:bg-accent/40 disabled:opacity-50 transition-all">

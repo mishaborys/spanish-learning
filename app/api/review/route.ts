@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { addBatch, changeMode, recordAnswer, ReviewInputError, type Grade, type Mode } from "@/lib/review";
+import { addBatch, recordAnswer, ReviewInputError, undoAnswer, type Grade } from "@/lib/review";
 
 type Body =
-  | { action: "answer"; day: string; batch: number; key: string; grade: Grade }
-  | { action: "more" }
-  | { action: "mode"; mode: Mode };
+  | { action: "answer"; day: string; batch: number; key: string; grade: Grade; answeredOn?: string }
+  | { action: "undo"; day: string; batch: number; key: string }
+  | { action: "more" };
 
 export async function POST(req: NextRequest) {
   const body = (await req.json().catch(() => null)) as Body | null;
@@ -14,13 +14,13 @@ export async function POST(req: NextRequest) {
   try {
     switch (body.action) {
       case "answer":
-        await recordAnswer({ day: body.day, batch: body.batch, key: body.key, grade: body.grade });
+        await recordAnswer({ day: body.day, batch: body.batch, key: body.key, grade: body.grade, answeredOn: body.answeredOn });
+        break;
+      case "undo":
+        await undoAnswer({ day: body.day, batch: body.batch, key: body.key });
         break;
       case "more":
         await addBatch();
-        break;
-      case "mode":
-        await changeMode(body.mode);
         break;
       default:
         return NextResponse.json({ error: "Невідома дія" }, { status: 400 });

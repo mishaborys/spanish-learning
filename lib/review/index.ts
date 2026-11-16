@@ -1,13 +1,13 @@
 // Довге повторення слів зі Словника. Інтерфейс модуля для сторінки та API:
-// getTodayReview · recordAnswer · addBatch · changeMode.
+// getTodayReview · recordAnswer · undoAnswer · addBatch · checkInBatch.
 import { loadVocabularySets, type VocabWord } from "@/lib/vocabulary";
 import {
-  addDays, countDue, firstLetterHint, GRADES, kyivDay, MODES, nextCard, pickBatch, pickMode, wordKey,
-  type Grade, type Mode,
+  addDays, countDue, firstLetterHint, GRADES, kyivDay, nextCard, pickBatch, scheduleDay, wordKey,
+  type Grade,
 } from "./core";
 import * as store from "./store";
 
-export type { Grade, Mode } from "./core";
+export type { Grade } from "./core";
 
 /** Некоректні дані від клієнта (на відміну від збоїв БД). */
 export class ReviewInputError extends Error {}
@@ -24,10 +24,11 @@ export type ReviewItem = {
 export type ReviewToday = {
   day: string;
   batch: number;
-  mode: Mode;
   items: ReviewItem[];
+  /** Оцінки слів поточної добірки. */
   answers: Record<string, Grade>;
-  stats: { seen: number; total: number; dueTomorrow: number };
+  /** seen — скільки слів словника вже повторювали; today — скільки оцінено сьогодні в усіх добірках. */
+  stats: { seen: number; total: number; dueTomorrow: number; today: number };
 };
 
 type Vocabulary = { words: Map<string, VocabWord>; byTranslation: Map<string, string[]> };
@@ -65,52 +66,80 @@ export async function getTodayReview(now = new Date()): Promise<ReviewToday> {
   const [initialBatches, cards] = await Promise.all([store.loadBatches(day), store.loadCards()]);
   let batches = initialBatches;
   if (batches.length === 0) {
-    const mode = pickMode(await store.lastModeBefore(day));
     const keys = pickBatch({ cards, allKeys: [...vocab.words.keys()], today: day });
-    await store.insertBatch(day, 0, mode, keys);
+    await store.insertBatch(day, 0, keys);
     batches = await store.loadBatches(day);
   }
 
   const current = batches[batches.length - 1];
   const answers: Record<string, Grade> = {};
-  for (const a of await store.loadAnswers(day)) if (a.batch === current.batch) answers[a.wordKey] = a.grade;
+  const todayAnswers = await store.loadAnswers(day);
+  for (const a of todayAnswers) if (a.batch === current.batch) answers[a.wordKey] = a.grade;
 
   const allKeys = new Set(vocab.words.keys());
   return {
     day,
     batch: current.batch,
-    mode: current.mode,
     items: current.wordKeys.map(k => toItem(k, vocab)).filter((i): i is ReviewItem => i !== null),
     answers,
     stats: {
       seen: cards.filter(c => allKeys.has(c.key)).length,
       total: allKeys.size,
       dueTomorrow: countDue(cards, addDays(day, 1), allKeys),
+      today: todayAnswers.length,
     },
   };
 }
 
-/** Фіксує оцінку слова і переносить його в розкладі. Повторний запис ігнорується. */
-export async function recordAnswer(
-  input: { day: string; batch: number; key: string; grade: Grade },
-  now = new Date(),
-): Promise<void> {
-  if (!GRADES.includes(input.grade)) throw new ReviewInputError(`Unknown grade: ${input.grade}`);
+function checkKey(input: { day: unknown; batch: unknown; key: unknown }) {
+  if (typeof input.day !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(input.day)) throw new ReviewInputError("Некоректний день");
+  if (!Number.isInteger(input.batch)) throw new ReviewInputError("Некоректна добірка");
+  if (typeof input.key !== "string") throw new ReviewInputError("Некоректне слово");
+}
+
+/** Перевіряє, що слово є в добірці (інакше — ReviewInputError). */
+export async function checkInBatch(input: { day: string; batch: number; key: string }): Promise<void> {
+  checkKey(input);
   await store.ensureSchema();
   const batch = (await store.loadBatches(input.day)).find(b => b.batch === input.batch);
   if (!batch?.wordKeys.includes(input.key)) throw new ReviewInputError("Слова немає в цій добірці");
-  const fresh = await store.insertAnswer(input.day, input.batch, input.key, input.grade);
+}
+
+/**
+ * Фіксує оцінку слова і переносить його в розкладі. Рахується перша оцінка слова в добірці —
+ * повторні ігноруються. `answeredOn` — день, коли відповіли (оцінку могли поставити без інтернету).
+ */
+export async function recordAnswer(
+  input: { day: string; batch: number; key: string; grade: Grade; answeredOn?: string },
+  now = new Date(),
+): Promise<void> {
+  if (!GRADES.includes(input.grade)) throw new ReviewInputError(`Unknown grade: ${input.grade}`);
+  await checkInBatch(input);
+  const prev = await store.loadCard(input.key);
+  const fresh = await store.insertAnswer(input.day, input.batch, input.key, input.grade, prev);
   if (!fresh) return;
-  // Розклад рахуємо від реального сьогодні: сесію могли почати до півночі, а відповісти після.
-  const today = kyivDay(now);
+  // Розклад рахуємо від дня відповіді: сесію могли почати до півночі, а відповісти після,
+  // або відповісти без інтернету й відправити пізніше.
+  const day = scheduleDay({
+    batchDay: input.day,
+    answeredOn: typeof input.answeredOn === "string" ? input.answeredOn : undefined,
+    today: kyivDay(now),
+  });
   try {
-    const prev = await store.loadCard(input.key);
-    await store.saveCard(nextCard(prev, input.key, input.grade, today), today);
+    await store.saveCard(nextCard(prev, input.key, input.grade, day), day);
   } catch (e) {
     // Без цього повторна спроба була б проігнорована як дубль, а розклад не оновився б.
     await store.deleteAnswer(input.day, input.batch, input.key).catch(() => {});
     throw e;
   }
+}
+
+/** Скасовує оцінку («Назад» у Flashcards): слово повертається в розклад таким, яким було до неї. */
+export async function undoAnswer(input: { day: string; batch: number; key: string }): Promise<void> {
+  checkKey(input);
+  await store.ensureSchema();
+  const taken = await store.takeAnswer(input.day, input.batch, input.key);
+  if (taken) await store.restoreCard(input.key, taken.card);
 }
 
 /** «Ще 10»: нова добірка за тим самим правилом, без слів, які вже були сьогодні. */
@@ -122,11 +151,5 @@ export async function addBatch(now = new Date()): Promise<void> {
   const exclude = new Set(batches.flatMap(b => b.wordKeys));
   const vocab = loadVocabulary();
   const keys = pickBatch({ cards: await store.loadCards(), allKeys: [...vocab.words.keys()], exclude, today: day });
-  await store.insertBatch(day, batches[batches.length - 1].batch + 1, batches[0].mode, keys);
-}
-
-export async function changeMode(mode: Mode, now = new Date()): Promise<void> {
-  if (!MODES.includes(mode)) throw new ReviewInputError(`Unknown mode: ${mode}`);
-  await store.ensureSchema();
-  await store.updateMode(kyivDay(now), mode);
+  await store.insertBatch(day, batches[batches.length - 1].batch + 1, keys);
 }

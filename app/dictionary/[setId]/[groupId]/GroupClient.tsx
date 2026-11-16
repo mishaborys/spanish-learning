@@ -212,7 +212,7 @@ function PreviewCard({ word, front }: { word: VocabWord; front: "es" | "uk" }) {
 
 // ─── Кнопки режимів ───────────────────────────────────────────────────────────
 
-function ModeButton({ href, icon, label, note }: { href?: string; icon: React.ReactNode; label: string; note?: string }) {
+export function ModeButton({ href, icon, label, note }: { href?: string; icon: React.ReactNode; label: string; note?: string }) {
   const body = (
     <>
       <span className="shrink-0 text-primary">{icon}</span>
@@ -239,7 +239,7 @@ function DotsIcon() {
   );
 }
 
-function CardsIcon() {
+export function CardsIcon() {
   return (
     <svg {...iconProps}>
       <rect x="3" y="4" width="14" height="12" rx="2.5" />
@@ -248,7 +248,7 @@ function CardsIcon() {
   );
 }
 
-function LearnIcon() {
+export function LearnIcon() {
   return (
     <svg {...iconProps}>
       <path d="M21 12a9 9 0 1 1-6.2-8.55" />
@@ -257,7 +257,7 @@ function LearnIcon() {
   );
 }
 
-function BlastIcon() {
+export function BlastIcon() {
   return (
     <svg {...iconProps}>
       <path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.1 2.1 0 0 0-2.9-.1z" />
@@ -270,7 +270,7 @@ function BlastIcon() {
 
 // ─── Рядок слова ──────────────────────────────────────────────────────────────
 
-function WordRow({ word }: { word: VocabWord }) {
+export function WordRow({ word }: { word: VocabWord }) {
   const [open, setOpen] = useState(false);
   const hasDetails = Boolean(word.sound_association || word.example_es);
   return (

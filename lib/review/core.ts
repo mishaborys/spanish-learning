@@ -2,9 +2,6 @@
 // тому працює і на сервері, і в браузері, і тестується напряму.
 
 export type Grade = "known" | "hesitant" | "unknown";
-export type Mode = "cards-es-ua" | "cards-ua-es" | "type";
-
-export const MODES: Mode[] = ["cards-es-ua", "cards-ua-es", "type"];
 export const GRADES: Grade[] = ["known", "hesitant", "unknown"];
 
 /** Інтервали (у днях) для оцінки «знаю». Після останнього — не росте. */
@@ -100,10 +97,14 @@ export function countDue(cards: Card[], day: string, allKeys: Set<string>): numb
   return cards.filter(c => c.dueOn <= day && allKeys.has(c.key)).length;
 }
 
-/** Режим дня: випадковий, але не такий, як попередній. */
-export function pickMode(previous: Mode | null, rng: Rng = Math.random): Mode {
-  const options = MODES.filter(m => m !== previous);
-  return options[Math.floor(rng() * options.length)];
+/**
+ * Від якого дня рахувати розклад слова. Оцінку могли поставити без інтернету й відправити пізніше —
+ * тоді рахуємо від дня відповіді.
+ */
+export function scheduleDay(a: { batchDay: string; answeredOn?: string; today: string }): string {
+  const { batchDay, answeredOn, today } = a;
+  if (!answeredOn || !/^\d{4}-\d{2}-\d{2}$/.test(answeredOn) || answeredOn > today) return today;
+  return answeredOn < batchDay ? batchDay : answeredOn;
 }
 
 // ─── Перевірка вписаного слова ────────────────────────────────────────────────
