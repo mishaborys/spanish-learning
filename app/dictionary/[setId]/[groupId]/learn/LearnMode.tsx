@@ -10,7 +10,6 @@ import {
   type Option, type Question, type Stage,
 } from "@/lib/learn/core";
 import { speakSpanish } from "@/lib/speak";
-import { flushReviewOutbox } from "@/lib/reviewOutbox";
 import { SpeakerIcon, WordNotes } from "@/components/spanish/WordNotes";
 
 /** Скільки показувати «Правильно!», перш ніж перейти далі самому. */
@@ -51,10 +50,6 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
 
   // Відповіді пишемо по черзі, щоб «Я мав на увазі це» не обігнало попередній запис
   const saving = useRef<Promise<unknown>>(Promise.resolve());
-  // Learn у Повторенні: спершу мають дійти оцінки Flashcards, що чекають у черзі, — рахується перша оцінка слова
-  useEffect(() => {
-    if (scope.startsWith("review:")) saving.current = flushReviewOutbox();
-  }, [scope]);
   const save = (body: object) => {
     saving.current = saving.current.then(async () => {
       const res = await fetch("/api/learn", {
@@ -72,7 +67,7 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
   const roundDone = qIndex >= round.length;
 
   /** Записати відповідь: локально одразу, у базу — у фоні. */
-  const answer = (q: Question, correct: boolean, typo = false) => {
+  const answer = (q: Question, correct: boolean) => {
     setStages(s => ({ ...s, [q.key]: nextStage(s[q.key] ?? "new", q.kind, correct) }));
     setMissed(m => {
       const next = new Set(m);
@@ -81,7 +76,7 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
     });
     // «Я мав на увазі це» замінює попередню відповідь на це ж слово
     setAnswers(a => [...a.filter(x => x.key !== q.key), { key: q.key, correct }]);
-    save({ action: "answer", scope, key: q.key, kind: q.kind, correct, typo });
+    save({ action: "answer", scope, key: q.key, kind: q.kind, correct });
   };
 
   const next = () => {
@@ -174,11 +169,11 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
               <WriteQuestion key={`${roundNo}-${qIndex}`} word={word}
                 sameTranslation={materials.sameTranslation[question.key] ?? []} feedback={feedback}
                 onAnswer={(typed, correct, spelling) => {
-                  answer(question, correct, correct && spelling);
+                  answer(question, correct);
                   setFeedback(correct ? { result: "correct", spelling, typed } : { result: "wrong", typed, dontKnow: typed === "" });
                 }}
                 onOverride={() => {
-                  answer(question, true, true);
+                  answer(question, true);
                   setFeedback(f => f && f.result === "wrong" ? { result: "correct", spelling: true, typed: f.typed } : f);
                 }}
                 onNext={next} />

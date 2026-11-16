@@ -1,8 +1,8 @@
 // Інтерфейс модуля Learn: сторінки й API звертаються лише сюди.
 import { ALL_WORDS_GROUP_ID, loadVocabularySets, type VocabGroup, type VocabSet, type VocabWord } from "@/lib/vocabulary";
 import { wordKey } from "@/lib/review/core";
-import { checkInBatch, recordAnswer as recordReviewAnswer, ReviewInputError } from "@/lib/review";
-import { nextStage, reviewGrade, shuffle, type Option, type QuestionKind, type Stage } from "./core";
+import { checkInBatch, ReviewInputError } from "@/lib/review";
+import { nextStage, shuffle, type Option, type QuestionKind, type Stage } from "./core";
 import * as store from "./store";
 import { randomInt } from "node:crypto";
 
@@ -19,7 +19,7 @@ export function learnScope(set: VocabSet, group: VocabGroup): string {
   return group.id === ALL_WORDS_GROUP_ID ? `all:${set.id}` : "";
 }
 
-/** Область прогресу Learn для добірки Повторення: у кожної добірки свій, на групи не впливає. */
+/** Область прогресу Learn для добірки Повторення: у кожної добірки свій, на групи й розклад не впливає. */
 export function reviewLearnScope(day: string, batch: number): string {
   return `review:${day}:${batch}`;
 }
@@ -42,11 +42,8 @@ export async function getStages(spanish: string[], scope = ""): Promise<Record<s
   return store.loadStages(scope, [...new Set(spanish.map(wordKey))]);
 }
 
-/**
- * Записує відповідь і повертає новий етап слова. У добірці Повторення відповідь ще й ставить оцінку
- * для розкладу (`typo` — зараховано з підказкою правопису чи через «Я мав на увазі це»).
- */
-export async function recordAnswer(input: { scope: string; key: string; kind: QuestionKind; correct: boolean; typo?: boolean }): Promise<Stage> {
+/** Записує відповідь і повертає новий етап слова. На розклад Повторення Learn не впливає. */
+export async function recordAnswer(input: { scope: string; key: string; kind: QuestionKind; correct: boolean }): Promise<Stage> {
   const { key, kind, correct } = input;
   const scope = checkScope(input.scope);
   if (typeof key !== "string" || !key || key.length > 200) throw new LearnInputError("Некоректне слово");
@@ -54,16 +51,9 @@ export async function recordAnswer(input: { scope: string; key: string; kind: Qu
   if (typeof correct !== "boolean") throw new LearnInputError("Некоректна відповідь");
   if (!allWordKeys().has(key)) throw new LearnInputError("Такого слова немає в словнику");
   const review = parseReviewScope(scope);
-  // Без оцінки (правильний вибір) recordReviewAnswer не викликається — перевіряємо слово окремо
   if (review) await asLearnError(checkInBatch({ ...review, key }));
   await store.ensureSchema();
   const current = (await store.loadStages(scope, [key]))[key] ?? "new";
-  if (review) {
-    // Оцінка — до етапу: якщо запис оцінки впаде, етап не зміниться і повторна відповідь дасть ту саму оцінку.
-    // Рахується перша оцінка слова в добірці — повторні сервер Повторення сам ігнорує.
-    const grade = reviewGrade({ stageBefore: current, kind, correct, typo: input.typo === true });
-    if (grade) await asLearnError(recordReviewAnswer({ ...review, key, grade }));
-  }
   const stage = nextStage(current, kind, correct);
   await store.saveStage(scope, key, stage);
   return stage;

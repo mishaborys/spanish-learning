@@ -5,12 +5,14 @@ import type { ReviewToday } from "@/lib/review";
 import { groupProgress, type Stage } from "@/lib/learn/core";
 import { BlastIcon, CardsIcon, LearnIcon, ModeButton, WordRow } from "../[setId]/[groupId]/GroupClient";
 import {
-  GRADE_DOT, GRADE_LABEL, GRADE_ORDER, GradeCounters, gradeCounts, REVIEW_HREF, ReviewDayGuard, useMoreWords, useReviewAnswers,
+  GRADE_DOT, GRADE_LABEL, GRADE_ORDER, GradeCounters, gradeCounts, REVIEW_HREF, ReviewDayGuard, useMoreWords, usePracticeWords,
+  useReviewAnswers, wordsLabel,
 } from "./shared";
 
 /**
  * Сторінка Повторення — як сторінка групи Словника: прогрес дня, режими Flashcards / Learn / Blast
  * і слова поточної добірки за оцінками. Ще не оцінені слова не показуємо — це була б підказка до тесту.
+ * Порядок: спершу Flashcards оцінюють усю добірку, потім Learn і Blast тренують «не знаю» й «вагався».
  */
 export function ReviewClient({ review, stages, blastBest }: {
   review: ReviewToday;
@@ -27,7 +29,10 @@ export function ReviewClient({ review, stages, blastBest }: {
   const allGraded = total > 0 && graded === total;
   // «Сьогодні» з сервера — за знімком сторінки; різницю в поточній добірці (черга, скасування) докладаємо
   const today = review.stats.today + graded - keys.filter(k => review.answers[k]).length;
-  const learn = groupProgress(keys, stages ?? {});
+  const practice = usePracticeWords(review);
+  const learn = groupProgress((practice ?? []).map(i => i.key), stages ?? {});
+  // Learn і Blast відкриваються після Flashcards і лише для слів, які є що тренувати
+  const practiceNote = !practice ? "спершу Flashcards" : practice.length === 0 ? "тренувати нічого ✓" : null;
 
   return (
     <div className="space-y-5">
@@ -62,10 +67,10 @@ export function ReviewClient({ review, stages, blastBest }: {
           <div className="space-y-2">
             <ModeButton href={`${REVIEW_HREF}/flashcards`} icon={<CardsIcon />} label="Flashcards"
               note={allGraded ? "усе оцінено ✓" : `оцінено ${graded} з ${total}`} />
-            <ModeButton href={stages ? `${REVIEW_HREF}/learn` : undefined} icon={<LearnIcon />} label="Learn"
-              note={!stages ? "немає зв'язку з базою" : learn.done ? "усе вивчено ✓" : `вивчено ${learn.mastered} з ${learn.total}`} />
-            <ModeButton href={`${REVIEW_HREF}/blast`} icon={<BlastIcon />} label="Blast"
-              note={blastBest ? `рекорд ${blastBest.score} · рівень ${blastBest.level}` : undefined} />
+            <ModeButton href={stages && !practiceNote ? `${REVIEW_HREF}/learn` : undefined} icon={<LearnIcon />} label="Learn"
+              note={practiceNote ?? (!stages ? "немає зв'язку з базою" : learn.done ? "усе вивчено ✓" : `вивчено ${learn.mastered} з ${learn.total}`)} />
+            <ModeButton href={!practiceNote ? `${REVIEW_HREF}/blast` : undefined} icon={<BlastIcon />} label="Blast"
+              note={practiceNote ?? (blastBest ? `рекорд ${blastBest.score} · рівень ${blastBest.level}` : `${practice!.length} ${wordsLabel(practice!.length)}`)} />
           </div>
 
           {/* Прогрес добірки */}
@@ -115,12 +120,4 @@ export function ReviewClient({ review, stages, blastBest }: {
       )}
     </div>
   );
-}
-
-/** «слово / слова / слів». */
-export function wordsLabel(n: number): string {
-  const d = n % 10, dd = n % 100;
-  if (d === 1 && dd !== 11) return "слово";
-  if (d >= 2 && d <= 4 && (dd < 12 || dd > 14)) return "слова";
-  return "слів";
 }

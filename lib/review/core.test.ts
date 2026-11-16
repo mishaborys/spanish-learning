@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  addDays, Card, firstLetterHint, gradeTyped, kyivDay, nextCard, pickBatch, scheduleDay,
+  addDays, Card, firstLetterHint, gradeTyped, kyivDay, nextCard, pickBatch, practiceWords, scheduleDay,
 } from "./core";
 
 const today = "2026-11-15";
@@ -151,4 +151,15 @@ test("інше слово з тим самим перекладом — вага
 
 test("підказка — перша літера без артикля", () => {
   assert.equal(firstLetterHint("el baño / el cuarto de baño"), "b…");
+});
+
+// ─── Learn і Blast після Flashcards ───────────────────────────────────────────
+
+test("Learn і Blast тренують слова з «не знаю» й «вагався» — коли всю добірку оцінено", () => {
+  const answers = { a: "known", b: "unknown", c: "hesitant" } as const;
+  assert.deepEqual(practiceWords(["a", "b", "c"], answers), ["b", "c"]);
+});
+
+test("поки в добірці є неоцінені слова, Learn і Blast закриті", () => {
+  assert.equal(practiceWords(["a", "b"], { a: "unknown" }), null);
 });

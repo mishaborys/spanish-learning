@@ -98,6 +98,15 @@ export function countDue(cards: Card[], day: string, allKeys: Set<string>): numb
 }
 
 /**
+ * Слова для Learn і Blast: спершу всю добірку оцінюють у Flashcards, потім тренують ті, що «не знаю»
+ * й «вагався». null — у добірці ще є неоцінені слова.
+ */
+export function practiceWords(keys: string[], answers: Partial<Record<string, Grade>>): string[] | null {
+  if (keys.some(k => !answers[k])) return null;
+  return keys.filter(k => answers[k] !== "known");
+}
+
+/**
  * Від якого дня рахувати розклад слова. Оцінку могли поставити без інтернету й відправити пізніше —
  * тоді рахуємо від дня відповіді.
  */

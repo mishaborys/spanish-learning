@@ -1,6 +1,6 @@
 // Правила режиму Learn у Словнику. Чистий модуль: без БД, без React —
 // працює і на сервері, і в браузері, тестується напряму.
-import { gradeTyped, type Grade } from "@/lib/review/core";
+import { gradeTyped } from "@/lib/review/core";
 
 /** Етап слова: не вивчав → ще вчу (пройшов вибір) → вивчено (ще й правильно вписав). */
 export type Stage = "new" | "learning" | "mastered";
@@ -98,17 +98,4 @@ export function seededRng(seed: number): Rng {
     t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
-}
-
-// ─── Оцінка для Повторення ────────────────────────────────────────────────────
-
-/**
- * Оцінка довгого повторення за відповіддю в Learn (рахується перша оцінка слова за день, тож
- * важить лише перша подія, що дає оцінку). Етап до відповіді показує, чи слово вже відповідали
- * правильно: помилка відкидає його на «не вивчав», а будь-яка помилка вже дала б оцінку.
- */
-export function reviewGrade(a: { stageBefore: Stage; kind: QuestionKind; correct: boolean; typo: boolean }): Grade | null {
-  if (!a.correct) return a.stageBefore === "new" ? "unknown" : "hesitant";
-  if (a.kind === "write") return a.typo ? "hesitant" : "known";
-  return null;
 }

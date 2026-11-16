@@ -12,7 +12,10 @@ import { SwipeCounters, SwipeFlipCard, type SwipeDir, type SwipeFlipCardHandle }
 import { SpeakerIcon, WordNotes } from "@/components/spanish/WordNotes";
 import { shuffle as shuffled } from "@/lib/random";
 import { CloseIcon, FlashcardsShell, GearIcon, Round, UndoIcon } from "../../[setId]/[groupId]/flashcards/FlashcardsMode";
-import { GRADE_LABEL, GradeCounters, gradeCounts, ReviewDayGuard, useMoreWords, useReviewAnswers } from "../shared";
+import {
+  GRADE_LABEL, GradeCounters, gradeCounts, REVIEW_HREF, ReviewDayGuard, useMoreWords, usePracticeWords, useReviewAnswers,
+  wordsLabel,
+} from "../shared";
 
 const EXIT_LABEL = "До повторення";
 
@@ -285,9 +288,11 @@ function Summary({ review, answers, training, exitHref, onBack }: {
   onBack?: () => void;
 }) {
   const { more, busy, error } = useMoreWords();
+  const practice = usePracticeWords(review);
   const keys = review.items.map(i => i.key);
   const counts = gradeCounts(answers, keys);
   const allGraded = counts.known + counts.hesitant + counts.unknown === keys.length;
+  const toPractice = practice?.length ?? 0;
   return (
     <div className="flex-1 min-h-0 overflow-y-auto flex flex-col justify-center gap-5 py-6">
       <div className="text-center space-y-1">
@@ -302,9 +307,26 @@ function Summary({ review, answers, training, exitHref, onBack }: {
         <p>Завтра на повторення: <strong>{review.stats.dueTomorrow}</strong> + нові</p>
       </div>
       <div className="space-y-2">
+        {/* Далі — тренування слів, яких не знав чи вагався */}
+        {toPractice > 0 && (
+          <>
+            <p className="text-sm text-center text-muted-foreground">Потренуй {toPractice} {wordsLabel(toPractice)}, яких не знав чи вагався:</p>
+            <div className="grid grid-cols-2 gap-2">
+              <Link href={`${REVIEW_HREF}/learn`}
+                className="min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium flex items-center justify-center active:scale-[0.98] transition-all">
+                Learn
+              </Link>
+              <Link href={`${REVIEW_HREF}/blast`}
+                className="min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium flex items-center justify-center active:scale-[0.98] transition-all">
+                Blast
+              </Link>
+            </div>
+          </>
+        )}
         {allGraded && (
           <button type="button" onClick={more} disabled={busy}
-            className="w-full min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium active:scale-[0.98] transition-all disabled:opacity-50">
+            className={`w-full min-h-[52px] rounded-2xl text-sm font-medium active:scale-[0.98] transition-all disabled:opacity-50 ${
+              toPractice > 0 ? "border hover:bg-accent/40" : "bg-primary text-primary-foreground"}`}>
             {busy ? "…" : "Ще 10 слів"}
           </button>
         )}

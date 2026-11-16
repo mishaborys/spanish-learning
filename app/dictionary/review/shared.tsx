@@ -5,8 +5,8 @@
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { kyivDay, type Grade } from "@/lib/review/core";
-import type { ReviewToday } from "@/lib/review";
+import { kyivDay, practiceWords, type Grade } from "@/lib/review/core";
+import type { ReviewItem, ReviewToday } from "@/lib/review";
 import { mergeAnswers, outboxSnapshot, parseOutbox, subscribeOutbox } from "@/lib/reviewOutbox";
 
 export const REVIEW_HREF = "/dictionary/review";
@@ -109,4 +109,45 @@ export function ReviewDayGuard({ day }: { day: string }) {
       <Link href="/dictionary" className="text-sm text-muted-foreground underline">До Словника</Link>
     </div>
   );
+}
+
+/** Слова для Learn і Blast (з «не знаю» й «вагався»); null — Flashcards добірки ще не пройдено. */
+export function usePracticeWords(review: ReviewToday): ReviewItem[] | null {
+  const answers = useReviewAnswers(review);
+  const keys = practiceWords(review.items.map(i => i.key), answers);
+  return keys && review.items.filter(i => keys.includes(i.key));
+}
+
+/** Learn чи Blast ще закриті (не пройдено Flashcards) або тренувати нічого. */
+export function PracticeLocked({ review, mode }: { review: ReviewToday; mode: "Learn" | "Blast" }) {
+  const answers = useReviewAnswers(review);
+  const graded = review.items.filter(i => answers[i.key]).length;
+  const total = review.items.length;
+  const allKnown = graded === total;
+  return (
+    <div className="fixed inset-0 z-50 bg-background flex flex-col items-center justify-center gap-4 p-6 text-center">
+      <p className="text-4xl">{allKnown ? "🎉" : "🃏"}</p>
+      <p className="font-semibold text-lg">{allKnown ? "Усі слова добірки знаєш" : "Спершу пройди Flashcards"}</p>
+      <p className="text-sm text-muted-foreground max-w-xs">
+        {allKnown
+          ? `${mode} тренує слова з «Не знаю» і «Вагався» — сьогодні таких немає.`
+          : `${mode} тренує слова, які у Flashcards виявились «Не знаю» чи «Вагався». Оцінено ${graded} з ${total}.`}
+      </p>
+      {!allKnown && (
+        <Link href={`${REVIEW_HREF}/flashcards`}
+          className="min-h-[48px] px-6 rounded-2xl bg-primary text-primary-foreground text-sm font-medium flex items-center">
+          До Flashcards
+        </Link>
+      )}
+      <Link href={REVIEW_HREF} className="text-sm text-muted-foreground underline">До повторення</Link>
+    </div>
+  );
+}
+
+/** «слово / слова / слів». */
+export function wordsLabel(n: number): string {
+  const d = n % 10, dd = n % 100;
+  if (d === 1 && dd !== 11) return "слово";
+  if (d >= 2 && d <= 4 && (dd < 12 || dd > 14)) return "слова";
+  return "слів";
 }
