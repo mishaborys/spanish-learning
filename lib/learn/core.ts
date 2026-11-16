@@ -23,7 +23,7 @@ export function nextStage(stage: Stage, kind: QuestionKind, correct: boolean): S
 
 import { shuffle, type Rng } from "@/lib/random";
 export type { Rng };
-export const ROUND_SIZE = 7;
+export const ROUND_SIZE = 8;
 
 export type LearnWord = { key: string; stage: Stage };
 export type Question = { key: string; kind: QuestionKind };
@@ -33,42 +33,56 @@ export { shuffle };
 /** Скільки питань підряд в одному режимі, перш ніж режим зміниться. */
 export const RUN_LENGTH = 2;
 
+const KINDS: QuestionKind[] = ["choice", "reverse", "write"];
+const evenDown = (n: number) => n - (n % RUN_LENGTH);
+
 /**
- * Раунд до 7 питань: спершу слова, що пройшли вибір і чекають на вписування,
- * потім нові на вибір (спершу ті, де помилився в цій сесії). Вивчені не потрапляють.
- * Нові слова навпіл діляться між `choice` і `reverse`; режими йдуть серіями по {@link RUN_LENGTH}
- * питання, а порядок серій випадковий (той самий режим двічі поспіль лише коли інших не лишилось).
+ * Раунд до 8 питань, що складається з пар: по 2 питання в одному режимі, потім інший режим.
+ * Слова, що пройшли вибір, чекають на вписування (`write`); нові йдуть на вибір — навпіл між `choice` і `reverse`
+ * (спершу ті, де помилився в цій сесії). Вивчені не потрапляють.
+ * Кількість у кожній групі округлюється вниз до парної — слово, що не вмістилося, чекає наступного раунду.
+ * Порядок пар випадковий, але той самий режим двічі поспіль лише коли інакше не вийде.
+ * Лише коли пару скласти нізвідки (напр. лишилось по одному слову), віддаються одиночні питання.
  */
 export function buildRound(opts: { words: LearnWord[]; missed?: Set<string>; rng?: Rng; size?: number }): Question[] {
   const { words, missed = new Set<string>(), rng = Math.random, size = ROUND_SIZE } = opts;
   const write = words.filter(w => w.stage === "learning").map(w => w.key);
-  // Серед нових спершу ті, де вже помилився, — вони мають повернутися в наступному раунді
   const fresh = words.filter(w => w.stage === "new");
   const choice = [...fresh.filter(w => missed.has(w.key)), ...fresh.filter(w => !missed.has(w.key))].map(w => w.key);
 
-  const picked = [
-    ...write.map(key => ({ key, write: true })),
-    ...choice.map(key => ({ key, write: false })),
-  ].slice(0, size);
-
-  const queues: Record<QuestionKind, Question[]> = { choice: [], reverse: [], write: [] };
-  for (const key of shuffle(picked.filter(p => p.write).map(p => p.key), rng)) queues.write.push({ key, kind: "write" });
-  shuffle(picked.filter(p => !p.write).map(p => p.key), rng)
-    .forEach((key, i) => queues[i % 2 === 0 ? "choice" : "reverse"].push({ key, kind: i % 2 === 0 ? "choice" : "reverse" }));
-
-  const kinds: QuestionKind[] = ["choice", "reverse", "write"];
-  const round: Question[] = [];
-  let last: QuestionKind | null = null;
-  for (;;) {
-    const left = kinds.filter(k => queues[k].length > 0);
-    if (left.length === 0) break;
-    const other = left.filter(k => k !== last);
-    const from = other.length > 0 ? other : left;
-    const kind = from[Math.min(Math.floor(rng() * from.length), from.length - 1)];
-    round.push(...queues[kind].splice(0, RUN_LENGTH));
-    last = kind;
+  let w = evenDown(Math.min(write.length, size));
+  let n = evenDown(Math.min(choice.length, size - w));
+  if (w + n === 0) { // пару скласти нізвідки — віддаємо що є, щоб раунд не став порожнім
+    w = Math.min(write.length, size);
+    n = Math.min(choice.length, size - w);
   }
-  return round;
+
+  // Серії (по 2 питання) кожного режиму
+  const runs: Record<QuestionKind, Question[][]> = { choice: [], reverse: [], write: [] };
+  const chunks = (keys: string[]) => Array.from({ length: Math.ceil(keys.length / RUN_LENGTH) }, (_, i) => keys.slice(i * RUN_LENGTH, (i + 1) * RUN_LENGTH));
+  for (const keys of chunks(shuffle(write.slice(0, w), rng))) runs.write.push(keys.map(key => ({ key, kind: "write" as const })));
+  const [first, second] = shuffle<QuestionKind>(["choice", "reverse"], rng); // кому дістанеться зайва серія
+  chunks(shuffle(choice.slice(0, n), rng)).forEach((keys, i) => {
+    const kind = i % 2 === 0 ? first : second;
+    runs[kind].push(keys.map(key => ({ key, kind })));
+  });
+
+  // Порядок серій: випадковий, без однакових режимів поруч (пошук із поверненням — серій мало)
+  const left = Object.fromEntries(KINDS.map(k => [k, runs[k].length])) as Record<QuestionKind, number>;
+  const total = KINDS.reduce((t, k) => t + left[k], 0);
+  const order: QuestionKind[] = [];
+  const place = (last: QuestionKind | null): boolean => {
+    if (order.length === total) return true;
+    for (const k of shuffle(KINDS.filter(k => left[k] > 0 && k !== last), rng)) {
+      left[k]--; order.push(k);
+      if (place(k)) return true;
+      order.pop(); left[k]++;
+    }
+    return false;
+  };
+  if (!place(null)) for (const k of KINDS) for (let i = 0; i < left[k]; i++) order.push(k); // розвести не вийшло — у будь-якому порядку
+
+  return order.flatMap(k => runs[k].shift()!);
 }
 
 /**

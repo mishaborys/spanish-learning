@@ -173,8 +173,16 @@
   from { opacity: 0; transform: translateX(16px); }
   to { opacity: 1; transform: none; }
 }
+/* Learn: пояснення після відповіді виїжджає знизу, футер із «Далі» з'являється й зникає разом із питанням */
+.learn-rise { animation: learn-rise 240ms ease-out backwards; }
+.learn-footer { transition: opacity 180ms ease; animation: learn-rise 240ms ease-out backwards; }
+.learn-footer-leaving { opacity: 0; }
+@keyframes learn-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
 @media (prefers-reduced-motion: reduce) {
-  .learn-step { animation: none; transition: none; }
+  .learn-step, .learn-rise, .learn-footer { animation: none; transition: none; }
 }
 
 /* Лічильники свайпу (кольори Quizlet: світла / темна тема) */

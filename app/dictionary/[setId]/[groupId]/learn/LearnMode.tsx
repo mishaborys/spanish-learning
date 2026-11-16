@@ -142,13 +142,16 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
   }, [feedback]);
 
   const finished = progress.done && (roundDone || round.length === 0);
+  // Після помилки (чи правильної відповіді з підказкою написання) далі переходить сам користувач
+  const needsNext = !!question && !roundDone && !finished && !!feedback
+    && (feedback.result === "wrong" || feedback.spelling);
 
   return (
     <div className="fixed inset-0 z-50 bg-background overflow-y-auto overscroll-contain"
       // Клавіатура на iOS зсуває visual viewport — тримаємо оверлей рівно по видимій області
       style={viewport ? { top: viewport.top, height: viewport.height, bottom: "auto" } : undefined}>
       <div className="min-h-full max-w-lg mx-auto flex flex-col px-4"
-        style={{ paddingTop: "max(env(safe-area-inset-top), 12px)", paddingBottom: "max(env(safe-area-inset-bottom), 16px)" }}>
+        style={{ paddingTop: "max(env(safe-area-inset-top), 12px)" }}>
         {/* Верхня панель */}
         <div className="flex items-center justify-between h-12 shrink-0">
           <Link href={exitHref} aria-label="Закрити Learn"
@@ -167,7 +170,8 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
 
         {error && <p className="text-xs text-destructive text-center mt-2">{error}</p>}
 
-        <div className="flex-1 flex flex-col py-5">
+        <div className="flex-1 flex flex-col pt-5 pb-4"
+          style={needsNext ? undefined : { paddingBottom: "max(env(safe-area-inset-bottom), 16px)" }}>
           {/* key змінюється з кожним питанням/екраном — так спрацьовує анімація появи */}
           <div key={finished ? "finished" : roundDone || round.length === 0 ? `summary-${roundNo}` : `${roundNo}-${qIndex}`}
             className={`learn-step flex-1 flex flex-col ${leaving ? "learn-step-leaving" : ""}`}>
@@ -186,7 +190,7 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
                   answer(question, correct);
                   setFeedback(correct ? { result: "correct", spelling: false, picked } : { result: "wrong", picked, dontKnow: picked === "" });
                 }}
-                onNext={next} />
+                />
             ) : (
               <WriteQuestion key={`${roundNo}-${qIndex}`} word={word}
                 sameTranslation={materials.sameTranslation[question.key] ?? []} feedback={feedback}
@@ -198,11 +202,19 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
                   answer(question, true);
                   setFeedback(f => f && f.result === "wrong" ? { result: "correct", spelling: true, typed: f.typed } : f);
                 }}
-                onNext={next} />
+              />
             )
           ) : null}
           </div>
         </div>
+
+        {/* «Далі» липне до низу екрана: пояснення можна гортати, а кнопка завжди під пальцем */}
+        {needsNext && (
+          <div className={`learn-footer sticky bottom-0 -mx-4 px-4 pt-3 border-t bg-background/95 backdrop-blur ${leaving ? "learn-footer-leaving" : ""}`}
+            style={{ paddingBottom: "max(env(safe-area-inset-bottom), 12px)" }}>
+            <NextButton onNext={next} />
+          </div>
+        )}
       </div>
     </div>
   );
@@ -210,7 +222,7 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
 
 // ─── Питання: вибір ───────────────────────────────────────────────────────────
 
-function ChoiceQuestion({ word, wordKeyValue, reverse, seed, layers, feedback, onAnswer, onNext }: {
+function ChoiceQuestion({ word, wordKeyValue, reverse, seed, layers, feedback, onAnswer }: {
   word: VocabWord;
   wordKeyValue: string;
   /** Показати переклад і обирати іспанське слово (інакше — навпаки). */
@@ -219,7 +231,6 @@ function ChoiceQuestion({ word, wordKeyValue, reverse, seed, layers, feedback, o
   layers: Option[][];
   feedback: Feedback | null;
   onAnswer: (pickedKey: string, correct: boolean) => void;
-  onNext: () => void;
 }) {
   const [options] = useState(() => pickOptions({
     target: reverse ? { key: wordKeyValue, text: word.spanish, meaning: word.ukrainian } : { key: wordKeyValue, text: word.ukrainian },
@@ -273,20 +284,19 @@ function ChoiceQuestion({ word, wordKeyValue, reverse, seed, layers, feedback, o
         </button>
       )}
 
-      {feedback?.result === "wrong" && <WrongPanel word={word} onNext={onNext} />}
+      {feedback?.result === "wrong" && <WrongPanel word={word} />}
     </div>
   );
 }
 
 // ─── Питання: вписати ─────────────────────────────────────────────────────────
 
-function WriteQuestion({ word, sameTranslation, feedback, onAnswer, onOverride, onNext }: {
+function WriteQuestion({ word, sameTranslation, feedback, onAnswer, onOverride }: {
   word: VocabWord;
   sameTranslation: string[];
   feedback: Feedback | null;
   onAnswer: (typed: string, correct: boolean, showSpelling: boolean) => void;
   onOverride: () => void;
-  onNext: () => void;
 }) {
   const [typed, setTyped] = useState("");
   const input = useRef<HTMLInputElement>(null);
@@ -327,7 +337,7 @@ function WriteQuestion({ word, sameTranslation, feedback, onAnswer, onOverride, 
       )}
 
       {feedback?.result === "correct" && (
-        <div className="space-y-3">
+        <div className="space-y-3 learn-rise">
           <div className="rounded-2xl border-2 border-[#18AE79] bg-[#E6FCF4] dark:bg-emerald-950/40 p-4">
             <p className="text-sm font-semibold text-[#0f7a55] dark:text-emerald-300">Правильно! 🎉</p>
             {feedback.spelling && (
@@ -336,7 +346,6 @@ function WriteQuestion({ word, sameTranslation, feedback, onAnswer, onOverride, 
               </p>
             )}
           </div>
-          {feedback.spelling && <NextButton onNext={onNext} />}
         </div>
       )}
 
@@ -350,7 +359,7 @@ function WriteQuestion({ word, sameTranslation, feedback, onAnswer, onOverride, 
               </button>
             </div>
           )}
-          <WrongPanel word={word} onNext={onNext} />
+          <WrongPanel word={word} />
         </div>
       )}
     </div>
@@ -360,9 +369,9 @@ function WriteQuestion({ word, sameTranslation, feedback, onAnswer, onOverride, 
 // ─── Спільні частини ──────────────────────────────────────────────────────────
 
 /** Правильна відповідь після помилки: слово, вимова, асоціація й приклад. */
-function WrongPanel({ word, onNext }: { word: VocabWord; onNext: () => void }) {
+function WrongPanel({ word }: { word: VocabWord }) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 learn-rise">
       <div className="rounded-2xl border bg-card p-4 space-y-3">
         <div className="flex items-start justify-between gap-3">
           <div>
@@ -378,7 +387,6 @@ function WrongPanel({ word, onNext }: { word: VocabWord; onNext: () => void }) {
         </div>
         <WordNotes word={word} />
       </div>
-      <NextButton onNext={onNext} />
     </div>
   );
 }
