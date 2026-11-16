@@ -415,6 +415,9 @@ type NewEffect = DistributiveOmit<Effect, "id">;
 
 const reducedMotion = () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+/** Швидкість дрейфу астероїда на полі, px/с. */
+const driftSpeed = () => (28 + Math.random() * 24) * (reducedMotion() ? 0.5 : 1);
+
 const Playfield = memo(function Playfield({ visible, byKey, onTap, paused }: {
   visible: string[];
   byKey: Map<string, BlastModeWord>;
@@ -450,7 +453,7 @@ const Playfield = memo(function Playfield({ visible, byKey, onTap, paused }: {
   };
 
   const randomVelocity = () => {
-    const speed = (28 + Math.random() * 24) * (reducedMotion() ? 0.5 : 1);
+    const speed = driftSpeed();
     const a = Math.random() * Math.PI * 2;
     return { vx: Math.cos(a) * speed, vy: Math.sin(a) * speed };
   };
@@ -480,7 +483,8 @@ const Playfield = memo(function Playfield({ visible, byKey, onTap, paused }: {
         const tx = Math.max(w - dia, 0) * (0.25 + Math.random() * 0.5);
         const ty = Math.max(h - dia, 0) * (0.25 + Math.random() * 0.5);
         const len = Math.hypot(tx - x, ty - y) || 1;
-        const speed = (60 + Math.random() * 20) * (reducedMotion() ? 0.5 : 1);
+        // Залітає швидко, щоб нове слово з'являлось без затримки; на полі сповільнюється до дрейфу
+        const speed = (120 + Math.random() * 40) * (reducedMotion() ? 0.5 : 1);
         bodies.current.set(key, {
           x, y, vx: (tx - x) / len * speed, vy: (ty - y) / len * speed,
           entering: true, enteredBy: performance.now() + MAX_ENTER_MS,
@@ -525,7 +529,14 @@ const Playfield = memo(function Playfield({ visible, byKey, onTap, paused }: {
         if (b.entering) {
           const inside = b.x >= 0 && b.y >= 0 && b.x <= w - dia && b.y <= h - dia;
           // Поле могло зменшитись під час підльоту — тоді далі діють стіни й повертають астероїд на поле
-          if (inside || now > b.enteredBy) b.entering = false;
+          if (inside || now > b.enteredBy) {
+            b.entering = false;
+            // Залетів — тепер дрейфує з тією ж швидкістю, що й решта, у тому ж напрямку
+            const v = Math.hypot(b.vx, b.vy) || 1;
+            const drift = driftSpeed();
+            b.vx = (b.vx / v) * drift;
+            b.vy = (b.vy / v) * drift;
+          }
           else continue;
         }
         if (b.x < 0) { b.x = 0; b.vx = Math.abs(b.vx); }
