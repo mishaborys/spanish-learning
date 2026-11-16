@@ -12,10 +12,19 @@ export const ensureSchema = once(async () => {
     CREATE TABLE IF NOT EXISTS learn_progress (
       scope TEXT NOT NULL DEFAULT '',
       word_key TEXT NOT NULL,
-      stage TEXT NOT NULL CHECK (stage IN ('new', 'learning', 'mastered')),
+      stage TEXT NOT NULL,
       updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
       PRIMARY KEY (scope, word_key)
     )`;
+  // Драбина виросла до чотирьох етапів: старе обмеження (3 етапи) замінюємо. Наявні 'learning' лишаються
+  // чинними — такі слова просто далі йдуть на зворотний вибір, а потім на вписування.
+  await sql`ALTER TABLE learn_progress DROP CONSTRAINT IF EXISTS learn_progress_stage_check`;
+  await sql`
+    DO $$ BEGIN
+      ALTER TABLE learn_progress ADD CONSTRAINT learn_progress_stage_check
+        CHECK (stage IN ('new', 'learning', 'familiar', 'mastered'));
+    EXCEPTION WHEN duplicate_object THEN NULL;
+    END $$`;
 });
 
 export async function loadStages(scope: string, keys: string[]): Promise<Record<string, Stage>> {

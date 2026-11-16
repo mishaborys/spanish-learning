@@ -4,16 +4,16 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { wordKey } from "@/lib/review/core";
-import { groupProgress, type Stage } from "@/lib/learn/core";
+import { groupProgress, statusOf as stageStatus, type Stage, type Status } from "@/lib/learn/core";
 import type { VocabGroup, VocabWord } from "@/lib/vocabulary";
 import { DEFAULT_FLASHCARD_SETTINGS, useFlashcardSettings } from "@/lib/flashcardSettings";
 import { speakSpanish } from "@/lib/speak";
 import { SpeakerIcon, WordNotes } from "@/components/spanish/WordNotes";
 
 /** Статус слова веде тільки Learn. */
-const STATUS_ORDER: Stage[] = ["learning", "new", "mastered"];
-const STATUS_LABEL: Record<Stage, string> = { learning: "Ще вчу", new: "Не вивчав", mastered: "Вивчено" };
-const STATUS_DOT: Record<Stage, string> = {
+const STATUS_ORDER: Status[] = ["learning", "new", "mastered"];
+const STATUS_LABEL: Record<Status, string> = { learning: "Ще вчу", new: "Не вивчав", mastered: "Вивчено" };
+const STATUS_DOT: Record<Status, string> = {
   learning: "bg-[#FF983A]",
   new: "bg-muted-foreground/30",
   mastered: "bg-[#18AE79]",
@@ -39,7 +39,7 @@ export function GroupClient({ group, setTitle, groupHref, backHref, backLabel, s
   const [resetting, setResetting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const known = stages ?? {};
-  const statusOf = (w: VocabWord): Stage => known[wordKey(w.spanish)] ?? "new";
+  const statusOf = (w: VocabWord): Status => stageStatus(known[wordKey(w.spanish)] ?? "new");
   const keys = [...new Set(group.words.map(w => wordKey(w.spanish)))];
   const progress = groupProgress(keys, known);
   const mastered = progress.mastered;

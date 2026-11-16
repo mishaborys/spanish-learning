@@ -15,6 +15,7 @@ import { SpeakerIcon, WordNotes } from "@/components/spanish/WordNotes";
 
 /** Скільки показувати «Правильно!», перш ніж перейти далі самому. */
 const CORRECT_PAUSE_MS = 1300;
+const KIND_LABEL: Record<Question["kind"], string> = { choice: "слово → переклад", reverse: "переклад → слово", write: "вписати" };
 /** Скільки триває зникнення питання перед наступним (має збігатися з `.learn-step` у globals.css). */
 const LEAVE_MS = 180;
 
@@ -161,7 +162,7 @@ export function LearnMode({ group, initialStages, materials, exitHref, exitLabel
           <div className="text-center">
             <p className="text-sm font-semibold">Learn</p>
             <p className="text-[10px] text-muted-foreground leading-none">
-              {finished ? group.title : `раунд ${roundNo}${!roundDone && round.length ? ` · ${qIndex + 1} / ${round.length}` : ""}`}
+              {finished ? group.title : `раунд ${roundNo}${!roundDone && round.length ? ` · ${KIND_LABEL[round[0].kind]} · ${qIndex + 1} / ${round.length}` : ""}`}
             </p>
           </div>
           <div className="h-10 w-10" />

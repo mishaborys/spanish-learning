@@ -2,87 +2,62 @@
 // працює і на сервері, і в браузері, тестується напряму.
 import { gradeTyped } from "@/lib/review/core";
 
-/** Етап слова: не вивчав → ще вчу (пройшов вибір) → вивчено (ще й правильно вписав). */
-export type Stage = "new" | "learning" | "mastered";
 /**
- * Тип питання (три режими):
+ * Етап слова — драбина з трьох вправ:
+ * не вивчав → (вибір перекладу) ще вчу → (вибір іспанського) знайомий → (вписування) вивчено.
+ */
+export type Stage = "new" | "learning" | "familiar" | "mastered";
+/**
+ * Тип питання (три вправи):
  * - `choice`: іспанське слово → вибір українського перекладу з 4;
  * - `reverse`: український переклад → вибір іспанського слова з 4;
  * - `write`: український переклад → вписати іспанською.
  */
 export type QuestionKind = "choice" | "reverse" | "write";
 
-const STAGE_ORDER: Stage[] = ["new", "learning", "mastered"];
+const STAGE_ORDER: Stage[] = ["new", "learning", "familiar", "mastered"];
+/** Етап, якого слово досягає після правильної відповіді на питання цього типу. */
+const REACHED: Record<QuestionKind, Stage> = { choice: "learning", reverse: "familiar", write: "mastered" };
+/** Яке питання чекає слово на цьому етапі (вивчене — жодного). */
+const KIND_AT: Partial<Record<Stage, QuestionKind>> = { new: "choice", learning: "reverse", familiar: "write" };
 
-/** Етап після відповіді: помилка — назад на вибір; правильна відповідь етап не знижує. */
+/** Етап після відповіді: помилка — назад на початок; правильна відповідь етап не знижує. */
 export function nextStage(stage: Stage, kind: QuestionKind, correct: boolean): Stage {
-  if (!correct) return "new"; // повертається на вибір
-  const reached: Stage = kind === "write" ? "mastered" : "learning"; // обидва види вибору — етап «ще вчу»
+  if (!correct) return "new"; // повертається на перший вибір
+  const reached = REACHED[kind];
   return STAGE_ORDER.indexOf(reached) > STAGE_ORDER.indexOf(stage) ? reached : stage;
+}
+
+/** Статус слова для людини: «не вивчав» / «ще вчу» (обидва проміжні етапи) / «вивчено». */
+export type Status = "new" | "learning" | "mastered";
+export function statusOf(stage: Stage): Status {
+  return stage === "new" || stage === "mastered" ? stage : "learning";
 }
 
 import { shuffle, type Rng } from "@/lib/random";
 export type { Rng };
-export const ROUND_SIZE = 8;
+/** Слів у раунді: усі з одного етапу, тож усі питання раунду — одного типу. */
+export const ROUND_SIZE = 5;
 
 export type LearnWord = { key: string; stage: Stage };
 export type Question = { key: string; kind: QuestionKind };
 
 export { shuffle };
 
-/** Скільки питань підряд в одному режимі, перш ніж режим зміниться. */
-export const RUN_LENGTH = 2;
-
-const KINDS: QuestionKind[] = ["choice", "reverse", "write"];
-const evenDown = (n: number) => n - (n % RUN_LENGTH);
-
 /**
- * Раунд до 8 питань, що складається з пар: по 2 питання в одному режимі, потім інший режим.
- * Слова, що пройшли вибір, чекають на вписування (`write`); нові йдуть на вибір — навпіл між `choice` і `reverse`
- * (спершу ті, де помилився в цій сесії). Вивчені не потрапляють.
- * Кількість у кожній групі округлюється вниз до парної — слово, що не вмістилося, чекає наступного раунду.
- * Порядок пар випадковий, але той самий режим двічі поспіль лише коли інакше не вийде.
- * Лише коли пару скласти нізвідки (напр. лишилось по одному слову), віддаються одиночні питання.
+ * Раунд — до 5 слів, усі питання одного типу. Кожне слово проходить усі три вправи по черзі.
+ * Тип раунду: найдальший етап, на якому зібралося повних 5 слів (вписування → зворотний вибір → вибір);
+ * якщо повних 5 немає ніде — найдальший етап, де взагалі є слова, щоб раунд не став порожнім.
+ * Серед нових слів спершу ті, де вже помилився в цій сесії. Вивчені не потрапляють. Усередині раунду — перемішано.
  */
 export function buildRound(opts: { words: LearnWord[]; missed?: Set<string>; rng?: Rng; size?: number }): Question[] {
   const { words, missed = new Set<string>(), rng = Math.random, size = ROUND_SIZE } = opts;
-  const write = words.filter(w => w.stage === "learning").map(w => w.key);
-  const fresh = words.filter(w => w.stage === "new");
-  const choice = [...fresh.filter(w => missed.has(w.key)), ...fresh.filter(w => !missed.has(w.key))].map(w => w.key);
-
-  let w = evenDown(Math.min(write.length, size));
-  let n = evenDown(Math.min(choice.length, size - w));
-  if (w + n === 0) { // пару скласти нізвідки — віддаємо що є, щоб раунд не став порожнім
-    w = Math.min(write.length, size);
-    n = Math.min(choice.length, size - w);
-  }
-
-  // Серії (по 2 питання) кожного режиму
-  const runs: Record<QuestionKind, Question[][]> = { choice: [], reverse: [], write: [] };
-  const chunks = (keys: string[]) => Array.from({ length: Math.ceil(keys.length / RUN_LENGTH) }, (_, i) => keys.slice(i * RUN_LENGTH, (i + 1) * RUN_LENGTH));
-  for (const keys of chunks(shuffle(write.slice(0, w), rng))) runs.write.push(keys.map(key => ({ key, kind: "write" as const })));
-  const [first, second] = shuffle<QuestionKind>(["choice", "reverse"], rng); // кому дістанеться зайва серія
-  chunks(shuffle(choice.slice(0, n), rng)).forEach((keys, i) => {
-    const kind = i % 2 === 0 ? first : second;
-    runs[kind].push(keys.map(key => ({ key, kind })));
-  });
-
-  // Порядок серій: випадковий, без однакових режимів поруч (пошук із поверненням — серій мало)
-  const left = Object.fromEntries(KINDS.map(k => [k, runs[k].length])) as Record<QuestionKind, number>;
-  const total = KINDS.reduce((t, k) => t + left[k], 0);
-  const order: QuestionKind[] = [];
-  const place = (last: QuestionKind | null): boolean => {
-    if (order.length === total) return true;
-    for (const k of shuffle(KINDS.filter(k => left[k] > 0 && k !== last), rng)) {
-      left[k]--; order.push(k);
-      if (place(k)) return true;
-      order.pop(); left[k]++;
-    }
-    return false;
-  };
-  if (!place(null)) for (const k of KINDS) for (let i = 0; i < left[k]; i++) order.push(k); // розвести не вийшло — у будь-якому порядку
-
-  return order.flatMap(k => runs[k].shift()!);
+  const at = (stage: Stage) => words.filter(w => w.stage === stage).map(w => w.key);
+  const pools = (["familiar", "learning", "new"] as Stage[]).map(stage => ({ kind: KIND_AT[stage]!, keys: at(stage) }));
+  const pool = pools.find(p => p.keys.length >= size) ?? pools.find(p => p.keys.length > 0);
+  if (!pool) return [];
+  const keys = [...pool.keys.filter(k => missed.has(k)), ...pool.keys.filter(k => !missed.has(k))].slice(0, size);
+  return shuffle(keys, rng).map(key => ({ key, kind: pool.kind }));
 }
 
 /**
@@ -134,7 +109,7 @@ export type GroupProgress = { new: number; learning: number; mastered: number; t
 /** Лічильники етапів для слів групи; слово без запису — «не вивчав». */
 export function groupProgress(keys: string[], stages: Record<string, Stage>): GroupProgress {
   const p = { new: 0, learning: 0, mastered: 0, total: keys.length, done: false };
-  for (const k of keys) p[stages[k] ?? "new"]++;
+  for (const k of keys) p[statusOf(stages[k] ?? "new")]++;
   p.done = p.total > 0 && p.mastered === p.total;
   return p;
 }

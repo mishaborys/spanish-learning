@@ -12,18 +12,19 @@ test("правильний вибір переводить нове слово �
   assert.equal(nextStage("learning", "write", true), "mastered");
 });
 
-test("зворотний вибір (переклад → іспанське) теж веде нове слово в «ще вчу», але не в «вивчено»", () => {
-  assert.equal(nextStage("new", "reverse", true), "learning");
-  assert.equal(nextStage("learning", "reverse", true), "learning");
-  assert.equal(nextStage("learning", "reverse", false), "new");
+test("драбина: вибір → «ще вчу», зворотний вибір → «знайомий», вписування → «вивчено»", () => {
+  assert.equal(nextStage("new", "choice", true), "learning");
+  assert.equal(nextStage("learning", "reverse", true), "familiar");
+  assert.equal(nextStage("familiar", "write", true), "mastered");
 });
 
 test("правильна відповідь не знижує етап (напр. запізнілий вибір для вже вивченого слова)", () => {
   assert.equal(nextStage("mastered", "choice", true), "mastered");
 });
 
-test("помилка або «не знаю» відкочує слово на етап вибору", () => {
-  assert.equal(nextStage("learning", "write", false), "new");
+test("помилка або «не знаю» на будь-якому етапі відкочує слово на початок драбини", () => {
+  assert.equal(nextStage("familiar", "write", false), "new");
+  assert.equal(nextStage("learning", "reverse", false), "new");
   assert.equal(nextStage("new", "choice", false), "new");
 });
 
@@ -31,58 +32,58 @@ test("помилка або «не знаю» відкочує слово на �
 
 const words = (stages: Record<string, Stage>) => Object.entries(stages).map(([key, stage]) => ({ key, stage }));
 
-test("раунд: до 8 питань, що йдуть парами; спершу слова на вписування, потім нові на вибір; вивчені не потрапляють", () => {
+const kindsOf = (round: { kind: string }[]) => [...new Set(round.map(q => q.kind))];
+
+test("раунд: 5 слів одного типу — вибір для нових", () => {
+  const round = buildRound({ words: words(Object.fromEntries("abcdefgh".split("").map(k => [k, "new" as Stage]))), rng: seq(0.5) });
+  assert.equal(round.length, 5);
+  assert.deepEqual(kindsOf(round), ["choice"]);
+  assert.equal(new Set(round.map(q => q.key)).size, 5);
+});
+
+test("раунд: тип залежить від етапу слів — «ще вчу» → зворотний вибір, «знайомий» → вписування", () => {
+  const five = (stage: Stage) => Object.fromEntries("abcde".split("").map(k => [k, stage]));
+  assert.deepEqual(kindsOf(buildRound({ words: words(five("learning")), rng: seq(0.5) })), ["reverse"]);
+  assert.deepEqual(kindsOf(buildRound({ words: words(five("familiar")), rng: seq(0.5) })), ["write"]);
+});
+
+test("раунд: вивчені не потрапляють; слова різних етапів не змішуються в одному раунді", () => {
   const round = buildRound({
-    words: words({ a: "learning", b: "learning", c: "mastered", d: "new", e: "new", f: "new", g: "new", h: "new", i: "new", j: "new" }),
+    words: words({ a: "mastered", b: "learning", c: "learning", d: "new", e: "new", f: "new", g: "new", h: "new", i: "new" }),
     rng: seq(0.5),
   });
-  assert.equal(round.length, 8);
-  assert.deepEqual(round.filter(q => q.kind === "write").map(q => q.key).sort(), ["a", "b"]);
-  assert.equal(round.filter(q => q.kind !== "write").length, 6);
-  assert.ok(!round.some(q => q.key === "c"));
+  assert.ok(!round.some(q => q.key === "a"));
+  assert.equal(kindsOf(round).length, 1);
 });
 
-/** Серії однакових режимів підряд: [["write", 2], ["choice", 2], …]. */
-const runsOf = (kinds: string[]) => kinds.reduce<[string, number][]>((r, k) => {
-  if (r.length && r[r.length - 1][0] === k) r[r.length - 1][1]++; else r.push([k, 1]);
-  return r;
-}, []);
+test("раунд: перевага етапу, де набралось повних 5; інакше — найдальший етап зі словами", () => {
+  // 5 нових і лише 3 «знайомих» — повна п'ятірка тільки на виборі
+  const full = buildRound({ words: words({ a: "familiar", b: "familiar", c: "familiar", d: "new", e: "new", f: "new", g: "new", h: "new" }), rng: seq(0.5) });
+  assert.deepEqual(kindsOf(full), ["choice"]);
+  // повних п'ятірок немає ніде — спершу найдальший етап, хоч і неповний
+  const part = buildRound({ words: words({ a: "familiar", b: "familiar", c: "learning", d: "new", e: "new" }), rng: seq(0.5) });
+  assert.deepEqual(kindsOf(part), ["write"]);
+  assert.equal(part.length, 2);
+});
 
-test("раунд: завжди рівно по 2 питання в режимі, режими чергуються (будь-який склад слів, багато випадкових зерен)", () => {
-  const mixes: Record<string, Stage>[] = [
-    { a: "learning", b: "learning", c: "new", d: "new", e: "new", f: "new" },
-    { a: "learning", b: "learning", c: "learning", d: "new", e: "new", f: "new", g: "new", h: "new", i: "new" }, // непарні кількості
-    Object.fromEntries("abcdefghijkl".split("").map(k => [k, "new" as Stage])),                                  // лише вибір
-    Object.fromEntries("abcdefghij".split("").map((k, i) => [k, i < 5 ? "learning" : "new"] as [string, Stage])),
-  ];
-  const orders = new Set<string>();
-  for (const mix of mixes) for (let seed = 1; seed <= 60; seed++) {
-    const kinds = buildRound({ words: words(mix), rng: seededRng(seed) }).map(q => q.kind);
-    assert.ok(kinds.length >= 2 && kinds.length <= 8, `розмір ${kinds.length}`);
-    for (const [kind, len] of runsOf(kinds)) assert.equal(len, 2, `серія ${kind} не по два: ${kinds}`);
-    orders.add(kinds.join());
+test("раунд: порожній, коли всі слова вивчені", () => {
+  assert.deepEqual(buildRound({ words: words({ a: "mastered", b: "mastered" }), rng: seq(0.5) }), []);
+});
+
+test("кожне слово проходить усі три типи: вибір → зворотний вибір → вписування, поки не стане вивченим", () => {
+  const keys = "abcdefghijkl".split("");
+  let stages: Record<string, Stage> = {};
+  const seen = new Map<string, string[]>();
+  for (let guard = 0; guard < 50; guard++) {
+    const round = buildRound({ words: keys.map(key => ({ key, stage: stages[key] ?? "new" })), rng: seededRng(guard + 1) });
+    if (round.length === 0) break;
+    for (const q of round) {
+      seen.set(q.key, [...(seen.get(q.key) ?? []), q.kind]);
+      stages = { ...stages, [q.key]: nextStage(stages[q.key] ?? "new", q.kind, true) };
+    }
   }
-  assert.ok(orders.size > 3, "порядок режимів майже завжди однаковий");
-});
-
-test("раунд: нові слова діляться між двома видами вибору, кожне слово — один раз", () => {
-  const round = buildRound({ words: words({ a: "new", b: "new", c: "new", d: "new", e: "new", f: "new", g: "new", h: "new" }), rng: seededRng(5) });
-  assert.equal(round.filter(q => q.kind === "choice").length, 4);
-  assert.equal(round.filter(q => q.kind === "reverse").length, 4);
-  assert.equal(new Set(round.map(q => q.key)).size, 8);
-});
-
-test("раунд: слово, що не вмістилося в пару, чекає наступного раунду; останнє слово віддається одиночним", () => {
-  const first = buildRound({ words: words({ a: "learning", b: "learning", c: "learning" }), rng: seq(0.5) });
-  assert.equal(first.length, 2); // пара; третє чекає
-  const last = buildRound({ words: words({ c: "learning" }), rng: seq(0.5) });
-  assert.deepEqual(last, [{ key: "c", kind: "write" }]); // раунд не порожній
-});
-
-test("раунд: коли пари скласти нізвідки, віддаються одиночні питання", () => {
-  const round = buildRound({ words: words({ a: "learning", b: "new" }), rng: seq(0.5) });
-  assert.equal(round.length, 2);
-  assert.deepEqual(round.map(q => q.key).sort(), ["a", "b"]);
+  assert.ok(keys.every(k => stages[k] === "mastered"));
+  for (const k of keys) assert.deepEqual(seen.get(k), ["choice", "reverse", "write"], k);
 });
 
 test("слова з помилкою повертаються в наступний раунд раніше за ще не бачені", () => {
@@ -150,6 +151,8 @@ test("прогрес групи: слова без запису — «не ви�
   const p = groupProgress(["a", "b", "c", "d"], { a: "mastered", b: "learning", z: "mastered" });
   assert.deepEqual(p, { new: 2, learning: 1, mastered: 1, total: 4, done: false });
   assert.equal(groupProgress(["a"], { a: "mastered" }).done, true);
+  // обидва проміжні етапи рахуються як «ще вчу»
+  assert.equal(groupProgress(["a", "b"], { a: "learning", b: "familiar" }).learning, 2);
 });
 
 test("одне слово з різними перекладами в різних групах не стає двома варіантами", () => {
