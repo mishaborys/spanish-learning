@@ -233,8 +233,9 @@ function ChoiceQuestion({ word, wordKeyValue, reverse, seed, layers, feedback, o
   feedback: Feedback | null;
   onAnswer: (pickedKey: string, correct: boolean) => void;
 }) {
+  const pos = word.part_of_speech;
   const [options] = useState(() => pickOptions({
-    target: reverse ? { key: wordKeyValue, text: word.spanish, meaning: word.ukrainian } : { key: wordKeyValue, text: word.ukrainian },
+    target: reverse ? { key: wordKeyValue, text: word.spanish, meaning: word.ukrainian, pos } : { key: wordKeyValue, text: word.ukrainian, pos },
     layers, rng: seededRng(seed),
   }));
   const answered = feedback !== null;

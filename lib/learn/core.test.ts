@@ -175,3 +175,32 @@ test("seededRng: те саме зерно дає той самий раунд (�
   assert.notDeepEqual(a, c);
 });
 
+
+// ─── Частина мови у варіантах ─────────────────────────────────────────────────
+
+test("хибні варіанти тієї ж частини мови, що правильний", () => {
+  const verbs = ["a", "b", "c", "d", "e"].map(k => ({ key: k, text: `дієслово ${k}`, pos: "verb" as const }));
+  const nouns = ["m", "n", "o", "p", "q"].map(k => ({ key: k, text: `іменник ${k}`, pos: "noun" as const }));
+  for (let i = 0; i < 20; i++) {
+    const r = seededRng(i);
+    const forVerb = pickOptions({ target: { key: "t", text: "ціль", pos: "verb" }, layers: [nouns, verbs], rng: r });
+    assert.equal(forVerb.length, 4);
+    assert.ok(forVerb.every(o => o.pos === "verb"), "до дієслова — самі дієслова");
+    const forNoun = pickOptions({ target: { key: "t", text: "ціль", pos: "noun" }, layers: [verbs, nouns], rng: r });
+    assert.ok(forNoun.every(o => o.pos === "noun"), "до іменника — самі іменники");
+  }
+});
+
+test("слів тієї ж частини мови бракує — спершу споріднені (службові слова), потім будь-які", () => {
+  const adverbs = [{ key: "a", text: "тут", pos: "adverb" as const }];
+  const preps = [{ key: "p", text: "на", pos: "preposition" as const }, { key: "q", text: "під", pos: "preposition" as const }];
+  const nouns = ["m", "n", "o"].map(k => ({ key: k, text: `іменник ${k}`, pos: "noun" as const }));
+  const options = pickOptions({ target: { key: "t", text: "ціль", pos: "adverb" }, layers: [nouns, adverbs, preps], rng: seededRng(1) });
+  assert.equal(options.length, 4);
+  assert.deepEqual(options.map(o => o.key).filter(k => k !== "t").sort(), ["a", "p", "q"], "прислівник добирає прийменники, а не іменники");
+});
+
+test("слів тієї ж частини мови зовсім немає — варіанти з інших, їх завжди 4", () => {
+  const nouns = ["m", "n", "o", "p"].map(k => ({ key: k, text: `іменник ${k}`, pos: "noun" as const }));
+  assert.equal(pickOptions({ target: { key: "t", text: "ціль", pos: "conjunction" }, layers: [nouns], rng: seededRng(2) }).length, 4);
+});

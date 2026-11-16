@@ -1,10 +1,12 @@
 import fs from "fs";
 import path from "path";
 import { wordKey } from "@/lib/review/core";
+import type { PartOfSpeech } from "@/lib/partOfSpeech";
 
 export type VocabWord = {
   spanish: string;
   ukrainian: string;
+  part_of_speech: PartOfSpeech;
   pronunciation: string;
   sound_association: string;
   example_es: string;

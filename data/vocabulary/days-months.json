@@ -12,6 +12,7 @@
         {
           "spanish": "lunes",
           "ukrainian": "понеділок",
+          "part_of_speech": "noun",
           "pronunciation": "ЛУнес",
           "emoji": "🌙",
           "sound_association": "«лунес» → ЛУНА (місяць) — lunes = день Місяця, ось чому понеділок",
@@ -21,6 +22,7 @@
         {
           "spanish": "martes",
           "ukrainian": "вівторок",
+          "part_of_speech": "noun",
           "pronunciation": "МАРтес",
           "emoji": "⚔️",
           "sound_association": "«мартес» → МАРС (бог війни) — martes = день Марса, войовничий вівторок",
@@ -30,6 +32,7 @@
         {
           "spanish": "miércoles",
           "ukrainian": "середа",
+          "part_of_speech": "noun",
           "pronunciation": "МЬЕРколес",
           "emoji": "🪄",
           "sound_association": "«мьєрколес» → МЕРКУРІЙ мчить через середу — його день!",
@@ -39,6 +42,7 @@
         {
           "spanish": "jueves",
           "ukrainian": "четвер",
+          "part_of_speech": "noun",
           "pronunciation": "ХУЕвес",
           "emoji": "⚡",
           "sound_association": "«хуевес» → ХУАН з блискавкою — Юпітер (Зевс) кидає блискавки в четвер",
@@ -48,6 +52,7 @@
         {
           "spanish": "viernes",
           "ukrainian": "п'ятниця",
+          "part_of_speech": "noun",
           "pronunciation": "ВЬЕРнес",
           "emoji": "❤️",
           "sound_association": "«вьєрнес» → ВЕНЕРА — богиня кохання обожнює п'ятницю (Friday = Frigg/Venus!)",
@@ -57,6 +62,7 @@
         {
           "spanish": "sábado",
           "ukrainian": "субота",
+          "part_of_speech": "noun",
           "pronunciation": "САбадо",
           "emoji": "✡️",
           "sound_association": "«сабадо» → ШАБАТ — єврейська субота, це буквально одне й те саме слово!",
@@ -66,6 +72,7 @@
         {
           "spanish": "domingo",
           "ukrainian": "неділя",
+          "part_of_speech": "noun",
           "pronunciation": "доМІНго",
           "emoji": "☀️",
           "sound_association": "«домінго» → DOMINUS (Господь) — неділя = день Господній, день відпочинку",
@@ -82,6 +89,7 @@
         {
           "spanish": "enero",
           "ukrainian": "січень",
+          "part_of_speech": "noun",
           "pronunciation": "еНЕро",
           "emoji": "❄️",
           "sound_association": "«енеро» → ЄНОТ мерзне в ENERO — бачить лише сніг навколо",
@@ -91,6 +99,7 @@
         {
           "spanish": "febrero",
           "ukrainian": "лютий",
+          "part_of_speech": "noun",
           "pronunciation": "феБРЕро",
           "emoji": "💕",
           "sound_association": "«февреро» → FÉVRIER (франц.), ФЕВРАЛЬ (рос.) — всі ці слова брати!",
@@ -100,6 +109,7 @@
         {
           "spanish": "marzo",
           "ukrainian": "березень",
+          "part_of_speech": "noun",
           "pronunciation": "МАРсо",
           "emoji": "🌱",
           "sound_association": "«марсо» → МАРС знову — він прилітає в березні сіяти перші паростки",
@@ -109,6 +119,7 @@
         {
           "spanish": "abril",
           "ukrainian": "квітень",
+          "part_of_speech": "noun",
           "pronunciation": "аБРІЛЬ",
           "emoji": "🌸",
           "sound_association": "«абріль» → АБРИКОС цвіте в квітні — abril і абрикос схожі!",
@@ -118,6 +129,7 @@
         {
           "spanish": "mayo",
           "ukrainian": "травень",
+          "part_of_speech": "noun",
           "pronunciation": "МАЙо",
           "emoji": "🌼",
           "sound_association": "«майо» → МАЙ = травень — майже те саме слово що й по-українськи!",
@@ -127,6 +139,7 @@
         {
           "spanish": "junio",
           "ukrainian": "червень",
+          "part_of_speech": "noun",
           "pronunciation": "ХУНЬо",
           "emoji": "☀️",
           "sound_association": "«хуньо» → ЮНІОР (junior) — молоде літо, перший місяць канікул",
@@ -136,6 +149,7 @@
         {
           "spanish": "julio",
           "ukrainian": "липень",
+          "part_of_speech": "noun",
           "pronunciation": "ХУЛЬо",
           "emoji": "🏖️",
           "sound_association": "«хульо» → ЮЛІЙ Цезар — місяць названо на його честь (July = Julio!)",
@@ -145,6 +159,7 @@
         {
           "spanish": "agosto",
           "ukrainian": "серпень",
+          "part_of_speech": "noun",
           "pronunciation": "аГОСто",
           "emoji": "🌻",
           "sound_association": "«агосто» → АВГУСТ Цезар — серпень теж названо на честь імператора (August!)",
@@ -154,6 +169,7 @@
         {
           "spanish": "septiembre",
           "ukrainian": "вересень",
+          "part_of_speech": "noun",
           "pronunciation": "сепТЬЕМбре",
           "emoji": "🍂",
           "sound_association": "«септьємбре» → СЕПТ = 7 (sept, seven) — раніше був 7-м місяцем до реформи календаря",
@@ -163,6 +179,7 @@
         {
           "spanish": "octubre",
           "ukrainian": "жовтень",
+          "part_of_speech": "noun",
           "pronunciation": "окТУБре",
           "emoji": "🎃",
           "sound_association": "«октубре» → ОКТО = 8 (octo, octopus!) — раніше був 8-м місяцем",
@@ -172,6 +189,7 @@
         {
           "spanish": "noviembre",
           "ukrainian": "листопад",
+          "part_of_speech": "noun",
           "pronunciation": "ноВЬЕМбре",
           "emoji": "🍁",
           "sound_association": "«новьємбре» → НОВЕМ = 9 (novem, nine) — раніше 9-й місяць. November!",
@@ -181,6 +199,7 @@
         {
           "spanish": "diciembre",
           "ukrainian": "грудень",
+          "part_of_speech": "noun",
           "pronunciation": "дисЬЕМбре",
           "emoji": "🎄",
           "sound_association": "«дисьємбре» → ДЕСЕМ = 10 (decem, decimal!) — раніше 10-й місяць. December!",

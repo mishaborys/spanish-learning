@@ -1,6 +1,7 @@
 // Інтерфейс модуля Learn: сторінки й API звертаються лише сюди.
 import { ALL_WORDS_GROUP_ID, loadVocabularySets, type VocabGroup, type VocabSet, type VocabWord } from "@/lib/vocabulary";
 import { wordKey } from "@/lib/review/core";
+import type { PartOfSpeech } from "@/lib/partOfSpeech";
 import { checkInBatch, ReviewInputError } from "@/lib/review";
 import { nextStage, shuffle, type Option, type QuestionKind, type Stage } from "./core";
 import * as store from "./store";
@@ -104,9 +105,9 @@ export type LearnMaterials = {
   sameTranslation: Record<string, string[]>;
 };
 
-type Pair = { spanish: string; ukrainian: string };
-const toOption = (w: Pair): Option => ({ key: wordKey(w.spanish), text: w.ukrainian });
-const toReverseOption = (w: Pair): Option => ({ key: wordKey(w.spanish), text: w.spanish, meaning: w.ukrainian });
+type Pair = { spanish: string; ukrainian: string; part_of_speech: PartOfSpeech };
+const toOption = (w: Pair): Option => ({ key: wordKey(w.spanish), text: w.ukrainian, pos: w.part_of_speech });
+const toReverseOption = (w: Pair): Option => ({ key: wordKey(w.spanish), text: w.spanish, meaning: w.ukrainian, pos: w.part_of_speech });
 
 export function learnMaterials(set: VocabSet, group: VocabGroup): LearnMaterials {
   const sets = loadVocabularySets();
@@ -125,8 +126,10 @@ export function reviewLearnMaterials(words: VocabWord[]): LearnMaterials {
 }
 
 function materials(sets: VocabSet[], words: VocabWord[], inSet: Pair[], elsewhereAll: Pair[]): LearnMaterials {
-  // Інші набори — у випадковому порядку, щоб варіанти не були щоразу ті самі; на екран досить кількох десятків
-  const elsewhere = shuffle(elsewhereAll).slice(0, 60);
+  // Інші набори — у випадковому порядку, щоб варіанти не були щоразу ті самі; на екран досить кількох десятків.
+  // Беремо по кілька десятків кожної частини мови, щоб для будь-якого слова було з чого підібрати хибні варіанти його частини мови.
+  const parts = [...new Set(elsewhereAll.map(w => w.part_of_speech))];
+  const elsewhere = parts.flatMap(p => shuffle(elsewhereAll.filter(w => w.part_of_speech === p)).slice(0, 40));
 
   const byTranslation = new Map<string, Set<string>>();
   for (const s of sets) for (const g of s.groups) for (const w of g.words) {

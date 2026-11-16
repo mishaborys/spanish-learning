@@ -1,6 +1,7 @@
 // Правила режиму Learn у Словнику. Чистий модуль: без БД, без React —
 // працює і на сервері, і в браузері, тестується напряму.
 import { gradeTyped } from "@/lib/review/core";
+import { likeness, type PartOfSpeech } from "@/lib/partOfSpeech";
 
 /**
  * Етап слова — драбина з трьох вправ:
@@ -64,7 +65,7 @@ export function buildRound(opts: { words: LearnWord[]; missed?: Set<string>; rng
  * Варіант відповіді на вибір: ключ слова + текст, що показується (український переклад або іспанське слово).
  * `meaning` — український переклад, коли `text` іспанський: за ним відсікаються слова з тим самим значенням.
  */
-export type Option = { key: string; text: string; meaning?: string };
+export type Option = { key: string; text: string; meaning?: string; pos?: PartOfSpeech };
 
 export const OPTION_COUNT = 4;
 /** Запас слів, з якого беруться хибні варіанти (разом із правильним). */
@@ -73,24 +74,29 @@ export const OPTION_POOL = 20;
 const sameText = (a: string, b: string) => a.trim().toLowerCase() === b.trim().toLowerCase();
 
 /**
- * 4 варіанти (1 правильний + 3 хибні), перемішані. Хибні беруться із запасу
- * щонайменше 20 слів: спершу своя група, потім інші групи набору, потім інші набори
- * (`layers` — у цьому порядку). Варіант з тим самим текстом чи значенням, що в правильного, не береться
- * (інакше «інше правильне» слово з тим самим перекладом стало б хибним варіантом).
+ * 4 варіанти (1 правильний + 3 хибні), перемішані. Хибні — тієї ж частини мови, що правильний (дієслово до
+ * дієслів, іменник до іменників), інакше правильний видно з першого погляду. Вони беруться із запасу
+ * щонайменше 20 слів: спершу своя група, потім інші групи набору, потім інші набори (`layers` — у цьому порядку).
+ * Якщо слів тієї ж частини мови бракує, решту добираємо спершу зі спорідненої (службові слова),
+ * потім з будь-якої. Варіант з тим самим текстом чи значенням, що в правильного, не береться (інакше «інше правильне» слово з тим самим перекладом стало б хибним).
  */
 export function pickOptions(opts: { target: Option; layers: Option[][]; rng?: Rng }): Option[] {
   const { target, layers, rng = Math.random } = opts;
   const meaning = (o: Option) => o.meaning ?? o.text;
-  const pool: Option[] = [];
+  const candidates: Option[] = [];
   for (const layer of layers) {
     for (const o of layer) {
-      if (pool.length >= OPTION_POOL - 1) break;
       if (o.key === target.key || sameText(o.text, target.text) || sameText(meaning(o), meaning(target))) continue;
-      if (pool.some(p => p.key === o.key || sameText(p.text, o.text))) continue;
-      pool.push(o);
+      if (candidates.some(p => p.key === o.key || sameText(p.text, o.text))) continue;
+      candidates.push(o);
     }
   }
-  const wrong = shuffle(pool, rng).slice(0, OPTION_COUNT - 1);
+  const take = (list: Option[], n: number) => shuffle(list.slice(0, OPTION_POOL - 1), rng).slice(0, n);
+  const wrong: Option[] = [];
+  for (const tier of [0, 1, 2]) {
+    if (wrong.length >= OPTION_COUNT - 1) break;
+    wrong.push(...take(candidates.filter(o => likeness(target.pos, o.pos) === tier), OPTION_COUNT - 1 - wrong.length));
+  }
   return shuffle([target, ...wrong], rng);
 }
 
