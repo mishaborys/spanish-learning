@@ -1,0 +1,212 @@
+{
+  "id": "opinion-habitos",
+  "title": "Думка та звички — Opinión y hábitos",
+  "description": "Слова з уроку: погодитися чи ні, як часто щось роблю, хатні справи та дні тижня",
+  "added_at": "2026-11-17T17:15:00+02:00",
+  "groups": [
+    {
+      "id": "lesson",
+      "title": "Слова з уроку",
+      "emoji": "💬",
+      "words": [
+        {
+          "spanish": "la afirmación",
+          "pronunciation": "афірмасьОН",
+          "ukrainian": "твердження",
+          "part_of_speech": "noun",
+          "emoji": "💬",
+          "sound_association": "«афірмасьйон» → АФІРМАЦІЯ — те саме слово, що й українське: ствердження, яке ти кажеш вголос",
+          "example_es": "Esa afirmación es verdad.",
+          "example_uk": "Це твердження правдиве."
+        },
+        {
+          "spanish": "el acuerdo",
+          "pronunciation": "акуЕРдо",
+          "ukrainian": "згода, домовленість",
+          "part_of_speech": "noun",
+          "emoji": "🤝",
+          "sound_association": "«акуердо» → АКОРД — усі звучать в одному акорді, тобто в згоді",
+          "example_es": "Llegamos a un acuerdo.",
+          "example_uk": "Ми дійшли згоди."
+        },
+        {
+          "spanish": "estar de acuerdo",
+          "pronunciation": "естАР де акуЕРдо",
+          "ukrainian": "погоджуватися, бути згодним",
+          "part_of_speech": "verb",
+          "emoji": "👍",
+          "sound_association": "«акуердо» → АКОРД — я з тобою в одному акорді, тобто згоден",
+          "example_es": "Estoy de acuerdo contigo.",
+          "example_uk": "Я з тобою згоден / згодна."
+        },
+        {
+          "spanish": "No lo creo",
+          "pronunciation": "но ло КРЕо",
+          "ukrainian": "Я так не думаю, не вірю",
+          "part_of_speech": "phrase",
+          "emoji": "🙅",
+          "sound_association": "«крео» → КРЕДО — це не моє кредо, тому не вірю",
+          "example_es": "—¿Es verdad? —No lo creo.",
+          "example_uk": "— Це правда? — Не думаю."
+        },
+        {
+          "spanish": "por eso",
+          "pronunciation": "пор ЕСо",
+          "ukrainian": "тому, ось чому",
+          "part_of_speech": "conjunction",
+          "emoji": "➡️",
+          "sound_association": "«пор есо» → ПОРА ЇСТИ — я голодний, пор есо (тому) йду їсти",
+          "example_es": "Tengo hambre, por eso como.",
+          "example_uk": "Я голодний, тому їм."
+        },
+        {
+          "spanish": "rara vez",
+          "pronunciation": "РАра вес",
+          "ukrainian": "рідко",
+          "part_of_speech": "adverb",
+          "emoji": "🦄",
+          "sound_association": "«рара» → РАРИТЕТ — рідкість; rara vez — рідкісний раз",
+          "example_es": "Rara vez veo la tele.",
+          "example_uk": "Я рідко дивлюся телевізор."
+        },
+        {
+          "spanish": "nunca",
+          "pronunciation": "НУНка",
+          "ukrainian": "ніколи",
+          "part_of_speech": "adverb",
+          "emoji": "🚫",
+          "sound_association": "«нунка» → НУЛЬ — нуль разів, тобто ніколи",
+          "example_es": "Nunca como carne.",
+          "example_uk": "Я ніколи не їм м'ясо."
+        },
+        {
+          "spanish": "a veces",
+          "pronunciation": "а ВЕсес",
+          "ukrainian": "іноді",
+          "part_of_speech": "adverb",
+          "emoji": "🌦️",
+          "sound_association": "«весес» → ВЕСНА — то сонце, то дощ: іноді так, іноді інакше",
+          "example_es": "A veces voy al cine.",
+          "example_uk": "Іноді я ходжу в кіно."
+        },
+        {
+          "spanish": "hacer los deberes",
+          "pronunciation": "асЕР лос деБЕрес",
+          "ukrainian": "робити домашнє завдання",
+          "part_of_speech": "verb",
+          "emoji": "✏️",
+          "sound_association": "«деберес» → ДЕБЕТ — борг, те, що ти повинен зробити: уроки",
+          "example_es": "Hago los deberes por la tarde.",
+          "example_uk": "Я роблю домашнє завдання по обіді."
+        },
+        {
+          "spanish": "las tareas de casa",
+          "pronunciation": "лас таРЕас де КАса",
+          "ukrainian": "хатні справи",
+          "part_of_speech": "noun",
+          "emoji": "🧹",
+          "sound_association": "«тареас» → ТАРЕЛКИ — мити тарілки — типова хатня справа",
+          "example_es": "Las tareas de casa son aburridas.",
+          "example_uk": "Хатні справи нудні."
+        },
+        {
+          "spanish": "los días laborales",
+          "pronunciation": "лос ДІас лаборАлес",
+          "ukrainian": "робочі дні",
+          "part_of_speech": "noun",
+          "emoji": "💼",
+          "sound_association": "«лаборалес» → ЛАБОРАТОРІЯ — там працюють у робочі дні",
+          "example_es": "De lunes a viernes son los días laborales.",
+          "example_uk": "З понеділка по п'ятницю — робочі дні."
+        },
+        {
+          "spanish": "el zumo",
+          "pronunciation": "ел СУмо",
+          "ukrainian": "сік",
+          "part_of_speech": "noun",
+          "emoji": "🧃",
+          "sound_association": "«зумо» → СУМО — борець сумо перед боєм випиває склянку соку",
+          "example_es": "Quiero un zumo de naranja.",
+          "example_uk": "Хочу апельсиновий сік."
+        }
+      ]
+    },
+    {
+      "id": "days",
+      "title": "Дні тижня",
+      "emoji": "📅",
+      "words": [
+        {
+          "spanish": "lunes",
+          "ukrainian": "понеділок",
+          "part_of_speech": "noun",
+          "pronunciation": "ЛУнес",
+          "emoji": "🌙",
+          "sound_association": "«лунес» → ЛУНА (місяць) — lunes = день Місяця, ось чому понеділок",
+          "example_es": "Hoy es lunes.",
+          "example_uk": "Сьогодні понеділок."
+        },
+        {
+          "spanish": "martes",
+          "ukrainian": "вівторок",
+          "part_of_speech": "noun",
+          "pronunciation": "МАРтес",
+          "emoji": "⚔️",
+          "sound_association": "«мартес» → МАРС (бог війни) — martes = день Марса, войовничий вівторок",
+          "example_es": "El martes tengo clase.",
+          "example_uk": "У вівторок у мене урок."
+        },
+        {
+          "spanish": "miércoles",
+          "ukrainian": "середа",
+          "part_of_speech": "noun",
+          "pronunciation": "МЬЕРколес",
+          "emoji": "🪄",
+          "sound_association": "«мьєрколес» → МЕРКУРІЙ мчить через середу — його день!",
+          "example_es": "Los miércoles voy al gimnasio.",
+          "example_uk": "По середах я ходжу в спортзал."
+        },
+        {
+          "spanish": "jueves",
+          "ukrainian": "четвер",
+          "part_of_speech": "noun",
+          "pronunciation": "ХУЕвес",
+          "emoji": "⚡",
+          "sound_association": "«хуевес» → ХУАН з блискавкою — Юпітер (Зевс) кидає блискавки в четвер",
+          "example_es": "El jueves es mi día favorito.",
+          "example_uk": "Четвер — мій улюблений день."
+        },
+        {
+          "spanish": "viernes",
+          "ukrainian": "п'ятниця",
+          "part_of_speech": "noun",
+          "pronunciation": "ВЬЕРнес",
+          "emoji": "❤️",
+          "sound_association": "«вьєрнес» → ВЕНЕРА — богиня кохання обожнює п'ятницю (Friday = Frigg/Venus!)",
+          "example_es": "¡Por fin es viernes!",
+          "example_uk": "Нарешті п'ятниця!"
+        },
+        {
+          "spanish": "sábado",
+          "ukrainian": "субота",
+          "part_of_speech": "noun",
+          "pronunciation": "САбадо",
+          "emoji": "✡️",
+          "sound_association": "«сабадо» → ШАБАТ — єврейська субота, це буквально одне й те саме слово!",
+          "example_es": "Los sábados descanso.",
+          "example_uk": "По суботах я відпочиваю."
+        },
+        {
+          "spanish": "domingo",
+          "ukrainian": "неділя",
+          "part_of_speech": "noun",
+          "pronunciation": "доМІНго",
+          "emoji": "☀️",
+          "sound_association": "«домінго» → DOMINUS (Господь) — неділя = день Господній, день відпочинку",
+          "example_es": "El domingo vamos al parque.",
+          "example_uk": "У неділю ми йдемо в парк."
+        }
+      ]
+    }
+  ]
+}
