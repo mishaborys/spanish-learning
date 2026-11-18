@@ -7,16 +7,18 @@ import { speakSpanish, speakUkrainian } from "@/lib/speak";
 import { SwipeCounters, SwipeFlipCard, type SwipeDir, type SwipeFlipCardHandle } from "@/components/spanish/SwipeFlipCard";
 import { SpeakerIcon, WordNotes } from "@/components/spanish/WordNotes";
 import { ExitLink } from "@/components/spanish/ExitLink";
+import { clearProgress, deckFromKeys, loadProgress, saveProgress, validIndex } from "@/lib/flashcardProgress";
 
 /**
  * Флешкартки групи на весь екран, як у Quizlet: хрестик, лічильник, шестерня.
  * Із сортуванням — «Знаю / Ще вчу» з раундами; без — просте гортання в обидва боки.
  */
-export function FlashcardsMode({ group, exitHref }: { group: VocabGroup; exitHref: string }) {
+export function FlashcardsMode({ group, exitHref, progressKey }: { group: VocabGroup; exitHref: string; progressKey: string }) {
   return (
-    <FlashcardsShell exitHref={exitHref} empty={group.words.length === 0}
+    <FlashcardsShell exitHref={exitHref} progressKey={progressKey} empty={group.words.length === 0}
       round={(settings, paused, onOpenSettings) => (
-        <Round words={group.words} settings={settings} exitHref={exitHref} paused={paused} onOpenSettings={onOpenSettings} />
+        <Round words={group.words} settings={settings} exitHref={exitHref} progressKey={progressKey}
+          paused={paused} onOpenSettings={onOpenSettings} />
       )} />
   );
 }
@@ -24,10 +26,12 @@ export function FlashcardsMode({ group, exitHref }: { group: VocabGroup; exitHre
 /**
  * Рамка флешкарток на весь екран із налаштуваннями. `round` малює сам раунд; він починається заново
  * («Почати спочатку», зміна перемішування чи сортування) — через новий key.
+ * `progressKey` — де збережено, на якій картці зупинився (`lib/flashcardProgress.ts`).
  */
-export function FlashcardsShell({ exitHref, exitLabel = "До групи", empty, round }: {
+export function FlashcardsShell({ exitHref, exitLabel = "До групи", progressKey, empty, round }: {
   exitHref: string;
   exitLabel?: string;
+  progressKey: string;
   empty: boolean;
   round: (settings: FlashcardSettings, paused: boolean, onOpenSettings: () => void) => React.ReactNode;
 }) {
@@ -55,7 +59,7 @@ export function FlashcardsShell({ exitHref, exitLabel = "До групи", empty
       {settings && showSettings && (
         <SettingsSheet settings={settings}
           onClose={() => setShowSettings(false)}
-          onRestart={() => { setRun(r => r + 1); setShowSettings(false); }} />
+          onRestart={() => { clearProgress(progressKey); setRun(r => r + 1); setShowSettings(false); }} />
       )}
     </div>
   );
@@ -72,20 +76,41 @@ function shuffled<T>(items: T[]): T[] {
 
 type Sort = "know" | "learning";
 
-export function Round({ words, settings, exitHref, exitLabel = "До групи", paused, onOpenSettings }: {
+/** Збережений раунд: колода — іспанськими словами; з іншим перемішуванням чи сортуванням недійсний. */
+type SavedRound = { sorting: boolean; shuffle: boolean; deck: string[]; roundNo: number; index: number; results: Sort[] };
+
+/** Раунд, на якому зупинився, — якщо він ще відповідає словам і налаштуванням. */
+function restoreRound(key: string, words: VocabWord[], sorting: boolean, shuffle: boolean) {
+  const saved = loadProgress<Partial<SavedRound>>(key);
+  if (!saved || saved.sorting !== sorting || saved.shuffle !== shuffle) return null;
+  const deck = deckFromKeys(saved.deck, words, w => w.spanish);
+  const { roundNo, index, results } = saved;
+  if (!deck || deck.length === 0 || !Number.isInteger(roundNo) || roundNo! < 1) return null;
+  // Перший раунд — уся група: якщо слів додали, починаємо заново
+  if (roundNo === 1 && deck.length !== words.length) return null;
+  if (!validIndex(index, deck.length) || !Array.isArray(results)) return null;
+  if (results.length !== (sorting ? index : 0) || results.some(r => r !== "know" && r !== "learning")) return null;
+  return { deck, roundNo: roundNo!, index, results };
+}
+
+export function Round({ words, settings, exitHref, exitLabel = "До групи", progressKey, paused, onOpenSettings }: {
   words: VocabWord[];
   settings: FlashcardSettings;
   exitHref: string;
   exitLabel?: string;
+  progressKey: string;
   /** Відкриті налаштування: клавіатура не має керувати карткою під ними. */
   paused: boolean;
   onOpenSettings: () => void;
 }) {
   const { sorting, shuffle, front } = settings;
-  const [deck, setDeck] = useState<VocabWord[]>(() => (shuffle ? shuffled(words) : words));
-  const [roundNo, setRoundNo] = useState(1);
-  const [index, setIndex] = useState(0);
-  const [results, setResults] = useState<Sort[]>([]);
+  // Раунд малюється лише в браузері (налаштування з localStorage), тож читати збережене тут безпечно
+  const [initial] = useState(() => restoreRound(progressKey, words, sorting, shuffle)
+    ?? { deck: shuffle ? shuffled(words) : words, roundNo: 1, index: 0, results: [] as Sort[] });
+  const [deck, setDeck] = useState<VocabWord[]>(initial.deck);
+  const [roundNo, setRoundNo] = useState(initial.roundNo);
+  const [index, setIndex] = useState(initial.index);
+  const [results, setResults] = useState<Sort[]>(initial.results);
   const [flipped, setFlipped] = useState(false);
   const [busy, setBusy] = useState(false);
   const [swipe, setSwipe] = useState<{ dir: SwipeDir | null; level: number }>({ dir: null, level: 0 });
@@ -95,6 +120,12 @@ export function Round({ words, settings, exitHref, exitLabel = "До групи"
   const done = index >= deck.length;
   const knowCount = results.filter(r => r === "know").length;
   const learningCount = results.length - knowCount;
+
+  // Запам'ятати, де зупинився
+  useEffect(() => {
+    const saved: SavedRound = { sorting, shuffle, deck: deck.map(w => w.spanish), roundNo, index, results };
+    saveProgress(progressKey, saved);
+  }, [progressKey, sorting, shuffle, deck, roundNo, index, results]);
 
   const startRound = (next: VocabWord[], no: number) => {
     setDeck(next);

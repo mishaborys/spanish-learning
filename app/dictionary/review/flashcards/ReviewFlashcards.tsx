@@ -17,22 +17,28 @@ import {
   wordsLabel,
 } from "../shared";
 import { ExitLink } from "@/components/spanish/ExitLink";
+import { deckFromKeys, forgetOtherProgress, loadProgress, saveProgress, validIndex } from "@/lib/flashcardProgress";
 
 const EXIT_LABEL = "До повторення";
+const PROGRESS_PREFIX = "review:";
 
 /**
  * Flashcards Повторення. Із сортуванням — оцінка «Знаю / Вагався / Не знаю» (свайп вправо / кнопка / вліво),
  * що йде в розклад; без сортування — просте гортання, як у групах, нічого не записується.
  */
 export function ReviewFlashcards({ review, exitHref }: { review: ReviewToday; exitHref: string }) {
+  // Де зупинився — окремо для кожної добірки; попередні добірки вже не потрібні
+  const progressKey = `${PROGRESS_PREFIX}${review.day}:${review.batch}`;
+  useEffect(() => forgetOtherProgress(PROGRESS_PREFIX, progressKey), [progressKey]);
   return (
     <>
-      <FlashcardsShell exitHref={exitHref} exitLabel={EXIT_LABEL} empty={review.items.length === 0}
+      <FlashcardsShell exitHref={exitHref} exitLabel={EXIT_LABEL} progressKey={progressKey} empty={review.items.length === 0}
         round={(settings, paused, onOpenSettings) => settings.sorting ? (
-          <GradingRound review={review} settings={settings} exitHref={exitHref} paused={paused} onOpenSettings={onOpenSettings} />
+          <GradingRound review={review} settings={settings} exitHref={exitHref} progressKey={progressKey}
+            paused={paused} onOpenSettings={onOpenSettings} />
         ) : (
           <Round words={review.items.map(i => i.word)} settings={settings} exitHref={exitHref} exitLabel={EXIT_LABEL}
-            paused={paused} onOpenSettings={onOpenSettings} />
+            progressKey={progressKey} paused={paused} onOpenSettings={onOpenSettings} />
         )} />
       <ReviewDayGuard day={review.day} />
     </>
@@ -47,10 +53,45 @@ type Phase = "grade" | "retry" | "training";
 /** Результат картки; `recorded` — оцінку поставлено в розклад (тоді «Назад» її скасовує). */
 type Result = { grade: Grade; recorded: boolean };
 
-function GradingRound({ review, settings, exitHref, paused, onOpenSettings }: {
+/** Збережена сесія оцінювання (колоди — ключами слів); з іншим перемішуванням недійсна. */
+type SavedSession = {
+  sorting: true;
+  shuffle: boolean;
+  phase: Phase;
+  deck: string[];
+  index: number;
+  results: Result[];
+  graded: { deck: string[]; results: Result[] } | null;
+};
+
+const GRADES: readonly unknown[] = ["known", "hesitant", "unknown"] satisfies Grade[];
+const PHASES: readonly unknown[] = ["grade", "retry", "training"] satisfies Phase[];
+
+function validResults(results: unknown, length: number): results is Result[] {
+  return Array.isArray(results) && results.length === length
+    && results.every(r => GRADES.includes(r?.grade) && typeof r?.recorded === "boolean");
+}
+
+/** Сесія, на якій зупинився, — якщо вона ще відповідає добірці й налаштуванням. */
+function restoreSession(key: string, items: ReviewItem[], shuffle: boolean) {
+  const saved = loadProgress<Partial<SavedSession>>(key);
+  if (!saved || saved.sorting !== true || saved.shuffle !== shuffle || !PHASES.includes(saved.phase)) return null;
+  const deck = deckFromKeys(saved.deck, items, i => i.key);
+  if (!deck || deck.length === 0 || !validIndex(saved.index, deck.length) || !validResults(saved.results, saved.index)) return null;
+  let graded: { deck: ReviewItem[]; results: Result[] } | null = null;
+  if (saved.phase === "retry" && saved.graded) {
+    const gradedDeck = deckFromKeys(saved.graded.deck, items, i => i.key);
+    if (!gradedDeck || !validResults(saved.graded.results, gradedDeck.length)) return null;
+    graded = { deck: gradedDeck, results: saved.graded.results };
+  }
+  return { phase: saved.phase!, deck, index: saved.index, results: saved.results, graded };
+}
+
+function GradingRound({ review, settings, exitHref, progressKey, paused, onOpenSettings }: {
   review: ReviewToday;
   settings: FlashcardSettings;
   exitHref: string;
+  progressKey: string;
   paused: boolean;
   onOpenSettings: () => void;
 }) {
@@ -58,19 +99,32 @@ function GradingRound({ review, settings, exitHref, paused, onOpenSettings }: {
   const router = useRouter();
   const answers = useReviewAnswers(review);
   const order = (items: ReviewItem[]) => (shuffle ? shuffled(items) : items);
-  // Колода — з оцінок на момент старту: слова, оцінені під час сесії, з неї не зникають
+  // Де зупинився; інакше колода — з оцінок на момент старту: слова, оцінені під час сесії, з неї не зникають
   const [start] = useState(() => {
+    const restored = restoreSession(progressKey, review.items, shuffle);
+    if (restored) return restored;
     const ungraded = review.items.filter(i => !answers[i.key]);
+    const fresh = { index: 0, results: [] as Result[], graded: null };
     return ungraded.length > 0
-      ? { phase: "grade" as Phase, deck: order(ungraded) }
-      : { phase: "training" as Phase, deck: order(review.items) };
+      ? { ...fresh, phase: "grade" as Phase, deck: order(ungraded) }
+      : { ...fresh, phase: "training" as Phase, deck: order(review.items) };
   });
   const [phase, setPhase] = useState<Phase>(start.phase);
   const [deck, setDeck] = useState<ReviewItem[]>(start.deck);
-  const [index, setIndex] = useState(0);
-  const [results, setResults] = useState<Result[]>([]);
+  const [index, setIndex] = useState(start.index);
+  const [results, setResults] = useState<Result[]>(start.results);
   /** Етап оцінювання, з якого перейшли на «ще раз» — щоб «Назад» міг туди повернутися. */
-  const [graded, setGraded] = useState<{ deck: ReviewItem[]; results: Result[] } | null>(null);
+  const [graded, setGraded] = useState<{ deck: ReviewItem[]; results: Result[] } | null>(start.graded);
+
+  // Запам'ятати, де зупинився
+  useEffect(() => {
+    const keys = (items: ReviewItem[]) => items.map(i => i.key);
+    const saved: SavedSession = {
+      sorting: true, shuffle, phase, deck: keys(deck), index, results,
+      graded: graded && { deck: keys(graded.deck), results: graded.results },
+    };
+    saveProgress(progressKey, saved);
+  }, [progressKey, shuffle, phase, deck, index, results, graded]);
   const [flipped, setFlipped] = useState(false);
   const [busy, setBusy] = useState(false);
   const [swipe, setSwipe] = useState<{ dir: SwipeDir | null; level: number }>({ dir: null, level: 0 });
