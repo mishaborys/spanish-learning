@@ -6,6 +6,7 @@ import { Topic, Word } from "@/lib/db";
 import { TopicTabs } from "@/components/spanish/TopicTabs";
 import { Progress } from "@/components/ui/progress";
 import Link from "next/link";
+import { CONJUGATION_TOPIC_SLUG, loadConjugation } from "@/lib/conjugation/data";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -61,6 +62,7 @@ export default async function TopicPage({ params }: Props) {
         words={words}
         fillWords={topic.fill_words ?? undefined}
         quizSentences={topic.quiz_sentences ? JSON.parse(topic.quiz_sentences) : undefined}
+        conjugation={slug === CONJUGATION_TOPIC_SLUG ? loadConjugation() : undefined}
       />
     </div>
   );

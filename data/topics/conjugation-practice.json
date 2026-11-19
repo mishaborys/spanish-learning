@@ -1,0 +1,288 @@
+{
+  "title": "Відмінювання дієслів: практика",
+  "slug": "conjugation-practice",
+  "display_order": 19,
+  "grammar_text": "<h2>Теперішній час: правильні дієслова</h2><p>Відкидаємо закінчення інфінітива (<strong>-ar</strong>, <strong>-er</strong>, <strong>-ir</strong>) і додаємо закінчення, яке залежить від особи.</p><table><thead><tr><th>Особа</th><th>-ar</th><th>-er</th><th>-ir</th></tr></thead><tbody><tr><td>yo</td><td>-o</td><td>-o</td><td>-o</td></tr><tr><td>tú</td><td>-as</td><td>-es</td><td>-es</td></tr><tr><td>él / ella / usted</td><td>-a</td><td>-e</td><td>-e</td></tr><tr><td>nosotros/as</td><td>-amos</td><td>-emos</td><td>-imos</td></tr><tr><td>vosotros/as</td><td>-áis</td><td>-éis</td><td>-ís</td></tr><tr><td>ellos/ellas / ustedes</td><td>-an</td><td>-en</td><td>-en</td></tr></tbody></table><p>Наприклад: <strong>hablar → hablo</strong>, <strong>comer → como</strong>, <strong>vivir → vivo</strong>.</p><h2>Змінюється тільки yo</h2><p>Деякі дієслова міняються лише в першій особі однини (<strong>yo</strong>), решта осіб — за правилом.</p><table><thead><tr><th>Особа</th><th>hacer</th><th>salir</th><th>ver</th><th>saber</th><th>conocer</th></tr></thead><tbody><tr><td>yo</td><td>hago</td><td>salgo</td><td>veo</td><td>sé</td><td>conozco</td></tr><tr><td>tú</td><td>haces</td><td>sales</td><td>ves</td><td>sabes</td><td>conoces</td></tr><tr><td>él / ella / usted</td><td>hace</td><td>sale</td><td>ve</td><td>sabe</td><td>conoce</td></tr><tr><td>nosotros/as</td><td>hacemos</td><td>salimos</td><td>vemos</td><td>sabemos</td><td>conocemos</td></tr><tr><td>vosotros/as</td><td>hacéis</td><td>salís</td><td>veis</td><td>sabéis</td><td>conocéis</td></tr><tr><td>ellos/ellas / ustedes</td><td>hacen</td><td>salen</td><td>ven</td><td>saben</td><td>conocen</td></tr></tbody></table><h2>Зміна кореня</h2><p>У цих дієсловах голосна кореня змінюється в формах <strong>yo, tú, él/ella/usted, ellos/ellas/ustedes</strong>. У формах <strong>nosotros</strong> і <strong>vosotros</strong> корінь не змінюється.</p><ul><li><strong>o → ue:</strong> dormir (duermo), volver (vuelvo), probar (pruebo), soñar (sueño)</li><li><strong>e → ie:</strong> querer (quiero), perder (pierdo)</li><li><strong>u → ue:</strong> jugar (juego)</li><li><strong>e → i:</strong> pedir (pido), decir (digo — у yo ще й інша форма)</li></ul><table><thead><tr><th>Особа</th><th>dormir</th><th>querer</th><th>jugar</th><th>pedir</th></tr></thead><tbody><tr><td>yo</td><td>duermo</td><td>quiero</td><td>juego</td><td>pido</td></tr><tr><td>tú</td><td>duermes</td><td>quieres</td><td>juegas</td><td>pides</td></tr><tr><td>él / ella / usted</td><td>duerme</td><td>quiere</td><td>juega</td><td>pide</td></tr><tr><td>nosotros/as</td><td>dormimos</td><td>queremos</td><td>jugamos</td><td>pedimos</td></tr><tr><td>vosotros/as</td><td>dormís</td><td>queréis</td><td>jugáis</td><td>pedís</td></tr><tr><td>ellos/ellas / ustedes</td><td>duermen</td><td>quieren</td><td>juegan</td><td>piden</td></tr></tbody></table><h2>Зовсім неправильні дієслова</h2><p>Їхні форми треба просто запам'ятати.</p><table><thead><tr><th>Особа</th><th>ir</th><th>ser</th><th>estar</th><th>tener</th></tr></thead><tbody><tr><td>yo</td><td>voy</td><td>soy</td><td>estoy</td><td>tengo</td></tr><tr><td>tú</td><td>vas</td><td>eres</td><td>estás</td><td>tienes</td></tr><tr><td>él / ella / usted</td><td>va</td><td>es</td><td>está</td><td>tiene</td></tr><tr><td>nosotros/as</td><td>vamos</td><td>somos</td><td>estamos</td><td>tenemos</td></tr><tr><td>vosotros/as</td><td>vais</td><td>sois</td><td>estáis</td><td>tenéis</td></tr><tr><td>ellos/ellas / ustedes</td><td>van</td><td>son</td><td>están</td><td>tienen</td></tr></tbody></table>",
+  "words": [
+    {
+      "spanish": "hablar",
+      "ukrainian": "говорити, розмовляти",
+      "example_es": "Yo hablo español con mis amigos.",
+      "example_uk": "Я розмовляю іспанською з моїми друзями.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "trabajar",
+      "ukrainian": "працювати",
+      "example_es": "Yo trabajo en una tienda.",
+      "example_uk": "Я працюю в магазині.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "estudiar",
+      "ukrainian": "вчитися, вивчати",
+      "example_es": "Yo estudio en casa.",
+      "example_uk": "Я вчуся вдома.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "escuchar",
+      "ukrainian": "слухати",
+      "example_es": "Yo escucho música todos los días.",
+      "example_uk": "Я слухаю музику щодня.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "limpiar",
+      "ukrainian": "прибирати, чистити",
+      "example_es": "Yo limpio la cocina los sábados.",
+      "example_uk": "Я прибираю кухню по суботах.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "cocinar",
+      "ukrainian": "готувати (їжу)",
+      "example_es": "Yo cocino la cena.",
+      "example_uk": "Я готую вечерю.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "comprar",
+      "ukrainian": "купувати",
+      "example_es": "Yo compro pan y leche.",
+      "example_uk": "Я купую хліб і молоко.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "bailar",
+      "ukrainian": "танцювати",
+      "example_es": "Yo bailo en la fiesta.",
+      "example_uk": "Я танцюю на вечірці.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "caminar",
+      "ukrainian": "ходити пішки",
+      "example_es": "Yo camino por el parque.",
+      "example_uk": "Я гуляю парком.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "viajar",
+      "ukrainian": "подорожувати",
+      "example_es": "Yo viajo con mi familia.",
+      "example_uk": "Я подорожую з моєю родиною.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "tomar",
+      "ukrainian": "пити, брати",
+      "example_es": "Yo tomo café por la mañana.",
+      "example_uk": "Я п'ю каву вранці.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "mirar",
+      "ukrainian": "дивитися",
+      "example_es": "Yo miro la tele por la noche.",
+      "example_uk": "Я дивлюся телевізор увечері.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "comer",
+      "ukrainian": "їсти, обідати",
+      "example_es": "Yo como en casa.",
+      "example_uk": "Я обідаю вдома.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "beber",
+      "ukrainian": "пити",
+      "example_es": "Yo bebo agua.",
+      "example_uk": "Я п'ю воду.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "leer",
+      "ukrainian": "читати",
+      "example_es": "Yo leo el periódico.",
+      "example_uk": "Я читаю газету.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "aprender",
+      "ukrainian": "вивчати, вчити",
+      "example_es": "Yo aprendo español.",
+      "example_uk": "Я вчу іспанську.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "vender",
+      "ukrainian": "продавати",
+      "example_es": "Yo vendo mi móvil.",
+      "example_uk": "Я продаю свій мобільний.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "correr",
+      "ukrainian": "бігати, бігти",
+      "example_es": "Yo corro en el parque.",
+      "example_uk": "Я бігаю в парку.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "vivir",
+      "ukrainian": "жити",
+      "example_es": "Yo vivo en un piso.",
+      "example_uk": "Я живу в квартирі.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "escribir",
+      "ukrainian": "писати",
+      "example_es": "Yo escribo en mi cuaderno.",
+      "example_uk": "Я пишу у своєму зошиті.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "abrir",
+      "ukrainian": "відкривати",
+      "example_es": "Yo abro la ventana.",
+      "example_uk": "Я відчиняю вікно.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "subir",
+      "ukrainian": "підніматися",
+      "example_es": "Yo subo la escalera.",
+      "example_uk": "Я піднімаюся сходами.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "hacer",
+      "ukrainian": "робити",
+      "example_es": "Yo hago deporte los miércoles.",
+      "example_uk": "Я займаюся спортом по середах.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "salir",
+      "ukrainian": "виходити",
+      "example_es": "Yo salgo con amigos el sábado.",
+      "example_uk": "Я гуляю з друзями в суботу.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "ver",
+      "ukrainian": "бачити, дивитися",
+      "example_es": "Yo veo la tele o una serie.",
+      "example_uk": "Я дивлюся телевізор або серіал.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "saber",
+      "ukrainian": "знати, вміти",
+      "example_es": "Yo sé bailar flamenco.",
+      "example_uk": "Я вмію танцювати фламенко.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "conocer",
+      "ukrainian": "знати (когось), бути знайомим",
+      "example_es": "Yo conozco a tu madre.",
+      "example_uk": "Я знаю твою маму.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "jugar",
+      "ukrainian": "грати",
+      "example_es": "Yo juego al fútbol con mis amigos.",
+      "example_uk": "Я граю у футбол з моїми друзями.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "dormir",
+      "ukrainian": "спати",
+      "example_es": "Yo duermo temprano.",
+      "example_uk": "Я рано лягаю спати.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "volver",
+      "ukrainian": "повертатися",
+      "example_es": "Yo vuelvo a casa por la tarde.",
+      "example_uk": "Я повертаюся додому по обіді.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "querer",
+      "ukrainian": "хотіти, любити",
+      "example_es": "Yo quiero un café.",
+      "example_uk": "Я хочу каву.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "pedir",
+      "ukrainian": "просити, замовляти",
+      "example_es": "Yo pido un zumo.",
+      "example_uk": "Я замовляю сік.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "perder",
+      "ukrainian": "губити, програвати",
+      "example_es": "Yo pierdo mis llaves.",
+      "example_uk": "Я гублю свої ключі.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "probar",
+      "ukrainian": "пробувати, куштувати",
+      "example_es": "Yo pruebo el sushi.",
+      "example_uk": "Я куштую суші.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "soñar",
+      "ukrainian": "мріяти, бачити сни",
+      "example_es": "Yo sueño con mi casa.",
+      "example_uk": "Я мрію про свій дім.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "decir",
+      "ukrainian": "казати",
+      "example_es": "Yo digo que sí.",
+      "example_uk": "Я кажу, що так.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "ir",
+      "ukrainian": "йти, їхати",
+      "example_es": "Yo voy al cine con mi familia.",
+      "example_uk": "Я йду в кіно з моєю родиною.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "ser",
+      "ukrainian": "бути (хто / який)",
+      "example_es": "Yo soy estudiante.",
+      "example_uk": "Я студент.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "estar",
+      "ukrainian": "бути (де / у якому стані)",
+      "example_es": "Yo estoy en casa.",
+      "example_uk": "Я вдома.",
+      "part_of_speech": "дієслово"
+    },
+    {
+      "spanish": "tener",
+      "ukrainian": "мати",
+      "example_es": "Yo tengo hambre.",
+      "example_uk": "Я голодний.",
+      "part_of_speech": "дієслово"
+    }
+  ]
+}

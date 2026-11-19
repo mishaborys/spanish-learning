@@ -1,0 +1,1694 @@
+{
+  "verbs": [
+    {
+      "infinitive": "hablar",
+      "ukrainian": "говорити, розмовляти",
+      "group": "regular",
+      "kind": "ar",
+      "forms": {
+        "yo": "hablo",
+        "tu": "hablas",
+        "el": "habla",
+        "nosotros": "hablamos",
+        "vosotros": "habláis",
+        "ellos": "hablan"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo hablo español con mis amigos.",
+          "uk": "Я розмовляю іспанською з моїми друзями."
+        },
+        "tu": {
+          "es": "Tú hablas con tu madre por teléfono.",
+          "uk": "Ти розмовляєш зі своєю мамою по телефону."
+        },
+        "el": {
+          "es": "Ella habla muy rápido.",
+          "uk": "Вона говорить дуже швидко."
+        },
+        "nosotros": {
+          "es": "Nosotros hablamos español en clase.",
+          "uk": "Ми розмовляємо іспанською на уроці.",
+          "alt": [
+            "En clase nosotros hablamos español."
+          ]
+        },
+        "vosotros": {
+          "es": "Vosotros habláis con el profesor.",
+          "uk": "Ви розмовляєте з викладачем."
+        },
+        "ellos": {
+          "es": "Ellos hablan de fútbol.",
+          "uk": "Вони розмовляють про футбол."
+        }
+      }
+    },
+    {
+      "infinitive": "trabajar",
+      "ukrainian": "працювати",
+      "group": "regular",
+      "kind": "ar",
+      "forms": {
+        "yo": "trabajo",
+        "tu": "trabajas",
+        "el": "trabaja",
+        "nosotros": "trabajamos",
+        "vosotros": "trabajáis",
+        "ellos": "trabajan"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo trabajo en una tienda.",
+          "uk": "Я працюю в магазині."
+        },
+        "tu": {
+          "es": "¿Tú trabajas los viernes?",
+          "uk": "Ти працюєш по п'ятницях?"
+        },
+        "el": {
+          "es": "Él trabaja por la mañana.",
+          "uk": "Він працює вранці.",
+          "alt": [
+            "Por la mañana él trabaja."
+          ]
+        },
+        "nosotros": {
+          "es": "Nosotros trabajamos en casa.",
+          "uk": "Ми працюємо вдома."
+        },
+        "vosotros": {
+          "es": "Vosotros trabajáis mucho.",
+          "uk": "Ви багато працюєте."
+        },
+        "ellos": {
+          "es": "Ellas trabajan en un hospital.",
+          "uk": "Вони працюють у лікарні."
+        }
+      }
+    },
+    {
+      "infinitive": "estudiar",
+      "ukrainian": "вчитися, вивчати",
+      "group": "regular",
+      "kind": "ar",
+      "forms": {
+        "yo": "estudio",
+        "tu": "estudias",
+        "el": "estudia",
+        "nosotros": "estudiamos",
+        "vosotros": "estudiáis",
+        "ellos": "estudian"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo estudio en casa.",
+          "uk": "Я вчуся вдома."
+        },
+        "tu": {
+          "es": "¿Tú estudias español todos los días?",
+          "uk": "Ти вчиш іспанську щодня?"
+        },
+        "el": {
+          "es": "Ella estudia en la biblioteca.",
+          "uk": "Вона вчиться в бібліотеці."
+        },
+        "nosotros": {
+          "es": "Nosotros estudiamos por la tarde.",
+          "uk": "Ми вчимося по обіді.",
+          "alt": [
+            "Por la tarde nosotros estudiamos."
+          ]
+        },
+        "vosotros": {
+          "es": "Vosotros estudiáis con el diccionario.",
+          "uk": "Ви вчитеся зі словником."
+        },
+        "ellos": {
+          "es": "Ellos estudian en el colegio.",
+          "uk": "Вони вчаться в школі."
+        }
+      }
+    },
+    {
+      "infinitive": "escuchar",
+      "ukrainian": "слухати",
+      "group": "regular",
+      "kind": "ar",
+      "forms": {
+        "yo": "escucho",
+        "tu": "escuchas",
+        "el": "escucha",
+        "nosotros": "escuchamos",
+        "vosotros": "escucháis",
+        "ellos": "escuchan"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo escucho música todos los días.",
+          "uk": "Я слухаю музику щодня.",
+          "alt": [
+            "Todos los días yo escucho música."
+          ]
+        },
+        "tu": {
+          "es": "¿Tú escuchas el audio otra vez?",
+          "uk": "Ти слухаєш аудіо ще раз?"
+        },
+        "el": {
+          "es": "Él escucha la radio por la noche.",
+          "uk": "Він слухає радіо ввечері.",
+          "alt": [
+            "Por la noche él escucha la radio."
+          ]
+        },
+        "nosotros": {
+          "es": "Nosotros escuchamos al profesor.",
+          "uk": "Ми слухаємо викладача."
+        },
+        "vosotros": {
+          "es": "Vosotros escucháis una canción.",
+          "uk": "Ви слухаєте пісню."
+        },
+        "ellos": {
+          "es": "Ellos escuchan música en casa.",
+          "uk": "Вони слухають музику вдома."
+        }
+      }
+    },
+    {
+      "infinitive": "limpiar",
+      "ukrainian": "прибирати, чистити",
+      "group": "regular",
+      "kind": "ar",
+      "forms": {
+        "yo": "limpio",
+        "tu": "limpias",
+        "el": "limpia",
+        "nosotros": "limpiamos",
+        "vosotros": "limpiáis",
+        "ellos": "limpian"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo limpio la cocina los sábados.",
+          "uk": "Я прибираю кухню по суботах.",
+          "alt": [
+            "Los sábados yo limpio la cocina."
+          ]
+        },
+        "tu": {
+          "es": "¿Tú limpias tu habitación?",
+          "uk": "Ти прибираєш свою кімнату?"
+        },
+        "el": {
+          "es": "Ella limpia la casa por la mañana.",
+          "uk": "Вона прибирає в домі вранці.",
+          "alt": [
+            "Por la mañana ella limpia la casa."
+          ]
+        },
+        "nosotros": {
+          "es": "Nosotros limpiamos las ventanas.",
+          "uk": "Ми миємо вікна."
+        },
+        "vosotros": {
+          "es": "Vosotros limpiáis el baño.",
+          "uk": "Ви прибираєте у ванній кімнаті."
+        },
+        "ellos": {
+          "es": "Ellos limpian el jardín.",
+          "uk": "Вони прибирають у саду."
+        }
+      }
+    },
+    {
+      "infinitive": "cocinar",
+      "ukrainian": "готувати (їжу)",
+      "group": "regular",
+      "kind": "ar",
+      "forms": {
+        "yo": "cocino",
+        "tu": "cocinas",
+        "el": "cocina",
+        "nosotros": "cocinamos",
+        "vosotros": "cocináis",
+        "ellos": "cocinan"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo cocino la cena.",
+          "uk": "Я готую вечерю."
+        },
+        "tu": {
+          "es": "¿Tú cocinas en casa?",
+          "uk": "Ти готуєш удома?"
+        },
+        "el": {
+          "es": "Él cocina muy bien.",
+          "uk": "Він дуже добре готує."
+        },
+        "nosotros": {
+          "es": "Nosotros cocinamos los domingos.",
+          "uk": "Ми готуємо по неділях.",
+          "alt": [
+            "Los domingos nosotros cocinamos."
+          ]
+        },
+        "vosotros": {
+          "es": "Vosotros cocináis la comida.",
+          "uk": "Ви готуєте їжу."
+        },
+        "ellos": {
+          "es": "Ellos cocinan pasta.",
+          "uk": "Вони готують пасту."
+        }
+      }
+    },
+    {
+      "infinitive": "comprar",
+      "ukrainian": "купувати",
+      "group": "regular",
+      "kind": "ar",
+      "forms": {
+        "yo": "compro",
+        "tu": "compras",
+        "el": "compra",
+        "nosotros": "compramos",
+        "vosotros": "compráis",
+        "ellos": "compran"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo compro pan y leche.",
+          "uk": "Я купую хліб і молоко."
+        },
+        "tu": {
+          "es": "¿Tú compras fruta en el mercado?",
+          "uk": "Ти купуєш фрукти на ринку?"
+        },
+        "el": {
+          "es": "Ella compra un vestido.",
+          "uk": "Вона купує сукню."
+        },
+        "nosotros": {
+          "es": "Nosotros compramos una mesa nueva.",
+          "uk": "Ми купуємо новий стіл."
+        },
+        "vosotros": {
+          "es": "Vosotros compráis zapatos en la tienda.",
+          "uk": "Ви купуєте взуття в магазині."
+        },
+        "ellos": {
+          "es": "Ellos compran verduras.",
+          "uk": "Вони купують овочі."
+        }
+      }
+    },
+    {
+      "infinitive": "bailar",
+      "ukrainian": "танцювати",
+      "group": "regular",
+      "kind": "ar",
+      "forms": {
+        "yo": "bailo",
+        "tu": "bailas",
+        "el": "baila",
+        "nosotros": "bailamos",
+        "vosotros": "bailáis",
+        "ellos": "bailan"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo bailo en la fiesta.",
+          "uk": "Я танцюю на вечірці."
+        },
+        "tu": {
+          "es": "¿Tú bailas flamenco?",
+          "uk": "Ти танцюєш фламенко?"
+        },
+        "el": {
+          "es": "Ella baila muy bien.",
+          "uk": "Вона дуже добре танцює."
+        },
+        "nosotros": {
+          "es": "Nosotros bailamos los sábados.",
+          "uk": "Ми танцюємо по суботах.",
+          "alt": [
+            "Los sábados nosotros bailamos."
+          ]
+        },
+        "vosotros": {
+          "es": "Vosotros bailáis en el salón.",
+          "uk": "Ви танцюєте у вітальні."
+        },
+        "ellos": {
+          "es": "Ellos bailan toda la noche.",
+          "uk": "Вони танцюють усю ніч."
+        }
+      }
+    },
+    {
+      "infinitive": "caminar",
+      "ukrainian": "ходити пішки",
+      "group": "regular",
+      "kind": "ar",
+      "forms": {
+        "yo": "camino",
+        "tu": "caminas",
+        "el": "camina",
+        "nosotros": "caminamos",
+        "vosotros": "camináis",
+        "ellos": "caminan"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo camino por el parque.",
+          "uk": "Я гуляю парком."
+        },
+        "tu": {
+          "es": "¿Tú caminas al colegio?",
+          "uk": "Ти ходиш до школи пішки?"
+        },
+        "el": {
+          "es": "Él camina por la calle.",
+          "uk": "Він іде вулицею."
+        },
+        "nosotros": {
+          "es": "Nosotros caminamos por el centro.",
+          "uk": "Ми гуляємо центром."
+        },
+        "vosotros": {
+          "es": "Vosotros camináis muy lento.",
+          "uk": "Ви йдете дуже повільно."
+        },
+        "ellos": {
+          "es": "Ellos caminan por la montaña.",
+          "uk": "Вони ходять по горах."
+        }
+      }
+    },
+    {
+      "infinitive": "viajar",
+      "ukrainian": "подорожувати",
+      "group": "regular",
+      "kind": "ar",
+      "forms": {
+        "yo": "viajo",
+        "tu": "viajas",
+        "el": "viaja",
+        "nosotros": "viajamos",
+        "vosotros": "viajáis",
+        "ellos": "viajan"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo viajo con mi familia.",
+          "uk": "Я подорожую з моєю родиною."
+        },
+        "tu": {
+          "es": "¿Tú viajas mucho?",
+          "uk": "Ти багато подорожуєш?"
+        },
+        "el": {
+          "es": "Él viaja a Madrid.",
+          "uk": "Він їде до Мадрида."
+        },
+        "nosotros": {
+          "es": "Nosotros viajamos el próximo fin de semana.",
+          "uk": "Ми їдемо наступних вихідних.",
+          "alt": [
+            "El próximo fin de semana nosotros viajamos."
+          ]
+        },
+        "vosotros": {
+          "es": "Vosotros viajáis con amigos.",
+          "uk": "Ви подорожуєте з друзями."
+        },
+        "ellos": {
+          "es": "Ellos viajan a la montaña.",
+          "uk": "Вони їдуть у гори."
+        }
+      }
+    },
+    {
+      "infinitive": "tomar",
+      "ukrainian": "пити, брати",
+      "group": "regular",
+      "kind": "ar",
+      "forms": {
+        "yo": "tomo",
+        "tu": "tomas",
+        "el": "toma",
+        "nosotros": "tomamos",
+        "vosotros": "tomáis",
+        "ellos": "toman"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo tomo café por la mañana.",
+          "uk": "Я п'ю каву вранці.",
+          "alt": [
+            "Por la mañana yo tomo café."
+          ]
+        },
+        "tu": {
+          "es": "¿Tú tomas zumo o agua?",
+          "uk": "Ти п'єш сік чи воду?"
+        },
+        "el": {
+          "es": "Él toma el autobús al trabajo.",
+          "uk": "Він їде автобусом на роботу."
+        },
+        "nosotros": {
+          "es": "Nosotros tomamos agua con limón.",
+          "uk": "Ми п'ємо воду з лимоном."
+        },
+        "vosotros": {
+          "es": "Vosotros tomáis el desayuno.",
+          "uk": "Ви снідаєте."
+        },
+        "ellos": {
+          "es": "Ellos toman leche.",
+          "uk": "Вони п'ють молоко."
+        }
+      }
+    },
+    {
+      "infinitive": "mirar",
+      "ukrainian": "дивитися",
+      "group": "regular",
+      "kind": "ar",
+      "forms": {
+        "yo": "miro",
+        "tu": "miras",
+        "el": "mira",
+        "nosotros": "miramos",
+        "vosotros": "miráis",
+        "ellos": "miran"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo miro la tele por la noche.",
+          "uk": "Я дивлюся телевізор увечері.",
+          "alt": [
+            "Por la noche yo miro la tele."
+          ]
+        },
+        "tu": {
+          "es": "¿Tú miras el mapa?",
+          "uk": "Ти дивишся на карту?"
+        },
+        "el": {
+          "es": "Ella mira por la ventana.",
+          "uk": "Вона дивиться у вікно."
+        },
+        "nosotros": {
+          "es": "Nosotros miramos una serie.",
+          "uk": "Ми дивимося серіал."
+        },
+        "vosotros": {
+          "es": "Vosotros miráis el reloj.",
+          "uk": "Ви дивитеся на годинник."
+        },
+        "ellos": {
+          "es": "Ellos miran un documental.",
+          "uk": "Вони дивляться документальний фільм."
+        }
+      }
+    },
+    {
+      "infinitive": "comer",
+      "ukrainian": "їсти, обідати",
+      "group": "regular",
+      "kind": "er",
+      "forms": {
+        "yo": "como",
+        "tu": "comes",
+        "el": "come",
+        "nosotros": "comemos",
+        "vosotros": "coméis",
+        "ellos": "comen"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo como en casa.",
+          "uk": "Я обідаю вдома."
+        },
+        "tu": {
+          "es": "¿Tú comes carne?",
+          "uk": "Ти їси м'ясо?"
+        },
+        "el": {
+          "es": "Él come fruta todos los días.",
+          "uk": "Він їсть фрукти щодня.",
+          "alt": [
+            "Todos los días él come fruta."
+          ]
+        },
+        "nosotros": {
+          "es": "Nosotros comemos en el comedor.",
+          "uk": "Ми їмо в їдальні."
+        },
+        "vosotros": {
+          "es": "Vosotros coméis verduras.",
+          "uk": "Ви їсте овочі."
+        },
+        "ellos": {
+          "es": "Ellos comen en casa hoy.",
+          "uk": "Вони сьогодні обідають удома.",
+          "alt": [
+            "Hoy ellos comen en casa."
+          ]
+        }
+      }
+    },
+    {
+      "infinitive": "beber",
+      "ukrainian": "пити",
+      "group": "regular",
+      "kind": "er",
+      "forms": {
+        "yo": "bebo",
+        "tu": "bebes",
+        "el": "bebe",
+        "nosotros": "bebemos",
+        "vosotros": "bebéis",
+        "ellos": "beben"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo bebo agua.",
+          "uk": "Я п'ю воду."
+        },
+        "tu": {
+          "es": "¿Tú bebes leche?",
+          "uk": "Ти п'єш молоко?"
+        },
+        "el": {
+          "es": "Él bebe zumo de naranja.",
+          "uk": "Він п'є апельсиновий сік."
+        },
+        "nosotros": {
+          "es": "Nosotros bebemos vino los domingos.",
+          "uk": "Ми п'ємо вино по неділях.",
+          "alt": [
+            "Los domingos nosotros bebemos vino."
+          ]
+        },
+        "vosotros": {
+          "es": "Vosotros bebéis mucha agua.",
+          "uk": "Ви п'єте багато води."
+        },
+        "ellos": {
+          "es": "Ellos beben café por la tarde.",
+          "uk": "Вони п'ють каву по обіді.",
+          "alt": [
+            "Por la tarde ellos beben café."
+          ]
+        }
+      }
+    },
+    {
+      "infinitive": "leer",
+      "ukrainian": "читати",
+      "group": "regular",
+      "kind": "er",
+      "forms": {
+        "yo": "leo",
+        "tu": "lees",
+        "el": "lee",
+        "nosotros": "leemos",
+        "vosotros": "leéis",
+        "ellos": "leen"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo leo el periódico.",
+          "uk": "Я читаю газету."
+        },
+        "tu": {
+          "es": "¿Tú lees mucho?",
+          "uk": "Ти багато читаєш?"
+        },
+        "el": {
+          "es": "Ella lee en la cama.",
+          "uk": "Вона читає в ліжку."
+        },
+        "nosotros": {
+          "es": "Nosotros leemos en la biblioteca.",
+          "uk": "Ми читаємо в бібліотеці."
+        },
+        "vosotros": {
+          "es": "Vosotros leéis el texto.",
+          "uk": "Ви читаєте текст."
+        },
+        "ellos": {
+          "es": "Ellos leen un periódico en español.",
+          "uk": "Вони читають газету іспанською."
+        }
+      }
+    },
+    {
+      "infinitive": "aprender",
+      "ukrainian": "вивчати, вчити",
+      "group": "regular",
+      "kind": "er",
+      "forms": {
+        "yo": "aprendo",
+        "tu": "aprendes",
+        "el": "aprende",
+        "nosotros": "aprendemos",
+        "vosotros": "aprendéis",
+        "ellos": "aprenden"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo aprendo español.",
+          "uk": "Я вчу іспанську."
+        },
+        "tu": {
+          "es": "¿Tú aprendes rápido?",
+          "uk": "Ти швидко вчишся?"
+        },
+        "el": {
+          "es": "Él aprende palabras nuevas.",
+          "uk": "Він вчить нові слова."
+        },
+        "nosotros": {
+          "es": "Nosotros aprendemos mucho en clase.",
+          "uk": "Ми багато вчимося на уроці."
+        },
+        "vosotros": {
+          "es": "Vosotros aprendéis a bailar.",
+          "uk": "Ви вчитеся танцювати."
+        },
+        "ellos": {
+          "es": "Ellos aprenden a cocinar.",
+          "uk": "Вони вчаться готувати."
+        }
+      }
+    },
+    {
+      "infinitive": "vender",
+      "ukrainian": "продавати",
+      "group": "regular",
+      "kind": "er",
+      "forms": {
+        "yo": "vendo",
+        "tu": "vendes",
+        "el": "vende",
+        "nosotros": "vendemos",
+        "vosotros": "vendéis",
+        "ellos": "venden"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo vendo mi móvil.",
+          "uk": "Я продаю свій мобільний."
+        },
+        "tu": {
+          "es": "¿Tú vendes tu sofá?",
+          "uk": "Ти продаєш свій диван?"
+        },
+        "el": {
+          "es": "Ella vende frutas en el mercado.",
+          "uk": "Вона продає фрукти на ринку."
+        },
+        "nosotros": {
+          "es": "Nosotros vendemos libros.",
+          "uk": "Ми продаємо книги."
+        },
+        "vosotros": {
+          "es": "Vosotros vendéis ropa.",
+          "uk": "Ви продаєте одяг."
+        },
+        "ellos": {
+          "es": "Ellos venden pan.",
+          "uk": "Вони продають хліб."
+        }
+      }
+    },
+    {
+      "infinitive": "correr",
+      "ukrainian": "бігати, бігти",
+      "group": "regular",
+      "kind": "er",
+      "forms": {
+        "yo": "corro",
+        "tu": "corres",
+        "el": "corre",
+        "nosotros": "corremos",
+        "vosotros": "corréis",
+        "ellos": "corren"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo corro en el parque.",
+          "uk": "Я бігаю в парку."
+        },
+        "tu": {
+          "es": "¿Tú corres por la mañana?",
+          "uk": "Ти бігаєш уранці?"
+        },
+        "el": {
+          "es": "Él corre muy rápido.",
+          "uk": "Він біжить дуже швидко."
+        },
+        "nosotros": {
+          "es": "Nosotros corremos los lunes.",
+          "uk": "Ми бігаємо по понеділках.",
+          "alt": [
+            "Los lunes nosotros corremos."
+          ]
+        },
+        "vosotros": {
+          "es": "Vosotros corréis mucho.",
+          "uk": "Ви багато бігаєте."
+        },
+        "ellos": {
+          "es": "Ellos corren por la calle.",
+          "uk": "Вони біжать вулицею."
+        }
+      }
+    },
+    {
+      "infinitive": "vivir",
+      "ukrainian": "жити",
+      "group": "regular",
+      "kind": "ir",
+      "forms": {
+        "yo": "vivo",
+        "tu": "vives",
+        "el": "vive",
+        "nosotros": "vivimos",
+        "vosotros": "vivís",
+        "ellos": "viven"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo vivo en un piso.",
+          "uk": "Я живу в квартирі."
+        },
+        "tu": {
+          "es": "¿Tú vives cerca del centro?",
+          "uk": "Ти живеш біля центру?"
+        },
+        "el": {
+          "es": "Él vive con su familia.",
+          "uk": "Він живе зі своєю родиною."
+        },
+        "nosotros": {
+          "es": "Nosotros vivimos en Kiev.",
+          "uk": "Ми живемо в Києві."
+        },
+        "vosotros": {
+          "es": "Vosotros vivís en un pueblo.",
+          "uk": "Ви живете в селі."
+        },
+        "ellos": {
+          "es": "Ellos viven lejos.",
+          "uk": "Вони живуть далеко."
+        }
+      }
+    },
+    {
+      "infinitive": "escribir",
+      "ukrainian": "писати",
+      "group": "regular",
+      "kind": "ir",
+      "forms": {
+        "yo": "escribo",
+        "tu": "escribes",
+        "el": "escribe",
+        "nosotros": "escribimos",
+        "vosotros": "escribís",
+        "ellos": "escriben"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo escribo en mi cuaderno.",
+          "uk": "Я пишу у своєму зошиті."
+        },
+        "tu": {
+          "es": "¿Tú escribes con lápiz?",
+          "uk": "Ти пишеш олівцем?"
+        },
+        "el": {
+          "es": "Ella escribe una canción.",
+          "uk": "Вона пише пісню."
+        },
+        "nosotros": {
+          "es": "Nosotros escribimos el texto.",
+          "uk": "Ми пишемо текст."
+        },
+        "vosotros": {
+          "es": "Vosotros escribís con bolígrafo.",
+          "uk": "Ви пишете ручкою."
+        },
+        "ellos": {
+          "es": "Ellos escriben a sus amigos.",
+          "uk": "Вони пишуть своїм друзям."
+        }
+      }
+    },
+    {
+      "infinitive": "abrir",
+      "ukrainian": "відкривати",
+      "group": "regular",
+      "kind": "ir",
+      "forms": {
+        "yo": "abro",
+        "tu": "abres",
+        "el": "abre",
+        "nosotros": "abrimos",
+        "vosotros": "abrís",
+        "ellos": "abren"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo abro la ventana.",
+          "uk": "Я відчиняю вікно."
+        },
+        "tu": {
+          "es": "¿Tú abres la puerta?",
+          "uk": "Ти відчиняєш двері?"
+        },
+        "el": {
+          "es": "Él abre la tienda por la mañana.",
+          "uk": "Він відкриває магазин уранці.",
+          "alt": [
+            "Por la mañana él abre la tienda."
+          ]
+        },
+        "nosotros": {
+          "es": "Nosotros abrimos el libro.",
+          "uk": "Ми відкриваємо книгу."
+        },
+        "vosotros": {
+          "es": "Vosotros abrís la caja.",
+          "uk": "Ви відкриваєте коробку."
+        },
+        "ellos": {
+          "es": "Ellos abren el museo hoy.",
+          "uk": "Вони відкривають музей сьогодні.",
+          "alt": [
+            "Hoy ellos abren el museo."
+          ]
+        }
+      }
+    },
+    {
+      "infinitive": "subir",
+      "ukrainian": "підніматися",
+      "group": "regular",
+      "kind": "ir",
+      "forms": {
+        "yo": "subo",
+        "tu": "subes",
+        "el": "sube",
+        "nosotros": "subimos",
+        "vosotros": "subís",
+        "ellos": "suben"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo subo la escalera.",
+          "uk": "Я піднімаюся сходами."
+        },
+        "tu": {
+          "es": "¿Tú subes en el ascensor?",
+          "uk": "Ти піднімаєшся ліфтом?"
+        },
+        "el": {
+          "es": "Ella sube a su habitación.",
+          "uk": "Вона піднімається до своєї кімнати."
+        },
+        "nosotros": {
+          "es": "Nosotros subimos la montaña.",
+          "uk": "Ми піднімаємося на гору."
+        },
+        "vosotros": {
+          "es": "Vosotros subís al autobús.",
+          "uk": "Ви сідаєте в автобус."
+        },
+        "ellos": {
+          "es": "Ellos suben al ático.",
+          "uk": "Вони піднімаються на горище."
+        }
+      }
+    },
+    {
+      "infinitive": "hacer",
+      "ukrainian": "робити",
+      "group": "irregular",
+      "kind": "yo",
+      "forms": {
+        "yo": "hago",
+        "tu": "haces",
+        "el": "hace",
+        "nosotros": "hacemos",
+        "vosotros": "hacéis",
+        "ellos": "hacen"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo hago deporte los miércoles.",
+          "uk": "Я займаюся спортом по середах.",
+          "alt": [
+            "Los miércoles yo hago deporte."
+          ]
+        },
+        "tu": {
+          "es": "¿Tú haces los deberes después de clase?",
+          "uk": "Ти робиш домашнє завдання після занять?"
+        },
+        "el": {
+          "es": "¿Qué hace usted por la noche?",
+          "uk": "Що Ви робите ввечері?"
+        },
+        "nosotros": {
+          "es": "Nosotros hacemos la compra los martes.",
+          "uk": "Ми робимо покупки по вівторках.",
+          "alt": [
+            "Los martes nosotros hacemos la compra."
+          ]
+        },
+        "vosotros": {
+          "es": "Vosotros hacéis mucho ruido.",
+          "uk": "Ви дуже шумите."
+        },
+        "ellos": {
+          "es": "Ustedes hacen un buen trabajo.",
+          "uk": "Ви робите хорошу роботу."
+        }
+      }
+    },
+    {
+      "infinitive": "salir",
+      "ukrainian": "виходити",
+      "group": "irregular",
+      "kind": "yo",
+      "forms": {
+        "yo": "salgo",
+        "tu": "sales",
+        "el": "sale",
+        "nosotros": "salimos",
+        "vosotros": "salís",
+        "ellos": "salen"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo salgo con amigos el sábado.",
+          "uk": "Я гуляю з друзями в суботу.",
+          "alt": [
+            "El sábado yo salgo con amigos."
+          ]
+        },
+        "tu": {
+          "es": "¿Tú sales de casa temprano?",
+          "uk": "Ти виходиш з дому рано?"
+        },
+        "el": {
+          "es": "Ella sale con su novio.",
+          "uk": "Вона гуляє зі своїм хлопцем."
+        },
+        "nosotros": {
+          "es": "Nosotros salimos por la noche.",
+          "uk": "Ми виходимо ввечері.",
+          "alt": [
+            "Por la noche nosotros salimos."
+          ]
+        },
+        "vosotros": {
+          "es": "Vosotros salís de casa muy temprano.",
+          "uk": "Ви виходите з дому дуже рано."
+        },
+        "ellos": {
+          "es": "Ellos salen del cine.",
+          "uk": "Вони виходять з кінотеатру."
+        }
+      }
+    },
+    {
+      "infinitive": "ver",
+      "ukrainian": "бачити, дивитися",
+      "group": "irregular",
+      "kind": "yo",
+      "forms": {
+        "yo": "veo",
+        "tu": "ves",
+        "el": "ve",
+        "nosotros": "vemos",
+        "vosotros": "veis",
+        "ellos": "ven"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo veo la tele o una serie.",
+          "uk": "Я дивлюся телевізор або серіал."
+        },
+        "tu": {
+          "es": "¿Tú ves el documental?",
+          "uk": "Ти дивишся документальний фільм?"
+        },
+        "el": {
+          "es": "Él ve a su abuela los domingos.",
+          "uk": "Він бачиться зі своєю бабусею по неділях.",
+          "alt": [
+            "Los domingos él ve a su abuela."
+          ]
+        },
+        "nosotros": {
+          "es": "Nosotros vemos una película de terror.",
+          "uk": "Ми дивимося фільм жахів."
+        },
+        "vosotros": {
+          "es": "Vosotros veis el mar.",
+          "uk": "Ви бачите море."
+        },
+        "ellos": {
+          "es": "Ellos ven la tele en el salón.",
+          "uk": "Вони дивляться телевізор у вітальні."
+        }
+      }
+    },
+    {
+      "infinitive": "saber",
+      "ukrainian": "знати, вміти",
+      "group": "irregular",
+      "kind": "yo",
+      "forms": {
+        "yo": "sé",
+        "tu": "sabes",
+        "el": "sabe",
+        "nosotros": "sabemos",
+        "vosotros": "sabéis",
+        "ellos": "saben"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo sé bailar flamenco.",
+          "uk": "Я вмію танцювати фламенко."
+        },
+        "tu": {
+          "es": "¿Tú sabes dónde está el museo?",
+          "uk": "Ти знаєш, де музей?"
+        },
+        "el": {
+          "es": "Él sabe cocinar.",
+          "uk": "Він уміє готувати."
+        },
+        "nosotros": {
+          "es": "Nosotros sabemos nadar.",
+          "uk": "Ми вміємо плавати."
+        },
+        "vosotros": {
+          "es": "Vosotros sabéis mucho de música.",
+          "uk": "Ви багато знаєте про музику."
+        },
+        "ellos": {
+          "es": "Ellos saben la historia.",
+          "uk": "Вони знають історію."
+        }
+      }
+    },
+    {
+      "infinitive": "conocer",
+      "ukrainian": "знати (когось), бути знайомим",
+      "group": "irregular",
+      "kind": "yo",
+      "forms": {
+        "yo": "conozco",
+        "tu": "conoces",
+        "el": "conoce",
+        "nosotros": "conocemos",
+        "vosotros": "conocéis",
+        "ellos": "conocen"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo conozco a tu madre.",
+          "uk": "Я знаю твою маму."
+        },
+        "tu": {
+          "es": "¿Tú conoces el barrio?",
+          "uk": "Ти знаєш цей район?"
+        },
+        "el": {
+          "es": "Ella conoce a mucha gente.",
+          "uk": "Вона знає багато людей."
+        },
+        "nosotros": {
+          "es": "Nosotros conocemos Madrid.",
+          "uk": "Ми знаємо Мадрид."
+        },
+        "vosotros": {
+          "es": "Vosotros conocéis a mis primos.",
+          "uk": "Ви знаєте моїх двоюрідних братів."
+        },
+        "ellos": {
+          "es": "Ellos conocen la ciudad.",
+          "uk": "Вони знають це місто."
+        }
+      }
+    },
+    {
+      "infinitive": "jugar",
+      "ukrainian": "грати",
+      "group": "irregular",
+      "kind": "stem",
+      "forms": {
+        "yo": "juego",
+        "tu": "juegas",
+        "el": "juega",
+        "nosotros": "jugamos",
+        "vosotros": "jugáis",
+        "ellos": "juegan"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo juego al fútbol con mis amigos.",
+          "uk": "Я граю у футбол з моїми друзями."
+        },
+        "tu": {
+          "es": "¿Tú juegas al tenis?",
+          "uk": "Ти граєш у теніс?"
+        },
+        "el": {
+          "es": "Él juega en el jardín.",
+          "uk": "Він грає в саду."
+        },
+        "nosotros": {
+          "es": "Nosotros jugamos los domingos.",
+          "uk": "Ми граємо по неділях.",
+          "alt": [
+            "Los domingos nosotros jugamos."
+          ]
+        },
+        "vosotros": {
+          "es": "Vosotros jugáis muy bien.",
+          "uk": "Ви граєте дуже добре."
+        },
+        "ellos": {
+          "es": "Ellos juegan en el parque.",
+          "uk": "Вони грають у парку."
+        }
+      }
+    },
+    {
+      "infinitive": "dormir",
+      "ukrainian": "спати",
+      "group": "irregular",
+      "kind": "stem",
+      "forms": {
+        "yo": "duermo",
+        "tu": "duermes",
+        "el": "duerme",
+        "nosotros": "dormimos",
+        "vosotros": "dormís",
+        "ellos": "duermen"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo duermo temprano.",
+          "uk": "Я рано лягаю спати."
+        },
+        "tu": {
+          "es": "¿Tú duermes bien?",
+          "uk": "Ти добре спиш?"
+        },
+        "el": {
+          "es": "Él duerme en el sofá.",
+          "uk": "Він спить на дивані."
+        },
+        "nosotros": {
+          "es": "Nosotros dormimos mucho los domingos.",
+          "uk": "Ми багато спимо по неділях.",
+          "alt": [
+            "Los domingos nosotros dormimos mucho."
+          ]
+        },
+        "vosotros": {
+          "es": "Vosotros dormís en el dormitorio.",
+          "uk": "Ви спите в спальні."
+        },
+        "ellos": {
+          "es": "Ellos duermen poco.",
+          "uk": "Вони мало сплять."
+        }
+      }
+    },
+    {
+      "infinitive": "volver",
+      "ukrainian": "повертатися",
+      "group": "irregular",
+      "kind": "stem",
+      "forms": {
+        "yo": "vuelvo",
+        "tu": "vuelves",
+        "el": "vuelve",
+        "nosotros": "volvemos",
+        "vosotros": "volvéis",
+        "ellos": "vuelven"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo vuelvo a casa por la tarde.",
+          "uk": "Я повертаюся додому по обіді.",
+          "alt": [
+            "Por la tarde yo vuelvo a casa."
+          ]
+        },
+        "tu": {
+          "es": "¿Tú vuelves otra vez?",
+          "uk": "Ти знову повертаєшся?"
+        },
+        "el": {
+          "es": "Él vuelve del trabajo.",
+          "uk": "Він повертається з роботи."
+        },
+        "nosotros": {
+          "es": "Nosotros volvemos al colegio.",
+          "uk": "Ми повертаємося до школи."
+        },
+        "vosotros": {
+          "es": "Vosotros volvéis el próximo lunes.",
+          "uk": "Ви повертаєтеся наступного понеділка.",
+          "alt": [
+            "El próximo lunes vosotros volvéis."
+          ]
+        },
+        "ellos": {
+          "es": "Ellos vuelven a Kiev.",
+          "uk": "Вони повертаються до Києва."
+        }
+      }
+    },
+    {
+      "infinitive": "querer",
+      "ukrainian": "хотіти, любити",
+      "group": "irregular",
+      "kind": "stem",
+      "forms": {
+        "yo": "quiero",
+        "tu": "quieres",
+        "el": "quiere",
+        "nosotros": "queremos",
+        "vosotros": "queréis",
+        "ellos": "quieren"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo quiero un café.",
+          "uk": "Я хочу каву."
+        },
+        "tu": {
+          "es": "¿Tú quieres salir con amigos?",
+          "uk": "Ти хочеш піти гуляти з друзями?"
+        },
+        "el": {
+          "es": "Ella quiere ver una película.",
+          "uk": "Вона хоче подивитися фільм."
+        },
+        "nosotros": {
+          "es": "Nosotros queremos viajar.",
+          "uk": "Ми хочемо подорожувати."
+        },
+        "vosotros": {
+          "es": "Vosotros queréis comer pasta.",
+          "uk": "Ви хочете поїсти пасту."
+        },
+        "ellos": {
+          "es": "Ellos quieren una casa grande.",
+          "uk": "Вони хочуть великий дім."
+        }
+      }
+    },
+    {
+      "infinitive": "pedir",
+      "ukrainian": "просити, замовляти",
+      "group": "irregular",
+      "kind": "stem",
+      "forms": {
+        "yo": "pido",
+        "tu": "pides",
+        "el": "pide",
+        "nosotros": "pedimos",
+        "vosotros": "pedís",
+        "ellos": "piden"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo pido un zumo.",
+          "uk": "Я замовляю сік."
+        },
+        "tu": {
+          "es": "¿Tú pides agua?",
+          "uk": "Ти замовляєш воду?"
+        },
+        "el": {
+          "es": "Él pide un café con leche.",
+          "uk": "Він замовляє каву з молоком."
+        },
+        "nosotros": {
+          "es": "Nosotros pedimos una mesa.",
+          "uk": "Ми просимо столик."
+        },
+        "vosotros": {
+          "es": "Vosotros pedís pasta.",
+          "uk": "Ви замовляєте пасту."
+        },
+        "ellos": {
+          "es": "Ellos piden la cena.",
+          "uk": "Вони замовляють вечерю."
+        }
+      }
+    },
+    {
+      "infinitive": "perder",
+      "ukrainian": "губити, програвати",
+      "group": "irregular",
+      "kind": "stem",
+      "forms": {
+        "yo": "pierdo",
+        "tu": "pierdes",
+        "el": "pierde",
+        "nosotros": "perdemos",
+        "vosotros": "perdéis",
+        "ellos": "pierden"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo pierdo mis llaves.",
+          "uk": "Я гублю свої ключі."
+        },
+        "tu": {
+          "es": "¿Tú pierdes el autobús?",
+          "uk": "Ти пропускаєш автобус?"
+        },
+        "el": {
+          "es": "Él pierde el móvil.",
+          "uk": "Він губить мобільний."
+        },
+        "nosotros": {
+          "es": "Nosotros perdemos el juego.",
+          "uk": "Ми програємо гру."
+        },
+        "vosotros": {
+          "es": "Vosotros perdéis el paraguas.",
+          "uk": "Ви губите парасольку."
+        },
+        "ellos": {
+          "es": "Ellos pierden la maleta.",
+          "uk": "Вони гублять валізу."
+        }
+      }
+    },
+    {
+      "infinitive": "probar",
+      "ukrainian": "пробувати, куштувати",
+      "group": "irregular",
+      "kind": "stem",
+      "forms": {
+        "yo": "pruebo",
+        "tu": "pruebas",
+        "el": "prueba",
+        "nosotros": "probamos",
+        "vosotros": "probáis",
+        "ellos": "prueban"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo pruebo el sushi.",
+          "uk": "Я куштую суші."
+        },
+        "tu": {
+          "es": "¿Tú pruebas el chocolate?",
+          "uk": "Ти куштуєш шоколад?"
+        },
+        "el": {
+          "es": "Ella prueba una fruta nueva.",
+          "uk": "Вона куштує новий фрукт."
+        },
+        "nosotros": {
+          "es": "Nosotros probamos la comida.",
+          "uk": "Ми куштуємо їжу."
+        },
+        "vosotros": {
+          "es": "Vosotros probáis el vino.",
+          "uk": "Ви куштуєте вино."
+        },
+        "ellos": {
+          "es": "Ellos prueban verduras nuevas.",
+          "uk": "Вони куштують нові овочі."
+        }
+      }
+    },
+    {
+      "infinitive": "soñar",
+      "ukrainian": "мріяти, бачити сни",
+      "group": "irregular",
+      "kind": "stem",
+      "forms": {
+        "yo": "sueño",
+        "tu": "sueñas",
+        "el": "sueña",
+        "nosotros": "soñamos",
+        "vosotros": "soñáis",
+        "ellos": "sueñan"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo sueño con mi casa.",
+          "uk": "Я мрію про свій дім."
+        },
+        "tu": {
+          "es": "¿Tú sueñas con el mar?",
+          "uk": "Ти мрієш про море?"
+        },
+        "el": {
+          "es": "Él sueña con ser actor.",
+          "uk": "Він мріє стати актором."
+        },
+        "nosotros": {
+          "es": "Nosotros soñamos con una casa grande.",
+          "uk": "Ми мріємо про великий дім."
+        },
+        "vosotros": {
+          "es": "Vosotros soñáis con la montaña.",
+          "uk": "Ви мрієте про гори."
+        },
+        "ellos": {
+          "es": "Ellos sueñan con viajar.",
+          "uk": "Вони мріють подорожувати."
+        }
+      }
+    },
+    {
+      "infinitive": "decir",
+      "ukrainian": "казати",
+      "group": "irregular",
+      "kind": "stem",
+      "forms": {
+        "yo": "digo",
+        "tu": "dices",
+        "el": "dice",
+        "nosotros": "decimos",
+        "vosotros": "decís",
+        "ellos": "dicen"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo digo que sí.",
+          "uk": "Я кажу, що так."
+        },
+        "tu": {
+          "es": "¿Tú dices que no?",
+          "uk": "Ти кажеш, що ні?"
+        },
+        "el": {
+          "es": "Él dice que está cansado.",
+          "uk": "Він каже, що втомлений."
+        },
+        "nosotros": {
+          "es": "Nosotros decimos que estamos de acuerdo.",
+          "uk": "Ми кажемо, що згодні."
+        },
+        "vosotros": {
+          "es": "Vosotros decís que es difícil.",
+          "uk": "Ви кажете, що це складно."
+        },
+        "ellos": {
+          "es": "Ellos dicen que sí.",
+          "uk": "Вони кажуть, що так."
+        }
+      }
+    },
+    {
+      "infinitive": "ir",
+      "ukrainian": "йти, їхати",
+      "group": "irregular",
+      "kind": "full",
+      "forms": {
+        "yo": "voy",
+        "tu": "vas",
+        "el": "va",
+        "nosotros": "vamos",
+        "vosotros": "vais",
+        "ellos": "van"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo voy al cine con mi familia.",
+          "uk": "Я йду в кіно з моєю родиною."
+        },
+        "tu": {
+          "es": "¿Tú vas al colegio por la mañana?",
+          "uk": "Ти йдеш до школи вранці?"
+        },
+        "el": {
+          "es": "Ella va a la biblioteca.",
+          "uk": "Вона йде до бібліотеки."
+        },
+        "nosotros": {
+          "es": "Nosotros vamos al parque los domingos.",
+          "uk": "Ми ходимо в парк по неділях.",
+          "alt": [
+            "Los domingos nosotros vamos al parque."
+          ]
+        },
+        "vosotros": {
+          "es": "Vosotros vais a la fiesta.",
+          "uk": "Ви йдете на вечірку."
+        },
+        "ellos": {
+          "es": "Ellos van al mercado.",
+          "uk": "Вони йдуть на ринок."
+        }
+      }
+    },
+    {
+      "infinitive": "ser",
+      "ukrainian": "бути (хто / який)",
+      "group": "irregular",
+      "kind": "full",
+      "forms": {
+        "yo": "soy",
+        "tu": "eres",
+        "el": "es",
+        "nosotros": "somos",
+        "vosotros": "sois",
+        "ellos": "son"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo soy estudiante.",
+          "uk": "Я студент."
+        },
+        "tu": {
+          "es": "Tú eres mi amigo.",
+          "uk": "Ти мій друг."
+        },
+        "el": {
+          "es": "Ella es profesora.",
+          "uk": "Вона викладачка."
+        },
+        "nosotros": {
+          "es": "Nosotros somos de Ucrania.",
+          "uk": "Ми з України."
+        },
+        "vosotros": {
+          "es": "Vosotros sois mis amigos.",
+          "uk": "Ви мої друзі."
+        },
+        "ellos": {
+          "es": "Ellos son de Madrid.",
+          "uk": "Вони з Мадрида."
+        }
+      }
+    },
+    {
+      "infinitive": "estar",
+      "ukrainian": "бути (де / у якому стані)",
+      "group": "irregular",
+      "kind": "full",
+      "forms": {
+        "yo": "estoy",
+        "tu": "estás",
+        "el": "está",
+        "nosotros": "estamos",
+        "vosotros": "estáis",
+        "ellos": "están"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo estoy en casa.",
+          "uk": "Я вдома."
+        },
+        "tu": {
+          "es": "¿Tú estás cansado?",
+          "uk": "Ти втомлений?"
+        },
+        "el": {
+          "es": "Ella está enferma.",
+          "uk": "Вона хвора."
+        },
+        "nosotros": {
+          "es": "Nosotros estamos en el parque.",
+          "uk": "Ми в парку."
+        },
+        "vosotros": {
+          "es": "Vosotros estáis contentos.",
+          "uk": "Ви задоволені."
+        },
+        "ellos": {
+          "es": "Ellos están en el trabajo.",
+          "uk": "Вони на роботі."
+        }
+      }
+    },
+    {
+      "infinitive": "tener",
+      "ukrainian": "мати",
+      "group": "irregular",
+      "kind": "full",
+      "forms": {
+        "yo": "tengo",
+        "tu": "tienes",
+        "el": "tiene",
+        "nosotros": "tenemos",
+        "vosotros": "tenéis",
+        "ellos": "tienen"
+      },
+      "sentences": {
+        "yo": {
+          "es": "Yo tengo hambre.",
+          "uk": "Я голодний."
+        },
+        "tu": {
+          "es": "¿Tú tienes frío?",
+          "uk": "Тобі холодно?"
+        },
+        "el": {
+          "es": "Él tiene sueño.",
+          "uk": "Він хоче спати."
+        },
+        "nosotros": {
+          "es": "Nosotros tenemos clase los lunes.",
+          "uk": "У нас заняття по понеділках.",
+          "alt": [
+            "Los lunes nosotros tenemos clase."
+          ]
+        },
+        "vosotros": {
+          "es": "Vosotros tenéis razón.",
+          "uk": "Ви маєте рацію."
+        },
+        "ellos": {
+          "es": "Ellos tienen mucho trabajo.",
+          "uk": "Вони мають багато роботи."
+        }
+      }
+    }
+  ]
+}

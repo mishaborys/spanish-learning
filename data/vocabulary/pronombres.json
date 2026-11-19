@@ -1,0 +1,192 @@
+{
+  "id": "pronombres",
+  "title": "Займенники та слова з уроку — Pronombres y palabras",
+  "description": "Займенники: чий (мій, його, їхній, наш…) і кому (мені, тобі, їм…); а також потім, після, ще раз, наступний, природа, хворий",
+  "added_at": "2026-11-19T17:40:00+02:00",
+  "groups": [
+    {
+      "id": "pronombres",
+      "title": "Займенники",
+      "emoji": "🏷️",
+      "words": [
+        {
+          "spanish": "mi / mis",
+          "pronunciation": "мі / міс",
+          "ukrainian": "мій, моя, моє / мої",
+          "part_of_speech": "pronoun",
+          "emoji": "🏠",
+          "sound_association": "«мі» ≈ «МІЙ» — майже те саме слово. Із «s» (mis) — коли їх багато: «мої»",
+          "example_es": "Mi madre y mis amigos viven aquí.",
+          "example_uk": "Моя мама і мої друзі живуть тут."
+        },
+        {
+          "spanish": "tu / tus",
+          "pronunciation": "ту / тус",
+          "ukrainian": "твій, твоя, твоє / твої",
+          "part_of_speech": "pronoun",
+          "emoji": "🎒",
+          "sound_association": "«ту» ≈ «ТВІЙ» — майже те саме слово. Із «s» (tus) — «твої». Без наголосу: з наголосом (tú) це вже «ти»",
+          "example_es": "¿Limpias tu habitación los sábados?",
+          "example_uk": "Ти прибираєш свою кімнату по суботах?"
+        },
+        {
+          "spanish": "su / sus",
+          "pronunciation": "су / сус",
+          "ukrainian": "його, її, їхній, Ваш",
+          "part_of_speech": "pronoun",
+          "emoji": "👨‍👩‍👧",
+          "sound_association": "«су» → СУ-27 — чужий літак: чий саме — його, її, їхній чи Ваш, видно з розмови. Із «s» (sus) — коли їх багато: «його / її / їхні»",
+          "example_es": "Pedro y su familia viven en Madrid.",
+          "example_uk": "Педро та його родина живуть у Мадриді."
+        },
+        {
+          "spanish": "nuestro/a / nuestros/as",
+          "pronunciation": "нуЕстро",
+          "ukrainian": "наш, наша, наше / наші",
+          "part_of_speech": "pronoun",
+          "emoji": "👨‍👩‍👧‍👦",
+          "sound_association": "«нуестро» → «НУ, ЕСТРАДА наша!» — від «ми» (nosotros): наш",
+          "example_es": "Nuestros amigos viven cerca.",
+          "example_uk": "Наші друзі живуть поблизу."
+        },
+        {
+          "spanish": "vuestro/a / vuestros/as",
+          "pronunciation": "буЕстро",
+          "ukrainian": "ваш, ваша, ваше / ваші (до друзів)",
+          "part_of_speech": "pronoun",
+          "emoji": "🧑‍🤝‍🧑",
+          "sound_association": "«буестро» → «БУ! ЕСТРАДА ваша!» — від «ви» (vosotros): ваш",
+          "example_es": "¿Dónde está vuestra casa?",
+          "example_uk": "Де ваш дім?"
+        },
+        {
+          "spanish": "me",
+          "pronunciation": "ме",
+          "ukrainian": "мені",
+          "part_of_speech": "pronoun",
+          "emoji": "🙋",
+          "sound_association": "«ме» → МЕНІ — починається так само",
+          "example_es": "Me gusta la música.",
+          "example_uk": "Мені подобається музика."
+        },
+        {
+          "spanish": "te",
+          "pronunciation": "те",
+          "ukrainian": "тобі",
+          "part_of_speech": "pronoun",
+          "emoji": "👉",
+          "sound_association": "«те» → ТЕБІ — починається так само",
+          "example_es": "¿Te gusta escuchar música?",
+          "example_uk": "Тобі подобається слухати музику?"
+        },
+        {
+          "spanish": "le",
+          "pronunciation": "ле",
+          "ukrainian": "йому, їй, Вам",
+          "part_of_speech": "pronoun",
+          "emoji": "🎁",
+          "sound_association": "«ле» → ЛЕДІ — їй (або джентльмену — йому); ввічливо й до Вас",
+          "example_es": "A ella le gusta ver series.",
+          "example_uk": "Їй подобається дивитися серіали."
+        },
+        {
+          "spanish": "nos",
+          "pronunciation": "нос",
+          "ukrainian": "нам",
+          "part_of_speech": "pronoun",
+          "emoji": "🙌",
+          "sound_association": "«нос» → НОС — ніс у ніс, нам усім разом",
+          "example_es": "Nos gusta la montaña.",
+          "example_uk": "Нам подобаються гори."
+        },
+        {
+          "spanish": "os",
+          "pronunciation": "ос",
+          "ukrainian": "вам (до друзів)",
+          "part_of_speech": "pronoun",
+          "emoji": "👥",
+          "sound_association": "«ос» → ОСИ — оси жалять вас, друзі: вам",
+          "example_es": "¿Os gusta el mar?",
+          "example_uk": "Вам подобається море?"
+        },
+        {
+          "spanish": "les",
+          "pronunciation": "лес",
+          "ukrainian": "їм, Вам (кілька осіб)",
+          "part_of_speech": "pronoun",
+          "emoji": "🌲",
+          "sound_association": "«лес» → ЛІС — їм подобається гуляти лісом",
+          "example_es": "A él y a su familia les gusta la naturaleza.",
+          "example_uk": "Йому і його родині подобається природа."
+        }
+      ]
+    },
+    {
+      "id": "palabras",
+      "title": "Слова з уроку",
+      "emoji": "📚",
+      "words": [
+        {
+          "spanish": "luego",
+          "pronunciation": "луЕго",
+          "ukrainian": "потім, далі",
+          "part_of_speech": "adverb",
+          "emoji": "⏭️",
+          "sound_association": "«луего» → ЛУГ — спершу справи, потім — на луг відпочивати: потім",
+          "example_es": "Hago los deberes y luego leo.",
+          "example_uk": "Роблю уроки, а потім читаю."
+        },
+        {
+          "spanish": "después",
+          "pronunciation": "деспуЕс",
+          "ukrainian": "після, потім",
+          "part_of_speech": "adverb",
+          "emoji": "🔜",
+          "sound_association": "«деспуес» → «ДЕСЬ ПІСЛЯ» — десь після цього: після, потім. Із прийменником: después de clase — після занять",
+          "example_es": "Después de clase estudio en casa.",
+          "example_uk": "Після занять я вчуся вдома."
+        },
+        {
+          "spanish": "otra vez",
+          "pronunciation": "Отра бес",
+          "ukrainian": "ще раз, знову",
+          "part_of_speech": "adverb",
+          "emoji": "🔁",
+          "sound_association": "«отра бес» → «ОТ ще РАЗ» — ще раз",
+          "example_es": "Escucho el audio otra vez.",
+          "example_uk": "Слухаю аудіо ще раз."
+        },
+        {
+          "spanish": "próximo/a",
+          "pronunciation": "прОксімо",
+          "ukrainian": "наступний, найближчий",
+          "part_of_speech": "adjective",
+          "emoji": "📅",
+          "sound_association": "«проксімо» → PROXIMITY (англ.) — те, що найближче за часом: наступний",
+          "example_es": "Nos vemos el próximo lunes.",
+          "example_uk": "Побачимось наступного понеділка."
+        },
+        {
+          "spanish": "la naturaleza",
+          "pronunciation": "натуралЕса",
+          "ukrainian": "природа",
+          "part_of_speech": "noun",
+          "emoji": "🌳",
+          "sound_association": "«натуралеса» → НАТУРАЛЬНИЙ — те саме слово: природа, все натуральне",
+          "example_es": "A mi familia le gusta la naturaleza.",
+          "example_uk": "Моїй родині подобається природа."
+        },
+        {
+          "spanish": "enfermo/a",
+          "pronunciation": "енфЕрмо",
+          "ukrainian": "хворий",
+          "part_of_speech": "adjective",
+          "emoji": "🤒",
+          "sound_association": "«енфермо» → ІНФЕКЦІЯ — підхопив інфекцію: хворий",
+          "example_es": "Alicia está enferma.",
+          "example_uk": "Аліса хвора."
+        }
+      ]
+    }
+  ]
+}
