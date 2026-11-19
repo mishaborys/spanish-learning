@@ -39,9 +39,9 @@ export function TopicTabs({ grammarText, words, fillWords, quizSentences, conjug
     return n > words.length * 0.7;
   }, [words]);
 
-  // «Вписати» відмінює лише за правилом, тож для неправильних дієслів неправильне — там його немає
+  // Тема про відмінювання: лише граматика й вправа. Слова вчимо в Словнику, тож без карток і тесту
   const tabs = conjugation
-    ? [BASE_TABS[0], CONJ_TAB, ...BASE_TABS.slice(1)]
+    ? [BASE_TABS[0], CONJ_TAB]
     : isVerbTopic ? [...BASE_TABS, FILL_TAB] : BASE_TABS;
 
   const [tab, setTab] = useState<Tab>("grammar");

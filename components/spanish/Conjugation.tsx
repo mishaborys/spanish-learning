@@ -2,13 +2,14 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  checkForm, checkOrder, FILTER_LABEL, itemsToRetry, KIND_LABEL, newSession, PERSON_LABEL,
-  restoreSession, shuffledChips, tally, type ConjVerb, type Filter, type ItemResult, type Person, type Session,
+  checkForm, checkOrder, isFinished, itemsToRetry, KIND_LABEL, newSession, PERSON_LABEL,
+  restoreSession, SESSION_SIZE, shuffledChips, tally, type ConjVerb, type ItemResult, type Person, type Session,
 } from "@/lib/conjugation/core";
 import { loadProgress, saveProgress } from "@/lib/flashcardProgress";
 
 const PROGRESS_KEY = "conjugation:presente";
-const FILTERS = Object.keys(FILTER_LABEL) as Filter[];
+/** Скільки показувати правильну форму, перш ніж саме перейти до речення. */
+export const AUTO_ADVANCE_MS = 1800;
 
 /**
  * Відмінювання: показуємо інфінітив і особу — вписуєш форму; одразу після цього речення з цією формою —
@@ -17,30 +18,30 @@ const FILTERS = Object.keys(FILTER_LABEL) as Filter[];
 export function Conjugation({ verbs }: { verbs: ConjVerb[] }) {
   const byInfinitive = useMemo(() => new Map(verbs.map(v => [v.infinitive, v])), [verbs]);
   // Вкладка малюється лише в браузері (після кліку), тож збережене читаємо одразу
-  const [session, setSession] = useState<Session>(() => restoreSession(loadProgress(PROGRESS_KEY), verbs) ?? newSession(verbs, "all"));
-  useEffect(() => saveProgress(PROGRESS_KEY, session), [session]);
+  const [saved] = useState(() => restoreSession(loadProgress(PROGRESS_KEY), verbs));
+  // Недопройдену сесію продовжуємо з тієї ж пари; пройдену — не показуємо знову, а починаємо нову
+  const [session, setSession] = useState<Session | null>(saved && !isFinished(saved) ? saved : null);
+  /** Дієслова останньої сесії: наступна бере інші, поки вони є. */
+  const [previous, setPrevious] = useState<Set<string>>(() => new Set(saved?.items.map(i => i.verb)));
+  useEffect(() => { if (session) saveProgress(PROGRESS_KEY, session); }, [session]);
+
+  const start = (from: Session | null) => {
+    const verbsSeen = new Set([...previous, ...(from?.items.map(i => i.verb) ?? [])]);
+    setPrevious(verbsSeen);
+    setSession(newSession(verbs, verbsSeen));
+  };
+
+  if (!session) return <Start onStart={() => start(null)} />;
 
   const { items, index, results, round } = session;
-  const done = index >= items.length;
+  const done = isFinished(session);
   const retry = itemsToRetry(items, results);
-  const seen = () => new Set(items.map(i => i.verb));
 
   const record = (result: ItemResult) =>
-    setSession(s => ({ ...s, index: s.index + 1, results: [...s.results, result] }));
+    setSession(s => s && ({ ...s, index: s.index + 1, results: [...s.results, result] }));
 
   return (
     <div className="space-y-4">
-      <div className="flex rounded-2xl bg-muted p-1 gap-1" role="group" aria-label="Які дієслова тренувати">
-        {FILTERS.map(f => (
-          <button key={f} type="button" aria-pressed={session.filter === f}
-            onClick={() => setSession(newSession(verbs, f, seen()))}
-            className={`flex-1 py-2 rounded-xl text-sm font-medium transition-all ${
-              session.filter === f ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
-            {FILTER_LABEL[f]}
-          </button>
-        ))}
-      </div>
-
       <div className="space-y-1.5">
         <div className="flex items-center justify-between text-xs text-muted-foreground">
           <span>{round > 1 ? "Повтор помилок" : "Сесія"}</span>
@@ -54,12 +55,29 @@ export function Conjugation({ verbs }: { verbs: ConjVerb[] }) {
 
       {done ? (
         <Summary results={results} items={items} byInfinitive={byInfinitive} retryCount={retry.length}
-          onRetry={() => setSession(s => ({ ...s, round: s.round + 1, items: retry, index: 0, results: [] }))}
-          onMore={() => setSession(newSession(verbs, session.filter, seen()))} />
+          onRetry={() => setSession(s => s && ({ ...s, round: s.round + 1, items: retry, index: 0, results: [] }))}
+          onMore={() => start(session)} />
       ) : (
         <Pair key={`${round}-${index}`} verb={byInfinitive.get(items[index].verb)!} person={items[index].person}
           last={index === items.length - 1} onDone={record} />
       )}
+    </div>
+  );
+}
+
+/** Початковий екран: одна кнопка. */
+function Start({ onStart }: { onStart: () => void }) {
+  return (
+    <div className="rounded-3xl border bg-card p-6 text-center space-y-4">
+      <p className="text-4xl">🔄</p>
+      <div className="space-y-1">
+        <p className="font-semibold text-lg">{SESSION_SIZE} дієслів</p>
+        <p className="text-sm text-muted-foreground">Впишеш форму, а потім складеш речення з нею.</p>
+      </div>
+      <button type="button" onClick={onStart}
+        className="w-full min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium active:scale-[0.98] transition-all">
+        Почати
+      </button>
     </div>
   );
 }
@@ -91,6 +109,13 @@ function Pair({ verb, person, last, onDone }: {
     else if (step === "formDone" || step === "buildDone") nextRef.current?.focus();
   }, [step]);
 
+  // Правильна форма: за кілька секунд саме відкривається речення. Кнопка «Далі» є лише після помилки
+  useEffect(() => {
+    if (step !== "formDone" || !formOk) return;
+    const timer = setTimeout(() => setStep("build"), AUTO_ADVANCE_MS);
+    return () => clearTimeout(timer);
+  }, [step, formOk]);
+
   const checkAnswer = () => {
     if (!answer.trim()) return;
     setFormOk(checkForm(answer, expected));
@@ -109,7 +134,7 @@ function Pair({ verb, person, last, onDone }: {
   if (step === "form" || step === "formDone") {
     const checked = step === "formDone";
     return (
-      <form className="space-y-4" onSubmit={e => { e.preventDefault(); if (checked) setStep("build"); else checkAnswer(); }}>
+      <form className="space-y-4" onSubmit={e => { e.preventDefault(); if (!checked) checkAnswer(); else if (!formOk) setStep("build"); }}>
         <div className="rounded-3xl border bg-card p-6 text-center space-y-2">
           <p className="text-xs uppercase tracking-wide text-muted-foreground">Впиши форму</p>
           <p className="text-4xl font-bold tracking-tight">{verb.infinitive}</p>
@@ -129,13 +154,17 @@ function Pair({ verb, person, last, onDone }: {
           <div className={`rounded-2xl border-2 p-3 text-center text-sm ${formOk ? "swipe-counter-known" : "swipe-counter-unknown"}`}>
             {formOk ? "Правильно!" : <>Правильно: <strong className="text-base">{expected}</strong></>}
             <span className="block text-xs opacity-80 mt-0.5">{KIND_LABEL[verb.kind]}</span>
+            {formOk && <span className="block text-xs opacity-80 mt-0.5">зараз буде речення…</span>}
           </div>
         )}
 
-        <button ref={nextRef} type="submit" disabled={!checked && !answer.trim()}
-          className="w-full min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium disabled:opacity-40 active:scale-[0.98] transition-all">
-          {checked ? "Далі: речення →" : "Перевірити"}
-        </button>
+        {/* Після правильної форми кнопки немає — речення відкриється саме */}
+        {!(checked && formOk) && (
+          <button ref={nextRef} type="submit" disabled={!checked && !answer.trim()}
+            className="w-full min-h-[52px] rounded-2xl bg-primary text-primary-foreground text-sm font-medium disabled:opacity-40 active:scale-[0.98] transition-all">
+            {checked ? "Далі: речення →" : "Перевірити"}
+          </button>
+        )}
       </form>
     );
   }

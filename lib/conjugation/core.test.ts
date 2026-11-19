@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  buildSession, checkForm, checkOrder, chipsOf, itemsToRetry, newSession, normalizeForm, PERSONS, restoreSession, shuffledChips,
+  buildSession, checkForm, checkOrder, chipsOf, isFinished, itemsToRetry, newSession, normalizeForm, PERSONS, restoreSession, shuffledChips,
   type Item, type ItemResult,
 } from "./core";
 import { loadConjugation } from "./data";
@@ -52,24 +52,22 @@ test("слова для складання перемішані й не лежа
 
 // ─── Сесія ────────────────────────────────────────────────────────────────────
 
-test("сесія — 10 різних дієслів, особа з шести; фільтр обмежує вибір", () => {
-  const items = buildSession(verbs, "all");
+test("сесія — 10 різних дієслів із усіх 40, особа з шести", () => {
+  const items = buildSession(verbs);
   assert.equal(items.length, 10);
   assert.equal(new Set(items.map(i => i.verb)).size, 10);
-  assert.ok(items.every(i => PERSONS.includes(i.person)));
-  const irregular = buildSession(verbs, "irregular");
-  assert.ok(irregular.every(i => byInf[i.verb].group === "irregular"));
-  const regular = buildSession(verbs, "regular");
-  assert.ok(regular.every(i => byInf[i.verb].group === "regular"));
+  assert.ok(items.every(i => byInf[i.verb] && PERSONS.includes(i.person)));
 });
 
 test("щойно пройдені дієслова не повторюються, поки є інші", () => {
-  const first = buildSession(verbs, "all").map(i => i.verb);
-  const next = buildSession(verbs, "all", { avoid: new Set(first) });
+  const first = buildSession(verbs).map(i => i.verb);
+  const next = buildSession(verbs, { avoid: new Set(first) });
   assert.ok(next.every(i => !first.includes(i.verb)));
   // але якщо інших не вистачає — беруться й вони
-  const few = verbs.filter(v => v.group === "irregular").map(v => v.infinitive);
-  assert.equal(buildSession(verbs, "irregular", { avoid: new Set(few) }).length, 10);
+  const nearlyAll = verbs.slice(0, 35).map(v => v.infinitive);
+  const last = buildSession(verbs, { avoid: new Set(nearlyAll) });
+  assert.equal(last.length, 10);
+  assert.ok(verbs.slice(35).every(v => last.some(i => i.verb === v.infinitive)));
 });
 
 test("з помилкою в формі чи реченні пара йде на повтор", () => {
@@ -131,16 +129,17 @@ test("у кожного з 240 речень є своя форма дієсло�
 // ─── Збережена сесія ──────────────────────────────────────────────────────────
 
 test("збережена сесія відновлюється, якщо відповідає даним", () => {
-  const s = newSession(verbs, "all");
+  const s = newSession(verbs);
   assert.deepEqual(restoreSession(JSON.parse(JSON.stringify(s)), verbs), s);
+  assert.equal(isFinished(s), false);
+  assert.equal(isFinished({ ...s, index: s.items.length, results: s.items.map(() => ({ form: true, order: true })) }), true);
   const mid = { ...s, index: 2, results: [{ form: true, order: false }, { form: false, order: false }] };
   assert.deepEqual(restoreSession(mid, verbs), mid);
 });
 
 test("зіпсована чи застаріла сесія не відновлюється", () => {
-  const s = newSession(verbs, "regular");
+  const s = newSession(verbs);
   assert.equal(restoreSession(null, verbs), null);
-  assert.equal(restoreSession({ ...s, filter: "other" }, verbs), null);
   assert.equal(restoreSession({ ...s, items: [{ verb: "volar", person: "yo" }] }, verbs), null);
   assert.equal(restoreSession({ ...s, items: [{ verb: "hablar", person: "usted" }] }, verbs), null);
   assert.equal(restoreSession({ ...s, index: 99 }, verbs), null);

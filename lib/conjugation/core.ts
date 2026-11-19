@@ -42,9 +42,6 @@ export type ConjVerb = {
   sentences: Record<Person, Sentence>;
 };
 
-export type Filter = "all" | "regular" | "irregular";
-export const FILTER_LABEL: Record<Filter, string> = { all: "Усі", regular: "Правильні", irregular: "Неправильні" };
-
 /** Пара вправи: яке дієслово в якій особі. */
 export type Item = { verb: string; person: Person };
 /** Результат пари: чи з першого разу правильна форма й чи правильно складене речення. */
@@ -103,21 +100,16 @@ export function shuffledChips(s: Sentence, rng: Rng = Math.random): string[] {
 
 // ─── Сесія ────────────────────────────────────────────────────────────────────
 
-export function filterVerbs(verbs: readonly ConjVerb[], filter: Filter): ConjVerb[] {
-  return filter === "all" ? [...verbs] : verbs.filter(v => v.group === filter);
-}
-
 /**
  * Нова сесія: `size` різних дієслів, особа в кожного випадкова. Дієслова з `avoid` (щойно пройдені)
  * беруться, лише якщо інших не вистачає.
  */
 export function buildSession(
   verbs: readonly ConjVerb[],
-  filter: Filter,
   opts: { size?: number; avoid?: ReadonlySet<string>; rng?: Rng } = {},
 ): Item[] {
   const { size = SESSION_SIZE, avoid = new Set<string>(), rng = Math.random } = opts;
-  const pool = shuffle(filterVerbs(verbs, filter), rng);
+  const pool = shuffle(verbs, rng);
   const fresh = pool.filter(v => !avoid.has(v.infinitive));
   const rest = pool.filter(v => avoid.has(v.infinitive));
   return [...fresh, ...rest].slice(0, size).map(v => ({
@@ -138,16 +130,19 @@ export function tally(results: readonly ItemResult[]) {
 // ─── Збережена сесія ──────────────────────────────────────────────────────────
 
 /** Сесія вправи: пари, на якій зупинився, і результати пройдених. */
-export type Session = { filter: Filter; round: number; items: Item[]; index: number; results: ItemResult[] };
+export type Session = { round: number; items: Item[]; index: number; results: ItemResult[] };
 
-export function newSession(verbs: readonly ConjVerb[], filter: Filter, avoid?: ReadonlySet<string>, rng?: Rng): Session {
-  return { filter, round: 1, items: buildSession(verbs, filter, { avoid, rng }), index: 0, results: [] };
+export function newSession(verbs: readonly ConjVerb[], avoid?: ReadonlySet<string>, rng?: Rng): Session {
+  return { round: 1, items: buildSession(verbs, { avoid, rng }), index: 0, results: [] };
 }
+
+/** Сесію пройдено до кінця (лишився підсумок). */
+export const isFinished = (s: Session) => s.index >= s.items.length;
 
 /** Збережену сесію повертає, лише якщо вона ще відповідає даним (дієслова на місці, номери в межах). */
 export function restoreSession(raw: unknown, verbs: readonly ConjVerb[]): Session | null {
   const s = raw as Partial<Session> | null;
-  if (!s || typeof s !== "object" || !s.filter || !(s.filter in FILTER_LABEL)) return null;
+  if (!s || typeof s !== "object") return null;
   if (!Number.isInteger(s.round) || s.round! < 1 || !Array.isArray(s.items) || s.items.length === 0) return null;
   const known = new Set(verbs.map(v => v.infinitive));
   const itemOk = (i: Partial<Item> | null) => !!i && typeof i.verb === "string" && known.has(i.verb) && PERSONS.includes(i.person as Person);
@@ -155,5 +150,5 @@ export function restoreSession(raw: unknown, verbs: readonly ConjVerb[]): Sessio
   if (!Number.isInteger(s.index) || s.index! < 0 || s.index! > s.items.length) return null;
   if (!Array.isArray(s.results) || s.results.length !== s.index) return null;
   if (!s.results.every(r => typeof r?.form === "boolean" && typeof r?.order === "boolean")) return null;
-  return s as Session;
+  return { round: s.round!, items: s.items, index: s.index!, results: s.results };
 }

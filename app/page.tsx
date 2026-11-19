@@ -9,7 +9,7 @@ type TopicStat = { topic_id: number; total: number; known: number; learning: num
 
 async function getTopicsWithProgress() {
   const topics = (await sql`
-    SELECT * FROM topics ORDER BY display_order ASC, created_at ASC
+    SELECT * FROM topics ORDER BY created_at DESC, id DESC
   `) as Topic[];
 
   const stats = (await sql`
