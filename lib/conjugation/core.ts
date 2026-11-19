@@ -83,6 +83,28 @@ export function acceptedOrders(s: Sentence): string[] {
   return [s.es, ...(s.alt ?? [])].map(v => orderKey(chipsOf(v)));
 }
 
+export type Rect = { left: number; top: number; right: number; bottom: number };
+
+/**
+ * Куди вставити слово, яке тягнуть: перед першим словом, що стоїть правіше в тому ж рядку
+ * або нижче. `rects` — слова речення в порядку читання (без того, яке тягнуть).
+ */
+export function insertIndex(point: { x: number; y: number }, rects: readonly Rect[]): number {
+  for (let i = 0; i < rects.length; i++) {
+    const r = rects[i];
+    if (point.y < r.top) return i;
+    if (point.y <= r.bottom && point.x < (r.left + r.right) / 2) return i;
+  }
+  return rects.length;
+}
+
+/** Слово `id` стає на місце `index` серед решти слів; `null` — слово забрано з речення. */
+export function moveWord(placed: readonly number[], id: number, index: number | null): number[] {
+  const rest = placed.filter(x => x !== id);
+  if (index !== null) rest.splice(Math.max(0, Math.min(index, rest.length)), 0, id);
+  return rest;
+}
+
 export function checkOrder(placed: readonly string[], s: Sentence): boolean {
   return acceptedOrders(s).includes(orderKey(placed));
 }

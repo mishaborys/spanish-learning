@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  buildSession, checkForm, checkOrder, chipsOf, isFinished, itemsToRetry, newSession, normalizeForm, PERSONS, restoreSession, shuffledChips,
+  buildSession, checkForm, checkOrder, chipsOf, insertIndex, isFinished, itemsToRetry, moveWord, newSession, normalizeForm, PERSONS, restoreSession, shuffledChips,
   type Item, type ItemResult,
 } from "./core";
 import { loadConjugation } from "./data";
@@ -145,4 +145,29 @@ test("зіпсована чи застаріла сесія не відновл�
   assert.equal(restoreSession({ ...s, index: 99 }, verbs), null);
   assert.equal(restoreSession({ ...s, index: 1, results: [] }, verbs), null); // результатів менше, ніж пройдено
   assert.equal(restoreSession({ ...s, round: 0 }, verbs), null);
+});
+
+// ─── Перетягування слів ───────────────────────────────────────────────────────
+
+test("слово вставляється перед першим, що правіше в рядку, чи нижче", () => {
+  // два рядки по два слова: ряд 1 (top 0..40), ряд 2 (top 50..90)
+  const rects = [
+    { left: 0, top: 0, right: 100, bottom: 40 }, { left: 110, top: 0, right: 210, bottom: 40 },
+    { left: 0, top: 50, right: 100, bottom: 90 }, { left: 110, top: 50, right: 210, bottom: 90 },
+  ];
+  assert.equal(insertIndex({ x: 10, y: 20 }, rects), 0);    // лівіше центра першого
+  assert.equal(insertIndex({ x: 150, y: 20 }, rects), 1);   // між першим і лівою половиною другого
+  assert.equal(insertIndex({ x: 200, y: 20 }, rects), 2);   // правіше всіх у першому рядку → початок другого
+  assert.equal(insertIndex({ x: 70, y: 70 }, rects), 3);    // у другому рядку, правіше центра першого слова
+  assert.equal(insertIndex({ x: 300, y: 70 }, rects), 4);   // у кінець
+  assert.equal(insertIndex({ x: 5, y: 45 }, rects), 2);     // між рядками — перед наступним рядком
+  assert.equal(insertIndex({ x: 5, y: 5 }, []), 0);         // порожнє речення
+});
+
+test("слово переставляється, додається чи забирається", () => {
+  assert.deepEqual(moveWord([2, 0, 1], 0, 0), [0, 2, 1]);     // перетягли на початок
+  assert.deepEqual(moveWord([2, 0, 1], 2, 2), [0, 1, 2]);     // в кінець (серед решти двох слів)
+  assert.deepEqual(moveWord([2, 0], 3, 1), [2, 3, 0]);        // нове слово з низу всередину
+  assert.deepEqual(moveWord([2, 0, 1], 0, null), [2, 1]);     // забрали назад вниз
+  assert.deepEqual(moveWord([2], 5, 99), [2, 5]);             // індекс за межами → в кінець
 });
