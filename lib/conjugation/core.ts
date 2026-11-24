@@ -123,21 +123,32 @@ export function shuffledChips(s: Sentence, rng: Rng = Math.random): string[] {
 // ─── Сесія ────────────────────────────────────────────────────────────────────
 
 /**
- * Нова сесія: `size` різних дієслів, особа в кожного випадкова. Дієслова з `avoid` (щойно пройдені)
- * беруться, лише якщо інших не вистачає.
+ * Нова сесія: `size` різних дієслів. Для кожного береться особа, на яку ще менше правильних відповідей
+ * (`done`), — так прогрес росте, а не топчеться на вже пройденому. Серед рівних — випадково;
+ * дієслова з `avoid` (щойно пройдені) беруться пізніше за інші.
  */
 export function buildSession(
   verbs: readonly ConjVerb[],
-  opts: { size?: number; avoid?: ReadonlySet<string>; rng?: Rng } = {},
+  opts: { size?: number; avoid?: ReadonlySet<string>; done?: ReadonlySet<string>; rng?: Rng } = {},
 ): Item[] {
-  const { size = SESSION_SIZE, avoid = new Set<string>(), rng = Math.random } = opts;
-  const pool = shuffle(verbs, rng);
-  const fresh = pool.filter(v => !avoid.has(v.infinitive));
-  const rest = pool.filter(v => avoid.has(v.infinitive));
-  return [...fresh, ...rest].slice(0, size).map(v => ({
+  const { size = SESSION_SIZE, avoid = new Set<string>(), done = new Set<string>(), rng = Math.random } = opts;
+  const pairs = verbs.flatMap(v => PERSONS.map(person => ({
     verb: v.infinitive,
-    person: PERSONS[Math.floor(rng() * PERSONS.length)],
-  }));
+    person,
+    /** Скільки з двох відповідей (форма, речення) ще не було правильним. */
+    missing: Number(!done.has(answerKey(v.infinitive, person, "form"))) + Number(!done.has(answerKey(v.infinitive, person, "order"))),
+  })));
+  // sort стабільний: спершу випадковий порядок, потім за потребою; при рівних — випадково
+  const ranked = shuffle(pairs, rng).sort((a, b) => (b.missing - a.missing) || (Number(avoid.has(a.verb)) - Number(avoid.has(b.verb))));
+  const picked: Item[] = [];
+  const used = new Set<string>();
+  for (const pair of ranked) {
+    if (used.has(pair.verb)) continue;
+    used.add(pair.verb);
+    picked.push({ verb: pair.verb, person: pair.person });
+    if (picked.length === size) break;
+  }
+  return shuffle(picked, rng);
 }
 
 /** Пари, у яких була помилка (у формі чи в реченні): їх пропонуємо пройти ще раз. */
@@ -154,8 +165,8 @@ export function tally(results: readonly ItemResult[]) {
 /** Сесія вправи: пари, на якій зупинився, і результати пройдених. */
 export type Session = { round: number; items: Item[]; index: number; results: ItemResult[] };
 
-export function newSession(verbs: readonly ConjVerb[], avoid?: ReadonlySet<string>, rng?: Rng): Session {
-  return { round: 1, items: buildSession(verbs, { avoid, rng }), index: 0, results: [] };
+export function newSession(verbs: readonly ConjVerb[], opts: Parameters<typeof buildSession>[1] = {}): Session {
+  return { round: 1, items: buildSession(verbs, opts), index: 0, results: [] };
 }
 
 /** Сесію пройдено до кінця (лишився підсумок). */
@@ -173,4 +184,65 @@ export function restoreSession(raw: unknown, verbs: readonly ConjVerb[]): Sessio
   if (!Array.isArray(s.results) || s.results.length !== s.index) return null;
   if (!s.results.every(r => typeof r?.form === "boolean" && typeof r?.order === "boolean")) return null;
   return { round: s.round!, items: s.items, index: s.index!, results: s.results };
+}
+
+// ─── Прогрес ──────────────────────────────────────────────────────────────────
+
+/** Дві відповіді на пару: вписана форма і складене речення. */
+export type Step = "form" | "order";
+export type Answer = { verb: string; person: Person; step: Step; correct: boolean };
+
+/** Ключ однієї можливої відповіді: дієслово, особа, що саме відповідали. */
+export const answerKey = (verb: string, person: Person, step: Step) => `${verb}|${person}|${step}`;
+
+/** Обидві відповіді пари, як їх треба записати. */
+export function answersOf(item: Item, result: ItemResult): Answer[] {
+  return [
+    { verb: item.verb, person: item.person, step: "form", correct: result.form },
+    { verb: item.verb, person: item.person, step: "order", correct: result.order },
+  ];
+}
+
+export type Progress = {
+  done: number;
+  total: number;
+  /** Ціле, заокруглене вниз: 100% — лише коли справді все. */
+  percent: number;
+  forms: number;
+  sentences: number;
+  /** Скільки всього форм (і стільки ж речень): дієслова × 6 осіб. */
+  perStep: number;
+};
+
+/**
+ * Прогрес: скільки з УСІХ можливих відповідей (кожне дієслово × 6 осіб × форма й речення) уже хоч раз було
+ * правильним. Повторна правильна відповідь на те саме не додається, а помилка нічого не забирає.
+ * Ключі, яких уже немає серед дієслів, не рахуються.
+ */
+export function progressOf(done: ReadonlySet<string>, verbs: readonly ConjVerb[]): Progress {
+  let forms = 0;
+  let sentences = 0;
+  for (const v of verbs) {
+    for (const p of PERSONS) {
+      if (done.has(answerKey(v.infinitive, p, "form"))) forms++;
+      if (done.has(answerKey(v.infinitive, p, "order"))) sentences++;
+    }
+  }
+  const perStep = verbs.length * PERSONS.length;
+  const total = perStep * 2;
+  const doneCount = forms + sentences;
+  return { done: doneCount, total, percent: total ? Math.floor((doneCount / total) * 100) : 0, forms, sentences, perStep };
+}
+
+/** Відповіді від клієнта: перевіряє форму й що дієслова існують. `null` — некоректно. */
+export function parseAnswers(raw: unknown, verbs: readonly ConjVerb[], max = 200): Answer[] | null {
+  if (!Array.isArray(raw) || raw.length === 0 || raw.length > max) return null;
+  const known = new Set(verbs.map(v => v.infinitive));
+  const out: Answer[] = [];
+  for (const a of raw as Partial<Answer>[]) {
+    if (!a || typeof a !== "object" || typeof a.verb !== "string" || !known.has(a.verb)) return null;
+    if (!PERSONS.includes(a.person as Person) || (a.step !== "form" && a.step !== "order") || typeof a.correct !== "boolean") return null;
+    out.push({ verb: a.verb, person: a.person as Person, step: a.step, correct: a.correct });
+  }
+  return out;
 }

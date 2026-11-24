@@ -1,7 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  buildSession, checkForm, checkOrder, chipsOf, insertIndex, isFinished, itemsToRetry, moveWord, newSession, normalizeForm, PERSONS, restoreSession, shuffledChips,
+  answerKey, answersOf, buildSession, checkForm, checkOrder, chipsOf, insertIndex, isFinished, itemsToRetry, moveWord, newSession,
+  normalizeForm, parseAnswers, PERSONS, progressOf, restoreSession, shuffledChips,
   type Item, type ItemResult,
 } from "./core";
 import { loadConjugation } from "./data";
@@ -170,4 +171,76 @@ test("слово переставляється, додається чи заб�
   assert.deepEqual(moveWord([2, 0], 3, 1), [2, 3, 0]);        // нове слово з низу всередину
   assert.deepEqual(moveWord([2, 0, 1], 0, null), [2, 1]);     // забрали назад вниз
   assert.deepEqual(moveWord([2], 5, 99), [2, 5]);             // індекс за межами → в кінець
+});
+
+// ─── Прогрес ──────────────────────────────────────────────────────────────────
+
+const everyKey = () => verbs.flatMap(v => PERSONS.flatMap(p => [answerKey(v.infinitive, p, "form"), answerKey(v.infinitive, p, "order")]));
+
+test("усього можливих відповідей 480: 40 дієслів × 6 осіб × форма й речення", () => {
+  const p = progressOf(new Set(), verbs);
+  assert.deepEqual([p.done, p.total, p.percent, p.perStep], [0, 480, 0, 240]);
+  assert.equal(everyKey().length, 480);
+});
+
+test("прогрес — частка правильних відповідей від усіх можливих; повтор того самого не додається", () => {
+  const done = new Set([
+    answerKey("hablar", "yo", "form"), answerKey("hablar", "yo", "order"), answerKey("ir", "ellos", "form"),
+  ]);
+  const p = progressOf(done, verbs);
+  assert.deepEqual([p.done, p.forms, p.sentences, p.percent], [3, 2, 1, 0]);
+  // та сама відповідь вдруге — множина не росте
+  done.add(answerKey("hablar", "yo", "form"));
+  assert.equal(progressOf(done, verbs).done, 3);
+  // 100% — лише коли справді все; 479 із 480 — ще 99%
+  const all = new Set(everyKey());
+  assert.equal(progressOf(all, verbs).percent, 100);
+  all.delete(answerKey("tener", "ellos", "order"));
+  assert.deepEqual([progressOf(all, verbs).done, progressOf(all, verbs).percent], [479, 99]);
+});
+
+test("ключі неіснуючих дієслів у прогрес не потрапляють", () => {
+  const p = progressOf(new Set([answerKey("volar", "yo", "form"), "сміття"]), verbs);
+  assert.equal(p.done, 0);
+});
+
+test("сесія бере особи, на які ще не відповідали правильно", () => {
+  // усе пройдено, крім двох пар: hablar-tú (обидві відповіді) і ir-yo (лише речення)
+  const done = new Set(everyKey());
+  done.delete(answerKey("hablar", "tu", "form")); done.delete(answerKey("hablar", "tu", "order"));
+  done.delete(answerKey("ir", "yo", "order"));
+  for (let i = 0; i < 20; i++) {
+    const items = buildSession(verbs, { done });
+    assert.ok(items.some(it => it.verb === "hablar" && it.person === "tu"), "hablar-tú має потрапити в сесію");
+    assert.ok(items.some(it => it.verb === "ir" && it.person === "yo"), "ir-yo має потрапити в сесію");
+  }
+  // і навіть якщо ці дієслова щойно проходили
+  const again = buildSession(verbs, { done, avoid: new Set(["hablar", "ir"]) });
+  assert.ok(again.some(it => it.verb === "hablar" && it.person === "tu"));
+});
+
+test("з нуля сесія не повторює щойно пройдені дієслова, поки є інші", () => {
+  const first = buildSession(verbs).map(i => i.verb);
+  const next = buildSession(verbs, { done: new Set(), avoid: new Set(first) });
+  assert.ok(next.every(i => !first.includes(i.verb)));
+});
+
+test("обидві відповіді пари записуються разом із тим, правильні вони чи ні", () => {
+  assert.deepEqual(answersOf({ verb: "ir", person: "el" }, { form: true, order: false }), [
+    { verb: "ir", person: "el", step: "form", correct: true },
+    { verb: "ir", person: "el", step: "order", correct: false },
+  ]);
+});
+
+test("відповіді від клієнта: некоректні відхиляються", () => {
+  const ok = { verb: "ir", person: "el", step: "form", correct: true };
+  assert.deepEqual(parseAnswers([ok], verbs), [ok]);
+  assert.equal(parseAnswers([], verbs), null);
+  assert.equal(parseAnswers("ir", verbs), null);
+  assert.equal(parseAnswers([{ ...ok, verb: "volar" }], verbs), null);
+  assert.equal(parseAnswers([{ ...ok, person: "usted" }], verbs), null);
+  assert.equal(parseAnswers([{ ...ok, step: "audio" }], verbs), null);
+  assert.equal(parseAnswers([{ ...ok, correct: "yes" }], verbs), null);
+  assert.equal(parseAnswers([ok, null], verbs), null);
+  assert.equal(parseAnswers(Array(201).fill(ok), verbs), null);
 });

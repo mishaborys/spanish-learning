@@ -3,39 +3,19 @@ export const dynamic = "force-dynamic";
 import sql from "@/lib/db";
 import { Topic } from "@/lib/db";
 import Link from "next/link";
-import { Progress } from "@/components/ui/progress";
 
-type TopicStat = { topic_id: number; total: number; known: number; learning: number };
-
-async function getTopicsWithProgress() {
-  const topics = (await sql`
+async function getTopics() {
+  return (await sql`
     SELECT * FROM topics ORDER BY created_at DESC, id DESC
   `) as Topic[];
-
-  const stats = (await sql`
-    SELECT
-      w.topic_id,
-      COUNT(w.id)::int AS total,
-      COUNT(p.id) FILTER (WHERE p.status = 'known')::int AS known,
-      COUNT(p.id) FILTER (WHERE p.status = 'learning')::int AS learning
-    FROM words w
-    LEFT JOIN progress p ON p.word_id = w.id
-    GROUP BY w.topic_id
-  `) as TopicStat[];
-
-  const statsMap = Object.fromEntries(stats.map((s) => [s.topic_id, s]));
-  return topics.map((t) => ({
-    ...t,
-    stats: statsMap[t.id] ?? { total: 0, known: 0, learning: 0 },
-  }));
 }
 
 export default async function HomePage() {
-  let topics: Awaited<ReturnType<typeof getTopicsWithProgress>> = [];
+  let topics: Topic[] = [];
   let dbError = false;
 
   try {
-    topics = await getTopicsWithProgress();
+    topics = await getTopics();
   } catch {
     dbError = true;
   }
@@ -55,28 +35,8 @@ export default async function HomePage() {
     );
   }
 
-  const totalWords = topics.reduce((s, t) => s + t.stats.total, 0);
-  const totalKnown = topics.reduce((s, t) => s + t.stats.known, 0);
-  const overallPercent = totalWords > 0 ? Math.round((totalKnown / totalWords) * 100) : 0;
-
   return (
     <div className="space-y-6">
-
-      {/* Stats header */}
-      {totalWords > 0 && (
-        <div className="rounded-2xl border bg-card p-5 space-y-4">
-          <div className="flex items-end justify-between">
-            <div>
-              <p className="text-3xl font-bold tracking-tight">{overallPercent}%</p>
-              <p className="text-sm text-muted-foreground mt-0.5">
-                {totalKnown} з {totalWords} слів
-              </p>
-            </div>
-          </div>
-          <Progress value={overallPercent} className="h-2" />
-        </div>
-      )}
-
 
       {/* Topics list */}
       <div className="space-y-2">
@@ -91,42 +51,15 @@ export default async function HomePage() {
             </p>
           </div>
         ) : (
-          <div className="space-y-2">
-            {topics.map((topic) => {
-              const { total, known, learning } = topic.stats;
-              const percent = total > 0 ? Math.round((known / total) * 100) : 0;
-              const newWords = total - known - learning;
-
-              return (
-                <Link key={topic.id} href={`/topics/${topic.slug}`}>
-                  <div className="rounded-2xl border bg-card p-4 hover:bg-accent/40 active:scale-[0.99] transition-all cursor-pointer">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-1 min-w-0">
-                        <p className="font-medium text-[15px] leading-snug">{topic.title}</p>
-                        {total > 0 && (
-                          <p className="text-xs text-muted-foreground mt-0.5">
-                            {total} {pluralWords(total)}
-                          </p>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-1.5 ml-3 flex-shrink-0">
-                        {newWords > 0 && (
-                          <span className="text-xs bg-muted text-muted-foreground rounded-full px-2 py-0.5">
-                            {newWords} нових
-                          </span>
-                        )}
-                        {known > 0 && (
-                          <span className="text-xs bg-primary/10 text-primary rounded-full px-2 py-0.5 font-medium">
-                            {percent}%
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    {total > 0 && <Progress value={percent} className="h-1.5" />}
-                  </div>
-                </Link>
-              );
-            })}
+          <div className="space-y-3">
+            {topics.map((topic) => (
+              <Link key={topic.id} href={`/topics/${topic.slug}`} className="block">
+                <div className="rounded-2xl border bg-card p-4 hover:bg-accent/40 active:scale-[0.99] transition-all cursor-pointer">
+                  <p className="font-medium text-[15px] leading-snug">{topic.title}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{addedLabel(topic.created_at)}</p>
+                </div>
+              </Link>
+            ))}
           </div>
         )}
       </div>
@@ -135,8 +68,14 @@ export default async function HomePage() {
   );
 }
 
-function pluralWords(n: number) {
-  if (n % 10 === 1 && n % 100 !== 11) return "слово";
-  if ([2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100)) return "слова";
-  return "слів";
+/** «додано 24 листопада» (рік — лише якщо не поточний); день рахуємо за Києвом, як і в решті застосунку. */
+function addedLabel(createdAt: string | Date): string | null {
+  const date = new Date(createdAt);
+  if (Number.isNaN(date.getTime())) return null;
+  const timeZone = "Europe/Kyiv";
+  const yearOf = (d: Date) => new Intl.DateTimeFormat("uk-UA", { year: "numeric", timeZone }).format(d);
+  const format = new Intl.DateTimeFormat("uk-UA", {
+    day: "numeric", month: "long", timeZone, ...(yearOf(date) === yearOf(new Date()) ? {} : { year: "numeric" }),
+  });
+  return `додано ${format.format(date)}`;
 }

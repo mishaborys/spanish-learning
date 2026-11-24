@@ -31,9 +31,11 @@ type Props = {
   quizSentences?: QuizSentence[];
   /** Є лише в темі про відмінювання: вправа «форма → речення». */
   conjugation?: ConjVerb[];
+  /** Ключі правильних відповідей вправи «Відмінювання» (прогрес із сервера). */
+  conjugationDone?: string[];
 };
 
-export function TopicTabs({ grammarText, words, fillWords, quizSentences, conjugation }: Props) {
+export function TopicTabs({ grammarText, words, fillWords, quizSentences, conjugation, conjugationDone }: Props) {
   const isVerbTopic = useMemo(() => {
     const n = words.filter(w => VERB_RE.test(w.spanish)).length;
     return n > words.length * 0.7;
@@ -94,7 +96,7 @@ export function TopicTabs({ grammarText, words, fillWords, quizSentences, conjug
         </div>
       )}
 
-      {tab === "conj" && conjugation && <Conjugation verbs={conjugation} />}
+      {tab === "conj" && conjugation && <Conjugation verbs={conjugation} initialDone={conjugationDone ?? []} />}
       {tab === "cards" && <FlashCards words={words} />}
       {tab === "quiz"  && <Quiz words={words} quizSentences={quizSentences} />}
       {tab === "fill"  && <FillInBlank words={fillWords ? words.filter(w => fillWords.includes(w.spanish)) : words} />}

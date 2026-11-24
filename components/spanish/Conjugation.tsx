@@ -2,10 +2,12 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  checkForm, checkOrder, insertIndex, isFinished, itemsToRetry, KIND_LABEL, moveWord, newSession, PERSON_LABEL,
-  restoreSession, SESSION_SIZE, shuffledChips, tally, type ConjVerb, type ItemResult, type Person, type Session,
+  answerKey, checkForm, checkOrder, insertIndex, isFinished, itemsToRetry, KIND_LABEL, moveWord, newSession,
+  PERSON_LABEL, progressOf, restoreSession, SESSION_SIZE, shuffledChips, tally,
+  type ConjVerb, type Item, type ItemResult, type Person, type Progress, type Session, type Step as AnswerStep,
 } from "@/lib/conjugation/core";
 import { loadProgress, saveProgress } from "@/lib/flashcardProgress";
+import { flushConjugationOutbox, queuedCorrectKeys, submitAnswers } from "@/lib/conjugationOutbox";
 import { useVisibleViewport } from "@/lib/useVisibleViewport";
 
 const PROGRESS_KEY = "conjugation:presente";
@@ -16,8 +18,10 @@ export const AUTO_ADVANCE_MS = 1800;
  * Відмінювання: показуємо інфінітив і особу — вписуєш форму; одразу після цього речення з цією формою —
  * склади його зі слів. Сама вправа — на весь екран (як Flashcards): угорі ✕ і лічильник, поле вводу й кнопка
  * закріплені знизу над клавіатурою. Помилки можна пройти ще раз; місце, де зупинився, запам'ятовується.
+ * Прогрес — частка УСІХ можливих відповідей (дієслово × особа × форма й речення), на які вже відповідали
+ * правильно; кожна відповідь іде на сервер через чергу (`lib/conjugationOutbox.ts`).
  */
-export function Conjugation({ verbs }: { verbs: ConjVerb[] }) {
+export function Conjugation({ verbs, initialDone }: { verbs: ConjVerb[]; initialDone: string[] }) {
   const byInfinitive = useMemo(() => new Map(verbs.map(v => [v.infinitive, v])), [verbs]);
   // Вкладка малюється лише в браузері (після кліку), тож збережене читаємо одразу
   const [saved] = useState(() => restoreSession(loadProgress(PROGRESS_KEY), verbs));
@@ -28,17 +32,33 @@ export function Conjugation({ verbs }: { verbs: ConjVerb[] }) {
   const [previous, setPrevious] = useState<Set<string>>(() => new Set(saved?.items.map(i => i.verb)));
   useEffect(() => { if (session) saveProgress(PROGRESS_KEY, session); }, [session]);
 
+  /** Правильні відповіді: з сервера плюс ті, що ще чекають у черзі на телефоні. */
+  const [correctKeys, setCorrectKeys] = useState<Set<string>>(() => new Set([...initialDone, ...queuedCorrectKeys()]));
+  /** Нових правильних відповідей, зароблених у цій сесії (разом із повтором помилок). */
+  const [gained, setGained] = useState(0);
+  const progress = useMemo(() => progressOf(correctKeys, verbs), [correctKeys, verbs]);
+  useEffect(() => { void flushConjugationOutbox(); }, []);
+
+  const answer = (item: Item, step: AnswerStep, correct: boolean) => {
+    void submitAnswers([{ verb: item.verb, person: item.person, step, correct }]);
+    const key = answerKey(item.verb, item.person, step);
+    if (!correct || correctKeys.has(key)) return;
+    setCorrectKeys(prev => new Set(prev).add(key));
+    setGained(g => g + 1);
+  };
+
   const begin = () => {
     const seen = new Set([...previous, ...(session?.items.map(i => i.verb) ?? [])]);
     setPrevious(seen);
-    setSession(newSession(verbs, seen));
+    setSession(newSession(verbs, { avoid: seen, done: correctKeys }));
+    setGained(0);
     setOpen(true);
   };
 
   const resumable = session && !isFinished(session) ? session : null;
   if (!open || !session) {
     return <Start resume={resumable && { index: resumable.index, total: resumable.items.length }}
-      onStart={begin} onResume={() => setOpen(true)} />;
+      progress={progress} onStart={begin} onResume={() => setOpen(true)} />;
   }
 
   const { items, index, results, round } = session;
@@ -52,11 +72,12 @@ export function Conjugation({ verbs }: { verbs: ConjVerb[] }) {
       progress={Math.min(index, items.length) / items.length} onClose={() => setOpen(false)}>
       {done ? (
         <Summary results={results} items={items} byInfinitive={byInfinitive} retryCount={retry.length}
+          progress={progress} gained={gained}
           onRetry={() => setSession(s => s && ({ ...s, round: s.round + 1, items: retry, index: 0, results: [] }))}
           onMore={begin} />
       ) : (
         <Pair key={`${round}-${index}`} verb={byInfinitive.get(items[index].verb)!} person={items[index].person}
-          last={index === items.length - 1} onDone={record} />
+          last={index === items.length - 1} onAnswer={(step, correct) => answer(items[index], step, correct)} onDone={record} />
       )}
     </Frame>
   );
@@ -121,8 +142,9 @@ function Footer({ children }: { children: React.ReactNode }) {
 }
 
 /** Початковий екран у темі: одна кнопка. Недопройдену сесію можна продовжити. */
-function Start({ resume, onStart, onResume }: {
+function Start({ resume, progress, onStart, onResume }: {
   resume: { index: number; total: number } | null;
+  progress: Progress;
   onStart: () => void;
   onResume: () => void;
 }) {
@@ -133,6 +155,7 @@ function Start({ resume, onStart, onResume }: {
         <p className="font-semibold text-lg">{SESSION_SIZE} дієслів</p>
         <p className="text-sm text-muted-foreground">Впишеш форму, а потім складеш речення з нею.</p>
       </div>
+      <ProgressBlock progress={progress} />
       {resume ? (
         <div className="space-y-2">
           <button type="button" onClick={onResume}
@@ -156,10 +179,12 @@ function Start({ resume, onStart, onResume }: {
 type Step = "form" | "formDone" | "build" | "buildDone";
 
 /** Одна пара: спершу форма, потім речення з нею. */
-function Pair({ verb, person, last, onDone }: {
+function Pair({ verb, person, last, onAnswer, onDone }: {
   verb: ConjVerb;
   person: Person;
   last: boolean;
+  /** Відповідь дано (форма чи речення): їх зараховуємо в прогрес одразу, а не в кінці пари. */
+  onAnswer: (step: AnswerStep, correct: boolean) => void;
   onDone: (result: ItemResult) => void;
 }) {
   const sentence = verb.sentences[person];
@@ -189,14 +214,18 @@ function Pair({ verb, person, last, onDone }: {
 
   const checkAnswer = () => {
     if (!answer.trim()) return;
-    setFormOk(checkForm(answer, expected));
+    const ok = checkForm(answer, expected);
+    setFormOk(ok);
     setStep("formDone");
+    onAnswer("form", ok);
   };
 
   const checkSentence = () => {
     if (placed.length !== chips.length) return;
-    setOrderOk(checkOrder(placed.map(i => chips[i]), sentence));
+    const ok = checkOrder(placed.map(i => chips[i]), sentence);
+    setOrderOk(ok);
     setStep("buildDone");
+    onAnswer("order", ok);
   };
 
   const building = step === "build";
@@ -285,6 +314,28 @@ function Pair({ verb, person, last, onDone }: {
         )}
       </Footer>
     </>
+  );
+}
+
+/** Загальний прогрес: правильні відповіді з усіх можливих (форми й речення, кожне дієслово в усіх особах). */
+function ProgressBlock({ progress, gained }: { progress: Progress; gained?: number }) {
+  return (
+    <div className="space-y-2 text-left" data-progress>
+      <div className="flex items-baseline justify-between gap-3">
+        <p className="text-sm font-medium">Прогрес</p>
+        <p className="text-sm tabular-nums">
+          <strong className="text-lg">{progress.percent}%</strong>
+          <span className="text-muted-foreground"> · {progress.done} з {progress.total}</span>
+        </p>
+      </div>
+      <div className="bg-muted rounded-full h-2 overflow-hidden">
+        <div className="h-full bg-primary rounded-full transition-all duration-500" style={{ width: `${(progress.done / progress.total) * 100}%` }} />
+      </div>
+      <p className="text-xs text-muted-foreground tabular-nums">
+        форми {progress.forms} / {progress.perStep} · речення {progress.sentences} / {progress.perStep}
+        {gained ? <span className="text-primary font-medium"> · +{gained} у цій сесії</span> : null}
+      </p>
+    </div>
   );
 }
 
@@ -438,11 +489,14 @@ function WordBuilder({ chips, placed, onChange, locked, tone }: {
   );
 }
 
-function Summary({ results, items, byInfinitive, retryCount, onRetry, onMore }: {
+function Summary({ results, items, byInfinitive, retryCount, progress, gained, onRetry, onMore }: {
   results: ItemResult[];
   items: Session["items"];
   byInfinitive: Map<string, ConjVerb>;
   retryCount: number;
+  progress: Progress;
+  /** Нових правильних відповідей, зароблених у цій сесії. */
+  gained: number;
   onRetry: () => void;
   onMore: () => void;
 }) {
@@ -465,6 +519,8 @@ function Summary({ results, items, byInfinitive, retryCount, onRetry, onMore }: 
             <p className="text-xs text-muted-foreground">речення</p>
           </div>
         </div>
+
+        <ProgressBlock progress={progress} gained={gained} />
 
         {!perfect && (
           <div className="space-y-1.5">
