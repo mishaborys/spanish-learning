@@ -43,11 +43,13 @@ export default async function TopicPage({ params }: Props) {
         </Link>
         <div>
           <h1 className="text-xl font-bold tracking-tight">{topic.title}</h1>
-          <p className="text-sm text-muted-foreground mt-0.5">
-            {total} {pluralWords(total)}
-            {learning > 0 && ` · ${learning} вивчаю`}
-            {known > 0 && ` · ${known} знаю`}
-          </p>
+          {total > 0 && (
+            <p className="text-sm text-muted-foreground mt-0.5">
+              {total} {pluralWords(total)}
+              {learning > 0 && ` · ${learning} вивчаю`}
+              {known > 0 && ` · ${known} знаю`}
+            </p>
+          )}
         </div>
         {total > 0 && (
           <div className="space-y-1.5">

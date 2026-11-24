@@ -40,16 +40,18 @@ export function TopicTabs({ grammarText, words, fillWords, quizSentences, conjug
   }, [words]);
 
   // Тема про відмінювання: лише граматика й вправа. Слова вчимо в Словнику, тож без карток і тесту
+  // Тема без слів (лише урок із граматикою): жодних порожніх карток і тесту
   const tabs = conjugation
     ? [BASE_TABS[0], CONJ_TAB]
+    : words.length === 0 ? [BASE_TABS[0]]
     : isVerbTopic ? [...BASE_TABS, FILL_TAB] : BASE_TABS;
 
   const [tab, setTab] = useState<Tab>("grammar");
 
   return (
     <div className="space-y-5">
-      {/* Tab bar */}
-      <div className="flex rounded-2xl bg-muted p-1 gap-1">
+      {/* Tab bar (одна вкладка — нічого перемикати) */}
+      {tabs.length > 1 && <div className="flex rounded-2xl bg-muted p-1 gap-1">
         {tabs.map((t) => (
           <button
             key={t.id}
@@ -66,7 +68,7 @@ export function TopicTabs({ grammarText, words, fillWords, quizSentences, conjug
             <span className="hidden sm:inline">{t.label}</span>
           </button>
         ))}
-      </div>
+      </div>}
 
       {/* Content */}
       {tab === "grammar" && (
@@ -82,7 +84,7 @@ export function TopicTabs({ grammarText, words, fillWords, quizSentences, conjug
           prose-td:py-1.5
           prose-strong:font-semibold
           prose-code:text-xs prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-normal
-          [&_table]:border-collapse [&_th]:border [&_td]:border [&_th]:px-3 [&_td]:px-3 [&_table]:rounded-xl [&_table]:overflow-hidden
+          [&_table]:border-collapse [&_th]:border [&_td]:border [&_th]:px-3 [&_td]:px-3 [&_table]:rounded-xl [&_table]:block [&_table]:max-w-full [&_table]:overflow-x-auto
         `}>
           {grammarText ? (
             <div dangerouslySetInnerHTML={{ __html: grammarText }} />

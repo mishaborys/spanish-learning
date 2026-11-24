@@ -103,9 +103,11 @@ export default async function HomePage() {
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex-1 min-w-0">
                         <p className="font-medium text-[15px] leading-snug">{topic.title}</p>
-                        <p className="text-xs text-muted-foreground mt-0.5">
-                          {total} {pluralWords(total)}
-                        </p>
+                        {total > 0 && (
+                          <p className="text-xs text-muted-foreground mt-0.5">
+                            {total} {pluralWords(total)}
+                          </p>
+                        )}
                       </div>
                       <div className="flex items-center gap-1.5 ml-3 flex-shrink-0">
                         {newWords > 0 && (
@@ -120,7 +122,7 @@ export default async function HomePage() {
                         )}
                       </div>
                     </div>
-                    <Progress value={percent} className="h-1.5" />
+                    {total > 0 && <Progress value={percent} className="h-1.5" />}
                   </div>
                 </Link>
               );

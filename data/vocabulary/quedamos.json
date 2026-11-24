@@ -1,0 +1,232 @@
+{
+  "id": "quedamos",
+  "title": "¿Quedamos? — домовляємось про зустріч",
+  "description": "Слова з уроку: діалоги про день, годину й місце, прохання, пропозиції та відмова",
+  "added_at": "2026-11-24T14:23:00+02:00",
+  "groups": [
+    {
+      "id": "dialogos",
+      "title": "Слова з діалогів",
+      "emoji": "🗓️",
+      "words": [
+        {
+          "spanish": "el informe",
+          "pronunciation": "інфОрме",
+          "ukrainian": "звіт, доповідь",
+          "part_of_speech": "noun",
+          "emoji": "📄",
+          "sound_association": "«інформе» → ІНФОРМАЦІЯ — документ з інформацією: звіт",
+          "example_es": "Tenemos que hablar del informe del proyecto.",
+          "example_uk": "Нам треба поговорити про звіт по проєкту."
+        },
+        {
+          "spanish": "la cita",
+          "pronunciation": "сІта",
+          "ukrainian": "зустріч за домовленістю, прийом",
+          "part_of_speech": "noun",
+          "emoji": "📅",
+          "sound_association": "«сіта» → СІТІ (англ. city) — домовились зустрітися в центрі міста в певний час",
+          "example_es": "El jueves no puedo, tengo una cita.",
+          "example_uk": "У четвер не можу, у мене зустріч."
+        },
+        {
+          "spanish": "el mensaje",
+          "pronunciation": "менсАхе",
+          "ukrainian": "повідомлення",
+          "part_of_speech": "noun",
+          "emoji": "💬",
+          "sound_association": "«менсахе» → МЕСЕДЖ (англ. message) — те саме слово: повідомлення",
+          "example_es": "¿Te escribo un mensaje el jueves?",
+          "example_uk": "Написати тобі повідомлення в четвер?"
+        },
+        {
+          "spanish": "la videollamada",
+          "pronunciation": "бідеойямАда",
+          "ukrainian": "відеодзвінок",
+          "part_of_speech": "noun",
+          "emoji": "🎥",
+          "sound_association": "«відеойямада» → ВІДЕО + дзвінок (llamar — дзвонити): відеодзвінок",
+          "example_es": "Tengo una videollamada a las nueve.",
+          "example_uk": "У мене відеодзвінок о дев'ятій."
+        },
+        {
+          "spanish": "el almuerzo",
+          "pronunciation": "альмуЕрсо",
+          "ukrainian": "обід",
+          "part_of_speech": "noun",
+          "emoji": "🍽️",
+          "sound_association": "«альмуерсо» → МЮСЛІ — тарілка мюслі на обід",
+          "example_es": "Estoy libre después del almuerzo.",
+          "example_uk": "Я вільний після обіду."
+        },
+        {
+          "spanish": "el portátil",
+          "pronunciation": "портАтіль",
+          "ukrainian": "ноутбук",
+          "part_of_speech": "noun",
+          "emoji": "💻",
+          "sound_association": "«портатіль» → ПОРТАТИВНИЙ — портативний комп'ютер: ноутбук",
+          "example_es": "¿Quieres que lleve mi portátil?",
+          "example_uk": "Хочеш, щоб я взяв мій ноутбук?"
+        },
+        {
+          "spanish": "los apuntes",
+          "pronunciation": "апУнтес",
+          "ukrainian": "конспект, нотатки",
+          "part_of_speech": "noun",
+          "emoji": "📝",
+          "sound_association": "«апунтес» → ПУНКТИ — записуєш конспект по пунктах",
+          "example_es": "Llevo el libro y los apuntes.",
+          "example_uk": "Беру книгу і конспекти."
+        },
+        {
+          "spanish": "disponible",
+          "pronunciation": "діспонІбле",
+          "ukrainian": "вільний, доступний",
+          "part_of_speech": "adjective",
+          "emoji": "✅",
+          "sound_association": "«діспонібле» → ДИСПОЗИЦІЯ — я в твоїй диспозиції: вільний, доступний",
+          "example_es": "Después de las dos estoy disponible.",
+          "example_uk": "Після другої я вільний."
+        },
+        {
+          "spanish": "impreso/a",
+          "pronunciation": "імпрЕсо",
+          "ukrainian": "роздрукований",
+          "part_of_speech": "adjective",
+          "emoji": "🖨️",
+          "sound_association": "«імпресо» → ІМПРЕСІЯ — залишив відбиток на папері: роздрукований",
+          "example_es": "Trae el informe impreso.",
+          "example_uk": "Принеси роздрукований звіт."
+        },
+        {
+          "spanish": "juntos/as",
+          "pronunciation": "хУнтос",
+          "ukrainian": "разом",
+          "part_of_speech": "adjective",
+          "emoji": "🤝",
+          "sound_association": "«хунтос» → ХУНТА — група людей, що діє разом: разом",
+          "example_es": "Quieren hacer un trabajo juntos.",
+          "example_uk": "Вони хочуть зробити роботу разом."
+        },
+        {
+          "spanish": "entonces",
+          "pronunciation": "ентОнсес",
+          "ukrainian": "тоді, отже",
+          "part_of_speech": "adverb",
+          "emoji": "➡️",
+          "sound_association": "«ентонсес» ≈ «ЕН-ТО-НУ-ЩО» — «ну то що, тоді…»: отже, тоді",
+          "example_es": "Entonces, solo el martes.",
+          "example_uk": "Отже, тільки у вівторок."
+        }
+      ]
+    },
+    {
+      "id": "acuerdos",
+      "title": "Дієслова й фрази для домовленості",
+      "emoji": "🤝",
+      "words": [
+        {
+          "spanish": "reunirse",
+          "pronunciation": "реунІрсе",
+          "ukrainian": "зустрітися, зібратися",
+          "part_of_speech": "verb",
+          "emoji": "👥",
+          "sound_association": "«реунірсе» → РЕЮНІОН (англ. reunion) — зустріч однокласників: зустрітися",
+          "example_es": "Buscan un día y hora para reunirse.",
+          "example_uk": "Шукають день і годину, щоб зустрітися."
+        },
+        {
+          "spanish": "encontrarse",
+          "pronunciation": "енконтрАрсе",
+          "ukrainian": "зустрічатися (десь); перебувати",
+          "part_of_speech": "verb",
+          "emoji": "📍",
+          "sound_association": "«енкон­трарсе» → КОНТРА — зустрілись лицем до лиця, «проти» одне одного",
+          "example_es": "Se encuentran el jueves a las cinco.",
+          "example_uk": "Вони зустрічаються в четвер о п'ятій."
+        },
+        {
+          "spanish": "proponer",
+          "pronunciation": "пропонЕр",
+          "ukrainian": "пропонувати",
+          "part_of_speech": "verb",
+          "emoji": "💡",
+          "sound_association": "«пропонер» → ПРОПОНУВАТИ — те саме слово",
+          "example_es": "Propongo el jueves por la tarde.",
+          "example_uk": "Пропоную четвер по обіді."
+        },
+        {
+          "spanish": "rechazar",
+          "pronunciation": "речасАр",
+          "ukrainian": "відхиляти, відмовляти",
+          "part_of_speech": "verb",
+          "emoji": "🙅",
+          "sound_association": "«речасар» ≈ «РЕЧІ, ЗАБИРАЙТЕ» — відсуваєш пропозицію: відхиляти",
+          "example_es": "Rechazo la reunión del lunes porque estoy ocupado.",
+          "example_uk": "Відхиляю зустріч у понеділок, бо я зайнятий."
+        },
+        {
+          "spanish": "poder",
+          "pronunciation": "подЕр",
+          "ukrainian": "могти, мати змогу",
+          "part_of_speech": "verb",
+          "emoji": "💪",
+          "sound_association": "«подер» → ПАУЕР (англ. power) — маєш силу, тож можеш",
+          "example_es": "¿Puedes el jueves?",
+          "example_uk": "Ти можеш у четвер?"
+        },
+        {
+          "spanish": "parecer",
+          "pronunciation": "паресЕр",
+          "ukrainian": "здаватися",
+          "part_of_speech": "verb",
+          "emoji": "🤔",
+          "sound_association": "«паресер» → ПАРА — двоє, що здаються схожими: здаватися; ¿Qué te parece…? — «А як тобі…?»",
+          "example_es": "¿Qué te parece el martes?",
+          "example_uk": "Як тобі вівторок?"
+        },
+        {
+          "spanish": "llevar",
+          "pronunciation": "йевАр",
+          "ukrainian": "нести, брати з собою",
+          "part_of_speech": "verb",
+          "emoji": "🎒",
+          "sound_association": "«йевар» → ЛЕВ — лев несе здобич у зубах: нести, брати з собою",
+          "example_es": "¿Llevo el libro de ejercicios?",
+          "example_uk": "Мені взяти зошит із вправами?"
+        },
+        {
+          "spanish": "traer",
+          "pronunciation": "траЕр",
+          "ukrainian": "приносити, привозити",
+          "part_of_speech": "verb",
+          "emoji": "📦",
+          "sound_association": "«траер» → ТРАМ — трамвай привозить сюди: приносити",
+          "example_es": "También trae el informe impreso.",
+          "example_uk": "Також принеси роздрукований звіт."
+        },
+        {
+          "spanish": "De acuerdo",
+          "pronunciation": "де акуЕРдо",
+          "ukrainian": "добре, домовились",
+          "part_of_speech": "interjection",
+          "emoji": "👍",
+          "sound_association": "«акуердо» → АКОРД (як у el acuerdo) — усі в одному акорді: домовились",
+          "example_es": "De acuerdo. El jueves a las dos y media.",
+          "example_uk": "Домовились. У четвер о пів на третю."
+        },
+        {
+          "spanish": "Lo siento",
+          "pronunciation": "ло сьЕнто",
+          "ukrainian": "вибач, мені шкода",
+          "part_of_speech": "phrase",
+          "emoji": "🙏",
+          "sound_association": "«сьєнто» → СЕНТИМЕНТ — відчуваю провину: вибач, мені шкода",
+          "example_es": "Lo siento, no puedo.",
+          "example_uk": "Вибач, не можу."
+        }
+      ]
+    }
+  ]
+}
