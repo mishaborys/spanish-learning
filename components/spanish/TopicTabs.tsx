@@ -6,9 +6,11 @@ import { FlashCards } from "./FlashCards";
 import { Quiz } from "./Quiz";
 import { FillInBlank } from "./FillInBlank";
 import { Conjugation } from "./Conjugation";
+import { SentencePractice } from "./SentencePractice";
 import type { ConjVerb } from "@/lib/conjugation/core";
+import type { SentenceDeck } from "@/lib/sentences/core";
 
-type Tab = "grammar" | "cards" | "quiz" | "fill" | "conj";
+type Tab = "grammar" | "cards" | "quiz" | "fill" | "conj" | "sentences";
 
 const BASE_TABS: { id: Tab; label: string; emoji: string }[] = [
   { id: "grammar", label: "Граматика", emoji: "📖" },
@@ -22,6 +24,9 @@ const FILL_TAB: { id: Tab; label: string; emoji: string } =
 const CONJ_TAB: { id: Tab; label: string; emoji: string } =
   { id: "conj", label: "Відмінювання", emoji: "🔄" };
 
+const SENTENCES_TAB: { id: Tab; label: string; emoji: string } =
+  { id: "sentences", label: "Речення", emoji: "🧩" };
+
 const VERB_RE = /^.+(ar|er|ir)$/i;
 
 type Props = {
@@ -33,9 +38,12 @@ type Props = {
   conjugation?: ConjVerb[];
   /** Ключі правильних відповідей вправи «Відмінювання» (прогрес із сервера). */
   conjugationDone?: string[];
+  /** Є лише в темах із вправою «Речення»: колода речень і id тих, що вже складено правильно. */
+  sentenceDeck?: SentenceDeck;
+  sentenceDone?: string[];
 };
 
-export function TopicTabs({ grammarText, words, fillWords, quizSentences, conjugation, conjugationDone }: Props) {
+export function TopicTabs({ grammarText, words, fillWords, quizSentences, conjugation, conjugationDone, sentenceDeck, sentenceDone }: Props) {
   const isVerbTopic = useMemo(() => {
     const n = words.filter(w => VERB_RE.test(w.spanish)).length;
     return n > words.length * 0.7;
@@ -45,6 +53,7 @@ export function TopicTabs({ grammarText, words, fillWords, quizSentences, conjug
   // Тема без слів (лише урок із граматикою): жодних порожніх карток і тесту
   const tabs = conjugation
     ? [BASE_TABS[0], CONJ_TAB]
+    : sentenceDeck ? [BASE_TABS[0], SENTENCES_TAB]
     : words.length === 0 ? [BASE_TABS[0]]
     : isVerbTopic ? [...BASE_TABS, FILL_TAB] : BASE_TABS;
 
@@ -96,6 +105,7 @@ export function TopicTabs({ grammarText, words, fillWords, quizSentences, conjug
         </div>
       )}
 
+      {tab === "sentences" && sentenceDeck && <SentencePractice deck={sentenceDeck} initialDone={sentenceDone ?? []} />}
       {tab === "conj" && conjugation && <Conjugation verbs={conjugation} initialDone={conjugationDone ?? []} />}
       {tab === "cards" && <FlashCards words={words} />}
       {tab === "quiz"  && <Quiz words={words} quizSentences={quizSentences} />}

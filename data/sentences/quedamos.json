@@ -1,0 +1,492 @@
+{
+  "id": "quedamos",
+  "title": "¿Quedamos? — речення",
+  "sentences": [
+    {
+      "id": "s01",
+      "es": "El jueves tengo una cita.",
+      "uk": "У четвер у мене зустріч.",
+      "alt": [
+        "Tengo una cita el jueves."
+      ],
+      "tags": [
+        "el"
+      ],
+      "words": [
+        "la cita"
+      ]
+    },
+    {
+      "id": "s02",
+      "es": "¿Puedes el martes por la tarde?",
+      "uk": "Ти можеш у вівторок по обіді?",
+      "tags": [
+        "el",
+        "por"
+      ],
+      "words": [
+        "poder"
+      ]
+    },
+    {
+      "id": "s03",
+      "es": "Nos vemos en la biblioteca a las cinco.",
+      "uk": "Зустрінемось у бібліотеці о п'ятій.",
+      "alt": [
+        "A las cinco nos vemos en la biblioteca."
+      ],
+      "tags": [
+        "en",
+        "alas"
+      ]
+    },
+    {
+      "id": "s04",
+      "es": "Vamos a la cafetería después de clase.",
+      "uk": "Ідемо в кафе після занять.",
+      "alt": [
+        "Después de clase vamos a la cafetería."
+      ],
+      "tags": [
+        "a",
+        "despues"
+      ]
+    },
+    {
+      "id": "s05",
+      "es": "Tengo una videollamada a las nueve.",
+      "uk": "У мене відеодзвінок о дев'ятій.",
+      "alt": [
+        "A las nueve tengo una videollamada."
+      ],
+      "tags": [
+        "alas"
+      ],
+      "words": [
+        "la videollamada"
+      ]
+    },
+    {
+      "id": "s06",
+      "es": "¿Te escribo un mensaje el jueves?",
+      "uk": "Написати тобі повідомлення в четвер?",
+      "tags": [
+        "el"
+      ],
+      "words": [
+        "el mensaje"
+      ]
+    },
+    {
+      "id": "s07",
+      "es": "Estoy libre después del almuerzo.",
+      "uk": "Я вільний після обіду.",
+      "alt": [
+        "Después del almuerzo estoy libre."
+      ],
+      "tags": [
+        "despues"
+      ],
+      "words": [
+        "el almuerzo"
+      ]
+    },
+    {
+      "id": "s08",
+      "es": "Lo siento, el viernes no puedo.",
+      "uk": "Вибач, у п'ятницю не можу.",
+      "alt": [
+        "El viernes no puedo, lo siento."
+      ],
+      "tags": [
+        "el"
+      ],
+      "words": [
+        "Lo siento",
+        "poder"
+      ]
+    },
+    {
+      "id": "s09",
+      "es": "¿Qué te parece el sábado por la mañana?",
+      "uk": "Як тобі субота вранці?",
+      "tags": [
+        "el",
+        "por"
+      ],
+      "words": [
+        "parecer"
+      ]
+    },
+    {
+      "id": "s10",
+      "es": "De acuerdo, el lunes a las dos y media.",
+      "uk": "Домовились, у понеділок о пів на третю.",
+      "alt": [
+        "El lunes a las dos y media, de acuerdo."
+      ],
+      "tags": [
+        "el",
+        "alas"
+      ],
+      "words": [
+        "De acuerdo"
+      ]
+    },
+    {
+      "id": "s11",
+      "es": "Llevo mi portátil a la reunión.",
+      "uk": "Я беру свій ноутбук на зустріч.",
+      "tags": [
+        "a"
+      ],
+      "words": [
+        "llevar",
+        "el portátil"
+      ]
+    },
+    {
+      "id": "s12",
+      "es": "Trae el informe impreso, por favor.",
+      "uk": "Принеси роздрукований звіт, будь ласка.",
+      "alt": [
+        "Por favor, trae el informe impreso."
+      ],
+      "words": [
+        "traer",
+        "el informe",
+        "impreso/a"
+      ]
+    },
+    {
+      "id": "s13",
+      "es": "Quieren hacer un trabajo juntos.",
+      "uk": "Вони хочуть зробити роботу разом.",
+      "words": [
+        "juntos/as"
+      ]
+    },
+    {
+      "id": "s14",
+      "es": "Buscan un día y una hora para reunirse.",
+      "uk": "Шукають день і годину, щоб зустрітися.",
+      "words": [
+        "reunirse"
+      ]
+    },
+    {
+      "id": "s15",
+      "es": "El jueves se encuentran en la biblioteca.",
+      "uk": "У четвер вони зустрічаються в бібліотеці.",
+      "alt": [
+        "Se encuentran en la biblioteca el jueves."
+      ],
+      "tags": [
+        "el",
+        "en"
+      ],
+      "words": [
+        "encontrarse"
+      ]
+    },
+    {
+      "id": "s16",
+      "es": "Propongo el jueves por la tarde.",
+      "uk": "Пропоную четвер по обіді.",
+      "tags": [
+        "el",
+        "por"
+      ],
+      "words": [
+        "proponer"
+      ]
+    },
+    {
+      "id": "s17",
+      "es": "Rechazo la reunión del lunes.",
+      "uk": "Відхиляю зустріч у понеділок.",
+      "words": [
+        "rechazar"
+      ]
+    },
+    {
+      "id": "s18",
+      "es": "Entonces, solo el martes.",
+      "uk": "Отже, тільки у вівторок.",
+      "alt": [
+        "Solo el martes, entonces."
+      ],
+      "tags": [
+        "el"
+      ],
+      "words": [
+        "entonces"
+      ]
+    },
+    {
+      "id": "s19",
+      "es": "Llevo el libro y los apuntes.",
+      "uk": "Беру книгу і конспекти.",
+      "words": [
+        "llevar",
+        "los apuntes"
+      ]
+    },
+    {
+      "id": "s20",
+      "es": "Después de las dos estoy disponible.",
+      "uk": "Після другої я вільний.",
+      "alt": [
+        "Estoy disponible después de las dos."
+      ],
+      "tags": [
+        "despues"
+      ],
+      "words": [
+        "disponible"
+      ]
+    },
+    {
+      "id": "s21",
+      "es": "Por la tarde tengo una reunión.",
+      "uk": "По обіді в мене зустріч.",
+      "alt": [
+        "Tengo una reunión por la tarde."
+      ],
+      "tags": [
+        "por"
+      ]
+    },
+    {
+      "id": "s22",
+      "es": "El miércoles por la mañana no puedo.",
+      "uk": "У середу вранці не можу.",
+      "alt": [
+        "No puedo el miércoles por la mañana."
+      ],
+      "tags": [
+        "el",
+        "por"
+      ],
+      "words": [
+        "poder"
+      ]
+    },
+    {
+      "id": "s23",
+      "es": "¿A las cinco está bien?",
+      "uk": "О п'ятій добре?",
+      "tags": [
+        "alas"
+      ]
+    },
+    {
+      "id": "s24",
+      "es": "¿Dónde nos vemos el jueves?",
+      "uk": "Де зустрічаємось у четвер?",
+      "tags": [
+        "el"
+      ]
+    },
+    {
+      "id": "s25",
+      "es": "Nos vemos en la entrada a las cuatro.",
+      "uk": "Зустрінемось біля входу о четвертій.",
+      "alt": [
+        "A las cuatro nos vemos en la entrada."
+      ],
+      "tags": [
+        "en",
+        "alas"
+      ]
+    },
+    {
+      "id": "s26",
+      "es": "El sábado voy al parque con mis amigos.",
+      "uk": "У суботу йду в парк із друзями.",
+      "alt": [
+        "Voy al parque con mis amigos el sábado."
+      ],
+      "tags": [
+        "el",
+        "a"
+      ]
+    },
+    {
+      "id": "s27",
+      "es": "Por la mañana estoy en la oficina.",
+      "uk": "Уранці я в офісі.",
+      "alt": [
+        "Estoy en la oficina por la mañana."
+      ],
+      "tags": [
+        "por",
+        "en"
+      ]
+    },
+    {
+      "id": "s28",
+      "es": "Los lunes por la tarde tengo clase.",
+      "uk": "По понеділках по обіді в мене заняття.",
+      "alt": [
+        "Tengo clase los lunes por la tarde."
+      ],
+      "tags": [
+        "el",
+        "por"
+      ]
+    },
+    {
+      "id": "s29",
+      "es": "¿Tienes tiempo esta semana?",
+      "uk": "Маєш час цього тижня?"
+    },
+    {
+      "id": "s30",
+      "es": "La reunión es a las dos y media.",
+      "uk": "Зустріч о пів на третю.",
+      "tags": [
+        "alas"
+      ]
+    },
+    {
+      "id": "s31",
+      "es": "Estudiamos juntos en la biblioteca.",
+      "uk": "Ми вчимося разом у бібліотеці.",
+      "alt": [
+        "En la biblioteca estudiamos juntos."
+      ],
+      "tags": [
+        "en"
+      ],
+      "words": [
+        "juntos/as"
+      ]
+    },
+    {
+      "id": "s32",
+      "es": "El jueves tengo una cita con el doctor.",
+      "uk": "У четвер у мене прийом у лікаря.",
+      "alt": [
+        "Tengo una cita con el doctor el jueves."
+      ],
+      "tags": [
+        "el"
+      ],
+      "words": [
+        "la cita"
+      ]
+    },
+    {
+      "id": "s33",
+      "es": "Por la noche escribo un mensaje a mi madre.",
+      "uk": "Увечері пишу повідомлення мамі.",
+      "alt": [
+        "Escribo un mensaje a mi madre por la noche."
+      ],
+      "tags": [
+        "por"
+      ],
+      "words": [
+        "el mensaje"
+      ]
+    },
+    {
+      "id": "s34",
+      "es": "El almuerzo es a las dos.",
+      "uk": "Обід о другій.",
+      "tags": [
+        "alas"
+      ],
+      "words": [
+        "el almuerzo"
+      ]
+    },
+    {
+      "id": "s35",
+      "es": "Necesito el portátil para la videollamada.",
+      "uk": "Мені потрібен ноутбук для відеодзвінка.",
+      "words": [
+        "el portátil",
+        "la videollamada"
+      ]
+    },
+    {
+      "id": "s36",
+      "es": "El informe está impreso.",
+      "uk": "Звіт роздрукований.",
+      "words": [
+        "impreso/a",
+        "el informe"
+      ]
+    },
+    {
+      "id": "s37",
+      "es": "¿Qué te parece el informe?",
+      "uk": "Що ти скажеш про звіт?",
+      "words": [
+        "parecer",
+        "el informe"
+      ]
+    },
+    {
+      "id": "s38",
+      "es": "¿Puedes traer los apuntes a la biblioteca?",
+      "uk": "Можеш принести конспекти до бібліотеки?",
+      "tags": [
+        "a"
+      ],
+      "words": [
+        "poder",
+        "traer",
+        "los apuntes"
+      ]
+    },
+    {
+      "id": "s39",
+      "es": "Me parece bien.",
+      "uk": "Мені здається добре.",
+      "words": [
+        "parecer"
+      ]
+    },
+    {
+      "id": "s40",
+      "es": "Lo siento, no estoy disponible el viernes.",
+      "uk": "Вибач, у п'ятницю я не вільний.",
+      "alt": [
+        "Lo siento, el viernes no estoy disponible."
+      ],
+      "tags": [
+        "el"
+      ],
+      "words": [
+        "Lo siento",
+        "disponible"
+      ]
+    },
+    {
+      "id": "s41",
+      "es": "¿Quedamos el jueves a las cinco?",
+      "uk": "Зустрінемось у четвер о п'ятій?",
+      "tags": [
+        "el",
+        "alas"
+      ]
+    },
+    {
+      "id": "s42",
+      "es": "Después de la reunión comemos juntos.",
+      "uk": "Після зустрічі обідаємо разом.",
+      "alt": [
+        "Comemos juntos después de la reunión."
+      ],
+      "tags": [
+        "despues"
+      ],
+      "words": [
+        "juntos/as"
+      ]
+    }
+  ]
+}
