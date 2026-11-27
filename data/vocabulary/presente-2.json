@@ -1,0 +1,252 @@
+{
+  "id": "presente-2",
+  "title": "Presente 2.0 — нові слова з уроку",
+  "description": "Підкреслені слова: захоплення, вік, ціль та дієслова, які змінюють корінь чи написання",
+  "added_at": "2026-11-27T14:30:00+02:00",
+  "groups": [
+    {
+      "id": "palabras",
+      "title": "Слова з завдань",
+      "emoji": "📝",
+      "words": [
+        {
+          "spanish": "la afición",
+          "pronunciation": "афісьйОН",
+          "ukrainian": "захоплення, хобі",
+          "part_of_speech": "noun",
+          "emoji": "🎨",
+          "sound_association": "«афісьйон» → АФІША — афіша того, що тебе захоплює: захоплення, хобі",
+          "example_es": "Mi afición favorita es la música.",
+          "example_uk": "Моє улюблене захоплення — музика."
+        },
+        {
+          "spanish": "la edad",
+          "pronunciation": "едАд",
+          "ukrainian": "вік",
+          "part_of_speech": "noun",
+          "emoji": "🎂",
+          "sound_association": "«едад» → ДАТА (народження) — по даті народження знаєш вік",
+          "example_es": "¿Qué edad tienes? — Tengo veinte años.",
+          "example_uk": "Скільки тобі років? — Мені двадцять."
+        },
+        {
+          "spanish": "alguien",
+          "pronunciation": "альгьЄн",
+          "ukrainian": "хтось, хто-небудь",
+          "part_of_speech": "pronoun",
+          "emoji": "🙋",
+          "sound_association": "«альгьєн» → «АЛЛО, ГЕЙ!» — гукаєш невідомо кого: хтось",
+          "example_es": "¿Conoces a alguien en Madrid?",
+          "example_uk": "Ти знаєш когось у Мадриді?"
+        },
+        {
+          "spanish": "la meta",
+          "pronunciation": "мЕта",
+          "ukrainian": "мета, ціль",
+          "part_of_speech": "noun",
+          "emoji": "🎯",
+          "sound_association": "«мета» → МЕТА — те саме слово, що українське",
+          "example_es": "Mi meta es hablar español bien.",
+          "example_uk": "Моя мета — добре говорити іспанською."
+        },
+        {
+          "spanish": "la mascota",
+          "pronunciation": "маскОта",
+          "ukrainian": "домашня тварина, улюбленець",
+          "part_of_speech": "noun",
+          "emoji": "🐱",
+          "sound_association": "«маскота» → МАСКОТ (англ. mascot) — талісман-улюбленець: домашня тварина",
+          "example_es": "¿Tienes mascota? — Sí, un gato.",
+          "example_uk": "У тебе є домашня тварина? — Так, кіт."
+        },
+        {
+          "spanish": "el paisaje",
+          "pronunciation": "пайсАхе",
+          "ukrainian": "пейзаж, краєвид",
+          "part_of_speech": "noun",
+          "emoji": "🏞️",
+          "sound_association": "«пайсахе» → ПЕЙЗАЖ — те саме слово, що українське",
+          "example_es": "Me gustan los paisajes de la montaña.",
+          "example_uk": "Мені подобаються гірські краєвиди."
+        },
+        {
+          "spanish": "la banda",
+          "pronunciation": "бАнда",
+          "ukrainian": "гурт, музична група",
+          "part_of_speech": "noun",
+          "emoji": "🎸",
+          "sound_association": "«банда» → БАНДА — те саме слово, але тут це музичний гурт",
+          "example_es": "Vamos a un concierto de nuestra banda favorita.",
+          "example_uk": "Ідемо на концерт нашого улюбленого гурту."
+        },
+        {
+          "spanish": "cada",
+          "pronunciation": "кАда",
+          "ukrainian": "кожен, кожна, кожне",
+          "part_of_speech": "adjective",
+          "emoji": "🔁",
+          "sound_association": "«када» → КОЖ(на) — початок збігається: «кожна». Не змінюється за родом і числом",
+          "example_es": "Cada semana hago ejercicios.",
+          "example_uk": "Щотижня я роблю вправи."
+        },
+        {
+          "spanish": "útil",
+          "pronunciation": "Утіль",
+          "ukrainian": "корисний",
+          "part_of_speech": "adjective",
+          "emoji": "🧰",
+          "sound_association": "«утіль» → УТИЛІТА (utility) — програма-утиліта корисна: корисний",
+          "example_es": "Esta aplicación es muy útil.",
+          "example_uk": "Цей застосунок дуже корисний."
+        },
+        {
+          "spanish": "agotador/a",
+          "pronunciation": "аготадОр",
+          "ukrainian": "виснажливий",
+          "part_of_speech": "adjective",
+          "emoji": "😮‍💨",
+          "sound_association": "«аготадор» → АГОНІЯ — виснажлива до знемоги: виснажливий",
+          "example_es": "Hacer ejercicio cada día es agotador.",
+          "example_uk": "Займатися спортом щодня виснажливо."
+        },
+        {
+          "spanish": "la empresa",
+          "pronunciation": "емпрЕса",
+          "ukrainian": "компанія, фірма",
+          "part_of_speech": "noun",
+          "emoji": "🏢",
+          "sound_association": "«емпреса» → ІМПЕРІЯ — велика структура, що керує: компанія, фірма",
+          "example_es": "Mi padre trabaja en una empresa grande.",
+          "example_uk": "Мій батько працює у великій компанії."
+        }
+      ]
+    },
+    {
+      "id": "verbos",
+      "title": "Дієслова",
+      "emoji": "🔄",
+      "words": [
+        {
+          "spanish": "elegir",
+          "pronunciation": "елехІр",
+          "ukrainian": "обирати, вибирати",
+          "part_of_speech": "verb",
+          "emoji": "☑️",
+          "sound_association": "«елехір» → ЕЛЕКТОРАТ — електорат обирає: обирати. Корінь e → i: elijo, eliges",
+          "example_es": "Elige tus actividades favoritas.",
+          "example_uk": "Обери свої улюблені заняття."
+        },
+        {
+          "spanish": "contar",
+          "pronunciation": "контАр",
+          "ukrainian": "розповідати; рахувати",
+          "part_of_speech": "verb",
+          "emoji": "🔢",
+          "sound_association": "«контар» → КОНТО — рахунок: рахувати, а ще «розповідати по порядку». Корінь o → ue: cuento",
+          "example_es": "Me gusta contar historias a mis amigos.",
+          "example_uk": "Я люблю розповідати історії друзям."
+        },
+        {
+          "spanish": "sacar",
+          "pronunciation": "сакАр",
+          "ukrainian": "діставати, виймати; знімати (фото)",
+          "part_of_speech": "verb",
+          "emoji": "📸",
+          "sound_association": "«сакар» → САКВОЯЖ — з нього дістаєш речі: діставати; sacar fotos — «знімати фото»",
+          "example_es": "Siempre intento sacar fotos de los paisajes.",
+          "example_uk": "Я завжди намагаюся фотографувати краєвиди."
+        },
+        {
+          "spanish": "emparejar",
+          "pronunciation": "емпарехАр",
+          "ukrainian": "поєднувати в пари",
+          "part_of_speech": "verb",
+          "emoji": "🔗",
+          "sound_association": "«емпарехар» → ПАРА — складаєш у пару: поєднувати. Від la pareja (пара)",
+          "example_es": "Empareja las frases para formar oraciones correctas.",
+          "example_uk": "З'єднай частини, щоб утворити правильні речення."
+        },
+        {
+          "spanish": "intentar",
+          "pronunciation": "інтентАр",
+          "ukrainian": "намагатися, пробувати",
+          "part_of_speech": "verb",
+          "emoji": "💪",
+          "sound_association": "«інтентар» → ІНТЕНЦІЯ — те саме слово: намір → намагатися",
+          "example_es": "Intento hacer deporte cada semana.",
+          "example_uk": "Я намагаюся займатися спортом щотижня."
+        },
+        {
+          "spanish": "servir",
+          "pronunciation": "серБІр",
+          "ukrainian": "служити, подавати, підходити",
+          "part_of_speech": "verb",
+          "emoji": "🍽️",
+          "sound_association": "«сербір» → СЕРВІС — те саме слово: обслуговувати, подавати. Корінь e → i: sirvo",
+          "example_es": "El camarero sirve el café.",
+          "example_uk": "Офіціант подає каву."
+        },
+        {
+          "spanish": "poner",
+          "pronunciation": "понЕр",
+          "ukrainian": "класти, ставити",
+          "part_of_speech": "verb",
+          "emoji": "📍",
+          "sound_association": "«понер» → ПОЗИЦІЯ (position) — ставиш на позицію: класти, ставити. У yo: pongo",
+          "example_es": "Yo pongo la mesa.",
+          "example_uk": "Я накриваю на стіл."
+        },
+        {
+          "spanish": "escoger",
+          "pronunciation": "ескохЕр",
+          "ukrainian": "вибирати, обирати",
+          "part_of_speech": "verb",
+          "emoji": "🛍️",
+          "sound_association": "«ескохер» → КОХАТИ — вибираєш того, кого кохаєш: вибирати. У yo g → j: escojo",
+          "example_es": "Escojo una película para esta noche.",
+          "example_uk": "Обираю фільм на цей вечір."
+        },
+        {
+          "spanish": "dirigir",
+          "pronunciation": "дірігІр",
+          "ukrainian": "керувати, спрямовувати",
+          "part_of_speech": "verb",
+          "emoji": "🎼",
+          "sound_association": "«дірігір» → ДИРИГЕНТ — диригент керує оркестром: керувати. У yo g → j: dirijo",
+          "example_es": "Ella dirige una empresa pequeña.",
+          "example_uk": "Вона керує невеликою компанією."
+        },
+        {
+          "spanish": "construir",
+          "pronunciation": "констурУір",
+          "ukrainian": "будувати",
+          "part_of_speech": "verb",
+          "emoji": "🏗️",
+          "sound_association": "«конструір» → КОНСТРУКЦІЯ — те саме слово: будувати. У формах з'являється y: construyo",
+          "example_es": "Ellos construyen una casa nueva.",
+          "example_uk": "Вони будують новий дім."
+        },
+        {
+          "spanish": "empezar",
+          "pronunciation": "емпесАр",
+          "ukrainian": "починати, починатися",
+          "part_of_speech": "verb",
+          "emoji": "🚦",
+          "sound_association": "«емпесар» → ІМПУЛЬС — перший імпульс запускає справу: починати. Корінь e → ie: empiezo",
+          "example_es": "La película empieza a las ocho.",
+          "example_uk": "Фільм починається о восьмій."
+        },
+        {
+          "spanish": "costar",
+          "pronunciation": "костАр",
+          "ukrainian": "коштувати",
+          "part_of_speech": "verb",
+          "emoji": "💶",
+          "sound_association": "«костар» → КОСТ (англ. cost) — те саме слово: ціна → коштувати. Корінь o → ue: cuesta",
+          "example_es": "¿Cuánto cuesta este libro?",
+          "example_uk": "Скільки коштує ця книга?"
+        }
+      ]
+    }
+  ]
+}
